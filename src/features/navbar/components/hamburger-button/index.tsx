@@ -15,10 +15,8 @@ const HamburgerButton = () => (
     aria-controls='mobile-menu'
     aria-expanded='false'
   >
-    <span className='sr-only'>Open main menu</span>
     <svg
       className='block h-6 w-6'
-      xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
       stroke='currentColor'
