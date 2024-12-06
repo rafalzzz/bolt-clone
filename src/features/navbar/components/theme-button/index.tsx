@@ -1,9 +1,21 @@
 'use client';
+import { getCookieValue, setCookieValue } from '@/shared/utils/cookies';
+
+import { EDarkMode } from '@/shared/enums/cookie-values';
+
+import { DARK_MODE } from '@/shared/consts/cookie-names';
+import { DARK } from '@/shared/consts/theme-class-names';
 
 const ThemeButton = () => {
   const handleOnClick = () => {
     const htmlElement = document.documentElement;
-    htmlElement.classList.toggle('dark');
+    const isDarkModeEnabled = getCookieValue(DARK_MODE) === EDarkMode.ENABLED;
+
+    const classListMethod = isDarkModeEnabled ? 'remove' : 'add';
+    htmlElement.classList[classListMethod](DARK);
+
+    const updatedCookieValue = !isDarkModeEnabled;
+    setCookieValue({ name: DARK_MODE, value: updatedCookieValue.toString(), expires: 365 });
   };
 
   return (
@@ -11,8 +23,7 @@ const ThemeButton = () => {
       type='button'
       className='
       h-11 w-11 px-2 py-2 border-2 border-white rounded-md 
-      text-sm bg-white hover:bg-gray-200 transition
-      mr-2
+      text-sm bg-white hover:bg-gray-200 transition mr-2
       dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800
       dark:hover:bg-gray-700 dark:hover:text-white
       '
