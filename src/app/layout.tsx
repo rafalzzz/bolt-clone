@@ -6,7 +6,7 @@ import { EDarkMode } from '@/shared/enums/cookie-values';
 import { DARK_MODE } from '@/shared/consts/cookie-names';
 import { DARK } from '@/shared/consts/theme-class-names';
 
-import './globals.css';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
