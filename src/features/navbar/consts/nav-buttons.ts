@@ -1,4 +1,6 @@
-const NAV_BUTTONS = [
+import { TNavButton } from '../types/nav-button';
+
+export const NAV_BUTTONS: Readonly<TNavButton[]> = [
   {
     href: '/#home',
     text: 'Home',
@@ -16,5 +18,3 @@ const NAV_BUTTONS = [
     text: 'Contact',
   },
 ];
-
-export default NAV_BUTTONS;

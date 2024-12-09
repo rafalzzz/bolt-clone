@@ -1,12 +1,4 @@
 import type { Metadata } from 'next';
-import { cookies } from 'next/headers';
-
-import { EDarkMode } from '@/shared/enums/cookie-values';
-
-import { DARK_MODE } from '@/shared/consts/cookie-names';
-import { DARK } from '@/shared/consts/theme-class-names';
-
-import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,13 +9,10 @@ type TRootLayout = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default async function RootLayout({ children }: TRootLayout) {
-  const cookieStore = await cookies();
-  const darkMode = cookieStore.get(DARK_MODE)?.value === EDarkMode.ENABLED;
+const RootLayout = async ({ children }: TRootLayout) => (
+  <html>
+    <body className={`antialiased`}>{children}</body>
+  </html>
+);
 
-  return (
-    <html lang='en' className={darkMode ? DARK : undefined}>
-      <body className={`antialiased`}>{children}</body>
-    </html>
-  );
-}
+export default RootLayout;
