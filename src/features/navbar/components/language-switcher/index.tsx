@@ -1,13 +1,17 @@
+'use client';
 import { ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
 
 import { LANGUAGES } from '@/shared/consts/languages';
+import { setCookieValue } from '@/shared/utils/cookies';
+import { LANGUAGE } from '@/shared/consts/cookie-names';
 
 const LanguageSwitcher = () => {
   const { locale, pathname, asPath, query, push } = useRouter();
 
   const handleOnChange = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
     push({ pathname, query }, asPath, { locale: value });
+    setCookieValue({ name: LANGUAGE, value });
   };
 
   return (

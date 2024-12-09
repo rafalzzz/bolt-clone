@@ -12,6 +12,8 @@ const Index = () => (
 );
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  console.log({ locale });
+
   return {
     props: {
       messages: (await import(`../../public/locales/${locale}.json`)).default,

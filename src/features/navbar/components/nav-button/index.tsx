@@ -1,9 +1,6 @@
 import Link from 'next/link';
 
-type TNavButton = {
-  href: string;
-  text: string;
-};
+import { TNavButton } from '../../types/nav-button';
 
 const NavButton = ({ href, text }: TNavButton) => (
   <Link

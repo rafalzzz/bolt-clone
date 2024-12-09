@@ -1,5 +1,7 @@
-import { LANGUAGES } from '@/shared/consts/languages';
 import { NextRequest, NextResponse } from 'next/server';
+
+import { LANGUAGES } from '@/shared/consts/languages';
+import { LANGUAGE } from '@/shared/consts/cookie-names';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -13,7 +15,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (req.nextUrl.locale === 'default') {
-    const locale = req.cookies.get('NEXT_LOCALE')?.value || LANGUAGES.EN;
+    const locale = req.cookies.get(LANGUAGE)?.value || LANGUAGES.EN;
 
     return NextResponse.redirect(
       new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),

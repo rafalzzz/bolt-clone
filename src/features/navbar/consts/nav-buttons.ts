@@ -1,4 +1,6 @@
-export const NAV_BUTTONS: Readonly<{ href: string; text: string }[]> = [
+import { TNavButton } from '../types/nav-button';
+
+export const NAV_BUTTONS: Readonly<TNavButton[]> = [
   {
     href: '/#home',
     text: 'Home',

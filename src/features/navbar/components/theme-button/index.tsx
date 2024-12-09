@@ -15,7 +15,7 @@ const ThemeButton = () => {
     htmlElement.classList[classListMethod](DARK);
 
     const updatedCookieValue = !isDarkModeEnabled;
-    setCookieValue({ name: DARK_MODE, value: updatedCookieValue.toString(), expires: 365 });
+    setCookieValue({ name: DARK_MODE, value: updatedCookieValue.toString() });
   };
 
   return (

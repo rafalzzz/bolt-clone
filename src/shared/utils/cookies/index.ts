@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie';
 
+import { DEFAULT_COOKIE_LIFETIME } from '@/shared/consts/cookie-settings';
+
 type TSetCookieValueParams = {
   name: string;
   value: string;
@@ -8,5 +10,8 @@ type TSetCookieValueParams = {
 
 export const getCookieValue = (name: string) => Cookies.get(name);
 
-export const setCookieValue = ({ name, value, expires }: TSetCookieValueParams) =>
-  Cookies.set(name, value, { expires });
+export const setCookieValue = ({
+  name,
+  value,
+  expires = DEFAULT_COOKIE_LIFETIME,
+}: TSetCookieValueParams) => Cookies.set(name, value, { expires });
