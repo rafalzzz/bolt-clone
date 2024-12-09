@@ -17,13 +17,15 @@ type TRootLayout = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default async function RootLayout({ children }: TRootLayout) {
+const RootLayout = async ({ children }: TRootLayout) => {
   const cookieStore = await cookies();
   const darkMode = cookieStore.get(DARK_MODE)?.value === EDarkMode.ENABLED;
 
   return (
-    <html lang='en' className={darkMode ? DARK : undefined}>
+    <html className={darkMode ? DARK : undefined}>
       <body className={`antialiased`}>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;

@@ -6,10 +6,9 @@ type TNavButton = {
 };
 
 const NavButton = ({ href, text }: TNavButton) => (
-  <li>
-    <Link
-      href={href}
-      className='
+  <Link
+    href={href}
+    className='
         px-4 py-2 border-2 border-gray-300 
         rounded-full text-sm font-light text-gray-600 
         bg-gray-100 hover:bg-gray-200 transition font-sans
@@ -18,10 +17,9 @@ const NavButton = ({ href, text }: TNavButton) => (
         dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800 
         dark:hover:bg-gray-700 dark:active:bg-gray-600
       '
-    >
-      {text}
-    </Link>
-  </li>
+  >
+    {text}
+  </Link>
 );
 
 export default NavButton;

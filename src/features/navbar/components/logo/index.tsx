@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import LOGO_BASE64 from '../../consts/logo';
+import { LOGO_BASE64 } from '../../consts/logo';
 
 const Logo = () => (
   <div className='flex-shrink-0'>

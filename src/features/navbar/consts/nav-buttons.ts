@@ -1,4 +1,4 @@
-const NAV_BUTTONS = [
+export const NAV_BUTTONS: Readonly<{ href: string; text: string }[]> = [
   {
     href: '/#home',
     text: 'Home',
@@ -16,5 +16,3 @@ const NAV_BUTTONS = [
     text: 'Contact',
   },
 ];
-
-export default NAV_BUTTONS;

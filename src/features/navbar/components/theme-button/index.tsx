@@ -22,7 +22,7 @@ const ThemeButton = () => {
     <button
       type='button'
       className='
-      h-11 w-11 px-2 py-2 border-2 border-white rounded-md 
+      h-11 w-11 p-2 border-2 border-white rounded-md 
       text-sm bg-white hover:bg-gray-200 transition mr-2
       dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800
       dark:hover:bg-gray-700 dark:hover:text-white

@@ -1,1 +1,1 @@
-export const DARK = 'dark';
+export const DARK: Readonly<string> = 'dark';

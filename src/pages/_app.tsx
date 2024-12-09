@@ -3,16 +3,15 @@ import { useRouter } from 'next/router';
 
 import { NextIntlClientProvider } from 'next-intl';
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+const App = ({ Component, pageProps }: AppProps) => {
+  const { locale } = useRouter();
+  const { messages } = pageProps;
 
   return (
-    <NextIntlClientProvider
-      locale={router.locale}
-      messages={pageProps.messages}
-      timeZone='Europe/Warsaw'
-    >
+    <NextIntlClientProvider locale={locale} messages={messages} timeZone='Europe/Warsaw'>
       <Component {...pageProps} />
     </NextIntlClientProvider>
   );
-}
+};
+
+export default App;
