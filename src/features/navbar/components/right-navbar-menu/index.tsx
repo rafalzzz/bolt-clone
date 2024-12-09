@@ -1,10 +1,10 @@
 import ThemeButton from '../theme-button';
 import HamburgerButton from '../hamburger-button';
-import LANGUAGESwitcher from '../language-switcher';
+import LanguageSwitcher from '../language-switcher';
 
 const RightNavbarMenu = () => (
   <div className='flex'>
-    <LANGUAGESwitcher />
+    <LanguageSwitcher />
     <ThemeButton />
     <HamburgerButton />
   </div>

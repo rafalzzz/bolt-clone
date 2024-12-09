@@ -19,6 +19,7 @@ type TDocumentInitialProps = DocumentInitialProps & {
 class MyDocument extends Document<TDocumentInitialProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<TDocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
+
     const cookies = ctx.req ? cookie.parse(ctx.req.headers.cookie || '') : {};
     const darkMode = cookies[DARK_MODE] === EDarkMode.ENABLED;
 
