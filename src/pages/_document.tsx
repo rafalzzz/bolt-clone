@@ -1,3 +1,4 @@
+import cookie from 'cookie';
 import Document, {
   Html,
   Head,
@@ -6,11 +7,10 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from 'next/document';
-import cookie from 'cookie';
-
-import { EDarkMode } from '@/shared/enums/cookie-values';
 
 import { DARK_MODE } from '@/shared/consts/cookie-names';
+
+import { EDarkMode } from '@/shared/enums/cookie-values';
 
 type TDocumentInitialProps = DocumentInitialProps & {
   darkMode: boolean;

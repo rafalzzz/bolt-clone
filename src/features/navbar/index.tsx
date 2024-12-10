@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Navigation from './components/navigation';
-import Logo from './components/logo';
-import RightNavbarMenu from './components/right-navbar-menu';
+import Logo from '@/features/navbar/components/logo';
+import Navigation from '@/features/navbar/components/navigation';
+import RightNavbarMenu from '@/features/navbar/components/right-navbar-menu';
 
 const Navbar = () => (
   <header className='bg-white dark:bg-gray-900 transition'>

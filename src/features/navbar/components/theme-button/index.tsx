@@ -1,10 +1,10 @@
 'use client';
 import { getCookieValue, setCookieValue } from '@/shared/utils/cookies';
 
-import { EDarkMode } from '@/shared/enums/cookie-values';
-
 import { DARK_MODE } from '@/shared/consts/cookie-names';
 import { DARK } from '@/shared/consts/theme-class-names';
+
+import { EDarkMode } from '@/shared/enums/cookie-values';
 
 const ThemeButton = () => {
   const handleOnClick = () => {
@@ -21,12 +21,10 @@ const ThemeButton = () => {
   return (
     <button
       type='button'
-      className='
-      h-11 w-11 p-2 border-2 border-white rounded-md 
+      className='h-11 w-11 p-2 border-2 border-white rounded-md 
       text-sm bg-white hover:bg-gray-200 transition mr-2
       dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800
-      dark:hover:bg-gray-700 dark:hover:text-white
-      '
+      dark:hover:bg-gray-700 dark:hover:text-white'
       onClick={handleOnClick}
     >
       <svg className='text-gray-900 block dark:hidden' fill='currentColor' viewBox='0 0 20 20'>
