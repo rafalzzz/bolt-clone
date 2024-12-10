@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-import { LOGO_BASE64 } from '../../consts/logo';
+import { LOGO_BASE64 } from '@/features/navbar/consts/logo';
 
 const Logo = () => (
   <div className='flex-shrink-0'>

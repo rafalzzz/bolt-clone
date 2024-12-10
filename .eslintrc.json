@@ -1,7 +1,64 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "unused-imports", "import"],
   "rules": {
-    "prettier/prettier": "warn"
+    "prettier/prettier": "warn",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "**/contexts/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/components/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/hooks/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/utils/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/consts/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/enums/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/types/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "**/styles/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": []
+      }
+    ],
+    "react/display-name": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "Type$" }]
   }
 }

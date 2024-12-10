@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
 
-import NavButton from '../nav-button';
+import NavButton from '@/features/navbar/components/nav-button';
 
-import { NAV_BUTTONS } from '../../consts/nav-buttons';
+import { NAV_BUTTONS } from '@/features/navbar/consts/nav-buttons';
 
 const Navigation = () => {
   const t = useTranslations('Navigation');
