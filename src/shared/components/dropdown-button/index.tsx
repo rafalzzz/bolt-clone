@@ -1,5 +1,4 @@
-'use client';
-
+import dynamic from 'next/dynamic';
 import { FC, PropsWithChildren, useState } from 'react';
 
 type TDropdownButton = {
@@ -35,4 +34,4 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({ text, children
   );
 };
 
-export default DropdownButton;
+export default dynamic(() => Promise.resolve(DropdownButton), { ssr: false });

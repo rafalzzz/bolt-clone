@@ -7,13 +7,13 @@ import { NAV_BUTTONS } from '@/features/navbar/consts/nav-buttons';
 const Navigation = () => {
   const t = useTranslations('Navigation');
 
-  const [ABOUT_BUTTON, REGISTER_BUTTON] = NAV_BUTTONS;
-
   return (
     <ul className='hidden md:flex flex-row space-x-4'>
-      <li>
-        <NavButton href={ABOUT_BUTTON.href} text={t(ABOUT_BUTTON.text)} />
-      </li>
+      {NAV_BUTTONS.map(({ text, href }) => (
+        <li key={text}>
+          <NavButton href={href} text={t(text)} />
+        </li>
+      ))}
     </ul>
   );
 };

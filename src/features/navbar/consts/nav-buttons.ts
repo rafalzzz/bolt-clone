@@ -6,7 +6,7 @@ export const NAV_BUTTONS: Readonly<TNavButton[]> = [
     text: 'About',
   },
   {
-    href: '/#register',
-    text: 'Register',
+    href: '/#contact',
+    text: 'Contact',
   },
 ];
