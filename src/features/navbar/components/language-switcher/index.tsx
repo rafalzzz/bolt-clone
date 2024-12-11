@@ -18,11 +18,9 @@ const LanguageSwitcher = () => {
   return (
     <select
       value={locale}
-      className='bg-gray-100 p-2 mr-2 border-white border-2 bg-white rounded-md 
-        text-gray-600 text-sm rounded-lg block focus:outline-none
-        transition mr-2 hover:bg-gray-200 hover:cursor-pointer
-        dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 
-        dark:hover:bg-gray-700 dark:active:bg-gray-600 dark:focus:border-gray-700'
+      className='bg-gray-100 p-2 border-none bg-white rounded-md text-gray-600 text-sm 
+        rounded-lg block focus:outline-none transition hover:bg-gray-200 hover:cursor-pointer
+        dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
       onChange={handleOnChange}
     >
       {Object.keys(LANGUAGES).map((key) => (
