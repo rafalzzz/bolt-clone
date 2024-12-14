@@ -1,12 +1,7 @@
-import type { NextConfig } from 'next';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const withNextIntl = require('next-intl/plugin')();
 
-import { LANGUAGES } from '@/shared/consts/languages';
+/** @type {import('next').NextConfig} */
+const config = {};
 
-const nextConfig: NextConfig = {
-  i18n: {
-    locales: Object.values(LANGUAGES),
-    defaultLocale: LANGUAGES.EN,
-  },
-};
-
-export default nextConfig;
+module.exports = withNextIntl(config);

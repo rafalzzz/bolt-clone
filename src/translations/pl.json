@@ -1,0 +1,14 @@
+{
+  "Navigation": {
+    "About": "O Nas",
+    "Contact": "Kontakt"
+  },
+  "RightMenu": {
+    "Register": "Zarejestruj się",
+    "RegisterAsDriver": "Zostań kierowcą",
+    "RegisterAsClient": "Zostań klientem"
+  },
+  "LocaleLayout": {
+    "Title": "Polski"
+  }
+}

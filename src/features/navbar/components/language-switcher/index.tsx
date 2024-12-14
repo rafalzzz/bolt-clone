@@ -1,5 +1,6 @@
 'use client';
-import { useRouter } from 'next/router';
+
+import { useRouter, useParams, usePathname } from 'next/navigation';
 import { ChangeEvent } from 'react';
 
 import { setCookieValue } from '@/shared/utils/cookies';
@@ -8,11 +9,19 @@ import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
 const LanguageSwitcher = () => {
-  const { locale, pathname, asPath, query, push } = useRouter();
+  const router = useRouter();
+  const params = useParams();
+  const pathname = usePathname();
+  const locale = params?.locale || 'en';
 
   const handleOnChange = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    push({ pathname, query }, asPath, { locale: value });
-    setCookieValue({ name: LANGUAGE, value });
+    const slicedPathname = pathname?.split('/');
+
+    if (slicedPathname) {
+      slicedPathname[1] = value;
+      router.push(slicedPathname.join('/'));
+      setCookieValue({ name: LANGUAGE, value });
+    }
   };
 
   return (
@@ -23,9 +32,9 @@ const LanguageSwitcher = () => {
         dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
       onChange={handleOnChange}
     >
-      {Object.keys(LANGUAGES).map((key) => (
-        <option key={key} value={key.toLowerCase()}>
-          {key}
+      {LANGUAGES.map((key) => (
+        <option key={key} value={key}>
+          {key.toUpperCase()}
         </option>
       ))}
     </select>

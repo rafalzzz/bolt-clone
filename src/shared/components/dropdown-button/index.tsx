@@ -1,5 +1,8 @@
-import dynamic from 'next/dynamic';
+'use client';
+
 import { FC, PropsWithChildren, useState } from 'react';
+
+import './dropdown-button.css';
 
 type TDropdownButton = {
   text: string;
@@ -25,7 +28,9 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({ text, children
       {isOpen && (
         <div
           x-show='open'
-          className='absolute right-0 mt-2 py-1 text-gray-500 bg-white rounded-lg shadow-xl min-w-max'
+          className='dropdown-button absolute py-1 text-gray-500 bg-white 
+            text-sm rounded-lg shadow-xl min-w-max dark:bg-gray-800
+            border-2 border-gray-300 dark:border-gray-700'
         >
           {children}
         </div>
@@ -34,4 +39,4 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({ text, children
   );
 };
 
-export default dynamic(() => Promise.resolve(DropdownButton), { ssr: false });
+export default DropdownButton;

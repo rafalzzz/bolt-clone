@@ -1,0 +1,14 @@
+{
+  "Navigation": {
+    "About": "About",
+    "Contact": "Contact"
+  },
+  "RightMenu": {
+    "Register": "Register",
+    "RegisterAsDriver": "Become a driver",
+    "RegisterAsClient": "Become a client"
+  },
+  "LocaleLayout": {
+    "Title": "English"
+  }
+}

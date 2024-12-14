@@ -1,24 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
 
-import { LANGUAGES } from '@/shared/consts/languages';
-import { LANGUAGE } from '@/shared/consts/cookie-names';
+import { routing } from '@/i18n/routing';
 
-const PUBLIC_FILE = /\.(.*)$/;
+export default createMiddleware(routing);
 
-export async function middleware(req: NextRequest) {
-  if (
-    req.nextUrl.pathname.startsWith('/_next') ||
-    req.nextUrl.pathname.includes('/api/') ||
-    PUBLIC_FILE.test(req.nextUrl.pathname)
-  ) {
-    return;
-  }
+export const config = {
+  matcher: [
+    // Enable a redirect to a matching locale at the root
+    '/',
 
-  if (req.nextUrl.locale === 'default') {
-    const locale = req.cookies.get(LANGUAGE)?.value || LANGUAGES.EN;
+    // Set a cookie to remember the previous locale for
+    // all requests that have a locale prefix
+    `/(pl|en)/:path*`,
 
-    return NextResponse.redirect(
-      new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
-    );
-  }
-}
+    // Enable redirects that add missing locales
+    // (e.g. `/pathnames` -> `/en/pathnames`)
+    '/((?!_next|_vercel|.*\\..*).*)',
+  ],
+};
