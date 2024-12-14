@@ -1,10 +1,6 @@
-import { ReactNode } from 'react';
+import { TRootLayout } from '@/shared/types/root-layout';
 
 import '@/styles/globals.css';
-
-type TRootLayout = Readonly<{
-  children: ReactNode;
-}>;
 
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.

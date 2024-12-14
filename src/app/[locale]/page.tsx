@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import { TRootLayout } from '@/shared/types/root-layout';
+
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -7,11 +9,9 @@ export const metadata: Metadata = {
   description: 'This is the main page.',
 };
 
-const Index = async () => {
+const Index = async ({ children }: TRootLayout) => {
   return (
-    <main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
-      <h1>Test</h1>
-    </main>
+    <main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>{children}</main>
   );
 };
 

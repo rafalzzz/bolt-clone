@@ -1,26 +1,39 @@
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 
 import BaseLayout from '@/features/landing-page/components/base-layout';
 
-import { TLanguageValues } from '@/shared/consts/languages';
+import { DARK_MODE } from '@/shared/consts/cookie-names';
+
+import { EDarkMode } from '@/shared/enums/cookie-values';
 
 import { routing } from '@/i18n/routing';
 
-type Props = {
+type TLayoutLocale = {
   children: ReactNode;
   params: { locale: string };
 };
 
-export default async function LocaleLayout({ children, params }: Props) {
-  const locale = params?.locale;
+const LocaleLayout = async ({ children, params }: TLayoutLocale) => {
+  /* @next-codemod-ignore */
+  const locale = await params.locale;
 
-  if (!routing.locales.includes(locale as TLanguageValues)) {
+  const cookieStore = await cookies();
+  const isDarkModeEnabled = cookieStore.get(DARK_MODE)?.value === EDarkMode.ENABLED;
+
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 
-  await setRequestLocale(locale); // Obsługa lokalizacji na serwerze
+  setRequestLocale(locale);
 
-  return <BaseLayout locale={locale}>{children}</BaseLayout>;
-}
+  return (
+    <BaseLayout locale={locale} isDarkModeEnabled={isDarkModeEnabled}>
+      {children}
+    </BaseLayout>
+  );
+};
+
+export default LocaleLayout;
