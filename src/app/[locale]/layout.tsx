@@ -1,13 +1,8 @@
-import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 
 import BaseLayout from '@/features/landing-page/components/base-layout';
-
-import { DARK_MODE } from '@/shared/consts/cookie-names';
-
-import { EDarkMode } from '@/shared/enums/cookie-values';
 
 import { routing } from '@/i18n/routing';
 
@@ -17,11 +12,7 @@ type TLayoutLocale = {
 };
 
 const LocaleLayout = async ({ children, params }: TLayoutLocale) => {
-  /* @next-codemod-ignore */
-  const locale = await params.locale;
-
-  const cookieStore = await cookies();
-  const isDarkModeEnabled = cookieStore.get(DARK_MODE)?.value === EDarkMode.ENABLED;
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale)) {
     notFound();
@@ -29,11 +20,7 @@ const LocaleLayout = async ({ children, params }: TLayoutLocale) => {
 
   setRequestLocale(locale);
 
-  return (
-    <BaseLayout locale={locale} isDarkModeEnabled={isDarkModeEnabled}>
-      {children}
-    </BaseLayout>
-  );
+  return <BaseLayout locale={locale}>{children}</BaseLayout>;
 };
 
 export default LocaleLayout;

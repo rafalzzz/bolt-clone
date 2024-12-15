@@ -1,5 +1,5 @@
 'use client';
-import { getCookieValue, setCookieValue } from '@/shared/utils/cookies';
+import { getCookieValue, setCookieValue } from '@/shared/utils/client-side/cookies';
 
 import { DARK_MODE } from '@/shared/consts/cookie-names';
 import { DARK } from '@/shared/consts/theme-class-names';

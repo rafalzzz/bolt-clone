@@ -7,7 +7,7 @@ import RightNavbarMenu from '@/features/navbar/components/right-navbar-menu';
 const Navbar = () => (
   <header
     className='flex flex-wrap items-center justify-between mx-auto left-0 
-      right-0 bg-white dark:bg-gray-900 transition fixed top-0 z-40'
+      right-0 bg-white dark:bg-gray-900 transition top-0 z-40'
   >
     <nav
       className='transition top-0 z-40 flex flex-wrap items-center justify-between 

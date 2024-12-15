@@ -1,14 +1,17 @@
 {
   "Navigation": {
-    "About": "About",
-    "Contact": "Contact"
+    "about": "About",
+    "contact": "Contact"
   },
   "RightMenu": {
-    "Register": "Register",
-    "RegisterAsDriver": "Become a driver",
-    "RegisterAsClient": "Become a client"
+    "register": "Register",
+    "registerAsDriver": "Become a driver",
+    "registerAsClient": "Become a client"
   },
   "LocaleLayout": {
-    "Title": "English"
+    "title": "English"
+  },
+  "Manifest": {
+    "name": "Bolt copy example"
   }
 }

@@ -1,24 +1,26 @@
 'use client';
 
-import { useRouter, useParams, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { ChangeEvent } from 'react';
 
-import { setCookieValue } from '@/shared/utils/cookies';
+import { setCookieValue } from '@/shared/utils/client-side/cookies';
 
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
+const LOCALE_PARAM_INDEX = 1;
+
 const LanguageSwitcher = () => {
   const router = useRouter();
-  const params = useParams();
+  const locale = useLocale();
   const pathname = usePathname();
-  const locale = params?.locale || 'en';
 
   const handleOnChange = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
     const slicedPathname = pathname?.split('/');
 
     if (slicedPathname) {
-      slicedPathname[1] = value;
+      slicedPathname[LOCALE_PARAM_INDEX] = value;
       router.push(slicedPathname.join('/'));
       setCookieValue({ name: LANGUAGE, value });
     }

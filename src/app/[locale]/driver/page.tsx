@@ -1,5 +1,5 @@
 const DriverPage = async () => {
-  return <h1>Test</h1>;
+  return <h1>Driver page</h1>;
 };
 
 export default DriverPage;

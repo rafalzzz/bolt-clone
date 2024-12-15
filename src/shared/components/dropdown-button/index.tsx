@@ -28,7 +28,7 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({ text, children
       {isOpen && (
         <div
           x-show='open'
-          className='dropdown-button absolute py-1 text-gray-500 bg-white 
+          className='dropdown-button absolute text-gray-500 bg-white 
             text-sm rounded-lg shadow-xl min-w-max dark:bg-gray-800
             border-2 border-gray-300 dark:border-gray-700'
         >
