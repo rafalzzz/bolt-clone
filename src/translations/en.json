@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "about": "About",
+    "contact": "Contact"
+  },
+  "RightMenu": {
+    "register": "Register",
+    "registerAsDriver": "Become a driver",
+    "registerAsClient": "Become a client"
+  },
+  "LocaleLayout": {
+    "title": "English"
+  },
+  "Manifest": {
+    "name": "Bolt copy example"
+  }
+}

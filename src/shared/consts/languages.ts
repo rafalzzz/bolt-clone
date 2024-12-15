@@ -1,7 +1,2 @@
-type TLanguageKeys = 'PL' | 'EN';
-type TLanguageValues = 'pl' | 'en';
-
-export const LANGUAGES: Readonly<Record<TLanguageKeys, TLanguageValues>> = {
-  PL: 'pl',
-  EN: 'en',
-};
+export const DEFAULT_LANGUAGE = 'en';
+export const LANGUAGES = [DEFAULT_LANGUAGE, 'pl'];

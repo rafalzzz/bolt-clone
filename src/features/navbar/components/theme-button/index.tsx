@@ -1,5 +1,5 @@
 'use client';
-import { getCookieValue, setCookieValue } from '@/shared/utils/cookies';
+import { getCookieValue, setCookieValue } from '@/shared/utils/client-side/cookies';
 
 import { DARK_MODE } from '@/shared/consts/cookie-names';
 import { DARK } from '@/shared/consts/theme-class-names';
@@ -21,13 +21,13 @@ const ThemeButton = () => {
   return (
     <button
       type='button'
-      className='h-11 w-11 p-2 border-2 border-white rounded-md 
-      text-sm bg-white hover:bg-gray-200 transition mr-2
-      dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800
+      className='h-11 w-11 p-2 border-none rounded-md 
+      text-sm bg-white hover:bg-gray-200 transition
+      dark:text-gray-300 dark:bg-gray-800
       dark:hover:bg-gray-700 dark:hover:text-white'
       onClick={handleOnClick}
     >
-      <svg className='text-gray-900 block dark:hidden' fill='currentColor' viewBox='0 0 20 20'>
+      <svg className='text-gray-600 block dark:hidden' fill='currentColor' viewBox='0 0 20 20'>
         <path d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z'></path>
       </svg>
 

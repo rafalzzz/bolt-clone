@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "about": "O Nas",
+    "contact": "Kontakt"
+  },
+  "RightMenu": {
+    "register": "Zarejestruj się",
+    "registerAsDriver": "Zostań kierowcą",
+    "registerAsClient": "Zostań klientem"
+  },
+  "LocaleLayout": {
+    "title": "Polski"
+  },
+  "Manifest": {
+    "name": "Przykład kopii Bolta"
+  }
+}

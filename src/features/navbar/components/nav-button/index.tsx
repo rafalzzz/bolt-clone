@@ -1,6 +1,9 @@
 import Link from 'next/link';
 
-import { TNavButton } from '../../types/nav-button';
+type TNavButton = Readonly<{
+  href: string;
+  text: string;
+}>;
 
 const NavButton = ({ href, text }: TNavButton) => (
   <Link

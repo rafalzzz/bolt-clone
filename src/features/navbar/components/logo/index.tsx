@@ -5,7 +5,7 @@ import React from 'react';
 import { LOGO_BASE64 } from '@/features/navbar/consts/logo';
 
 const Logo = () => (
-  <div className='flex-shrink-0'>
+  <div className='flex items-center'>
     <Link href='/' className='text-xl font-bold'>
       <Image
         className='w-12 invert dark:invert-0 transition'

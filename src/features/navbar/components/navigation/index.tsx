@@ -9,9 +9,9 @@ const Navigation = () => {
 
   return (
     <ul className='hidden md:flex flex-row space-x-4'>
-      {NAV_BUTTONS.map(({ href, text }) => (
-        <li key={text}>
-          <NavButton href={href} text={t(text)} />
+      {NAV_BUTTONS.map(({ translation, href }) => (
+        <li key={translation}>
+          <NavButton href={href} text={t(translation)} />
         </li>
       ))}
     </ul>
