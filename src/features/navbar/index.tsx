@@ -11,7 +11,7 @@ const Navbar = () => (
   >
     <nav
       className='transition top-0 z-40 flex flex-wrap items-center justify-between 
-        w-full tracking-wide w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-6 py-3'
+        w-full tracking-wide max-w-5xl mx-auto px-4 sm:px-6 lg:px-6 py-3'
     >
       <Logo />
       <Navigation />

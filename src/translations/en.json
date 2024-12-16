@@ -11,6 +11,10 @@
   "LocaleLayout": {
     "title": "English"
   },
+  "DriverPage": {
+    "description": "Earn up to 1901 zł per week by driving with Bolt",
+    "secondaryDescription": "Become a Bolt driver, set your schedule and earn money by driving!"
+  },
   "Manifest": {
     "name": "Bolt copy example"
   }

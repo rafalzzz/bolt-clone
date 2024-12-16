@@ -11,6 +11,10 @@
   "LocaleLayout": {
     "title": "Polski"
   },
+  "DriverPage": {
+    "description": "Zarabiaj do 1901 zł tygodniowo, jeżdżąc z Bolt",
+    "secondaryDescription": "Zostań kierowcą Bolt, ustalaj swój własny grafik i zarabiaj dodatkowe pieniądze, wożąc pasażerów!"
+  },
   "Manifest": {
     "name": "Przykład kopii Bolta"
   }
