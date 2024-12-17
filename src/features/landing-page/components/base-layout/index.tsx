@@ -24,7 +24,7 @@ export default async function BaseLayout({ locale, children }: TBaseLayout) {
 
   return (
     <html className={`h-full ${isDarkModeEnabled ? DARK : undefined}`} lang={locale}>
-      <body className={`antialiased`}>
+      <body className='antialiased bg-white dark:bg-gray-950 transition'>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

@@ -1,45 +1,26 @@
 import { useTranslations } from 'next-intl';
 
+import CustomInput from '@/shared/components/custom-input';
 import PageDescription from '@/shared/components/page-description';
 
 const DriverPage = () => {
   const t = useTranslations('DriverPage');
 
   return (
-    <main className='flex flex-wrap items-center justify-center mx-auto w-full p-0 max-w-5xl py-3'>
+    <main className='flex flex-wrap items-center justify-center mx-auto w-full p-0 max-w-5xl py-3 lg:px-6'>
       <div className='h-auto w-full flex p-0 lg:flex-row flex-col'>
         <PageDescription
           description={t('description')}
           secondaryDescription={t('secondaryDescription')}
         />
-        <div className='flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg'>
-          <div className='relative flex items-center'>
+        <div className='flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg dark:bg-gray-900 transition'>
+          <div className='relative flex items-center w-full mx-8'>
             <div className='w-full z-10'>
-              <div className='text-center'>
-                <h2 className='mt-6 text-3xl font-bold text-gray-900'>Welcom Back!</h2>
-                <p className='mt-2 text-sm text-gray-600'>Please sign in to your account</p>
-              </div>
+              <header className='text-left'>
+                <h2 className='mt-2 text-3xl font-bold text-gray-700'>Become a driver</h2>
+              </header>
               <form className='mt-8 space-y-6' action='#' method='POST'>
-                <input type='hidden' name='remember' value='true' />
-                <div className='relative'>
-                  <div className='absolute right-0 mt-4'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-6 w-6 text-green-500'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
-                    </svg>
-                  </div>
-                  <label className='text-sm font-bold text-gray-700 tracking-wide'>Email</label>
-                  <input
-                    className='w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500'
-                    type=''
-                    placeholder='mail@gmail.com'
-                  />
-                </div>
+                <CustomInput label='Email' props={{ placeholder: 'Enter email address' }} />
                 <div className='mt-8 content-center'>
                   <label className='text-sm font-bold text-gray-700 tracking-wide'>Password</label>
                   <input
