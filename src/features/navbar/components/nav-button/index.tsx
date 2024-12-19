@@ -1,22 +1,15 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
+import './nav-button.css';
+
 type TNavButton = Readonly<{
   href: string;
   text: string;
 }>;
 
 const NavButton: FC<TNavButton> = ({ href, text }) => (
-  <Link
-    href={href}
-    className='px-4 py-2 border-2 border-gray-300 
-        rounded-full text-sm font-light text-gray-600 
-        bg-gray-100 hover:bg-gray-200 transition font-sans
-        active:bg-gray-900 active:border-gray-900 active:text-white 
-        focus:bg-gray-900 focus:border-gray-900 focus:text-white
-        dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800 
-        dark:hover:bg-gray-700 dark:active:bg-gray-600'
-  >
+  <Link href={href} className='nav-button'>
     {text}
   </Link>
 );

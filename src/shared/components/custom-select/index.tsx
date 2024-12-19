@@ -8,9 +8,9 @@ type TCustomSelect = {
 };
 
 const CustomSelect: FC<PropsWithChildren<TCustomSelect>> = ({ label, props, children }) => (
-  <label className='text-sm font-bold text-gray-700 tracking-wide'>
+  <label className='custom-select-container'>
     {label}
-    <select className='custom-select block w-full rounded-md bg-gray-50 p-4' {...props}>
+    <select className='custom-select-container__select' {...props}>
       {children}
     </select>
   </label>

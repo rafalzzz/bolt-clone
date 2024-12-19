@@ -9,6 +9,8 @@ import { setCookieValue } from '@/shared/utils/client-side/cookies';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
+import './language-switcher.css';
+
 const LOCALE_PARAM_INDEX = 1;
 
 const LanguageSwitcher = () => {
@@ -27,13 +29,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <select
-      value={locale}
-      className='bg-gray-100 p-2 border-none bg-white rounded-md text-gray-600 text-sm 
-        rounded-lg block focus:outline-none transition hover:bg-gray-200 hover:cursor-pointer
-        dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
-      onChange={handleOnChange}
-    >
+    <select value={locale} className='language-switcher' onChange={handleOnChange}>
       {LANGUAGES.map((key) => (
         <option key={key} value={key}>
           {key.toUpperCase()}

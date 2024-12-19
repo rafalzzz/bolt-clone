@@ -19,10 +19,10 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
   formatGroupLabel,
   formatOption,
 }) => (
-  <label className='text-sm font-bold text-gray-700 tracking-wide dark:text-white transition border-none outline-none'>
+  <label className='react-select-wrapper'>
     {label}
     <Select
-      className='react-select-container block w-full rounded-lg border-none outline-none'
+      className='react-select-container'
       classNamePrefix='react-select'
       options={options}
       components={{ GroupHeading: formatGroupLabel, Option: formatOption }}

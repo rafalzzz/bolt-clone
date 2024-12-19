@@ -9,15 +9,15 @@ type TCustomInput = {
 };
 
 const CustomInput: FC<TCustomInput> = ({ label, prefix, props }) => (
-  <label className='text-sm font-bold text-gray-700 tracking-wide dark:text-white  transition'>
+  <label className='custom-input-container'>
     {label}
-    <div className='flex flex-row'>
+    <div className='custom-input-container__input-container'>
       {prefix && (
-        <span className='custom-input flex flex-row items-center justify-center rounded-md p-4 mr-4'>
+        <span className='custom-input-container__input custom-input-container__input-prefix'>
           {prefix}
         </span>
       )}
-      <input className='custom-input block w-full rounded-md bg-gray-50 p-4' {...props} />
+      <input className='custom-input-container__input ' {...props} />
     </div>
   </label>
 );
