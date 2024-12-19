@@ -17,5 +17,19 @@
   },
   "Manifest": {
     "name": "Przykład kopii Bolta"
+  },
+  "DriverRegisterForm": {
+    "header": "Zostań kierowcą",
+    "phoneNumberLabel": "Numer telefonu",
+    "emailPlaceholder": "Wprowadź adres email",
+    "phoneNumberPlaceholder": "Numer telefonu",
+    "submitButtonText": "Zarejestruj się jako kierowca"
+  },
+  "CitySelect": {
+    "cityLabel": "Miasto",
+    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
+    "poland": "Polska",
+    "rzeszow": "Rzeszów",
+    "warsaw": "Warszawa"
   }
 }

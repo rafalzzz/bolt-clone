@@ -1,9 +1,9 @@
-.custom-input {
+.custom-select {
   outline: none;
+  background-color: var(--form-item-background-color);
   font-weight: 400;
   font-size: 1rem;
-  margin: 10px 10px 10px 0;
-  background-color: var(--form-item-background-color);
+  margin-top: 10px 0;
   transition: var(--form-item-transition);
 
   &::placeholder {
@@ -11,7 +11,7 @@
   }
 
   &:focus {
-    outline: var(--focus-form-item-outline);
+    outline: var(--focus-select-outline);
     background-color: var(--focus-form-item-background-color);
   }
 }

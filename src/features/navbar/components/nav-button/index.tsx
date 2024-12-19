@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
 type TNavButton = Readonly<{
   href: string;
   text: string;
 }>;
 
-const NavButton = ({ href, text }: TNavButton) => (
+const NavButton: FC<TNavButton> = ({ href, text }) => (
   <Link
     href={href}
     className='px-4 py-2 border-2 border-gray-300 

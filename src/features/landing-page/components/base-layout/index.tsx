@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import getServerCookie from '@/shared/utils/server-side/cookies';
 
@@ -16,7 +16,7 @@ type TBaseLayout = {
   locale: string;
 };
 
-export default async function BaseLayout({ locale, children }: TBaseLayout) {
+const BaseLayout: FC<TBaseLayout> = async ({ locale, children }) => {
   const messages = await getMessages();
 
   const darkModeCookie = await getServerCookie(DARK_MODE);
@@ -32,4 +32,6 @@ export default async function BaseLayout({ locale, children }: TBaseLayout) {
       </body>
     </html>
   );
-}
+};
+
+export default BaseLayout;

@@ -17,5 +17,19 @@
   },
   "Manifest": {
     "name": "Bolt copy example"
+  },
+  "DriverRegisterForm": {
+    "header": "Become a driver",
+    "phoneNumberLabel": "Phone number",
+    "emailPlaceholder": "Enter email address",
+    "phoneNumberPlaceholder": "Mobile number",
+    "submitButtonText": "Register as a driver"
+  },
+  "CitySelect": {
+    "cityLabel": "City",
+    "cityPlaceholder": "City where you will drive",
+    "poland": "Poland",
+    "rzeszow": "Rzeszow",
+    "warsaw": "Warsaw"
   }
 }
