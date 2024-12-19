@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.page-description {
+  @apply flex w-full lg:w-2/3 items-center mx-auto px-0 sm:px-6 lg:px-0 text-gray-700 dark:text-white;
+
+  .page-description__inner-container {
+    @apply w-full mx-auto flex flex-col items-start lg:space-y-6 lg:pr-40 lg:px-0 py-20;
+  }
+
+  .page-description__header {
+    @apply font-bold font-sans w-1/2 lg:leading-tight text-3xl lg:w-full lg:text-6xl;
+  }
+
+  .page-description__subheader {
+    @apply mt-1 font-sans w-1/2 lg:text-lg lg:w-full;
+  }
+}

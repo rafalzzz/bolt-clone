@@ -1,0 +1,52 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.custom-input-container {
+  @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white transition;
+
+  .custom-input-container__input-container {
+    @apply flex flex-row;
+  }
+
+  .custom-input-container__input-prefix {
+    @apply flex flex-row items-center justify-center rounded-md p-4 mr-4;
+  }
+
+  .custom-input-container__input {
+    outline: none;
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 10px 10px 10px 0;
+    background-color: var(--form-item-background-color);
+    transition: var(--form-item-transition);
+
+    &::placeholder {
+      color: var(--form-item-placeholder-color);
+    }
+
+    &:focus {
+      outline: var(--focus-form-item-outline);
+      background-color: var(--focus-form-item-background-color);
+    }
+  }
+
+  input {
+    @apply block w-full rounded-md bg-gray-50 p-4;
+  }
+}
+
+.dark .custom-input-container {
+  .custom-input-container__input {
+    background-color: var(--form-item-dark-background-color);
+    outline: var(--form-item-dark-outline);
+
+    &::placeholder {
+      color: var(--form-item-placeholder-dark-color);
+    }
+
+    &:focus {
+      outline: var(--focus-form-item-dark-outline);
+    }
+  }
+}

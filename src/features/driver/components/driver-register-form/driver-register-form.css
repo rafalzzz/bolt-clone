@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.driver-register-form {
+  form {
+    @apply mt-4 space-y-6;
+  }
+
+  .submit-button {
+    @apply w-full flex justify-center bg-indigo-500 text-gray-100;
+    @apply p-4 rounded-full tracking-wide cursor-pointer font-semibold;
+    @apply focus:outline-none hover:bg-indigo-600 shadow-lg;
+    @apply shadow-lg transition ease-in duration-300 font-semibold;
+    @apply focus:outline-none hover:bg-indigo-600 transition ease-in duration-300;
+  }
+}

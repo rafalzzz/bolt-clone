@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.theme-button {
+  @apply h-11 w-11 p-2 border-none rounded-md;
+  @apply text-sm bg-white hover:bg-gray-200 transition;
+  @apply dark:text-gray-300 dark:bg-gray-800;
+  @apply dark:hover:bg-gray-700 dark:hover:text-white;
+
+  .light-theme-icon {
+    @apply text-gray-600 block dark:hidden;
+  }
+
+  .dark-theme-icon {
+    @apply text-white hidden dark:block;
+  }
+}

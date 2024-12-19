@@ -11,7 +11,25 @@
   "LocaleLayout": {
     "title": "Polski"
   },
+  "DriverPage": {
+    "description": "Zarabiaj do 1901 zł tygodniowo, jeżdżąc z Bolt",
+    "secondaryDescription": "Zostań kierowcą Bolt, ustalaj swój własny grafik i zarabiaj dodatkowe pieniądze, wożąc pasażerów!"
+  },
   "Manifest": {
     "name": "Przykład kopii Bolta"
+  },
+  "DriverRegisterForm": {
+    "header": "Zostań kierowcą",
+    "phoneNumberLabel": "Numer telefonu",
+    "emailPlaceholder": "Wprowadź adres email",
+    "phoneNumberPlaceholder": "Numer telefonu",
+    "submitButtonText": "Zarejestruj się jako kierowca"
+  },
+  "CitySelect": {
+    "cityLabel": "Miasto",
+    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
+    "poland": "Polska",
+    "rzeszow": "Rzeszów",
+    "warsaw": "Warszawa"
   }
 }

@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.nav-button {
+  @apply px-4 py-2 border-2 border-gray-300 text-sm font-light text-gray-600;
+  @apply bg-gray-100 rounded-full hover:bg-gray-200 transition font-sans;
+  @apply active:bg-gray-900 active:border-gray-900 active:text-white;
+  @apply focus:bg-gray-900 focus:border-gray-900 focus:text-white;
+  @apply dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800;
+  @apply dark:hover:bg-gray-700 dark:active:bg-gray-600;
+}

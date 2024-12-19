@@ -1,2 +1,2 @@
-export const DEFAULT_LANGUAGE = 'en';
-export const LANGUAGES = [DEFAULT_LANGUAGE, 'pl'];
+export const DEFAULT_LANGUAGE: Readonly<string> = 'en';
+export const LANGUAGES: Readonly<string[]> = [DEFAULT_LANGUAGE, 'pl'];

@@ -1,0 +1,16 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.custom-form-wraper {
+  @apply flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg;
+  @apply shadow-xl border border-gray-300 dark:bg-gray-900 dark:border-gray-600 transition;
+
+  .custom-form-wraper__inner-container {
+    @apply relative flex items-center w-full mx-8;
+  }
+
+  .custom-form-wraper__header {
+    @apply mt-2 text-3xl font-bold text-gray-700 dark:text-white transition mb-6;
+  }
+}
