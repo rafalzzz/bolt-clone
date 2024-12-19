@@ -12,6 +12,8 @@ import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '../../consts/register-button-menu';
 
+import './register-button.css';
+
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,9 +37,7 @@ const RegisterButton = () => {
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
           <li key={translation}>
             <button
-              className='block px-4 py-2 text-gray-600 hover:bg-gray-200
-                  dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 
-                  dark:hover:text-white font-sans transition'
+              className='register-button'
               role='menuitem'
               type='button'
               onClick={() => {

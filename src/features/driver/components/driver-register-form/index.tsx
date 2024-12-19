@@ -1,3 +1,6 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -7,12 +10,14 @@ import CustomInput from '@/shared/components/custom-input';
 import { POLISH_NUMBER_PREFIX } from '../../consts/phone-number-prefixes';
 import CitySelect from '../city-select';
 
+import './driver-register-form.css';
+
 const DriverRegisterForm = () => {
   const t = useTranslations('DriverRegisterForm');
 
   return (
     <CustomFormWrapper title={t('header')}>
-      <form className='mt-4 space-y-6'>
+      <form className='driver-register-form'>
         <CustomInput label='Email' props={{ placeholder: t('emailPlaceholder') }} />
         <CustomInput
           label={t('phoneNumberLabel')}
@@ -33,10 +38,7 @@ const DriverRegisterForm = () => {
         />
         <CitySelect />
         <div>
-          <button
-            type='submit'
-            className='w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300'
-          >
+          <button type='submit' className='submit-button'>
             {t('submitButtonText')}
           </button>
         </div>
@@ -55,4 +57,4 @@ const DriverRegisterForm = () => {
   );
 };
 
-export default DriverRegisterForm;
+export default dynamic(() => Promise.resolve(DriverRegisterForm), { ssr: false });

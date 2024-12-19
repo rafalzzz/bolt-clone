@@ -1,67 +1,85 @@
-.react-select-container {
-  outline: none;
-  background-color: #fff;
-  font-weight: 400;
-  font-size: 1rem;
-  margin: 10px 0;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-  .react-select__control {
-    background-color: #f9fafb;
-    padding: 10px 0;
+.react-select-wrapper {
+  @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white;
+  @apply transition border-none outline-none;
+
+  .react-select-container {
+    @apply block w-full rounded-lg border-none outline-none;
+
     outline: none;
-    border: none;
-  }
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 10px 0;
 
-  .react-select__indicator-separator {
-    display: none;
-  }
+    .react-select__control {
+      background-color: var(--form-item-background-color);
+      padding: 10px 0;
+      outline: none;
+      border: none;
+    }
 
-  .react-select__control--is-focused,
-  .react-select__control--menu-is-open {
-    outline: 1px solid #22c55e !important;
-    box-shadow: none;
-    border: none;
-  }
+    .react-select__indicator-separator {
+      display: none;
+    }
 
-  .react-select__option {
-    padding: 10px 0;
-  }
+    .react-select__control--is-focused,
+    .react-select__control--menu-is-open {
+      outline: var(--focus-select-outline) !important;
+      box-shadow: none;
+      border: none;
+    }
 
-  .react-select__option--is-focused,
-  .react-select__option:hover {
-    background-color: #bbf7d0;
+    .react-select__option {
+      padding: 10px 0;
+    }
+
+    .react-select__option--is-selected {
+      color: var(--form-item-text-color);
+      background-color: var(--focus-form-item-background-color);
+    }
+
+    .react-select__option--is-focused,
+    .react-select__option:hover {
+      background-color: var(--focus-select-option-background);
+    }
   }
 }
 
-.dark .react-select-container {
-  background-color: var(--form-item-dark-background-color);
-
-  .react-select__control {
+.dark .react-select-wrapper {
+  .react-select-container {
     background-color: var(--form-item-dark-background-color);
-    outline: var(--form-item-dark-outline) !important;
-    transition: none;
-  }
 
-  .react-select__control--is-focused,
-  .react-select__control--is-active,
-  .react-select__control--menu-is-open {
-    outline: var(--focus-select-dark-outline) !important;
-  }
+    .react-select__control {
+      background-color: var(--form-item-dark-background-color);
+      outline: var(--form-item-dark-outline) !important;
+      transition: none;
+    }
 
-  .react-select__menu {
-    background-color: var(--form-item-dark-background-color);
-  }
+    .react-select__control--is-focused,
+    .react-select__control--is-active,
+    .react-select__control--menu-is-open {
+      outline: var(--focus-select-dark-outline) !important;
+    }
 
-  .react-select__option {
-    background-color: var(--form-item-dark-background-color);
-  }
+    .react-select__menu {
+      background-color: var(--form-item-dark-background-color);
+    }
 
-  .react-select__single-value {
-    color: var(--form-item-text-color);
-  }
+    .react-select__option {
+      background-color: var(--form-item-dark-background-color);
+    }
 
-  .react-select__option--is-focused,
-  .react-select__option:hover {
-    background-color: var(--dark-theme-secondary-color);
+    .react-select__single-value {
+      color: var(--form-item-dark-text-color);
+    }
+
+    .react-select__option--is-focused,
+    .react-select__option:hover {
+      background-color: var(--dark-theme-secondary-color);
+    }
   }
 }

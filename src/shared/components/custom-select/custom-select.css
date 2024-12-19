@@ -1,30 +1,41 @@
-.custom-select {
-  outline: none;
-  background-color: var(--form-item-background-color);
-  font-weight: 400;
-  font-size: 1rem;
-  margin-top: 10px 0;
-  transition: var(--form-item-transition);
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-  &::placeholder {
-    color: var(--form-item-placeholder-color);
-  }
+.custom-select-container {
+  @apply text-sm font-bold text-gray-700 tracking-wide;
 
-  &:focus {
-    outline: var(--focus-select-outline);
-    background-color: var(--focus-form-item-background-color);
+  .custom-select-container__select {
+    @apply block w-full rounded-md bg-gray-50 p-4
+    outline: none;
+    background-color: var(--form-item-background-color);
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 10px 0;
+    transition: var(--form-item-transition);
+
+    &::placeholder {
+      color: var(--form-item-placeholder-color);
+    }
+
+    &:focus {
+      outline: var(--focus-select-outline);
+      background-color: var(--focus-form-item-background-color);
+    }
   }
 }
 
-.dark .custom-input {
-  background-color: var(--form-item-dark-background-color);
-  outline: var(--form-item-dark-outline);
+.dark .custom-select-container {
+  .custom-select-container__select {
+    background-color: var(--form-item-dark-background-color);
+    outline: var(--form-item-dark-outline);
 
-  &::placeholder {
-    color: var(--form-item-placeholder-dark-color);
-  }
+    &::placeholder {
+      color: var(--form-item-placeholder-dark-color);
+    }
 
-  &:focus {
-    outline: var(--focus-form-item-dark-outline);
+    &:focus {
+      outline: var(--focus-form-item-dark-outline);
+    }
   }
 }
