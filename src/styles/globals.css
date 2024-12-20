@@ -61,3 +61,10 @@ body {
 .absolute {
   position: absolute;
 }
+
+.default-button {
+  @apply flex items-center border-none outline-none rounded-md;
+  @apply text-sm font-bold text-gray-100;
+  @apply dark:text-white dark:bg-indigo-500 dark:hover:bg-indigo-400;
+  @apply focus:outline-none active:outline-none duration-300 ease-in transition;
+}

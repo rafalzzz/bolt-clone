@@ -3,7 +3,5 @@
 @import 'tailwindcss/utilities';
 
 .language-switcher {
-  @apply bg-gray-100 p-2 border-none bg-white rounded-md text-gray-600 text-sm;
-  @apply rounded-lg block focus:outline-none transition hover:bg-gray-200 hover:cursor-pointer;
-  @apply dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600;
+  @apply h-11 p-2 rounded-md;
 }

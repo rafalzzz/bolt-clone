@@ -32,14 +32,20 @@ const RegisterButton = () => {
   useOnClickOutside(ref, hideDropdownMenu);
 
   return (
-    <DropdownButton ref={ref} text={t('register')} isOpen={isOpen} onClick={handleOnClick}>
+    <DropdownButton
+      ref={ref}
+      text={t('register')}
+      isOpen={isOpen}
+      buttonClassName='default-button language-switcher'
+      onClick={handleOnClick}
+    >
       <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
           <li key={translation}>
             <button
-              className='register-button-menu-item'
-              role='menuitem'
               type='button'
+              role='menu-item'
+              className='dropdown-menu-item__menu-item'
               onClick={() => {
                 dropdownButtonOnClick(href);
                 hideDropdownMenu();
