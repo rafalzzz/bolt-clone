@@ -1,4 +1,4 @@
-import { TNavButton } from '../types/nav-button';
+import { TNavButton } from '@/features/navbar/types/nav-button';
 
 export const NAV_BUTTONS: Readonly<TNavButton[]> = [
   {

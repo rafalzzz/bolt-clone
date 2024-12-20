@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
+import CitySelect from '@/features/driver/components/city-select';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
-import { POLISH_NUMBER_PREFIX } from '../../consts/phone-number-prefixes';
-import CitySelect from '../city-select';
+import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
 import './driver-register-form.css';
 

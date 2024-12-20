@@ -7,16 +7,16 @@ type TCustomFormWrapper = {
 };
 
 const CustomFormWrapper: FC<PropsWithChildren<TCustomFormWrapper>> = ({ title, children }) => (
-  <div className='custom-form-wraper'>
+  <section className='custom-form-wraper'>
     <div className='custom-form-wraper__inner-container'>
-      <div className='w-full z-10'>
-        <header className='text-left'>
+      <div className='custom-form-wraper__header-wrapper'>
+        <header>
           <h2 className='custom-form-wraper__header'>{title}</h2>
         </header>
         {children}
       </div>
     </div>
-  </div>
+  </section>
 );
 
 export default CustomFormWrapper;

@@ -10,14 +10,14 @@ import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
 import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
-import { REGISTER_BUTTON_MENU } from '../../consts/register-button-menu';
+import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
 import './register-button.css';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const ref = useRef<HTMLUListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const locale = useLocale();
   const router = useRouter();
@@ -32,14 +32,20 @@ const RegisterButton = () => {
   useOnClickOutside(ref, hideDropdownMenu);
 
   return (
-    <DropdownButton text={t('register')} isOpen={isOpen} onClick={handleOnClick}>
-      <ul role='none' ref={ref}>
+    <DropdownButton
+      ref={ref}
+      text={t('register')}
+      isOpen={isOpen}
+      buttonClassName='default-button language-switcher'
+      onClick={handleOnClick}
+    >
+      <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
           <li key={translation}>
             <button
-              className='register-button'
-              role='menuitem'
               type='button'
+              role='menu-item'
+              className='dropdown-menu-item__menu-item'
               onClick={() => {
                 dropdownButtonOnClick(href);
                 hideDropdownMenu();

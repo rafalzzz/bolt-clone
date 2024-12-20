@@ -4,9 +4,9 @@ import { GroupBase, GroupHeadingProps, OptionProps, components } from 'react-sel
 
 import ReactSelect from '@/shared/components/react-select';
 
-import { TGroupedOption } from '@/shared/types/react-select';
+import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
 
-import { CITY_OPTIONS } from '../../consts/city-options';
+import { TGroupedOption } from '@/shared/types/react-select';
 
 import './city-select.css';
 

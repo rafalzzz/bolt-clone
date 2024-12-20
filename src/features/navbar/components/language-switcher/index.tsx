@@ -2,7 +2,11 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
-import { ChangeEvent } from 'react';
+import { useRef, useState } from 'react';
+
+import DropdownButton from '@/shared/components/dropdown-button';
+
+import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
 import { setCookieValue } from '@/shared/utils/client-side/cookies';
 
@@ -14,11 +18,18 @@ import './language-switcher.css';
 const LOCALE_PARAM_INDEX = 1;
 
 const LanguageSwitcher = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const router = useRouter();
   const locale = useLocale();
   const pathname = usePathname();
+  const ref = useRef<HTMLDivElement>(null);
 
-  const handleOnChange = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
+  const handleOnClick = () => setIsOpen((prevState) => !prevState);
+
+  const hideDropdownMenu = () => setIsOpen(false);
+
+  const dropdownButtonOnClick = (value: string) => {
     const slicedPathname = pathname?.split('/');
 
     if (slicedPathname) {
@@ -28,14 +39,35 @@ const LanguageSwitcher = () => {
     }
   };
 
+  useOnClickOutside(ref, hideDropdownMenu);
+
   return (
-    <select value={locale} className='language-switcher' onChange={handleOnChange}>
-      {LANGUAGES.map((key) => (
-        <option key={key} value={key}>
-          {key.toUpperCase()}
-        </option>
-      ))}
-    </select>
+    <DropdownButton
+      showArrow
+      ref={ref}
+      text={locale.toUpperCase()}
+      isOpen={isOpen}
+      buttonClassName='default-button language-switcher'
+      onClick={handleOnClick}
+    >
+      <ul role='none'>
+        {LANGUAGES.map((lang) => (
+          <li key={lang}>
+            <button
+              type='button'
+              role='menu-item'
+              className='dropdown-menu-item__menu-item'
+              onClick={() => {
+                dropdownButtonOnClick(lang);
+                hideDropdownMenu();
+              }}
+            >
+              {lang.toUpperCase()}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </DropdownButton>
   );
 };
 
