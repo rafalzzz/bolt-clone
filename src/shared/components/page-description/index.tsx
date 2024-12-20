@@ -1,6 +1,5 @@
 import { FC } from 'react';
 
-import '@/styles/globals.css';
 import './page-description.css';
 
 type TPageDescription = {

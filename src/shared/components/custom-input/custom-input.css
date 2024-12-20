@@ -6,7 +6,7 @@
   @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white transition;
 
   .custom-input-container__input-container {
-    @apply flex flex-row;
+    @apply flex flex-row w-full;
   }
 
   .custom-input-container__input-prefix {
@@ -17,7 +17,8 @@
     outline: none;
     font-weight: 400;
     font-size: 1rem;
-    margin: 10px 10px 10px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: var(--form-item-background-color);
     transition: var(--form-item-transition);
 

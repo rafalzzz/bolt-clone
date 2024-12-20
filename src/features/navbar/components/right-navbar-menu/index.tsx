@@ -1,8 +1,7 @@
 import HamburgerButton from '@/features/navbar/components/hamburger-button';
 import LanguageSwitcher from '@/features/navbar/components/language-switcher';
+import RegisterButton from '@/features/navbar/components/register-button';
 import ThemeButton from '@/features/navbar/components/theme-button';
-
-import RegisterButton from '../register-button';
 
 const RightNavbarMenu = () => (
   <div className='flex gap-2'>

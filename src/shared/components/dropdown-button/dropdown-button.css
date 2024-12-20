@@ -6,10 +6,11 @@
   @apply relative inline-block;
 
   .dropdown-button-container__button {
-    @apply flex items-center h-11 p-2 border-2 border-gray-300 rounded-md;
-    @apply text-sm font-bold bg-white hover:bg-gray-200 hover:border-white;
-    @apply text-gray-600 dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800;
-    @apply dark:hover:bg-gray-700 dark:hover:text-white transition;
+    @apply flex items-center h-11 p-2 border-none outline-none rounded-md;
+    @apply text-sm font-bold bg-indigo-700 hover:bg-indigo-500;
+    @apply text-gray-100 dark:bg-indigo-500 dark:hover:bg-indigo-400;
+    @apply dark:text-white focus:outline-none active:outline-none;
+    @apply duration-300 ease-in transition;
   }
 
   .dropdown-button-container__menu {
