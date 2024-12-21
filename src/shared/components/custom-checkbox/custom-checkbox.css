@@ -1,0 +1,27 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.custom-checkbox {
+  @apply flex text-xs text-justify my-4 text-gray-700 dark:text-white;
+
+  .custom-checkbox__container {
+    @apply inline-flex items-center;
+  }
+
+  .custom-checkbox__input {
+    @apply border-indigo-700 before:bg-indigo-700 transition;
+    @apply checked:border-indigo-700 checked:bg-indigo-700 checked:before:bg-indigo-700;
+    @apply dark:border-indigo-500 dark:before:bg-indigo-500;
+    @apply dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:checked:before:bg-indigo-500;
+  }
+
+  .custom-checkbox__inner-container {
+    @apply relative flex cursor-pointer items-center rounded-full p-0 mr-3;
+  }
+
+  .custom-checkbox__svg-container {
+    @apply absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
+    @apply text-white opacity-0 peer-checked:opacity-100 transition;
+  }
+}

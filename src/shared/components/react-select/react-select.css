@@ -17,6 +17,7 @@
 
     .react-select__control {
       background-color: var(--form-item-background-color);
+      transition: background-color 0.15s ease;
       padding: 10px 0;
       outline: none;
       border: none;

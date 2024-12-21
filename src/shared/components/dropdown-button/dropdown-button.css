@@ -8,7 +8,7 @@
   .dropdown-button-container__menu {
     @apply absolute text-gray-500 bg-white;
     @apply text-sm rounded-lg shadow-xl min-w-max dark:bg-gray-800;
-    @apply border-2 border-gray-300 dark:border-gray-700 px-0 py-2 mt-2;
+    @apply border border-gray-300 dark:border-gray-600 px-0 py-2 mt-2;
   }
 
   .dropdown-menu-item__menu-item {

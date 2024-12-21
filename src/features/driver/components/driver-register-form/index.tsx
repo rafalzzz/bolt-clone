@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import CitySelect from '@/features/driver/components/city-select';
+import RedirectionToLoginPage from '@/features/driver/components/redirection-to-login-page';
+import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
@@ -37,21 +39,13 @@ const DriverRegisterForm = () => {
           props={{ placeholder: t('phoneNumberPlaceholder') }}
         />
         <CitySelect />
+        <CustomCheckbox>{t('termsText')}</CustomCheckbox>
         <div>
           <button type='submit' className='submit-button'>
             {t('submitButtonText')}
           </button>
         </div>
-        {/* It will be used */}
-        {/* <p className='flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500'>
-        <span>Already have an account?</span>
-        <a
-          href='#'
-          className='text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300'
-        >
-          Log in
-        </a>
-      </p> */}
+        <RedirectionToLoginPage />
       </form>
     </CustomFormWrapper>
   );
