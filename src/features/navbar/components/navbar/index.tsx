@@ -8,7 +8,7 @@ import './navbar.css';
 
 const Navbar = () => (
   <header className='navbar-wrapper'>
-    <nav className='navbar-container'>
+    <nav className='navbar-container custom-padding'>
       <Logo />
       <Navigation />
       <RightNavbarMenu />

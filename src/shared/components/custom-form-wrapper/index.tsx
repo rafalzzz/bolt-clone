@@ -8,7 +8,7 @@ type TCustomFormWrapper = {
 
 const CustomFormWrapper: FC<PropsWithChildren<TCustomFormWrapper>> = ({ title, children }) => (
   <section className='custom-form-wraper'>
-    <div className='custom-form-wraper__inner-container'>
+    <div className='custom-form-wraper__inner-container custom-padding'>
       <div className='custom-form-wraper__header-wrapper'>
         <header>
           <h2 className='custom-form-wraper__header'>{title}</h2>

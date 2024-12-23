@@ -1,6 +1,7 @@
 import { TRootLayout } from '@/shared/types/root-layout';
 
 import '@/styles/components/default-button.css';
+import '@/styles/components/custom-padding.css';
 import '@/styles/globals.css';
 
 // Since we have a `not-found.tsx` page on the root, a layout file
