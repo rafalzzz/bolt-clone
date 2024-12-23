@@ -3,10 +3,10 @@
 @import 'tailwindcss/utilities';
 
 .page-description {
-  @apply flex w-full lg:w-2/3 items-center px-0 sm:px-6 lg:px-0 text-gray-700 dark:text-white;
+  @apply flex w-full lg:w-2/3 items-center px-4 lg:px-0 text-gray-700 dark:text-white;
 
   .page-description__inner-container {
-    @apply w-full flex flex-col items-start lg:space-y-6 lg:max-w-[360px] lg:px-0 py-20;
+    @apply w-full flex flex-col items-start max-w-[600px] lg:space-y-6 lg:max-w-[360px] lg:px-0 py-20;
   }
 
   .page-description__header {

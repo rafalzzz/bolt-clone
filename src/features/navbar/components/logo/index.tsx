@@ -10,7 +10,7 @@ const Logo = () => (
       <Image
         className='w-12 invert dark:invert-0 transition'
         src={LOGO_BASE64}
-        alt='Bolt logo'
+        alt='BoltCopy logo'
         width={40}
         height={20}
       />
