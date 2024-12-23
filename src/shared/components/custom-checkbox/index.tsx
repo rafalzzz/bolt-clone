@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
-import './custom-checkbox.css';
+import './custom-checkbox.scss';
 
 const CustomCheckbox: FC<PropsWithChildren> = ({ children }) => (
   <label className='custom-checkbox'>

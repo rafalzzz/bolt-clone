@@ -1,0 +1,15 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.theme-button {
+  @apply h-11 w-11 p-2 rounded-md;
+
+  &__light-theme-icon {
+    @apply block dark:hidden;
+  }
+
+  &__dark-theme-icon {
+    @apply hidden dark:block;
+  }
+}

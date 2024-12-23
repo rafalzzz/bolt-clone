@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import './redirection-to-login-page.css';
+import './redirection-to-login-page.scss';
 
 const RedirectionToLoginPage = () => (
   <footer className='redirection-to-login-page'>

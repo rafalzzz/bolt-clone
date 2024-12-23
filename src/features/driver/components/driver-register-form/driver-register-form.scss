@@ -1,0 +1,14 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.driver-register-form {
+  form {
+    @apply mt-4 space-y-6;
+  }
+
+  &__submit-button {
+    @apply w-full flex justify-center font-semibold shadow-lg;
+    @apply p-4 rounded-full tracking-wide cursor-pointer font-semibold;
+  }
+}

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import './page-description.css';
+import './page-description.scss';
 
 type TPageDescription = {
   description: string;
@@ -8,7 +8,7 @@ type TPageDescription = {
 };
 
 const PageDescription: FC<TPageDescription> = ({ description, secondaryDescription }) => (
-  <div className='page-description'>
+  <div className='page-description custom-padding'>
     <div className='page-description__inner-container'>
       <h1 className='page-description__header'>{description}</h1>
       <p className='page-description__subheader'>{secondaryDescription}</p>

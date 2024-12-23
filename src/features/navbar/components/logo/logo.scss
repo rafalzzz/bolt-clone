@@ -1,0 +1,15 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.logo {
+  @apply flex items-center;
+
+  &__link {
+    @apply text-xl font-bold;
+  }
+
+  &__image {
+    @apply w-12 invert dark:invert-0 transition;
+  }
+}

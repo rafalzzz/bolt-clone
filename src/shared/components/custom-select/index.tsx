@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes, PropsWithChildren } from 'react';
 
-import './custom-select.css';
+import './custom-select.scss';
 
 type TCustomSelect = {
   label: string;
@@ -8,9 +8,9 @@ type TCustomSelect = {
 };
 
 const CustomSelect: FC<PropsWithChildren<TCustomSelect>> = ({ label, props, children }) => (
-  <label className='custom-select-container'>
+  <label className='custom-select'>
     {label}
-    <select className='custom-select-container__select' {...props}>
+    <select className='custom-select__select' {...props}>
       {children}
     </select>
   </label>

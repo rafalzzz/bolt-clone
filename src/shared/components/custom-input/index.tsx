@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes, ReactNode } from 'react';
 
-import './custom-input.css';
+import './custom-input.scss';
 
 type TCustomInput = {
   label: string;
@@ -9,15 +9,11 @@ type TCustomInput = {
 };
 
 const CustomInput: FC<TCustomInput> = ({ label, prefix, props }) => (
-  <label className='custom-input-container'>
+  <label className='custom-input'>
     {label}
-    <div className='custom-input-container__input-container'>
-      {prefix && (
-        <span className='custom-input-container__input custom-input-container__input-prefix'>
-          {prefix}
-        </span>
-      )}
-      <input className='custom-input-container__input ' {...props} />
+    <div className='custom-input__input-container'>
+      {prefix && <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>}
+      <input className='custom-input__input ' {...props} />
     </div>
   </label>
 );

@@ -8,7 +8,7 @@ import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
 
 import { TGroupedOption } from '@/shared/types/react-select';
 
-import './city-select.css';
+import './city-select.scss';
 
 const { Option } = components;
 

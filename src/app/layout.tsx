@@ -1,11 +1,13 @@
-import { TRootLayout } from '@/shared/types/root-layout';
+import { FC, PropsWithChildren } from 'react';
 
-import '@/styles/components/default-button.css';
-import '@/styles/globals.css';
+import '@/styles/components/custom-padding.scss';
+import '@/styles/components/default-button.scss';
+import '@/styles/components/default-button-colors.scss';
+import '@/styles/globals.scss';
 
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.
-const RootLayout = ({ children }: TRootLayout) => {
+const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return children;
 };
 

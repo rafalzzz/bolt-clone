@@ -4,16 +4,12 @@ import React from 'react';
 
 import { LOGO_BASE64 } from '@/features/navbar/consts/logo';
 
+import './logo.scss';
+
 const Logo = () => (
-  <div className='flex items-center'>
-    <Link href='/' className='text-xl font-bold'>
-      <Image
-        className='w-12 invert dark:invert-0 transition'
-        src={LOGO_BASE64}
-        alt='BoltCopy logo'
-        width={40}
-        height={20}
-      />
+  <div className='logo'>
+    <Link href='/' className='logo__link'>
+      <Image className='logo__image' src={LOGO_BASE64} alt='BoltCopy logo' width={40} height={20} />
     </Link>
   </div>
 );

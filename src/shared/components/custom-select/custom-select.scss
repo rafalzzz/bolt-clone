@@ -1,11 +1,11 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
 
-.custom-select-container {
+.custom-select {
   @apply text-sm font-bold text-gray-700 tracking-wide;
 
-  .custom-select-container__select {
+  &__select {
     @apply block w-full rounded-md bg-gray-50 p-4
     outline: none;
     background-color: var(--form-item-background-color);
@@ -25,8 +25,8 @@
   }
 }
 
-.dark .custom-select-container {
-  .custom-select-container__select {
+.dark .custom-select {
+  &__select {
     background-color: var(--form-item-dark-background-color);
     outline: var(--form-item-dark-outline);
 
