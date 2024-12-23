@@ -9,7 +9,7 @@ type TNavButton = Readonly<{
 }>;
 
 const NavButton: FC<TNavButton> = ({ href, text }) => (
-  <Link href={href} className='nav-button'>
+  <Link href={href} className='nav-button default-button-colors'>
     {text}
   </Link>
 );

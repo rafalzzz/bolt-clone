@@ -6,14 +6,14 @@
   @apply relative inline-block;
 
   &__menu {
-    @apply absolute text-gray-500 bg-white;
-    @apply text-sm rounded-lg shadow-xl min-w-max dark:bg-gray-800;
-    @apply border border-gray-300 dark:border-gray-600 px-0 py-2 mt-2;
+    @apply absolute text-buttonTextColor bg-backgroundColor;
+    @apply text-sm rounded-lg shadow-xl min-w-max dark:bg-darkBackgroundColor;
+    @apply border border-primaryColor dark:border-darkPrimaryColor px-0 py-2 mt-2;
   }
 
   &__menu-item {
-    @apply block px-4 py-2 text-gray-600 hover:bg-indigo-700 hover:text-gray-100;
-    @apply dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-indigo-500;
-    @apply dark:hover:text-white font-sans transition w-full;
+    @apply block px-4 py-2 text-textColor hover:bg-primaryColor hover:text-buttonTextColor;
+    @apply dark:text-darkButtonTextColor dark:bg-darkBackgroundColor dark:hover:bg-secondaryColor;
+    @apply dark:hover:text-darkTextColor font-sans transition w-full;
   }
 }

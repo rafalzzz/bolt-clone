@@ -24,7 +24,7 @@ const BaseLayout: FC<TBaseLayout> = async ({ locale, children }) => {
 
   return (
     <html className={`h-full ${isDarkModeEnabled ? DARK : undefined}`} lang={locale}>
-      <body className='antialiased bg-white dark:bg-gray-950 transition'>
+      <body className='antialiased bg-backgroundColor dark:bg-darkBackgroundColor transition'>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

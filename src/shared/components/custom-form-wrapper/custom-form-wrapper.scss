@@ -3,8 +3,8 @@
 @use 'tailwindcss/utilities';
 
 .custom-form-wrapper {
-  @apply flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg py-6 lg:mr-6;
-  @apply border border-gray-300 dark:bg-gray-900 dark:border-gray-600 transition;
+  @apply flex w-full lg:w-1/2 justify-center items-center bg-backgroundColor shadow-lg rounded-lg py-6 lg:mr-6;
+  @apply border border-tertiaryColor dark:bg-darkBackgroundColor dark:border-darkPrimaryColor transition;
 
   &__inner-container {
     @apply relative flex items-center;
@@ -15,6 +15,6 @@
   }
 
   &__header {
-    @apply text-4xl font-bold text-gray-700 dark:text-white transition mb-6;
+    @apply text-4xl font-bold transition mb-6 text-textColor dark:text-darkTextColor;
   }
 }

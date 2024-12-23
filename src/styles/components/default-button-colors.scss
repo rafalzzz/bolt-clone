@@ -5,8 +5,8 @@
 @layer components {
   .default-button-colors {
     @apply border-none outline-none focus:outline-none active:outline-none;
-    @apply text-gray-100 bg-indigo-700 hover:bg-indigo-500;
-    @apply dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:text-white;
+    @apply text-buttonTextColor bg-primaryColor hover:bg-secondaryColor;
+    @apply dark:bg-darkPrimaryColor dark:hover:bg-darkSecondaryColor dark:text-darkButtonTextColor;
     @apply duration-100 ease-in transition;
   }
 }

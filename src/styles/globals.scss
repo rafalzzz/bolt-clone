@@ -3,41 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
   --foreground: #171717;
 
   /* Common */
+  --background-color: #ffffff;
+  --primary-color: #4338ca;
+  --secondary-color: #6366f1;
+  --tertiary-color: #d1d5db;
+  --button-text-color: #f3f4f6;
+  --text-color: #374151;
+  --input-background-color: #f9fafb;
+  --input-placeholder-color: #6b7280;
+  --focus-input-background-color: #fff;
 
-  --form-item-background-color: #f9fafb;
   --form-item-transition: background-color 0.1s ease, outline 0.15s ease;
-  --form-item-placeholder-color: #6b7280;
-  --form-item-text-color: #374151;
-
-  --focus-form-item-background-color: #fff;
-  --focus-form-item-outline: 2px solid #22c55e;
-
-  --focus-select-outline: 1px solid #22c55e;
-  --focus-select-option-background: #bbf7d0;
 
   /* Common - dark theme */
 
-  --dark-theme-primary-color: #fff;
-  --dark-theme-secondary-color: #4f46e5;
-
-  --form-item-dark-text-color: #fff;
-  --form-item-dark-background-color: #1f2937;
-  --form-item-dark-outline: 1px solid #4b5563;
-  --form-item-placeholder-dark-color: #9ca3af;
-
-  --focus-form-item-dark-outline: 2px solid var(--dark-theme-secondary-color);
-  --focus-select-dark-outline: 1px solid var(--dark-theme-secondary-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ffffff;
-  }
+  --dark-background-color: #111827;
+  --dark-primary-color: #6366f1;
+  --dark-secondary-color: #818cf8;
+  --dark-tertiary-color: #4b5563;
+  --dark-button-text-color: #fff;
+  --dark-text-color: #fff;
+  --dark-input-background-color: #1f2937;
+  --dark-input-placeholder-color: #9ca3af;
 }
 
 body {
