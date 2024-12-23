@@ -3,11 +3,11 @@
 @import 'tailwindcss/utilities';
 
 .custom-form-wraper {
-  @apply flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg;
+  @apply flex w-full lg:w-1/2 justify-center items-center bg-white rounded-lg py-6;
   @apply border border-gray-300 dark:bg-gray-900 dark:border-gray-600 transition;
 
   .custom-form-wraper__inner-container {
-    @apply relative flex items-center w-full mx-8;
+    @apply relative flex items-center w-full mx-4;
   }
 
   .custom-form-wraper__header-wrapper {
@@ -15,6 +15,6 @@
   }
 
   .custom-form-wraper__header {
-    @apply mt-2 text-4xl font-bold text-gray-700 dark:text-white transition mb-6;
+    @apply text-4xl font-bold text-gray-700 dark:text-white transition mb-6;
   }
 }

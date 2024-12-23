@@ -8,6 +8,6 @@
 
   .navbar-container {
     @apply transition top-0 z-40 flex flex-wrap items-center justify-between;
-    @apply w-full tracking-wide max-w-5xl mx-auto px-4 sm:px-6 lg:px-6 py-3;
+    @apply w-full tracking-wide max-w-5xl mx-auto px-4 lg:px-6 py-3;
   }
 }
