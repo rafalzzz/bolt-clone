@@ -2,7 +2,7 @@ import Select, { GroupBase, GroupHeadingProps, OptionProps } from 'react-select'
 
 import { TGroupedOption } from '@/shared/types/react-select';
 
-import './react-select.css';
+import './react-select.scss';
 
 export type TReactSelectProps = {
   label: string;
@@ -19,10 +19,10 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
   formatGroupLabel,
   formatOption,
 }) => (
-  <label className='react-select-wrapper'>
+  <label className='react-select'>
     {label}
     <Select
-      className='react-select-container'
+      className='react-select__container'
       classNamePrefix='react-select'
       options={options}
       components={{ GroupHeading: formatGroupLabel, Option: formatOption }}

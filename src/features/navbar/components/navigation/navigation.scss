@@ -1,0 +1,7 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.navigation {
+  @apply hidden md:flex flex-row space-x-4;
+}

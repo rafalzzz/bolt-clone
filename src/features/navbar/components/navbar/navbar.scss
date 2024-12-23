@@ -1,12 +1,12 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
 
-.navbar-wrapper {
+.navbar {
   @apply flex flex-wrap items-center justify-between mx-auto left-0 right-0;
   @apply bg-white border-b border-gray-700 top-0 z-40 transition dark:bg-gray-900 dark:border-white;
 
-  .navbar-container {
+  .navbar__container {
     @apply transition top-0 z-40 flex flex-wrap tracking-wide;
     @apply max-w-5xl mx-auto py-3 items-center justify-between;
   }

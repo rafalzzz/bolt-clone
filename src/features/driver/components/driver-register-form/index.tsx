@@ -12,7 +12,7 @@ import CustomInput from '@/shared/components/custom-input';
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
-import './driver-register-form.css';
+import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
   const t = useTranslations('DriverRegisterForm');
@@ -41,7 +41,10 @@ const DriverRegisterForm = () => {
         <CitySelect />
         <CustomCheckbox>{t('termsText')}</CustomCheckbox>
         <div>
-          <button type='submit' className='default-button-colors submit-button'>
+          <button
+            type='submit'
+            className='default-button-colors driver-register-form__submit-button'
+          >
             {t('submitButtonText')}
           </button>
         </div>

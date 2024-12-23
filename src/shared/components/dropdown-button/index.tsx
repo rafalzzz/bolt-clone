@@ -1,7 +1,7 @@
 'use client';
 import { FC, PropsWithChildren, RefObject } from 'react';
 
-import './dropdown-button.css';
+import './dropdown-button.scss';
 
 type TDropdownButton = {
   text: string;
@@ -21,7 +21,7 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
   ref,
   showArrow = false,
 }) => (
-  <div className='dropdown-button-container' ref={ref}>
+  <div className='dropdown-button' ref={ref}>
     <div>
       <button type='button' className={buttonClassName} onClick={onClick}>
         {text}
@@ -43,7 +43,7 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
       </button>
     </div>
     {isOpen && (
-      <div x-show='open' className='dropdown-button-container__menu'>
+      <div x-show='open' className='dropdown-button__menu'>
         {children}
       </div>
     )}

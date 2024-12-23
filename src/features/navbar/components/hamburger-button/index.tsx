@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './hamburger-button.css';
+import './hamburger-button.scss';
 
 const HamburgerButton = () => (
   <button

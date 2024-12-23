@@ -1,7 +1,0 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-.language-switcher {
-  @apply h-11 p-2 rounded-md;
-}

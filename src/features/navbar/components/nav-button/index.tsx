@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import './nav-button.css';
+import './nav-button.scss';
 
 type TNavButton = Readonly<{
   href: string;

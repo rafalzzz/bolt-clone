@@ -1,9 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 
+import './main-content-wrapper.scss';
+
 const MainContentWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <main className='flex flex-wrap items-center justify-center mx-auto w-full p-0 max-w-5xl py-3'>
-    {children}
-  </main>
+  <main className='main-content-wrapper'>{children}</main>
 );
 
 export default MainContentWrapper;

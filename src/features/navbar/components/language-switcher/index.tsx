@@ -13,7 +13,7 @@ import { setCookieValue } from '@/shared/utils/client-side/cookies';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
-import './language-switcher.css';
+import './language-switcher.scss';
 
 const LOCALE_PARAM_INDEX = 1;
 
@@ -56,7 +56,7 @@ const LanguageSwitcher = () => {
             <button
               type='button'
               role='menu-item'
-              className='dropdown-menu-item__menu-item'
+              className='dropdown-button__menu-item'
               onClick={() => {
                 dropdownButtonOnClick(lang);
                 hideDropdownMenu();

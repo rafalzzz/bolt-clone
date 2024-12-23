@@ -12,7 +12,7 @@ import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
-import './register-button.css';
+import './register-button.scss';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +45,7 @@ const RegisterButton = () => {
             <button
               type='button'
               role='menu-item'
-              className='dropdown-menu-item__menu-item'
+              className='dropdown-button__menu-item'
               onClick={() => {
                 dropdownButtonOnClick(href);
                 hideDropdownMenu();

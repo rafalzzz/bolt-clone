@@ -1,12 +1,12 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
 
-.react-select-wrapper {
+.react-select {
   @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white;
   @apply transition border-none outline-none;
 
-  .react-select-container {
+  .react-select__container {
     @apply block w-full rounded-lg border-none outline-none;
 
     outline: none;
@@ -60,8 +60,8 @@
   }
 }
 
-.dark .react-select-wrapper {
-  .react-select-container {
+.dark .react-select {
+  &__container {
     background-color: var(--form-item-dark-background-color);
 
     .react-select__control {
