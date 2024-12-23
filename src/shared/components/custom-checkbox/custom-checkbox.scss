@@ -22,6 +22,6 @@
 
   &__svg-container {
     @apply absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
-    @apply text-white opacity-0 peer-checked:opacity-100 transition-all;
+    @apply text-buttonTextColor dark:text-darkButtonTextColor opacity-0 peer-checked:opacity-100 transition-all;
   }
 }
