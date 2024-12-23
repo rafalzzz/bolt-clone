@@ -7,6 +7,14 @@
 
   .custom-input-container__input-container {
     @apply flex flex-row w-full;
+
+    /* disable autocomplete styles */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: all 5000s ease-in-out 0s;
+    }
   }
 
   .custom-input-container__input-prefix {

@@ -36,7 +36,7 @@ const RegisterButton = () => {
       ref={ref}
       text={t('register')}
       isOpen={isOpen}
-      buttonClassName='default-button language-switcher'
+      buttonClassName='default-button default-button-colors register-button'
       onClick={handleOnClick}
     >
       <ul role='none'>

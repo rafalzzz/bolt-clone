@@ -41,7 +41,7 @@ const DriverRegisterForm = () => {
         <CitySelect />
         <CustomCheckbox>{t('termsText')}</CustomCheckbox>
         <div>
-          <button type='submit' className='submit-button'>
+          <button type='submit' className='default-button-colors submit-button'>
             {t('submitButtonText')}
           </button>
         </div>

@@ -8,9 +8,7 @@
   }
 
   .submit-button {
-    @apply w-full flex justify-center text-gray-100 bg-indigo-700 hover:bg-indigo-500;
+    @apply w-full flex justify-center font-semibold shadow-lg;
     @apply p-4 rounded-full tracking-wide cursor-pointer font-semibold;
-    @apply dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:text-white;
-    @apply duration-300 font-semibold shadow-lg focus:outline-none ease-in transition;
   }
 }

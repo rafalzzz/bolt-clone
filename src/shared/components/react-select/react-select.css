@@ -17,7 +17,7 @@
 
     .react-select__control {
       background-color: var(--form-item-background-color);
-      transition: background-color 0.15s ease;
+      transition: background-color 0.1s ease;
       padding: 10px 0;
       outline: none;
       border: none;
@@ -46,6 +46,16 @@
     .react-select__option--is-focused,
     .react-select__option:hover {
       background-color: var(--focus-select-option-background);
+    }
+  }
+
+  .react-select__input-container {
+    /* disable autocomplete styles */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: all 5000s ease-in-out 0s;
     }
   }
 }

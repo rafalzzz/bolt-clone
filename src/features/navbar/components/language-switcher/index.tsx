@@ -47,7 +47,7 @@ const LanguageSwitcher = () => {
       ref={ref}
       text={locale.toUpperCase()}
       isOpen={isOpen}
-      buttonClassName='default-button language-switcher'
+      buttonClassName='default-button default-button-colors language-switcher'
       onClick={handleOnClick}
     >
       <ul role='none'>
