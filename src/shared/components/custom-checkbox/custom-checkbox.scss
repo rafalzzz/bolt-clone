@@ -3,15 +3,15 @@
 @use 'tailwindcss/utilities';
 
 .custom-checkbox {
-  @apply flex text-xs text-justify my-4 text-gray-700 dark:text-white;
+  @apply flex text-xs text-justify my-4 text-textColor dark:text-darkTextColor transition;
 
   &__container {
     @apply inline-flex items-center;
   }
 
   &__input {
-    @apply border-indigo-700 before:bg-indigo-700 transition;
-    @apply checked:border-indigo-700 checked:bg-indigo-700 checked:before:bg-indigo-700;
+    @apply border-primaryColor before:bg-primaryColor transition-all;
+    @apply checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor;
     @apply dark:border-indigo-500 dark:before:bg-indigo-500;
     @apply dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:checked:before:bg-indigo-500;
   }
@@ -22,6 +22,6 @@
 
   &__svg-container {
     @apply absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
-    @apply text-white opacity-0 peer-checked:opacity-100 transition;
+    @apply text-white opacity-0 peer-checked:opacity-100 transition-all;
   }
 }

@@ -3,10 +3,10 @@
 @use 'tailwindcss/utilities';
 
 .redirection-to-login-page {
-  @apply flex items-center justify-start mt-8 text-center text-gray-700 dark:text-white;
+  @apply flex items-center justify-start mt-8 text-center text-textColor dark:text-darkTextColor transition;
 
   &__hyperlink {
-    @apply text-indigo-500 hover:text-indigo-500 no-underline hover:underline cursor-pointer ease-in duration-100 ml-1 transition;
-    @apply text-indigo-700 hover:text-indigo-500 dark:text-indigo-500 dark:hover:text-indigo-400;
+    @apply text-primaryColor no-underline hover:underline cursor-pointer;
+    @apply dark:text-darkSecondaryColor ml-1 transition;
   }
 }

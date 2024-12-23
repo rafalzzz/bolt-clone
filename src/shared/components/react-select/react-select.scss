@@ -3,24 +3,16 @@
 @use 'tailwindcss/utilities';
 
 .react-select {
-  @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white;
+  @apply text-sm font-bold text-textColor tracking-wide dark:text-darkTextColor;
   @apply transition border-none outline-none;
 
   .react-select__container {
-    @apply block w-full rounded-lg border-none outline-none;
-
-    outline: none;
-    background-color: #fff;
-    font-weight: 400;
-    font-size: 1rem;
-    margin: 10px 0;
+    @apply block w-full rounded-lg border-none outline-none bg-backgroundColor;
+    @apply font-normal text-base my-3 mx-0 transition-all;
 
     .react-select__control {
-      background-color: var(--form-item-background-color);
-      transition: background-color 0.1s ease;
+      @apply outline-none border-none bg-inputBackgroundColor;
       padding: 10px 0;
-      outline: none;
-      border: none;
     }
 
     .react-select__indicator-separator {
@@ -29,23 +21,20 @@
 
     .react-select__control--is-focused,
     .react-select__control--menu-is-open {
-      outline: var(--focus-select-outline) !important;
-      box-shadow: none;
-      border: none;
+      @apply border-none shadow-none ring-1 ring-darkPrimaryColor transition-all;
     }
 
     .react-select__option {
-      padding: 10px 0;
-    }
+      @apply px-0 py-3;
 
-    .react-select__option--is-selected {
-      color: var(--form-item-text-color);
-      background-color: var(--focus-form-item-background-color);
-    }
+      &--is-selected {
+        @apply bg-backgroundColor text-textColor;
+      }
 
-    .react-select__option--is-focused,
-    .react-select__option:hover {
-      background-color: var(--focus-select-option-background);
+      &--is-focused,
+      &:hover {
+        @apply text-buttonTextColor bg-secondaryColor;
+      }
     }
   }
 
@@ -62,35 +51,33 @@
 
 .dark .react-select {
   &__container {
-    background-color: var(--form-item-dark-background-color);
+    @apply bg-darkInputBackgroundColor;
 
     .react-select__control {
-      background-color: var(--form-item-dark-background-color);
-      outline: var(--form-item-dark-outline) !important;
-      transition: none;
+      @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
     }
 
     .react-select__control--is-focused,
     .react-select__control--is-active,
     .react-select__control--menu-is-open {
-      outline: var(--focus-select-dark-outline) !important;
+      @apply ring-1 ring-darkSecondaryColor;
     }
 
     .react-select__menu {
-      background-color: var(--form-item-dark-background-color);
+      @apply bg-darkInputBackgroundColor;
     }
 
     .react-select__option {
-      background-color: var(--form-item-dark-background-color);
+      @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
     }
 
     .react-select__single-value {
-      color: var(--form-item-dark-text-color);
+      @apply text-darkTextColor;
     }
 
     .react-select__option--is-focused,
     .react-select__option:hover {
-      background-color: var(--dark-theme-secondary-color);
+      @apply bg-secondaryColor dark:hover:text-darkTextColor;
     }
   }
 }

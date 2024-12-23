@@ -3,7 +3,7 @@
 @use 'tailwindcss/utilities';
 
 .custom-input {
-  @apply text-sm font-bold text-gray-700 tracking-wide dark:text-white transition;
+  @apply text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition;
 
   &__input-container {
     @apply flex flex-row w-full;
@@ -18,26 +18,12 @@
   }
 
   &__input-prefix {
-    @apply flex flex-row items-center justify-center rounded-md p-4 mr-4;
+    @apply flex flex-row items-center justify-center rounded-md p-4 mr-4 text-textColor dark:text-darkTextColor transition;
   }
 
   &__input {
-    outline: none;
-    font-weight: 400;
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: var(--form-item-background-color);
-    transition: var(--form-item-transition);
-
-    &::placeholder {
-      color: var(--form-item-placeholder-color);
-    }
-
-    &:focus {
-      outline: var(--focus-form-item-outline);
-      background-color: var(--focus-form-item-background-color);
-    }
+    @apply bg-inputBackgroundColor outline-none my-3 font-normal text-base transition;
+    @apply focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor focus:ring-secondaryColor focus:ring-2;
   }
 
   input {
@@ -47,15 +33,7 @@
 
 .dark .custom-input {
   &__input {
-    background-color: var(--form-item-dark-background-color);
-    outline: var(--form-item-dark-outline);
-
-    &::placeholder {
-      color: var(--form-item-placeholder-dark-color);
-    }
-
-    &:focus {
-      outline: var(--focus-form-item-dark-outline);
-    }
+    @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
+    @apply placeholder-darkInputPlaceholderColor focus:ring-2 focus:ring-darkSecondaryColor;
   }
 }
