@@ -1,5 +1,4 @@
 'use client';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -53,4 +52,4 @@ const DriverRegisterForm = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(DriverRegisterForm), { ssr: false });
+export default DriverRegisterForm;
