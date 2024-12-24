@@ -1,22 +1,19 @@
-import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
 
-import DriverRegisterForm from '@/features/driver/components/driver-register-form';
-import PageDescription from '@/shared/components/page-description';
+import ContentWrapper from '@/shared/components/content-wrapper';
+import DefaultLoader from '@/shared/components/default-loader';
 
-const DriverPage = () => {
-  const t = useTranslations('DriverPage');
+const InitialDriverRegistration = dynamic(
+  () => import('@/features/driver/components/initial-driver-registration'),
+  {
+    loading: DefaultLoader,
+  },
+);
 
-  return (
-    <main className='flex flex-wrap items-center justify-center mx-auto w-full p-0 max-w-5xl py-3'>
-      <div className='h-auto w-full flex p-0 lg:flex-row flex-col'>
-        <PageDescription
-          description={t('description')}
-          secondaryDescription={t('secondaryDescription')}
-        />
-        <DriverRegisterForm />
-      </div>
-    </main>
-  );
-};
+const DriverPage = () => (
+  <ContentWrapper>
+    <InitialDriverRegistration />
+  </ContentWrapper>
+);
 
 export default DriverPage;

@@ -1,0 +1,12 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.default-loader {
+  @apply w-full flex items-center justify-center;
+  height: calc(100vh - 100px);
+
+  &__svg {
+    @apply inline w-12 h-12 animate-spin text-tertiaryColor fill-primaryColor dark:text-darkTertiaryColor dark:fill-darkPrimaryColor;
+  }
+}
