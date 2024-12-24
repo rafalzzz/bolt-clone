@@ -6,6 +6,6 @@
   @apply h-auto w-full flex items-center justify-center;
 
   &__svg {
-    @apply inline w-12 h-12 text-tertiaryColor animate-spin dark:text-darkTertiaryColor fill-primaryColor dark:fill-darkPrimaryColor;
+    @apply inline w-12 h-12 animate-spin text-tertiaryColor fill-primaryColor dark:text-darkTertiaryColor dark:fill-darkPrimaryColor;
   }
 }
