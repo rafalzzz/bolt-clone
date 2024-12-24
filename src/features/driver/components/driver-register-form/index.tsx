@@ -1,5 +1,4 @@
 'use client';
-
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -43,7 +42,7 @@ const DriverRegisterForm = () => {
         <div>
           <button
             type='submit'
-            className='default-button-colors driver-register-form__submit-button'
+            className='driver-register-form__submit-button default-button-colors '
           >
             {t('submitButtonText')}
           </button>
