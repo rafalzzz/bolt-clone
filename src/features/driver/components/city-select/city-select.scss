@@ -2,7 +2,7 @@
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
 
-.city-select {
+.cityOption-select {
   &__option {
     @apply flex items-center p-2;
   }

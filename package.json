@@ -19,7 +19,8 @@
     "next-intl": "^3.26.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-select": "^5.9.0"
+    "react-select": "^5.9.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
