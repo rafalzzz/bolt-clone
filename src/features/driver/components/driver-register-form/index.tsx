@@ -8,7 +8,7 @@ import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
-import useRegisterDriver from '@/features/driver/hooks/use-register-driver';
+import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-form';
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
@@ -16,7 +16,7 @@ import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
   /* const [state, registerDriver] = useActionState(); */
-  const { cityOption, setCityOption } = useRegisterDriver();
+  const { cityOption, setCityOption } = useDriverRegisterForm();
 
   const t = useTranslations('DriverRegisterForm');
 

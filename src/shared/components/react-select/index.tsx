@@ -8,9 +8,9 @@ import './react-select.scss';
 export type TReactSelectProps = {
   label: string;
   options: GroupBase<TGroupedOption>[];
-  placeholder?: string;
   value: TOption | null;
   setValue: Dispatch<SetStateAction<TOption | null>>;
+  placeholder?: string;
   formatGroupLabel?: (props: GroupHeadingProps<TGroupedOption, false>) => JSX.Element;
   formatOption?: (props: OptionProps<TGroupedOption, false>) => JSX.Element;
 };
@@ -19,8 +19,8 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
   label,
   value,
   options,
-  placeholder,
   setValue,
+  placeholder,
   formatGroupLabel,
   formatOption,
 }) => {
