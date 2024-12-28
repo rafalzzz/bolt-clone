@@ -27,7 +27,7 @@ const CitySelect: FC<TCitySelect> = ({ cityOption, setCityOption }) => {
     const { icon, label } = props.data as unknown as TGroupedOption;
 
     return (
-      <div className='cityOption-select__option'>
+      <div className='city-select__option'>
         {icon && <Image src={icon} width={20} height={20} alt={`${label} flag`} className='mr-2' />}
         <span>{t(label)}</span>
       </div>
@@ -36,7 +36,7 @@ const CitySelect: FC<TCitySelect> = ({ cityOption, setCityOption }) => {
 
   const formatOption = (props: OptionProps<TGroupedOption, false>) => (
     <Option {...props}>
-      <div className='cityOption-select__option'>{t(props.data.label)}</div>
+      <div className='city-select__option'>{t(props.data.label)}</div>
     </Option>
   );
 
