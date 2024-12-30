@@ -13,7 +13,7 @@ const CustomInput: FC<TCustomInput> = ({ label, prefix, props }) => (
     {label}
     <div className='custom-input__input-container'>
       {prefix && <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>}
-      <input className='custom-input__input ' {...props} />
+      <input className='custom-input__input' {...props} />
     </div>
   </label>
 );

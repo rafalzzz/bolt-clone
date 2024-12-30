@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -12,18 +13,26 @@ import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-f
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
+import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
+
 import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
-  /* const [state, registerDriver] = useActionState(); */
-  const { cityOption, setCityOption } = useDriverRegisterForm();
+  const { registerDriverAction } = useDriverRegisterForm();
 
   const t = useTranslations('DriverRegisterForm');
 
   return (
     <CustomFormWrapper title={t('header')}>
-      <form className='driver-register-form'>
-        <CustomInput label='Email' props={{ placeholder: t('emailPlaceholder') }} />
+      <form className='driver-register-form' action={registerDriverAction}>
+        <CustomInput
+          label='Email'
+          props={{
+            name: EDriverRegisterFormKeys.EMAIL,
+            placeholder: t('emailPlaceholder'),
+            type: 'text',
+          }}
+        />
         <CustomInput
           label={t('phoneNumberLabel')}
           prefix={
@@ -39,10 +48,16 @@ const DriverRegisterForm = () => {
               {POLISH_NUMBER_PREFIX}
             </>
           }
-          props={{ placeholder: t('phoneNumberPlaceholder') }}
+          props={{
+            name: EDriverRegisterFormKeys.PHONE_NUMBER,
+            placeholder: t('phoneNumberPlaceholder'),
+            type: 'text',
+          }}
         />
-        <CitySelect cityOption={cityOption} setCityOption={setCityOption} />
-        <CustomCheckbox>{t('termsText')}</CustomCheckbox>
+        <CitySelect />
+        <CustomCheckbox name={EDriverRegisterFormKeys.RULES} defaultValue='true'>
+          {t('termsText')}
+        </CustomCheckbox>
         <div>
           <button
             type='submit'

@@ -1,27 +1,31 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Dispatch, FC, SetStateAction } from 'react';
-import { GroupBase, GroupHeadingProps, OptionProps, components } from 'react-select';
+import {
+  GroupBase,
+  GroupHeadingProps,
+  OptionProps,
+  SingleValueProps,
+  components,
+} from 'react-select';
 
 import ReactSelect from '@/shared/components/react-select';
 
 import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
 
-import { TGroupedOption, TOption } from '@/shared/types/react-select';
+import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
+
+import { TGroupedOption } from '@/shared/types/react-select';
 
 import './city-select.scss';
 
-type TCitySelect = {
-  cityOption: TOption | null;
-  setCityOption: Dispatch<SetStateAction<TOption | null>>;
-};
+const { SingleValue, Option } = components;
 
-const { Option } = components;
-
-const CitySelect: FC<TCitySelect> = ({ cityOption, setCityOption }) => {
+const CitySelect = () => {
   const t = useTranslations('CitySelect');
 
-  const value = cityOption ? { ...cityOption, label: t(cityOption?.label) } : null;
+  const formatSingleValue = (props: SingleValueProps<TGroupedOption, false>) => (
+    <SingleValue {...props}>{t(props.data.label)}</SingleValue>
+  );
 
   const formatGroupLabel = (props: GroupHeadingProps<TGroupedOption, false>) => {
     const { icon, label } = props.data as unknown as TGroupedOption;
@@ -44,9 +48,9 @@ const CitySelect: FC<TCitySelect> = ({ cityOption, setCityOption }) => {
     <ReactSelect
       label={t('cityLabel')}
       placeholder={t('cityPlaceholder')}
-      value={value}
-      setValue={setCityOption}
+      name={EDriverRegisterFormKeys.CITY}
       options={CITY_OPTIONS as unknown as GroupBase<TGroupedOption>[]}
+      formatSingleValue={formatSingleValue}
       formatGroupLabel={formatGroupLabel}
       formatOption={formatOption}
     />

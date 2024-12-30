@@ -1,4 +1,5 @@
 'use client';
+
 import { FC, PropsWithChildren, RefObject } from 'react';
 
 import './dropdown-button.scss';

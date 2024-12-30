@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useActionState } from 'react';
 
-import { TOption } from '@/shared/types/react-select';
+import { sendDriverEmail } from '@/features/driver/actions/send-driver-email';
+
+import {
+  TSendDriverEmailSchema,
+  TSendDriverEmailSchemaError,
+} from '@/features/driver/schemas/send-driver-email-schema';
 
 const useDriverRegisterForm = () => {
-  const [cityOption, setCityOption] = useState<TOption | null>(null);
+  const initialState = {
+    data: {} as TSendDriverEmailSchema,
+    errors: {} as TSendDriverEmailSchemaError,
+  };
 
-  return { cityOption, setCityOption };
+  const [state, registerDriverAction] = useActionState(sendDriverEmail, initialState);
+
+  console.log('useDriverRegisterForm', { state });
+
+  return { registerDriverAction };
 };
 
 export default useDriverRegisterForm;

@@ -1,6 +1,4 @@
-import { SingleValue } from 'react-select';
-
-export type TOption = {
+type TOption = {
   value: string;
   label: string;
 };
@@ -11,5 +9,3 @@ export type TGroupedOption = {
   shortName?: string;
   options: TOption[];
 };
-
-export type TNewValue = SingleValue<TGroupedOption>;

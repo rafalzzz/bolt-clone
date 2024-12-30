@@ -1,14 +1,18 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, InputHTMLAttributes, PropsWithChildren } from 'react';
 
 import './custom-checkbox.scss';
 
-const CustomCheckbox: FC<PropsWithChildren> = ({ children }) => (
+const CustomCheckbox: FC<PropsWithChildren<InputHTMLAttributes<HTMLInputElement>>> = ({
+  children,
+  ...props
+}) => (
   <label className='custom-checkbox'>
     <div className='custom-checkbox__container'>
       <div className='custom-checkbox__inner-container'>
         <input
           type='checkbox'
           className='peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all custom-checkbox__input'
+          {...props}
         />
         <div className='custom-checkbox__svg-container'>
           <svg
