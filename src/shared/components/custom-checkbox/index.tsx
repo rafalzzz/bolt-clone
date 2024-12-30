@@ -2,17 +2,23 @@ import { FC, InputHTMLAttributes, PropsWithChildren } from 'react';
 
 import './custom-checkbox.scss';
 
-const CustomCheckbox: FC<PropsWithChildren<InputHTMLAttributes<HTMLInputElement>>> = ({
+type TCustomCheckbox = {
+  checkboxProps: InputHTMLAttributes<HTMLInputElement>;
+  error?: string;
+};
+
+const CustomCheckbox: FC<PropsWithChildren<TCustomCheckbox>> = ({
   children,
-  ...props
+  checkboxProps,
+  error,
 }) => (
-  <label className='custom-checkbox'>
+  <label className={`custom-checkbox custom-checkbox__${error ? 'invalid' : 'correct'}`}>
     <div className='custom-checkbox__container'>
       <div className='custom-checkbox__inner-container'>
         <input
           type='checkbox'
-          className='peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all custom-checkbox__input'
-          {...props}
+          className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all custom-checkbox__input custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
+          {...checkboxProps}
         />
         <div className='custom-checkbox__svg-container'>
           <svg

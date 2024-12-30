@@ -55,7 +55,9 @@ const DriverRegisterForm = () => {
           }}
         />
         <CitySelect />
-        <CustomCheckbox name={EDriverRegisterFormKeys.RULES} defaultValue='true'>
+        <CustomCheckbox
+          checkboxProps={{ name: EDriverRegisterFormKeys.RULES, defaultValue: 'true' }}
+        >
           {t('termsText')}
         </CustomCheckbox>
         <div>

@@ -38,6 +38,7 @@ export default {
         inputBackgroundColor: 'var(--input-background-color)',
         inputPlaceholderColor: 'var(--input-placeholder-color)',
         focusInputBackgroundColor: 'var(--focus-input-background-color)',
+        errorIconColor: 'var(--error-icon-color)',
 
         darkBackgroundColor: 'var(--dark-background-color)',
         darkPrimaryColor: 'var(--dark-primary-color)',
@@ -47,6 +48,7 @@ export default {
         darkTextColor: 'var(--dark-text-color)',
         darkInputBackgroundColor: 'var(--dark-input-background-color)',
         darkInputPlaceholderColor: 'var(--dark-input-placeholder-color)',
+        darkErrorIconColor: 'var(--dark-error-icon-color)',
       },
     },
   },

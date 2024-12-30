@@ -10,21 +10,44 @@
     @apply block w-full rounded-lg border-none outline-none bg-backgroundColor;
     @apply font-normal text-base my-3 mx-0 transition-all;
 
-    .react-select__control {
+    .correct-react-select__control {
       @apply outline-none border-none bg-inputBackgroundColor;
       padding: 10px 0;
     }
 
-    .react-select__indicator-separator {
+    .correct-react-select__indicator-separator {
       display: none;
     }
 
-    .react-select__control--is-focused,
-    .react-select__control--menu-is-open {
+    .correct-react-select__control--is-focused,
+    .correct-react-select__control--menu-is-open {
       @apply border-none shadow-none ring-1 ring-darkPrimaryColor transition-all;
     }
 
-    .react-select__option {
+    .correct-react-select__option {
+      @apply px-0 py-3;
+
+      &--is-selected {
+        @apply bg-backgroundColor text-textColor;
+      }
+
+      &--is-focused,
+      &:hover {
+        @apply text-buttonTextColor bg-secondaryColor;
+      }
+    }
+
+    .invalid-react-select__control {
+      @apply outline-none border-none bg-inputBackgroundColor;
+      @apply border-none shadow-none ring-1 ring-errorIconColor transition-all;
+      padding: 10px 0;
+    }
+
+    .invalid-react-select__indicator-separator {
+      display: none;
+    }
+
+    .invalid-react-select__option {
       @apply px-0 py-3;
 
       &--is-selected {
@@ -38,7 +61,7 @@
     }
   }
 
-  .react-select__input-container {
+  .correct-react-select__input-container {
     /* disable autocomplete styles */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -53,30 +76,51 @@
   &__container {
     @apply bg-darkInputBackgroundColor;
 
-    .react-select__control {
+    .correct-react-select__control {
       @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
     }
 
-    .react-select__control--is-focused,
-    .react-select__control--is-active,
-    .react-select__control--menu-is-open {
-      @apply ring-1 ring-darkSecondaryColor;
+    .correct-react-select__control--is-focused,
+    .correct-react-select__control--is-active,
+    .correct-react-select__control--menu-is-open {
+      @apply ring-1 ring-darkSecondaryColor transition-all;
     }
 
-    .react-select__menu {
+    .correct-react-select__menu {
       @apply bg-darkInputBackgroundColor;
     }
 
-    .react-select__option {
+    .correct-react-select__option {
       @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
     }
 
-    .react-select__single-value {
+    .correct-react-select__single-value {
       @apply text-darkTextColor;
     }
 
-    .react-select__option--is-focused,
-    .react-select__option:hover {
+    .correct-react-select__option--is-focused,
+    .correct-react-select__option:hover {
+      @apply bg-secondaryColor dark:hover:text-darkTextColor transition-all;
+    }
+
+    .invalid-react-select__control {
+      @apply bg-darkInputBackgroundColor ring-1 ring-darkErrorIconColor;
+    }
+
+    .invalid-react-select__menu {
+      @apply bg-darkInputBackgroundColor;
+    }
+
+    .invalid-react-select__option {
+      @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
+    }
+
+    .invalid-react-select__single-value {
+      @apply text-darkTextColor;
+    }
+
+    .invalid-react-select__option--is-focused,
+    .invalid-react-select__option:hover {
       @apply bg-secondaryColor dark:hover:text-darkTextColor;
     }
   }

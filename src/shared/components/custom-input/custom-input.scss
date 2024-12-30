@@ -3,7 +3,7 @@
 @use 'tailwindcss/utilities';
 
 .custom-input {
-  @apply text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition;
+  @apply text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition-all;
 
   &__input-container {
     @apply flex flex-row w-full;
@@ -23,17 +23,39 @@
 
   &__input {
     @apply bg-inputBackgroundColor outline-none my-3 font-normal text-base transition;
-    @apply focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor focus:ring-secondaryColor focus:ring-2;
+    @apply focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor;
+  }
+
+  &__error-icon {
+    @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8;
+    @apply bg-inputBackgroundColor dark:bg-darkInputBackgroundColor text-errorIconColor dark:text-darkErrorIconColor;
+    transform: translateY(50%);
+  }
+
+  &__correct-input {
+    @apply p-4 focus:ring-2 focus:ring-secondaryColor;
+  }
+
+  &__invalid-input {
+    @apply py-4 pl-4 pr-12 ring-2 ring-errorIconColor;
   }
 
   input {
-    @apply block w-full rounded-md bg-gray-50 p-4;
+    @apply block w-full rounded-md;
   }
 }
 
 .dark .custom-input {
   &__input {
     @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
-    @apply placeholder-darkInputPlaceholderColor focus:ring-2 focus:ring-darkSecondaryColor;
+    @apply placeholder-darkInputPlaceholderColor;
+  }
+
+  &__correct-input {
+    @apply focus:ring-darkSecondaryColor focus:ring-2 focus:ring-darkSecondaryColor;
+  }
+
+  &__invalid-input {
+    @apply ring-darkErrorIconColor;
   }
 }

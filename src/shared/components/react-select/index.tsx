@@ -1,4 +1,10 @@
-import Select, { GroupBase, GroupHeadingProps, OptionProps, SingleValueProps } from 'react-select';
+import Select, {
+  ControlProps,
+  GroupBase,
+  GroupHeadingProps,
+  OptionProps,
+  SingleValueProps,
+} from 'react-select';
 
 import { TGroupedOption } from '@/shared/types/react-select';
 
@@ -9,6 +15,8 @@ export type TReactSelectProps = {
   options: GroupBase<TGroupedOption>[];
   placeholder?: string;
   name?: string;
+  error?: string;
+  formatControl?: (props: ControlProps<TGroupedOption, false>) => JSX.Element;
   formatSingleValue?: (props: SingleValueProps<TGroupedOption, false>) => JSX.Element;
   formatGroupLabel?: (props: GroupHeadingProps<TGroupedOption, false>) => JSX.Element;
   formatOption?: (props: OptionProps<TGroupedOption, false>) => JSX.Element;
@@ -19,6 +27,8 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
   options,
   placeholder,
   name,
+  error,
+  formatControl,
   formatSingleValue,
   formatGroupLabel,
   formatOption,
@@ -27,13 +37,14 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
     {label}
     <Select
       className='react-select__container'
-      classNamePrefix='react-select'
+      classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
       options={options}
       name={name}
       components={{
+        Control: formatControl,
+        SingleValue: formatSingleValue,
         GroupHeading: formatGroupLabel,
         Option: formatOption,
-        SingleValue: formatSingleValue,
       }}
       placeholder={placeholder}
     />

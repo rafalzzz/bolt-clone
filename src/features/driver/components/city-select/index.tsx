@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { FC } from 'react';
 import {
+  ControlProps,
   GroupBase,
   GroupHeadingProps,
   OptionProps,
@@ -18,10 +20,20 @@ import { TGroupedOption } from '@/shared/types/react-select';
 
 import './city-select.scss';
 
-const { SingleValue, Option } = components;
+const { Control, SingleValue, Option } = components;
 
-const CitySelect = () => {
+type TCitySelect = {
+  error?: string;
+};
+
+const CitySelect: FC<TCitySelect> = ({ error }) => {
   const t = useTranslations('CitySelect');
+
+  const formatControl = ({ children, ...props }: ControlProps<TGroupedOption, false>) => (
+    <Control className='city-select__correct-control' {...props}>
+      {children}
+    </Control>
+  );
 
   const formatSingleValue = (props: SingleValueProps<TGroupedOption, false>) => (
     <SingleValue {...props}>{t(props.data.label)}</SingleValue>
@@ -50,6 +62,8 @@ const CitySelect = () => {
       placeholder={t('cityPlaceholder')}
       name={EDriverRegisterFormKeys.CITY}
       options={CITY_OPTIONS as unknown as GroupBase<TGroupedOption>[]}
+      error={error}
+      formatControl={formatControl}
       formatSingleValue={formatSingleValue}
       formatGroupLabel={formatGroupLabel}
       formatOption={formatOption}
