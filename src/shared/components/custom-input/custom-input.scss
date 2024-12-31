@@ -23,7 +23,7 @@
   }
 
   &__error-icon {
-    @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8;
+    @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 transition;
     @apply bg-inputBackgroundColor dark:bg-darkInputBackgroundColor text-errorIconColor dark:text-darkErrorIconColor;
     transform: translateY(50%);
   }
@@ -52,6 +52,6 @@
   }
 
   &__invalid-input {
-    @apply ring-darkErrorIconColor;
+    @apply ring-2 ring-darkErrorIconColor;
   }
 }

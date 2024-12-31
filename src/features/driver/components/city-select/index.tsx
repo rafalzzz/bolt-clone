@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { FC } from 'react';
+import { Path, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import {
   ControlProps,
   GroupBase,
@@ -16,30 +16,44 @@ import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
 
 import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
 
-import { TGroupedOption } from '@/shared/types/react-select';
+import { TBasicFormType } from '@/shared/types/basic-form-type';
+import { TGroupedOption, TOption } from '@/shared/types/react-select';
 
 import './city-select.scss';
 
 const { Control, SingleValue, Option } = components;
 
-type TCitySelect = {
+type TCitySelect<FormType extends TBasicFormType> = {
+  inputKey: Path<FormType>;
+  register: UseFormRegister<FormType>;
+  setValue: UseFormSetValue<FormType>;
   error?: string;
 };
 
-const CitySelect: FC<TCitySelect> = ({ error }) => {
+const CitySelect = <FormType extends TBasicFormType>({
+  inputKey,
+  register,
+  setValue,
+  error,
+}: TCitySelect<FormType>) => {
   const t = useTranslations('CitySelect');
 
-  const formatControl = ({ children, ...props }: ControlProps<TGroupedOption, false>) => (
+  register(inputKey);
+
+  const formatControl = ({
+    children,
+    ...props
+  }: ControlProps<TOption, false, GroupBase<TOption>>) => (
     <Control className='city-select__correct-control' {...props}>
       {children}
     </Control>
   );
 
-  const formatSingleValue = (props: SingleValueProps<TGroupedOption, false>) => (
+  const formatSingleValue = (props: SingleValueProps<TOption, false>) => (
     <SingleValue {...props}>{t(props.data.label)}</SingleValue>
   );
 
-  const formatGroupLabel = (props: GroupHeadingProps<TGroupedOption, false>) => {
+  const formatGroupLabel = (props: GroupHeadingProps<TOption, false>) => {
     const { icon, label } = props.data as unknown as TGroupedOption;
 
     return (
@@ -50,7 +64,7 @@ const CitySelect: FC<TCitySelect> = ({ error }) => {
     );
   };
 
-  const formatOption = (props: OptionProps<TGroupedOption, false>) => (
+  const formatOption = (props: OptionProps<TOption, false>) => (
     <Option {...props}>
       <div className='city-select__option'>{t(props.data.label)}</div>
     </Option>
@@ -59,6 +73,8 @@ const CitySelect: FC<TCitySelect> = ({ error }) => {
   return (
     <ReactSelect
       label={t('cityLabel')}
+      inputKey={inputKey}
+      setValue={setValue}
       placeholder={t('cityPlaceholder')}
       name={EDriverRegisterFormKeys.CITY}
       options={CITY_OPTIONS as unknown as GroupBase<TGroupedOption>[]}

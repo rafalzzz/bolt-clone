@@ -1,14 +1,5 @@
-import { useActionState } from 'react';
-
-import { sendDriverEmail } from '@/features/driver/actions/send-driver-email';
-
-import {
-  TSendDriverEmailSchema,
-  TSendDriverEmailSchemaError,
-} from '@/features/driver/schemas/send-driver-email-schema';
-
 const useDriverRegisterForm = () => {
-  const initialState = {
+  /*   const initialState = {
     data: {} as TSendDriverEmailSchema,
     errors: {} as TSendDriverEmailSchemaError,
   };
@@ -17,7 +8,7 @@ const useDriverRegisterForm = () => {
 
   console.log('useDriverRegisterForm', { state });
 
-  return { registerDriverAction };
+  return { registerDriverAction }; */
 };
 
 export default useDriverRegisterForm;

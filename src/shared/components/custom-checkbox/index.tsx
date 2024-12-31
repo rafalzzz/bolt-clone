@@ -1,19 +1,27 @@
-import { FC, InputHTMLAttributes, PropsWithChildren } from 'react';
+import { FC, InputHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
+import { Path, UseFormRegister } from 'react-hook-form';
 
 import FormItemContainer from '@/shared/components/form-item-container';
 
+import { TBasicFormType } from '@/shared/types/basic-form-type';
+
 import './custom-checkbox.scss';
 
-type TCustomCheckbox = {
-  checkboxProps: InputHTMLAttributes<HTMLInputElement>;
+type TCustomCheckbox<FormType extends TBasicFormType> = {
+  children: ReactNode;
+  inputKey: Path<FormType>;
+  register: UseFormRegister<FormType>;
+  checkboxProps?: InputHTMLAttributes<HTMLInputElement>;
   error?: string;
 };
 
-const CustomCheckbox: FC<PropsWithChildren<TCustomCheckbox>> = ({
+const CustomCheckbox = <FormType extends TBasicFormType>({
   children,
+  inputKey,
+  register,
   checkboxProps,
   error,
-}) => (
+}: TCustomCheckbox<FormType>) => (
   <FormItemContainer error={error}>
     <label className={`custom-checkbox custom-checkbox__${error ? 'invalid' : 'correct'}`}>
       <div className='custom-checkbox__container'>
@@ -22,6 +30,7 @@ const CustomCheckbox: FC<PropsWithChildren<TCustomCheckbox>> = ({
             type='checkbox'
             className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all custom-checkbox__input custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
             {...checkboxProps}
+            {...register(inputKey)}
           />
           <div className='custom-checkbox__svg-container'>
             <svg

@@ -6,6 +6,6 @@
   @apply mb-2;
 
   &__error {
-    @apply mt-1 text-xs text-errorIconColor dark:text-darkErrorIconColor transition;
+    @apply mt-1 text-sm font-normal tracking-wide text-errorIconColor dark:text-darkErrorIconColor transition;
   }
 }

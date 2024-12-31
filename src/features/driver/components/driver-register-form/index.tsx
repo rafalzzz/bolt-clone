@@ -1,7 +1,9 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import CitySelect from '@/features/driver/components/city-select';
 import RedirectionToLoginPage from '@/features/driver/components/redirection-to-login-page';
@@ -9,7 +11,10 @@ import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
-import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-form';
+import {
+  TDriverRegisterFormSchema,
+  driverRegisterFormSchema,
+} from '@/features/driver/schemas/driver-register-form-schema';
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
@@ -18,15 +23,31 @@ import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register
 import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
-  const { registerDriverAction } = useDriverRegisterForm();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TDriverRegisterFormSchema>({
+    resolver: zodResolver(driverRegisterFormSchema),
+  });
 
   const t = useTranslations('DriverRegisterForm');
 
+  const onSubmit: SubmitHandler<TDriverRegisterFormSchema> = (data) => {
+    console.log(data);
+  };
+
+  console.log({ errors });
+
   return (
     <CustomFormWrapper title={t('header')}>
-      <form className='driver-register-form' action={registerDriverAction}>
+      <form className='driver-register-form' onSubmit={handleSubmit(onSubmit)}>
         <CustomInput
           label='Email'
+          inputKey={EDriverRegisterFormKeys.EMAIL}
+          register={register}
+          error={errors?.[EDriverRegisterFormKeys.EMAIL]?.message}
           props={{
             name: EDriverRegisterFormKeys.EMAIL,
             placeholder: t('emailPlaceholder'),
@@ -35,6 +56,9 @@ const DriverRegisterForm = () => {
         />
         <CustomInput
           label={t('phoneNumberLabel')}
+          inputKey={EDriverRegisterFormKeys.PHONE_NUMBER}
+          register={register}
+          error={errors?.[EDriverRegisterFormKeys.PHONE_NUMBER]?.message}
           prefix={
             <>
               <Image
@@ -54,9 +78,16 @@ const DriverRegisterForm = () => {
             type: 'text',
           }}
         />
-        <CitySelect />
+        <CitySelect
+          inputKey={EDriverRegisterFormKeys.CITY}
+          register={register}
+          setValue={setValue}
+          error={errors?.[EDriverRegisterFormKeys.CITY]?.message}
+        />
         <CustomCheckbox
-          checkboxProps={{ name: EDriverRegisterFormKeys.RULES, defaultValue: 'true' }}
+          inputKey={EDriverRegisterFormKeys.RULES}
+          register={register}
+          error={errors?.[EDriverRegisterFormKeys.RULES]?.message}
         >
           {t('termsText')}
         </CustomCheckbox>
