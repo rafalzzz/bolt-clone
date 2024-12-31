@@ -3,18 +3,14 @@
 @use 'tailwindcss/utilities';
 
 .custom-input {
-  @apply text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition-all;
+  @apply flex flex-row w-full;
 
-  &__input-container {
-    @apply flex flex-row w-full;
-
-    /* disable autocomplete styles */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-      transition: all 5000s ease-in-out 0s;
-    }
+  /* disable autocomplete styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
   }
 
   &__input-prefix {
@@ -22,7 +18,7 @@
   }
 
   &__input {
-    @apply bg-inputBackgroundColor outline-none my-3 font-normal text-base transition;
+    @apply bg-inputBackgroundColor outline-none mt-3 font-normal text-base transition;
     @apply focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor;
   }
 

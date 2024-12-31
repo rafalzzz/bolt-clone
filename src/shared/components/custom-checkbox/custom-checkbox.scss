@@ -3,7 +3,7 @@
 @use 'tailwindcss/utilities';
 
 .custom-checkbox {
-  @apply flex text-xs text-justify my-4 transition-all;
+  @apply flex text-xs text-justify mt-3 transition-all;
 
   &__correct {
     @apply text-textColor dark:text-darkTextColor;

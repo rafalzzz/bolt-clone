@@ -3,125 +3,118 @@
 @use 'tailwindcss/utilities';
 
 .react-select {
-  @apply text-sm font-bold text-textColor tracking-wide dark:text-darkTextColor;
-  @apply transition border-none outline-none;
+  @apply block w-full rounded-lg border-none outline-none bg-backgroundColor;
+  @apply font-normal text-base mt-3 mx-0 transition-all;
 
-  .react-select__container {
-    @apply block w-full rounded-lg border-none outline-none bg-backgroundColor;
-    @apply font-normal text-base my-3 mx-0 transition-all;
+  .correct-react-select__control {
+    @apply outline-none border-none bg-inputBackgroundColor;
+    padding: 10px 0;
+  }
 
-    .correct-react-select__control {
-      @apply outline-none border-none bg-inputBackgroundColor;
-      padding: 10px 0;
+  .correct-react-select__indicator-separator {
+    display: none;
+  }
+
+  .correct-react-select__control--is-focused,
+  .correct-react-select__control--menu-is-open {
+    @apply border-none shadow-none ring-1 ring-darkPrimaryColor transition-all;
+  }
+
+  .correct-react-select__option {
+    @apply px-0 py-3;
+
+    &--is-selected {
+      @apply bg-backgroundColor text-textColor;
     }
 
-    .correct-react-select__indicator-separator {
-      display: none;
-    }
-
-    .correct-react-select__control--is-focused,
-    .correct-react-select__control--menu-is-open {
-      @apply border-none shadow-none ring-1 ring-darkPrimaryColor transition-all;
-    }
-
-    .correct-react-select__option {
-      @apply px-0 py-3;
-
-      &--is-selected {
-        @apply bg-backgroundColor text-textColor;
-      }
-
-      &--is-focused,
-      &:hover {
-        @apply text-buttonTextColor bg-secondaryColor;
-      }
-    }
-
-    .invalid-react-select__control {
-      @apply outline-none border-none bg-inputBackgroundColor;
-      @apply border-none shadow-none ring-1 ring-errorIconColor transition-all;
-      padding: 10px 0;
-    }
-
-    .invalid-react-select__indicator-separator {
-      display: none;
-    }
-
-    .invalid-react-select__option {
-      @apply px-0 py-3;
-
-      &--is-selected {
-        @apply bg-backgroundColor text-textColor;
-      }
-
-      &--is-focused,
-      &:hover {
-        @apply text-buttonTextColor bg-secondaryColor;
-      }
+    &--is-focused,
+    &:hover {
+      @apply text-buttonTextColor bg-secondaryColor;
     }
   }
 
-  .correct-react-select__input-container {
-    /* disable autocomplete styles */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-      transition: all 5000s ease-in-out 0s;
+  .invalid-react-select__control {
+    @apply outline-none border-none bg-inputBackgroundColor;
+    @apply border-none shadow-none ring-1 ring-errorIconColor transition-all;
+    padding: 10px 0;
+  }
+
+  .invalid-react-select__indicator-separator {
+    display: none;
+  }
+
+  .invalid-react-select__option {
+    @apply px-0 py-3;
+
+    &--is-selected {
+      @apply bg-backgroundColor text-textColor;
+    }
+
+    &--is-focused,
+    &:hover {
+      @apply text-buttonTextColor bg-secondaryColor;
     }
   }
 }
 
+.correct-react-select__input-container {
+  /* disable autocomplete styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+  }
+}
+
 .dark .react-select {
-  &__container {
+  @apply bg-darkInputBackgroundColor;
+
+  .correct-react-select__control {
+    @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
+  }
+
+  .correct-react-select__control--is-focused,
+  .correct-react-select__control--is-active,
+  .correct-react-select__control--menu-is-open {
+    @apply ring-1 ring-darkSecondaryColor transition-all;
+  }
+
+  .correct-react-select__menu {
     @apply bg-darkInputBackgroundColor;
+  }
 
-    .correct-react-select__control {
-      @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
-    }
+  .correct-react-select__option {
+    @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
+  }
 
-    .correct-react-select__control--is-focused,
-    .correct-react-select__control--is-active,
-    .correct-react-select__control--menu-is-open {
-      @apply ring-1 ring-darkSecondaryColor transition-all;
-    }
+  .correct-react-select__single-value {
+    @apply text-darkTextColor;
+  }
 
-    .correct-react-select__menu {
-      @apply bg-darkInputBackgroundColor;
-    }
+  .correct-react-select__option--is-focused,
+  .correct-react-select__option:hover {
+    @apply bg-secondaryColor dark:hover:text-darkTextColor transition-all;
+  }
 
-    .correct-react-select__option {
-      @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
-    }
+  .invalid-react-select__control {
+    @apply bg-darkInputBackgroundColor ring-1 ring-darkErrorIconColor;
+  }
 
-    .correct-react-select__single-value {
-      @apply text-darkTextColor;
-    }
+  .invalid-react-select__menu {
+    @apply bg-darkInputBackgroundColor;
+  }
 
-    .correct-react-select__option--is-focused,
-    .correct-react-select__option:hover {
-      @apply bg-secondaryColor dark:hover:text-darkTextColor transition-all;
-    }
+  .invalid-react-select__option {
+    @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
+  }
 
-    .invalid-react-select__control {
-      @apply bg-darkInputBackgroundColor ring-1 ring-darkErrorIconColor;
-    }
+  .invalid-react-select__single-value {
+    @apply text-darkTextColor;
+  }
 
-    .invalid-react-select__menu {
-      @apply bg-darkInputBackgroundColor;
-    }
-
-    .invalid-react-select__option {
-      @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
-    }
-
-    .invalid-react-select__single-value {
-      @apply text-darkTextColor;
-    }
-
-    .invalid-react-select__option--is-focused,
-    .invalid-react-select__option:hover {
-      @apply bg-secondaryColor dark:hover:text-darkTextColor;
-    }
+  .invalid-react-select__option--is-focused,
+  .invalid-react-select__option:hover {
+    @apply bg-secondaryColor dark:hover:text-darkTextColor;
   }
 }

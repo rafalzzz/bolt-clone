@@ -6,6 +6,9 @@ import Select, {
   SingleValueProps,
 } from 'react-select';
 
+import CustomInputLabel from '@/shared/components/custom-input-label';
+import FormItemContainer from '@/shared/components/form-item-container';
+
 import { TGroupedOption } from '@/shared/types/react-select';
 
 import './react-select.scss';
@@ -33,22 +36,23 @@ const ReactSelect: React.FC<TReactSelectProps> = ({
   formatGroupLabel,
   formatOption,
 }) => (
-  <label className='react-select'>
-    {label}
-    <Select
-      className='react-select__container'
-      classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
-      options={options}
-      name={name}
-      components={{
-        Control: formatControl,
-        SingleValue: formatSingleValue,
-        GroupHeading: formatGroupLabel,
-        Option: formatOption,
-      }}
-      placeholder={placeholder}
-    />
-  </label>
+  <FormItemContainer error={error}>
+    <CustomInputLabel label={label}>
+      <Select
+        className='react-select'
+        classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
+        options={options}
+        name={name}
+        components={{
+          Control: formatControl,
+          SingleValue: formatSingleValue,
+          GroupHeading: formatGroupLabel,
+          Option: formatOption,
+        }}
+        placeholder={placeholder}
+      />
+    </CustomInputLabel>
+  </FormItemContainer>
 );
 
 export default ReactSelect;
