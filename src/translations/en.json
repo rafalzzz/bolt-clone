@@ -32,5 +32,13 @@
     "poland": "Poland",
     "rzeszow": "Rzeszow",
     "warsaw": "Warsaw"
+  },
+  "FormErrors": {
+    "requiredEmail": "Providing the email is required",
+    "invalidEmail": "Please enter a valid email",
+    "requiredPhoneNumber": "Providing the phone number is required",
+    "invalidPhoneNumber": "Invalid phone format",
+    "requiredCity": "Providing the city is required",
+    "requiredRules": "You must agree to continue"
   }
 }

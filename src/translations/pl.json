@@ -32,5 +32,13 @@
     "poland": "Polska",
     "rzeszow": "Rzeszów",
     "warsaw": "Warszawa"
+  },
+  "FormErrors": {
+    "requiredEmail": "Podanie adresu e-mail jest wymagane",
+    "invalidEmail": "Wprowadź poprawny adres e-mail",
+    "requiredPhoneNumber": "Podanie numeru telefonu jest wymagane",
+    "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
+    "requiredCity": "Podanie miasta jest wymagane",
+    "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje"
   }
 }

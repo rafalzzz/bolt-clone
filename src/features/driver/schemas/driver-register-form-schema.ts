@@ -11,7 +11,7 @@ export const driverRegisterFormSchema = z.object({
   [EDriverRegisterFormKeys.PHONE_NUMBER]: z
     .string()
     .nonempty(EErrorKeys.REQUIRED_PHONE_NUMBER)
-    .regex(/^\D*(\d\D*){9}$/, EErrorKeys.REQUIRED_PHONE_NUMBER),
+    .regex(/^\D*(\d\D*){9}$/, EErrorKeys.INVALID_PHONE_NUMBER),
   [EDriverRegisterFormKeys.CITY]: z.string({ message: EErrorKeys.REQUIRED_CITY }).nonempty({
     message: EErrorKeys.REQUIRED_CITY,
   }),
