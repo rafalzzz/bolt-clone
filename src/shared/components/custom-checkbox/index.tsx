@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 
 import FormItemContainer from '@/shared/components/form-item-container';
