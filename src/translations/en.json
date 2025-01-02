@@ -24,7 +24,8 @@
     "emailPlaceholder": "Enter email address",
     "phoneNumberPlaceholder": "Mobile number",
     "termsText": "By registering, you agree to our Terms of Service and Privacy policy, commit to comply with obligations under the European Union and local legislation and provide only legal services and content on the BoltCopy Platform.",
-    "submitButtonText": "Register as a driver"
+    "submitButtonText": "Register as a driver",
+    "initialRegistrationSuccess": "Registration was successful! Check your email."
   },
   "CitySelect": {
     "cityLabel": "City",

@@ -1,4 +1,4 @@
-import LoaderSvg from '../loader-svg';
+import LoaderSvg from '@/shared/svg/loader-svg';
 import './default-loader.scss';
 
 const DefaultLoader = () => (
