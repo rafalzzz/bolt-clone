@@ -3,7 +3,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-driver';
 
 import CitySelect from '@/features/driver/components/city-select';
 import RedirectionToLoginPage from '@/features/driver/components/redirection-to-login-page';
@@ -23,6 +26,8 @@ import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register
 import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
+  const [isPending, startTransition] = useTransition();
+
   const {
     register,
     setValue,
@@ -36,6 +41,9 @@ const DriverRegisterForm = () => {
 
   const onSubmit: SubmitHandler<TDriverRegisterFormSchema> = (data) => {
     console.log(data);
+    startTransition(async () => {
+      await sendEmailToDriver(data);
+    });
   };
 
   console.log({ errors });
@@ -96,7 +104,7 @@ const DriverRegisterForm = () => {
             type='submit'
             className='driver-register-form__submit-button default-button-colors '
           >
-            {t('submitButtonText')}
+            {t('submitButtonText')} {isPending ? '...' : ''}
           </button>
         </div>
         <RedirectionToLoginPage />
