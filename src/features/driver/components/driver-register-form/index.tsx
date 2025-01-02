@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { useTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-driver';
@@ -13,6 +12,9 @@ import RedirectionToLoginPage from '@/features/driver/components/redirection-to-
 import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
+import LoaderSvg from '@/shared/components/loader-svg';
+
+import useRequest from '@/shared/hooks/use-request';
 
 import {
   TDriverRegisterFormSchema,
@@ -26,12 +28,18 @@ import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register
 import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
-  const [isPending, startTransition] = useTransition();
+  const {
+    state: { isLoading },
+    startRequest,
+    handleSuccess,
+    handleError,
+  } = useRequest();
 
   const {
     register,
     setValue,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TDriverRegisterFormSchema>({
     resolver: zodResolver(driverRegisterFormSchema),
@@ -39,14 +47,18 @@ const DriverRegisterForm = () => {
 
   const t = useTranslations('DriverRegisterForm');
 
-  const onSubmit: SubmitHandler<TDriverRegisterFormSchema> = (data) => {
-    console.log(data);
-    startTransition(async () => {
-      await sendEmailToDriver(data);
-    });
-  };
+  const onSubmit: SubmitHandler<TDriverRegisterFormSchema> = async (data) => {
+    startRequest();
 
-  console.log({ errors });
+    sendEmailToDriver(data)
+      .then(() => {
+        handleSuccess();
+        reset();
+      })
+      .catch((error) => {
+        handleError(error);
+      });
+  };
 
   return (
     <CustomFormWrapper title={t('header')}>
@@ -103,8 +115,10 @@ const DriverRegisterForm = () => {
           <button
             type='submit'
             className='driver-register-form__submit-button default-button-colors '
+            disabled={isLoading}
           >
-            {t('submitButtonText')} {isPending ? '...' : ''}
+            {t('submitButtonText')}{' '}
+            {isLoading && <LoaderSvg className='driver-register-form__submit-button__loader' />}
           </button>
         </div>
         <RedirectionToLoginPage />

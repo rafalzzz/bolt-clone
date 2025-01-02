@@ -8,5 +8,11 @@
     @apply text-buttonTextColor bg-primaryColor hover:bg-secondaryColor;
     @apply dark:bg-darkPrimaryColor dark:hover:bg-darkSecondaryColor dark:text-darkButtonTextColor;
     @apply duration-100 ease-in transition;
+
+    &:disabled {
+      @apply bg-primaryColor hover:bg-primaryColor;
+      @apply dark:bg-darkPrimaryColor dark:hover:bg-darkPrimaryColor;
+      @apply cursor-not-allowed;
+    }
   }
 }
