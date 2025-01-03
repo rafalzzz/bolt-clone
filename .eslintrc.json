@@ -19,6 +19,11 @@
             "position": "before"
           },
           {
+            "pattern": "**/actions/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "**/components/**",
             "group": "internal",
             "position": "before"
@@ -30,6 +35,11 @@
           },
           {
             "pattern": "**/utils/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/schemas/**",
             "group": "internal",
             "position": "before"
           },

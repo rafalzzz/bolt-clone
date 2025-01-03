@@ -24,7 +24,9 @@
     "emailPlaceholder": "Wprowadź adres email",
     "phoneNumberPlaceholder": "Numer telefonu",
     "termsText": "Rejestrując się, zgadzasz się z naszym Regulaminem i Polityką Prywatności, zobowiązujesz się do przestrzegania obowiązków wynikających z przepisów Unii Europejskiej i lokalnych oraz do dostarczania wyłącznie legalnych usług i treści na Platformie BoltCopy.",
-    "submitButtonText": "Zarejestruj się jako kierowca"
+    "submitButtonText": "Zarejestruj się jako kierowca",
+    "initialRegistrationSuccess": "Rejestracja przebiegła pomyślnie! Sprawdź swój email.",
+    "initialRegistratrionError": "Wystąpił błąd podczas rejestracji."
   },
   "CitySelect": {
     "cityLabel": "Miasto",
@@ -32,5 +34,13 @@
     "poland": "Polska",
     "rzeszow": "Rzeszów",
     "warsaw": "Warszawa"
+  },
+  "FormErrors": {
+    "requiredEmail": "Podanie adresu e-mail jest wymagane",
+    "invalidEmail": "Wprowadź poprawny adres e-mail",
+    "requiredPhoneNumber": "Podanie numeru telefonu jest wymagane",
+    "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
+    "requiredCity": "Podanie miasta jest wymagane",
+    "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje"
   }
 }

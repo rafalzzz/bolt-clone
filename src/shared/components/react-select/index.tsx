@@ -1,34 +1,72 @@
-import Select, { GroupBase, GroupHeadingProps, OptionProps } from 'react-select';
+import { Path, PathValue, UseFormSetValue } from 'react-hook-form';
+import Select, {
+  ControlProps,
+  GroupBase,
+  GroupHeadingProps,
+  OptionProps,
+  SingleValue,
+  SingleValueProps,
+} from 'react-select';
 
-import { TGroupedOption } from '@/shared/types/react-select';
+import CustomInputLabel from '@/shared/components/custom-input-label';
+import FormItemContainer from '@/shared/components/form-item-container';
+
+import { TBasicFormType } from '@/shared/types/basic-form-type';
+import { TGroupedOption, TOption } from '@/shared/types/react-select';
 
 import './react-select.scss';
 
-export type TReactSelectProps = {
+export type TReactSelectProps<FormType extends TBasicFormType> = {
   label: string;
   options: GroupBase<TGroupedOption>[];
+  inputKey: Path<FormType>;
+  setValue: UseFormSetValue<FormType>;
   placeholder?: string;
-  formatGroupLabel?: (props: GroupHeadingProps<TGroupedOption, false>) => JSX.Element;
-  formatOption?: (props: OptionProps<TGroupedOption, false>) => JSX.Element;
+  name?: string;
+  error?: string;
+  formatControl?: (props: ControlProps<TOption, false>) => JSX.Element;
+  formatSingleValue?: (props: SingleValueProps<TOption, false>) => JSX.Element;
+  formatGroupLabel?: (props: GroupHeadingProps<TOption, false>) => JSX.Element;
+  formatOption?: (props: OptionProps<TOption, false>) => JSX.Element;
 };
 
-const ReactSelect: React.FC<TReactSelectProps> = ({
+const ReactSelect = <FormType extends TBasicFormType>({
   label,
   options,
+  inputKey,
+  setValue,
   placeholder,
+  name,
+  error,
+  formatControl,
+  formatSingleValue,
   formatGroupLabel,
   formatOption,
-}) => (
-  <label className='react-select'>
-    {label}
-    <Select
-      className='react-select__container'
-      classNamePrefix='react-select'
-      options={options}
-      components={{ GroupHeading: formatGroupLabel, Option: formatOption }}
-      placeholder={placeholder}
-    />
-  </label>
+}: TReactSelectProps<FormType>) => (
+  <FormItemContainer error={error}>
+    <CustomInputLabel label={label}>
+      <Select
+        className='react-select'
+        classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
+        options={options}
+        name={name}
+        onChange={(selected: SingleValue<TOption>) => {
+          if (selected) {
+            setValue(inputKey, selected.value as PathValue<FormType, Path<FormType>>, {
+              shouldValidate: true,
+            });
+          }
+        }}
+        components={{
+          Control: formatControl,
+          SingleValue: formatSingleValue,
+          GroupHeading: formatGroupLabel,
+          Option: formatOption,
+        }}
+        placeholder={placeholder}
+      />
+    </CustomInputLabel>
+  </FormItemContainer>
 );
 
 export default ReactSelect;

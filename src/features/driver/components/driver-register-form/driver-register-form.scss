@@ -8,7 +8,12 @@
   }
 
   &__submit-button {
-    @apply w-full flex justify-center font-semibold shadow-lg;
-    @apply p-4 rounded-full tracking-wide cursor-pointer font-semibold;
+    @apply w-full my-8 p-4 flex justify-center font-semibold shadow-lg;
+    @apply rounded-full tracking-wide cursor-pointer font-semibold;
+
+    &__loader {
+      @apply absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor dark:text-darkSecondaryColor dark:fill-darkButtonTextColor;
+      right: 50;
+    }
   }
 }
