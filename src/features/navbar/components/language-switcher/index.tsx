@@ -49,6 +49,7 @@ const LanguageSwitcher = () => {
       isOpen={isOpen}
       buttonClassName='default-button default-button-colors language-switcher'
       onClick={handleOnClick}
+      ariaLabel='language-switcher'
     >
       <ul role='none'>
         {LANGUAGES.map((lang) => (
@@ -56,6 +57,7 @@ const LanguageSwitcher = () => {
             <button
               type='button'
               role='menu-item'
+              aria-label={lang}
               className='dropdown-button__menu-item'
               onClick={() => {
                 dropdownButtonOnClick(lang);

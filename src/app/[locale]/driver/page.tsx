@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 
-import ContentWrapper from '@/shared/components/content-wrapper';
 import DefaultLoader from '@/shared/components/default-loader';
 
 const InitialDriverRegistration = dynamic(
@@ -10,10 +9,6 @@ const InitialDriverRegistration = dynamic(
   },
 );
 
-const DriverPage = () => (
-  <ContentWrapper>
-    <InitialDriverRegistration />
-  </ContentWrapper>
-);
+const DriverPage = async () => <InitialDriverRegistration />;
 
 export default DriverPage;

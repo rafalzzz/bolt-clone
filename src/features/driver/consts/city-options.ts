@@ -1,6 +1,6 @@
 import { TGroupedOption } from '@/shared/types/react-select';
 
-export const CITY_OPTIONS: Readonly<TGroupedOption[]> = [
+export const CITY_OPTIONS: TGroupedOption[] = [
   {
     label: 'poland',
     options: [

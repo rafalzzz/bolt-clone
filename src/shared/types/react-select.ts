@@ -5,10 +5,7 @@ export type TOption = {
   label: string;
 };
 
-export type TGroupedOption = {
-  value: string;
-  label: string;
+export type TGroupedOption = GroupBase<TOption> & {
   icon?: string;
   shortName?: string;
-  options: GroupBase<TOption>[];
 };

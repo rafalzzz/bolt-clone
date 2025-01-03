@@ -37,7 +37,7 @@ export const CompleteRegistrationEmailTemplate = ({
           with the registration, click the button below.
         </Text>
         <Section style={btnContainer}>
-          <Button style={button} href={baseUrl + token}>
+          <Button style={button} href={baseUrl + token} aria-label='Complete the registration'>
             Complete the registration
           </Button>
         </Section>

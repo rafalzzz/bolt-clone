@@ -89,6 +89,7 @@ const DriverRegisterForm = () => {
             <button
               type='submit'
               className='driver-register-form__submit-button default-button-colors '
+              aria-label={t('submitButtonText')}
               disabled={isLoading}
             >
               {t('submitButtonText')}{' '}

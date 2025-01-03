@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { FC, PropsWithChildren } from 'react';
@@ -6,11 +7,18 @@ import BaseLayout from '@/features/landing-page/components/base-layout';
 
 import { routing } from '@/i18n/routing';
 
-type TLayoutLocale = {
-  params: { locale: string };
+import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export const metadata: Metadata = {
+  title: 'Home Page',
+  description: 'This is the main page.',
 };
 
-const LocaleLayout: FC<PropsWithChildren<TLayoutLocale>> = async ({ children, params }) => {
+const LocaleLayout: FC<PropsWithChildren<TLayoutParamsPromise>> = async ({ children, params }) => {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale)) {
