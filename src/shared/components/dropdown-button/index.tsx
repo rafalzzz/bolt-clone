@@ -11,6 +11,7 @@ type TDropdownButton = {
   onClick: () => void;
   ref?: RefObject<HTMLDivElement>;
   showArrow?: boolean;
+  ariaLabel?: string;
 };
 
 const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
@@ -21,10 +22,11 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
   onClick,
   ref,
   showArrow = false,
+  ariaLabel,
 }) => (
   <div className='dropdown-button' ref={ref}>
     <div>
-      <button type='button' className={buttonClassName} onClick={onClick}>
+      <button type='button' className={buttonClassName} onClick={onClick} aria-label={ariaLabel}>
         {text}
         {showArrow && (
           <svg

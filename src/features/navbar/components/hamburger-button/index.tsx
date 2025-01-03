@@ -8,6 +8,7 @@ const HamburgerButton = () => (
     className='hamburger-button'
     aria-controls='mobile-menu'
     aria-expanded='false'
+    aria-label='Hamburger button'
   >
     <svg
       className='block h-6 w-6'

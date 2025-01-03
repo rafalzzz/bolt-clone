@@ -1,14 +1,3 @@
-import { Metadata } from 'next';
+const IndexPage = async () => <>LandingPage</>;
 
-import { TRootLayout } from '@/shared/types/root-layout';
-
-export const metadata: Metadata = {
-  title: 'Home Page',
-  description: 'This is the main page.',
-};
-
-const Index = async ({ children }: TRootLayout) => {
-  return children;
-};
-
-export default Index;
+export default IndexPage;

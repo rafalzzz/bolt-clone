@@ -38,6 +38,7 @@ const RegisterButton = () => {
       isOpen={isOpen}
       buttonClassName='default-button default-button-colors register-button'
       onClick={handleOnClick}
+      ariaLabel={t('register')}
     >
       <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
@@ -46,6 +47,7 @@ const RegisterButton = () => {
               type='button'
               role='menu-item'
               className='dropdown-button__menu-item'
+              aria-label={t(translation)}
               onClick={() => {
                 dropdownButtonOnClick(href);
                 hideDropdownMenu();

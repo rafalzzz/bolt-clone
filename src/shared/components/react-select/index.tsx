@@ -1,7 +1,6 @@
 import { Path, PathValue, UseFormSetValue } from 'react-hook-form';
 import Select, {
   ControlProps,
-  GroupBase,
   GroupHeadingProps,
   OptionProps,
   SingleValue,
@@ -18,7 +17,7 @@ import './react-select.scss';
 
 export type TReactSelectProps<FormType extends TBasicFormType> = {
   label: string;
-  options: GroupBase<TGroupedOption>[];
+  options: TGroupedOption[];
   inputKey: Path<FormType>;
   setValue: UseFormSetValue<FormType>;
   placeholder?: string;
