@@ -7,7 +7,7 @@
   @apply font-normal text-base mt-3 mx-0 transition-all;
 
   .correct-react-select__control {
-    @apply outline-none border-none bg-inputBackgroundColor;
+    @apply outline-none border-none bg-inputBackgroundColor transition-all;
     padding: 10px 0;
   }
 

@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { ToastContainer } from 'react-toastify';
 
 import CitySelect from '@/features/driver/components/city-select';
 import RedirectionToLoginPage from '@/features/driver/components/redirection-to-login-page';
 import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
-import Notifiacation from '@/shared/components/notification';
 
 import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-form';
 
@@ -22,7 +22,7 @@ import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
   const {
-    state: { isSuccess, isLoading },
+    state: { isLoading },
     errors,
     register,
     setValue,
@@ -34,7 +34,7 @@ const DriverRegisterForm = () => {
 
   return (
     <>
-      <Notifiacation showNotification={isSuccess} text={t('initialRegistrationSuccess')} />
+      <ToastContainer />
       <CustomFormWrapper title={t('header')}>
         <form className='driver-register-form' onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
