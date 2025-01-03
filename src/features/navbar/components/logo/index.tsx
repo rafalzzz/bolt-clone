@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { LOGO_BASE64 } from '@/features/navbar/consts/logo';
+import { LOGO_BASE64 } from '@/shared/consts/logo';
 
 import './logo.scss';
 
