@@ -12,9 +12,13 @@
     "title": "English"
   },
   "DriverPage": {
-    "title": "Become a BoltCopy driver",
     "description": "Earn up to 1901 zł per week by driving with BoltCopy",
     "secondaryDescription": "Become a BoltCopy driver, set your schedule and earn money by driving!"
+  },
+  "DriverPageHeadSection": {
+    "title": "Join BoltCopy as a driver – earn whenever you want",
+    "description": "Become a driver with BoltCopy and start earning! Flexible working hours, attractive earnings, easy registration. Apply now and drive on your own terms!",
+    "keywords": "driver jobs, earning as a driver, transport app, join as a driver, flexible work, full-time driver jobs, part-time driver jobs, driver recruitment"
   },
   "Manifest": {
     "name": "BoltCopy copy example"

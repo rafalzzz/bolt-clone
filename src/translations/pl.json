@@ -12,9 +12,13 @@
     "title": "Polski"
   },
   "DriverPage": {
-    "title": "Zostań kierowcą BoltCopy",
     "description": "Zarabiaj do 1901 zł tygodniowo, jeżdżąc z BoltCopy",
     "secondaryDescription": "Zostań kierowcą BoltCopy, ustalaj swój własny grafik i zarabiaj dodatkowe pieniądze, wożąc pasażerów!"
+  },
+  "DriverPageHeadSection": {
+    "title": "Dołącz do BoltCopy jako Kierowca – zarabiaj kiedy chcesz",
+    "description": "Zostań kierowcą w BoltCopy i zacznij zarabiać! Elastyczne godziny pracy, atrakcyjne zarobki, prosta rejestracja. Aplikuj teraz i prowadź na własnych warunkach!",
+    "keywords": "praca kierowca, zarabianie jako kierowca, aplikacja do transportu, dołącz jako kierowca, elastyczna praca, praca na pełny etat kierowca, praca na pół etatu kierowca, rekrutacja kierowców"
   },
   "Manifest": {
     "name": "Przykład kopii Bolta"
