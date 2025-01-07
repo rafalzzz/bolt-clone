@@ -92,7 +92,7 @@ const DriverRegisterForm = () => {
               aria-label={t('submitButtonText')}
               disabled={isLoading}
             >
-              {t('submitButtonText')}{' '}
+              {t('submitButtonText')}
               {isLoading && <LoaderSvg className='driver-register-form__submit-button__loader' />}
             </button>
           </div>

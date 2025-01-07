@@ -46,6 +46,26 @@
     "requiredPhoneNumber": "Providing the phone number is required",
     "invalidPhoneNumber": "Invalid phone format",
     "requiredCity": "Providing the city is required",
-    "requiredRules": "You must agree to continue"
+    "requiredRules": "You must agree to continue",
+    "passwordMinimumCharacters": "Password must contain at least 8 characters",
+    "passwordUpperCase": "Password must contain at least one uppercase letter",
+    "passwordLowerCase": "Password must contain at least one lowercase letter",
+    "passwordDigit": "Password must contain at least one digit",
+    "passwordSpecialCharacter": "Password must contain at least one special character"
+  },
+  "DriverCompletePage": {
+    "description": "Turn the key to adventure and profits with BoltCopy",
+    "secondaryDescription": "Join the ranks of satisfied BoltCopy drivers! Choose work hours that suit you and earn money by meeting travelers needs!"
+  },
+  "DriverCompletePageHeadSection": {
+    "title": "The final step to earning with BoltCopy!",
+    "description": "Complete your registration and start your adventure as a BoltCopy driver. We offer flexibility, great earnings, and ease of managing your own time. Don't delay, start today!",
+    "keywords": "driver earnings, independent work, earning app, becoming a driver, work with flexible schedule, driver work on your own terms, completion of registration, earning by driving"
+  },
+  "DriverCompleteRegisterForm": {
+    "header": "Complete the registration to become a Bolt driver",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Password",
+    "submitButtonText": "Complete the registration"
   }
 }

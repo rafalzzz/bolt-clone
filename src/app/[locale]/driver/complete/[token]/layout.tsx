@@ -14,7 +14,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: TLayoutParamsPromise) {
   const { locale } = await params;
 
-  const t = await getTranslations({ locale, namespace: 'DriverPageHeadSection' });
+  const t = await getTranslations({
+    locale,
+    namespace: 'DriverCompletePageHeadSection',
+  });
 
   return {
     title: t('title'),

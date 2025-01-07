@@ -46,6 +46,26 @@
     "requiredPhoneNumber": "Podanie numeru telefonu jest wymagane",
     "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
     "requiredCity": "Podanie miasta jest wymagane",
-    "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje"
+    "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje",
+    "passwordMinimumCharacters": "Hasło musi zawierać co najmniej 8 znaków",
+    "passwordUpperCase": "Hasło musi zawierać przynajmniej jedną dużą literę",
+    "passwordLowerCase": "Hasło musi zawierać przynajmniej jedną małą literę",
+    "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
+    "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny"
+  },
+  "DriverCompletePage": {
+    "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
+    "secondaryDescription": "Dołącz do grona zadowolonych kierowców BoltCopy! Wybieraj godziny pracy, które Ci odpowiadają i zarabiaj pieniądze, spełniając potrzeby podróżnych!"
+  },
+  "DriverCompletePageHeadSection": {
+    "title": "Ostatni krok do zarabiania z BoltCopy!",
+    "description": "Zakończ swoją rejestrację i zacznij przygodę jako kierowca BoltCopy. Oferujemy elastyczność, świetne zarobki i łatwość w zarządzaniu własnym czasem. Nie zwlekaj, zacznij już dziś!",
+    "keywords": "zarobek dla kierowcy, niezależna praca, aplikacja do zarabiania, zostanie kierowcą, praca z elastycznym grafikiem, praca kierowca na własnych zasadach, zakończenie rejestracji, zarabianie na prowadzeniu"
+  },
+  "DriverCompleteRegisterForm": {
+    "header": "Dokończ rejestrację, by zostać kierowcą Bolt",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Hasło",
+    "submitButtonText": "Dokończ rejestracę"
   }
 }

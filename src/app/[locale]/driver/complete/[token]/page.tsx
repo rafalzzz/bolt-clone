@@ -1,11 +1,5 @@
-export type TCompleteDriverRegistrationPage = {
-  params: Promise<{ token: string }>;
-};
+import DriverCompleteRegistration from '@/features/driver/components/driver-complete-registration';
 
-const CompleteDriverRegistrationPage = async ({ params }: TCompleteDriverRegistrationPage) => {
-  const { token } = await params;
-
-  return <div>{token}</div>;
-};
+const CompleteDriverRegistrationPage = () => <DriverCompleteRegistration />;
 
 export default CompleteDriverRegistrationPage;
