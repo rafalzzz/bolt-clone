@@ -47,11 +47,14 @@
     "invalidPhoneNumber": "Invalid phone format",
     "requiredCity": "Providing the city is required",
     "requiredRules": "You must agree to continue",
+    "requiredPassword": "Password is required",
     "passwordMinimumCharacters": "Password must contain at least 8 characters",
     "passwordUpperCase": "Password must contain at least one uppercase letter",
     "passwordLowerCase": "Password must contain at least one lowercase letter",
     "passwordDigit": "Password must contain at least one digit",
-    "passwordSpecialCharacter": "Password must contain at least one special character"
+    "passwordSpecialCharacter": "Password must contain at least one special character",
+    "requiredRepeatPassword": "Repeat password is required",
+    "passwordMustMatch": "The entered passwords do not match"
   },
   "DriverCompletePage": {
     "description": "Turn the key to adventure and profits with BoltCopy",
@@ -66,6 +69,8 @@
     "header": "Complete the registration to become a Bolt driver",
     "passwordLabel": "Password",
     "passwordPlaceholder": "Password",
+    "repeatPasswordLabel": "Repeat password",
+    "repeatPasswordPlaceholder": "Repeat password",
     "submitButtonText": "Complete the registration"
   }
 }

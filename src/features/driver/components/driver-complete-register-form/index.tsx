@@ -21,15 +21,29 @@ const DriverCompleteRegisterForm = () => {
     <>
       <ToastContainer />
       <CustomFormWrapper title={t('header')}>
-        <form className='driver-complete-register-form' onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className='driver-complete-register-form'
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <PasswordInput
             label={t('passwordLabel')}
             inputKey={EDriverCompleteRegisterFormKeys.PASSWORD}
-            register={register}
             error={errors?.[EDriverCompleteRegisterFormKeys.PASSWORD]?.message}
+            register={register}
             props={{
               name: EDriverCompleteRegisterFormKeys.PASSWORD,
               placeholder: t('passwordPlaceholder'),
+            }}
+          />
+          <PasswordInput
+            label={t('repeatPasswordLabel')}
+            inputKey={EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD}
+            error={errors?.[EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD]?.message}
+            register={register}
+            props={{
+              name: EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD,
+              placeholder: t('repeatPasswordPlaceholder'),
             }}
           />
           <div>

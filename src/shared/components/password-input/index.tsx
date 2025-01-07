@@ -23,8 +23,8 @@ const PasswordInput = <FormType extends TBasicFormType>({
   label,
   props,
   inputKey,
-  register,
   error,
+  register,
 }: TPasswordInput<FormType>) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,6 +39,7 @@ const PasswordInput = <FormType extends TBasicFormType>({
             type={showPassword ? 'text' : 'password'}
           />
           <button
+            type='button'
             className='password-input__button'
             onClick={() => setShowPassword((prevState) => !prevState)}
           >

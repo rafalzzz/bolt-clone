@@ -5,9 +5,12 @@ export const enum EErrorKeys {
   INVALID_PHONE_NUMBER = 'invalidPhoneNumber',
   REQUIRED_CITY = 'requiredCity',
   REQUIRED_RULES = 'requiredRules',
+  REQUIRED_PASSWORD = 'requiredPassword',
   PASSWORD_MINIMUM_CHARACTERS = 'passwordMinimumCharacters',
   PASSWORD_UPPER_CASE = 'passwordUpperCase',
   PASSWORD_LOWER_CASE = 'passwordLowerCase',
   PASSWORD_DIGIT = 'passwordDigit',
   PASSWORD_SPECIAL_CHARACTER = 'passwordSpecialCharacter',
+  REQUIRED_REPEAT_PASSWORD = 'requiredRepeatPassword',
+  PASSWORDS_MUST_MATCH = 'passwordMustMatch',
 }

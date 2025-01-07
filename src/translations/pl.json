@@ -47,11 +47,14 @@
     "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
     "requiredCity": "Podanie miasta jest wymagane",
     "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje",
+    "requiredPassword": "Hasło jest wymagane",
     "passwordMinimumCharacters": "Hasło musi zawierać co najmniej 8 znaków",
     "passwordUpperCase": "Hasło musi zawierać przynajmniej jedną dużą literę",
     "passwordLowerCase": "Hasło musi zawierać przynajmniej jedną małą literę",
     "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
-    "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny"
+    "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny",
+    "requiredRepeatPassword": "Powtórzenie hasła jest wymagane",
+    "passwordMustMatch": "Wpisane hasła różnią się od siebie"
   },
   "DriverCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
@@ -66,6 +69,8 @@
     "header": "Dokończ rejestrację, by zostać kierowcą Bolt",
     "passwordLabel": "Hasło",
     "passwordPlaceholder": "Hasło",
+    "repeatPasswordLabel": "Powtórz hasło",
+    "repeatPasswordPlaceholder": "Powtórz hasło",
     "submitButtonText": "Dokończ rejestracę"
   }
 }

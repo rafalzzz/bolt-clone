@@ -9,7 +9,6 @@ import {
 const useDriverCompleteRegisterForm = () => {
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<TDriverCompleteRegisterFormSchema>({
@@ -20,7 +19,7 @@ const useDriverCompleteRegisterForm = () => {
     // TODO - finish driver registration
   };
 
-  return { errors, register, setValue, onSubmit, handleSubmit };
+  return { errors, register, onSubmit, handleSubmit };
 };
 
 export default useDriverCompleteRegisterForm;
