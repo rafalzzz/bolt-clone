@@ -19,6 +19,12 @@ export const driverCompleteRegisterFormSchema = z
     [EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_REPEAT_PASSWORD),
+    [EDriverCompleteRegisterFormKeys.VEHICLE_REGISTRATION_NUMBER]: z
+      .string()
+      .nonempty(EErrorKeys.REQUIRED_VEHICLE_REGISTRATION_NUMBER)
+      .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
+      .max(10, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS)
+      .regex(/^[A-Z0-9]*$/, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
   })
   .refine(
     (data) =>

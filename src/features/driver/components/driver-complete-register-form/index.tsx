@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { ToastContainer } from 'react-toastify';
 
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
+import CustomInput from '@/shared/components/custom-input';
 import PasswordInput from '@/shared/components/password-input';
 
 import useDriverCompleteRegisterForm from '@/features/driver/hooks/use-driver-complete-register-form';
@@ -13,12 +14,20 @@ import { EDriverCompleteRegisterFormKeys } from '@/features/driver/enums/driver-
 import './driver-complete-register-form.scss';
 
 const DriverCompleteRegisterForm = () => {
-  const { errors, register, onSubmit, handleSubmit } = useDriverCompleteRegisterForm();
+  const {
+    errors,
+    isAddFaceImageModalEnabled,
+    setIsAddFaceImageModalEnabled,
+    register,
+    onSubmit,
+    handleSubmit,
+  } = useDriverCompleteRegisterForm();
 
   const t = useTranslations('DriverCompleteRegisterForm');
 
   return (
     <>
+      {isAddFaceImageModalEnabled && <div>Add face image modal</div>}
       <ToastContainer />
       <CustomFormWrapper title={t('header')}>
         <form
@@ -46,7 +55,26 @@ const DriverCompleteRegisterForm = () => {
               placeholder: t('repeatPasswordPlaceholder'),
             }}
           />
+          <CustomInput
+            label={t('vehicleRegistrationNumberLabel')}
+            inputKey={EDriverCompleteRegisterFormKeys.VEHICLE_REGISTRATION_NUMBER}
+            register={register}
+            error={errors?.[EDriverCompleteRegisterFormKeys.VEHICLE_REGISTRATION_NUMBER]?.message}
+            props={{
+              name: EDriverCompleteRegisterFormKeys.VEHICLE_REGISTRATION_NUMBER,
+              placeholder: t('vehicleRegistrationNumberPlaceholder'),
+              type: 'text',
+            }}
+          />
           <div>
+            <button
+              type='button'
+              className='driver-complete-register-form__submit-button default-button-colors '
+              aria-label={t('addFaceImageButtonText')}
+              onClick={() => setIsAddFaceImageModalEnabled((prevState) => !prevState)}
+            >
+              {t('addFaceImageButtonText')}
+            </button>
             <button
               type='submit'
               className='driver-complete-register-form__submit-button default-button-colors '

@@ -13,4 +13,8 @@ export const enum EErrorKeys {
   PASSWORD_SPECIAL_CHARACTER = 'passwordSpecialCharacter',
   REQUIRED_REPEAT_PASSWORD = 'requiredRepeatPassword',
   PASSWORDS_MUST_MATCH = 'passwordMustMatch',
+  REQUIRED_VEHICLE_REGISTRATION_NUMBER = 'requiredVehicleRegistrationNumber',
+  VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS = 'vehicleRegistrationMinimumCharacters',
+  VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS = 'vehicleRegistrationMaximumCharacters',
+  VEHICLE_REGISTRATION_NUMBER_CHARACTERS = 'vehicleRegistrationCharacters',
 }

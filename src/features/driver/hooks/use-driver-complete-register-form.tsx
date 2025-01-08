@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import {
@@ -7,6 +8,8 @@ import {
 } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 const useDriverCompleteRegisterForm = () => {
+  const [isAddFaceImageModalEnabled, setIsAddFaceImageModalEnabled] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +22,14 @@ const useDriverCompleteRegisterForm = () => {
     // TODO - finish driver registration
   };
 
-  return { errors, register, onSubmit, handleSubmit };
+  return {
+    errors,
+    isAddFaceImageModalEnabled,
+    setIsAddFaceImageModalEnabled,
+    register,
+    onSubmit,
+    handleSubmit,
+  };
 };
 
 export default useDriverCompleteRegisterForm;

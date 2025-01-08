@@ -2,8 +2,9 @@ import { InputHTMLAttributes, ReactNode } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 
 import CustomInputLabel from '@/shared/components/custom-input-label';
-import DefaultErrorIcon from '@/shared/components/default-error-icon';
 import FormItemContainer from '@/shared/components/form-item-container';
+
+import ErrorSvg from '@/shared/svg/error-svg';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 
@@ -37,7 +38,7 @@ const CustomInput = <FormType extends TBasicFormType>({
         />
         {error && (
           <div className='custom-input__error-icon'>
-            <DefaultErrorIcon />
+            <ErrorSvg />
           </div>
         )}
       </div>

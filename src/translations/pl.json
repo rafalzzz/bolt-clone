@@ -54,7 +54,11 @@
     "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
     "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny",
     "requiredRepeatPassword": "Powtórzenie hasła jest wymagane",
-    "passwordMustMatch": "Wpisane hasła różnią się od siebie"
+    "passwordMustMatch": "Wpisane hasła różnią się od siebie",
+    "requiredVehicleRegistrationNumber": "Podanie numeu rejestracyjnego pojazdu jest wymagane",
+    "vehicleRegistrationMinimumCharacters": "Numer rejestracyjny pojazdu musi zawierać co najmniej 4 znaki",
+    "vehicleRegistrationMaximumCharacters": "Numer rejestracyjny pojazdu nie może być dłuższy niż 10 znaków",
+    "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry"
   },
   "DriverCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
@@ -71,6 +75,13 @@
     "passwordPlaceholder": "Hasło",
     "repeatPasswordLabel": "Powtórz hasło",
     "repeatPasswordPlaceholder": "Powtórz hasło",
+    "vehicleRegistrationNumberLabel": "Numer rejestracyjny pojazdu",
+    "vehicleRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny pojazdu",
+    "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
     "submitButtonText": "Dokończ rejestracę"
+  },
+  "PasswordInput": {
+    "showPassword": "Pokaż hasło",
+    "hidePassword": "Ukryj hasło"
   }
 }
