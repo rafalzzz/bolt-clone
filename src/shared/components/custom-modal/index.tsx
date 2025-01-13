@@ -3,8 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 
-import './custom-modal.scss';
 import useCustomModal from '@/shared/hooks/use-custom-modal';
+
+import './custom-modal.scss';
 
 type TCustomModal = {
   title: ReactNode;
