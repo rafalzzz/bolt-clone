@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
+import CustomModal from '@/shared/components/custom-modal';
 import PasswordInput from '@/shared/components/password-input';
 
 import useDriverCompleteRegisterForm from '@/features/driver/hooks/use-driver-complete-register-form';
@@ -20,6 +21,8 @@ const DriverCompleteRegisterForm = () => {
     setIsAddFaceImageModalEnabled,
     register,
     onSubmit,
+    onOk,
+    onCancel,
     handleSubmit,
   } = useDriverCompleteRegisterForm();
 
@@ -27,7 +30,14 @@ const DriverCompleteRegisterForm = () => {
 
   return (
     <>
-      {isAddFaceImageModalEnabled && <div>Add face image modal</div>}
+      <CustomModal
+        title={'test'}
+        isVisible={isAddFaceImageModalEnabled}
+        onOk={onOk}
+        onCancel={onCancel}
+      >
+        Test
+      </CustomModal>
       <ToastContainer />
       <CustomFormWrapper title={t('header')}>
         <form

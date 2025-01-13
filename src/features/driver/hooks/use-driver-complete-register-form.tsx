@@ -22,12 +22,22 @@ const useDriverCompleteRegisterForm = () => {
     // TODO - finish driver registration
   };
 
+  const onOk = () => {
+    setIsAddFaceImageModalEnabled(false);
+  };
+
+  const onCancel = () => {
+    setIsAddFaceImageModalEnabled(false);
+  };
+
   return {
     errors,
     isAddFaceImageModalEnabled,
     setIsAddFaceImageModalEnabled,
     register,
     onSubmit,
+    onOk,
+    onCancel,
     handleSubmit,
   };
 };

@@ -1,0 +1,44 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+.custom-modal {
+  &__background {
+    @apply fixed top-0 right-0 left-0 z-50 overflow-y-auto overflow-x-hidden bg-modalBackgroundColor dark:bg-darkModalBackgroundColor;
+    @apply transition duration-150 ease-in-out flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full;
+  }
+
+  &__wrapper {
+    @apply relative p-4 w-full max-w-2xl max-h-full;
+  }
+
+  &__content {
+    @apply relative bg-backgroundColor rounded-lg shadow dark:bg-darkBackgroundColor;
+  }
+
+  &__header {
+    @apply flex items-center justify-between p-4 md:p-5 rounded-t;
+    @apply border-b border-primaryColor dark:border-darkPrimaryColor;
+
+    &__title {
+      @apply text-xl font-semibold text-textColor dark:text-darkTextColor;
+    }
+  }
+
+  &__body {
+    @apply p-4 md:p-5 space-y-4 text-textColor dark:text-darkTextColor;
+  }
+
+  &__footer {
+    @apply flex items-center justify-end p-4 md:p-5 rounded-b;
+    @apply border-t border-primaryColor dark:border-darkPrimaryColor;
+
+    &__accept-button {
+      @apply ms-3 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+    }
+
+    &__cancel-button {
+      @apply py-2.5 px-5 text-sm font-medium rounded-lg focus:z-10;
+    }
+  }
+}

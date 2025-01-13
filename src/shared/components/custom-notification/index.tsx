@@ -24,12 +24,7 @@ const CustomNotifiacation = ({
   <div className='notification' role='alert'>
     <div className={`notification__icon notification__${iconClassName}-icon`}>{icon}</div>
     <div className='notification__message'>{text}</div>
-    <button
-      type='button'
-      className='notification__close-button'
-      aria-label='Close'
-      onClick={closeToast}
-    >
+    <button type='button' className='custom-close-button' aria-label='Close' onClick={closeToast}>
       <CloseSvg />
     </button>
   </div>

@@ -83,5 +83,9 @@
   "PasswordInput": {
     "showPassword": "Pokaż hasło",
     "hidePassword": "Ukryj hasło"
+  },
+  "CustomModal": {
+    "okButtonText": "Zatwierdź",
+    "cancelButtonText": "Anuluj"
   }
 }
