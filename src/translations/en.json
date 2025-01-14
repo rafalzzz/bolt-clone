@@ -87,5 +87,8 @@
   "CustomModal": {
     "okButtonText": "Confirm",
     "cancelButtonText": "Cancel"
+  },
+  "AddFaceIdModal": {
+    "title": "Add facial recognition"
   }
 }

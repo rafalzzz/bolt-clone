@@ -8,7 +8,8 @@ import {
 } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 const useDriverCompleteRegisterForm = () => {
-  const [isAddFaceImageModalEnabled, setIsAddFaceImageModalEnabled] = useState(false);
+  const [isAddFacialRecognitionModalEnabled, setIsAddFacialRecognitionModalEnabled] =
+    useState(false);
 
   const {
     register,
@@ -23,17 +24,17 @@ const useDriverCompleteRegisterForm = () => {
   };
 
   const onOk = () => {
-    setIsAddFaceImageModalEnabled(false);
+    setIsAddFacialRecognitionModalEnabled(false);
   };
 
   const onCancel = () => {
-    setIsAddFaceImageModalEnabled(false);
+    setIsAddFacialRecognitionModalEnabled(false);
   };
 
   return {
     errors,
-    isAddFaceImageModalEnabled,
-    setIsAddFaceImageModalEnabled,
+    isAddFacialRecognitionModalEnabled,
+    setIsAddFacialRecognitionModalEnabled,
     register,
     onSubmit,
     onOk,

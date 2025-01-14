@@ -3,9 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { ToastContainer } from 'react-toastify';
 
+import AddFaceRecognitionModal from '@/features/driver/components/add-facial-recognition-modal';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
-import CustomModal from '@/shared/components/custom-modal';
 import PasswordInput from '@/shared/components/password-input';
 
 import useDriverCompleteRegisterForm from '@/features/driver/hooks/use-driver-complete-register-form';
@@ -17,8 +17,8 @@ import './driver-complete-register-form.scss';
 const DriverCompleteRegisterForm = () => {
   const {
     errors,
-    isAddFaceImageModalEnabled,
-    setIsAddFaceImageModalEnabled,
+    isAddFacialRecognitionModalEnabled,
+    setIsAddFacialRecognitionModalEnabled,
     register,
     onSubmit,
     onOk,
@@ -30,15 +30,14 @@ const DriverCompleteRegisterForm = () => {
 
   return (
     <>
-      <CustomModal
-        title={'test'}
-        isVisible={isAddFaceImageModalEnabled}
-        onOk={onOk}
-        onCancel={onCancel}
-      >
-        Test
-      </CustomModal>
       <ToastContainer />
+      {isAddFacialRecognitionModalEnabled && (
+        <AddFaceRecognitionModal
+          isVisible={isAddFacialRecognitionModalEnabled}
+          onOk={onOk}
+          onCancel={onCancel}
+        />
+      )}
       <CustomFormWrapper title={t('header')}>
         <form
           className='driver-complete-register-form'
@@ -81,7 +80,7 @@ const DriverCompleteRegisterForm = () => {
               type='button'
               className='driver-complete-register-form__submit-button default-button-colors '
               aria-label={t('addFaceImageButtonText')}
-              onClick={() => setIsAddFaceImageModalEnabled((prevState) => !prevState)}
+              onClick={() => setIsAddFacialRecognitionModalEnabled((prevState) => !prevState)}
             >
               {t('addFaceImageButtonText')}
             </button>

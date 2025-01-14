@@ -87,5 +87,8 @@
   "CustomModal": {
     "okButtonText": "Zatwierdź",
     "cancelButtonText": "Anuluj"
+  },
+  "AddFaceIdModal": {
+    "title": "Dodaj identyfikator twarzy"
   }
 }
