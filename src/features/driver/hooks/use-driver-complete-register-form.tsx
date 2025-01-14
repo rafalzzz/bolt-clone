@@ -19,7 +19,7 @@ const useDriverCompleteRegisterForm = () => {
     resolver: zodResolver(driverCompleteRegisterFormSchema),
   });
 
-  const onSubmit: SubmitHandler<TDriverCompleteRegisterFormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<TDriverCompleteRegisterFormSchema> = async () => {
     // TODO - finish driver registration
   };
 
