@@ -38,8 +38,8 @@ const useAddFacialRecognition = () => {
 
   const loadModels = () => {
     Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('/model'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('/model'),
+      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+      faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
     ]);
   };
 
