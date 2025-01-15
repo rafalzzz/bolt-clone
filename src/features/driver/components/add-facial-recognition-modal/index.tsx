@@ -20,21 +20,24 @@ const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk,
 
   return (
     <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
-      <video
-        ref={videoRef}
-        id='video'
-        width='720'
-        height='560'
-        className='rounded-sm'
-        autoPlay
-        muted
-      ></video>
-
-      {isVideoLoading && (
-        <div className='absolute z-50 bg-slate-500/50 animate-pulse inset-0 w-full h-full'></div>
-      )}
-
-      <div className='line bottom-[52px] left-0 right-0 w-full h-1 bg-white/50 absolute'></div>
+      <div className='relative w-full h-auto' style={{ width: '696px', height: '522px' }}>
+        <video
+          ref={videoRef}
+          id='video'
+          width='696'
+          height='522'
+          className='rounded-sm absolute top-0 left-0 w-full h-full'
+          autoPlay
+          muted
+        ></video>
+        <canvas
+          ref={canvasRef}
+          className='rounded-sm absolute top-0 left-0 w-full h-full z-10'
+        ></canvas>
+        {isVideoLoading && (
+          <div className='absolute z-50 bg-slate-500/50 animate-pulse inset-0 w-full h-full'></div>
+        )}
+      </div>
 
       <button
         /* onClick={() => handleSubmit(videoRef, canvasRef)} */
@@ -43,8 +46,6 @@ const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk,
         <CameraSvg className='text-white w-8 h-8 absolute group-hover:text-light-blue inset-0 m-auto' />
         {false && <LoaderSvg className='custom-button-loader' />}
       </button>
-
-      <canvas ref={canvasRef} className='absolute inset-0 w-full h-full z-10' />
     </CustomModal>
   );
 };
