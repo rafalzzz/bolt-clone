@@ -2,6 +2,8 @@ import { useTranslations } from 'next-intl';
 
 import CustomModal from '@/shared/components/custom-modal';
 
+import useWindowSize from '@/shared/hooks/use-window-resize';
+
 import CameraSvg from '@/shared/svg/camera-svg';
 import LoaderSvg from '@/shared/svg/loader-svg';
 
@@ -13,30 +15,37 @@ type TAddFaceIdModal = {
   onCancel: () => void;
 };
 
+const PADDING = 80;
+const MAX_VIDEO_WIDTH = 696;
+const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
+
 const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk, onCancel }) => {
   const t = useTranslations('AddFaceIdModal');
 
-  const { videoRef, canvasRef, isVideoLoading } = useAddFacialRecognition();
+  const { width: windowWidth } = useWindowSize({ maxWidth: MAX_WIDTH });
+
+  const videoWidth = windowWidth - PADDING;
+  const videoHeight = videoWidth * 0.75;
+
+  const { videoRef, canvasRef, isVideoLoading } = useAddFacialRecognition({
+    videoWidth,
+    videoHeight,
+  });
 
   return (
     <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
-      <div className='relative w-full h-auto' style={{ width: '696px', height: '522px' }}>
+      <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>
         <video
           ref={videoRef}
+          width={videoWidth}
+          height={videoHeight}
           id='video'
-          width='696'
-          height='522'
-          className='rounded-sm absolute top-0 left-0 w-full h-full'
+          className='rounded-sm absolute top-0 left-0 flex'
           autoPlay
           muted
         ></video>
-        <canvas
-          ref={canvasRef}
-          className='rounded-sm absolute top-0 left-0 w-full h-full z-10'
-        ></canvas>
-        {isVideoLoading && (
-          <div className='absolute z-50 bg-slate-500/50 animate-pulse inset-0 w-full h-full'></div>
-        )}
+        <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10'></canvas>
+        {isVideoLoading && <div className='absolute z-50 bg-slate-500/50 animate-pulse '></div>}
       </div>
 
       <button

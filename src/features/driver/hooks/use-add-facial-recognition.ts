@@ -1,15 +1,20 @@
 import * as tf from '@tensorflow/tfjs';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 import loadFaceModels from '@/features/utils/load-face-models';
 import startFacialRecognition from '@/features/utils/start-facial-recognition';
 import startVideo from '@/features/utils/start-video';
 
-const useAddFacialRecognition = () => {
+type TUseAddFacialRecognition = {
+  videoWidth: number;
+  videoHeight: number;
+};
+
+const useAddFacialRecognition = ({ videoWidth, videoHeight }: TUseAddFacialRecognition) => {
   const [isVideoLoading, setIsVideoLoading] = useState<boolean>(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const intervalId = useRef<ReturnType<typeof setInterval> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const setupTensorFlow = async () => {
     await tf.setBackend('webgl');
@@ -20,23 +25,27 @@ const useAddFacialRecognition = () => {
     setIsVideoLoading(false);
   };
 
-  const addVideoPlayListener = () => {
+  const addVideoPlayListener = useCallback(() => {
     const videoPlayListener = () => {
       startFacialRecognition({
         video: videoRef.current,
+        videoWidth,
+        videoHeight,
         canvas: canvasRef.current,
-        intervalId: intervalId.current,
+        intervalRef,
       });
     };
 
     videoRef.current?.addEventListener('play', videoPlayListener);
     return videoPlayListener;
-  };
+  }, [videoWidth, videoHeight]);
 
   const cleanup = (videoPlayListener: () => void) => {
     videoRef.current?.removeEventListener('play', videoPlayListener);
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
   };
 
@@ -45,7 +54,7 @@ const useAddFacialRecognition = () => {
     const videoPlayListener = addVideoPlayListener();
 
     return () => cleanup(videoPlayListener);
-  }, []);
+  }, [addVideoPlayListener, videoWidth, videoHeight]);
 
   return { videoRef, canvasRef, isVideoLoading };
 };

@@ -16,8 +16,10 @@ type TDetections =
 
 type TStartFacialRecognition = {
   video: HTMLVideoElement | null;
+  videoWidth: number;
+  videoHeight: number;
   canvas: HTMLCanvasElement | null;
-  intervalId: NodeJS.Timeout | null;
+  intervalRef: React.MutableRefObject<NodeJS.Timeout | null>;
 };
 
 const RECOGNIZE_FACE_INTERVAL = 200;
@@ -31,9 +33,7 @@ const detectFaces = async (video: HTMLVideoElement, displaySize: TDisplaySize) =
     return null;
   }
 
-  const resizedDetection = faceapi.resizeResults(detection, displaySize);
-
-  return resizedDetection;
+  return faceapi.resizeResults(detection, displaySize);
 };
 
 const drawDetections = (canvas: HTMLCanvasElement, detections: TDetections) => {
@@ -47,25 +47,33 @@ const drawDetections = (canvas: HTMLCanvasElement, detections: TDetections) => {
   faceapi.draw.drawFaceLandmarks(canvas, detections);
 };
 
-const startFacialRecognition = ({ video, canvas, intervalId }: TStartFacialRecognition) => {
+const startFacialRecognition = ({
+  video,
+  videoWidth,
+  videoHeight,
+  canvas,
+  intervalRef,
+}: TStartFacialRecognition) => {
   if (!video || !canvas) {
-    return null;
+    return;
   }
 
   const displaySize = {
-    width: video.width,
-    height: video.height,
+    width: videoWidth,
+    height: videoHeight,
   };
+
+  canvas.width = videoWidth;
+  canvas.height = videoHeight;
 
   faceapi.matchDimensions(canvas, displaySize);
 
-  if (intervalId) {
-    clearInterval(intervalId);
+  if (intervalRef.current) {
+    clearInterval(intervalRef.current);
   }
 
-  intervalId = setInterval(async () => {
-    const detection = await detectFaces(video as HTMLVideoElement, displaySize);
-
+  intervalRef.current = setInterval(async () => {
+    const detection = await detectFaces(video, displaySize);
     drawDetections(canvas, detection || []);
   }, RECOGNIZE_FACE_INTERVAL);
 };
