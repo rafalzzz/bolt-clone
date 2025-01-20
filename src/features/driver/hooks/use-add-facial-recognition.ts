@@ -28,15 +28,16 @@ const useAddFacialRecognition = ({ videoWidth, videoHeight }: TUseAddFacialRecog
   const addVideoPlayListener = useCallback(() => {
     const videoPlayListener = () => {
       startFacialRecognition({
-        video: videoRef.current,
         videoWidth,
         videoHeight,
+        video: videoRef.current,
         canvas: canvasRef.current,
         intervalRef,
       });
     };
 
     videoRef.current?.addEventListener('play', videoPlayListener);
+
     return videoPlayListener;
   }, [videoWidth, videoHeight]);
 
@@ -45,12 +46,14 @@ const useAddFacialRecognition = ({ videoWidth, videoHeight }: TUseAddFacialRecog
 
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+
       intervalRef.current = null;
     }
   };
 
   useEffect(() => {
     setupTensorFlow();
+
     const videoPlayListener = addVideoPlayListener();
 
     return () => cleanup(videoPlayListener);
