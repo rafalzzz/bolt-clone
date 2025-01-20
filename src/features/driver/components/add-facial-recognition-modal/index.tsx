@@ -32,6 +32,8 @@ const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk,
     videoHeight,
   });
 
+  console.log({ videoWidth, videoHeight });
+
   return (
     <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
       <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>

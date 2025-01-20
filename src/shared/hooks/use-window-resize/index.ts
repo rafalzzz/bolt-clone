@@ -12,18 +12,21 @@ type TWindowSize = {
 
 const DEBOUNCE_TIME = 200;
 
+const getDimensionValue = (currentValue: number, maxValue?: number) =>
+  maxValue ? Math.min(currentValue, maxValue) : currentValue;
+
 const useWindowSize = ({ maxWidth, maxHeight }: TUseWindowSize = {}): TWindowSize => {
   const [windowSize, setWindowSize] = useState<TWindowSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: getDimensionValue(window.innerWidth, maxWidth),
+    height: getDimensionValue(window.innerHeight, maxHeight),
   });
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      const newWidth = maxWidth ? Math.min(window.innerWidth, maxWidth) : window.innerWidth;
-      const newHeight = maxHeight ? Math.min(window.innerHeight, maxHeight) : window.innerHeight;
+      const newWidth = getDimensionValue(window.innerWidth, maxWidth);
+      const newHeight = getDimensionValue(window.innerHeight, maxHeight);
 
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
