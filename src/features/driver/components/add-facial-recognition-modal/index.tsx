@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { Dispatch, SetStateAction } from 'react';
 
 import CustomModal from '@/shared/components/custom-modal';
 
@@ -9,8 +10,9 @@ import LoaderSvg from '@/shared/svg/loader-svg';
 
 import useAddFacialRecognition from '../../hooks/use-add-facial-recognition';
 
-type TAddFaceIdModal = {
+type TAddFacialRecognitionModal = {
   isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
   onOk: () => void;
   onCancel: () => void;
 };
@@ -19,8 +21,13 @@ const PADDING = 80;
 const MAX_VIDEO_WIDTH = 696;
 const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
 
-const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk, onCancel }) => {
-  const t = useTranslations('AddFaceIdModal');
+const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
+  isVisible,
+  setIsVisible,
+  onOk,
+  onCancel,
+}) => {
+  const t = useTranslations('AddFacialRecognitionModal');
 
   const { width: windowWidth } = useWindowSize({ maxWidth: MAX_WIDTH });
 
@@ -30,6 +37,7 @@ const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk,
   const { videoRef, canvasRef, isVideoLoading } = useAddFacialRecognition({
     videoWidth,
     videoHeight,
+    setIsVisible,
   });
 
   return (

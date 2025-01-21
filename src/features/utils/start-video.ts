@@ -1,4 +1,11 @@
-const startVideo = (video: HTMLVideoElement | null) => {
+import getErrorMessage from '@/shared/utils/get-error-message';
+
+type TStartVideo = {
+  video: HTMLVideoElement | null;
+  onError: (error: string) => void;
+};
+
+const startVideo = ({ video, onError }: TStartVideo) => {
   if (!video) {
     return;
   }
@@ -9,7 +16,13 @@ const startVideo = (video: HTMLVideoElement | null) => {
       (stream: MediaStream) =>
         ((video as HTMLVideoElement).srcObject = new MediaStream(stream.getVideoTracks())),
     )
-    .catch((err) => console.error(err));
+    .catch((error) => {
+      const errorMessage = getErrorMessage(error);
+
+      if (errorMessage) {
+        onError(errorMessage);
+      }
+    });
 };
 
 export default startVideo;

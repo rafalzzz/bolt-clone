@@ -88,7 +88,10 @@
     "okButtonText": "Confirm",
     "cancelButtonText": "Cancel"
   },
-  "AddFaceIdModal": {
+  "AddFacialRecognitionModal": {
     "title": "Add facial recognition"
+  },
+  "AddFacialRecognitionError": {
+    "permissionDenied": "To add a facial photo, access to the camera is required"
   }
 }

@@ -88,7 +88,10 @@
     "okButtonText": "Zatwierdź",
     "cancelButtonText": "Anuluj"
   },
-  "AddFaceIdModal": {
+  "AddFacialRecognitionModal": {
     "title": "Dodaj identyfikator twarzy"
+  },
+  "AddFacialRecognitionError": {
+    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki"
   }
 }
