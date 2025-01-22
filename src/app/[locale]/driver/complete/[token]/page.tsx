@@ -1,14 +1,5 @@
-import dynamic from 'next/dynamic';
+import DriverCompleteRegistration from '@/features/driver/components/driver-complete-registration';
 
-import DefaultLoader from '@/shared/components/default-loader';
-
-const DriverCompleteRegistration = dynamic(
-  () => import('@/features/driver/components/driver-complete-registration'),
-  {
-    loading: DefaultLoader,
-  },
-);
-
-const CompleteDriverRegistrationPage = async () => <DriverCompleteRegistration />;
+const CompleteDriverRegistrationPage = () => <DriverCompleteRegistration />;
 
 export default CompleteDriverRegistrationPage;

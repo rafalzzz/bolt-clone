@@ -34,7 +34,6 @@ const DriverCompleteRegisterForm = () => {
       {isAddFacialRecognitionModalEnabled && (
         <AddFaceRecognitionModal
           isVisible={isAddFacialRecognitionModalEnabled}
-          setIsVisible={setIsAddFacialRecognitionModalEnabled}
           onOk={onOk}
           onCancel={onCancel}
         />
