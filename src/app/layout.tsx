@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
 import '@/styles/components/custom-button-loader.scss';
 import '@/styles/components/custom-close-button.scss';
@@ -11,7 +11,7 @@ import '@/styles/globals.scss';
 
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.
-const RootLayout: FC<PropsWithChildren> = ({ children }) => {
+const RootLayout: TFCWithChildren = ({ children }) => {
   return children;
 };
 

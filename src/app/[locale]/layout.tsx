@@ -1,12 +1,12 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { FC, PropsWithChildren } from 'react';
 
 import BaseLayout from '@/features/landing-page/components/base-layout';
 
 import { routing } from '@/i18n/routing';
 
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 export function generateStaticParams() {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: 'This is the main page.',
 };
 
-const LocaleLayout: FC<PropsWithChildren<TLayoutParamsPromise>> = async ({ children, params }) => {
+const LocaleLayout: TFCWithChildren<TLayoutParamsPromise> = async ({ children, params }) => {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale)) {

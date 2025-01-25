@@ -1,8 +1,8 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { FC, PropsWithChildren } from 'react';
 
 import ContentWrapper from '@/shared/components/content-wrapper';
 
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 export async function generateMetadata({ params }: TLayoutParamsPromise) {
@@ -20,10 +20,7 @@ export async function generateMetadata({ params }: TLayoutParamsPromise) {
   };
 }
 
-const DriverPageLayout: FC<PropsWithChildren<TLayoutParamsPromise>> = async ({
-  children,
-  params,
-}) => {
+const DriverPageLayout: TFCWithChildren<TLayoutParamsPromise> = async ({ children, params }) => {
   const { locale } = await params;
 
   setRequestLocale(locale);
