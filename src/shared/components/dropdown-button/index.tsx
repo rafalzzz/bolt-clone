@@ -1,8 +1,8 @@
 'use client';
 
-import { FC, PropsWithChildren, RefObject } from 'react';
+import type { RefObject } from 'react';
 
-import './dropdown-button.scss';
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
 type TDropdownButton = {
   text: string;
@@ -14,7 +14,7 @@ type TDropdownButton = {
   ariaLabel?: string;
 };
 
-const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
+const DropdownButton: TFCWithChildren<TDropdownButton> = ({
   text,
   buttonClassName,
   isOpen,
@@ -24,7 +24,7 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
   showArrow = false,
   ariaLabel,
 }) => (
-  <div className='dropdown-button' ref={ref}>
+  <div className='relative inline-block' ref={ref}>
     <div>
       <button type='button' className={buttonClassName} onClick={onClick} aria-label={ariaLabel}>
         {text}
@@ -46,7 +46,10 @@ const DropdownButton: FC<PropsWithChildren<TDropdownButton>> = ({
       </button>
     </div>
     {isOpen && (
-      <div x-show='open' className='dropdown-button__menu'>
+      <div
+        x-show='open'
+        className='absolute right-0 text-buttonTextColor bg-backgroundColor border border-primaryColor dark:border-darkPrimaryColor px-0 py-2 mt-2 text-sm rounded-lg shadow-xl min-w-max dark:bg-darkBackgroundColor'
+      >
         {children}
       </div>
     )}

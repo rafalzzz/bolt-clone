@@ -8,8 +8,6 @@ import ErrorSvg from '@/shared/svg/error-svg';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 
-import './custom-input.scss';
-
 type TCustomInput<FormType extends TBasicFormType> = {
   label: string;
   props: InputHTMLAttributes<HTMLInputElement>;

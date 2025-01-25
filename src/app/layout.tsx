@@ -2,7 +2,8 @@ import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
 import '@/styles/components/custom-button-loader.scss';
 import '@/styles/components/custom-close-button.scss';
-import '@/styles/components/custom-close-button.scss';
+import '@/styles/components/custom-dropdown-menu-item.scss';
+import '@/styles/components/custom-input.scss';
 import '@/styles/components/custom-padding.scss';
 import '@/styles/components/default-button.scss';
 import '@/styles/components/default-button-colors.scss';

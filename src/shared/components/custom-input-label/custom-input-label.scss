@@ -1,7 +1,0 @@
-@use 'tailwindcss/base';
-@use 'tailwindcss/components';
-@use 'tailwindcss/utilities';
-
-.custom-input-label {
-  @apply text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition-all;
-}

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .custom-dropdown-menu-item {
+    @apply block px-4 py-2 text-textColor hover:bg-primaryColor hover:text-buttonTextColor dark:text-darkButtonTextColor dark:bg-darkBackgroundColor dark:hover:bg-secondaryColor dark:hover:text-darkTextColor font-sans transition w-full;
+  }
+}

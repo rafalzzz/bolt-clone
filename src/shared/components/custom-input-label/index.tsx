@@ -1,13 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
-
-import './custom-input-label.scss';
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
 type TCustomInputLabel = {
   label: string;
 };
 
-const CustomInputLabel: FC<PropsWithChildren<TCustomInputLabel>> = ({ label, children }) => (
-  <label className='custom-input-label'>
+const CustomInputLabel: TFCWithChildren<TCustomInputLabel> = ({ label, children }) => (
+  <label className='text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition-all'>
     {label}
     <>{children}</>
   </label>

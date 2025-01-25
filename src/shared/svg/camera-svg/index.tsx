@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { TSvgParams } from '@/shared/types/svg-params';
 

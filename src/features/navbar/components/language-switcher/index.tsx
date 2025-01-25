@@ -56,7 +56,7 @@ const LanguageSwitcher = () => {
               type='button'
               role='menu-item'
               aria-label={lang}
-              className='dropdown-button__menu-item'
+              className='custom-dropdown-menu-item'
               onClick={() => {
                 dropdownButtonOnClick(lang);
                 hideDropdownMenu();

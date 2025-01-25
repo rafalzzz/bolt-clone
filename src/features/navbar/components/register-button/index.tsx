@@ -44,7 +44,7 @@ const RegisterButton = () => {
             <button
               type='button'
               role='menu-item'
-              className='dropdown-button__menu-item'
+              className='custom-dropdown-menu-item'
               aria-label={t(translation)}
               onClick={() => {
                 dropdownButtonOnClick(href);

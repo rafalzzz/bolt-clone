@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .custom-input {
+    @apply flex flex-row w-full;
+
+    /* disable autocomplete styles */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: all 5000s ease-in-out 0s;
+    }
+
+    .custom-input__input-prefix {
+      @apply flex flex-row items-center justify-center rounded-md p-4 mr-4 text-textColor dark:text-darkTextColor transition;
+    }
+
+    .custom-input__input {
+      @apply bg-inputBackgroundColor outline-none mt-3 font-normal text-base transition focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor dark:bg-darkInputBackgroundColor dark:focus:bg-darkInputBackgroundColor dark:ring-1 dark:ring-darkTertiaryColor dark:placeholder-darkInputPlaceholderColor;
+    }
+
+    .custom-input__error-icon {
+      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-errorIconColor dark:text-darkErrorIconColor transition-all;
+    }
+
+    .custom-input__button {
+      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-textColor dark:text-darkTextColor transition-all;
+    }
+
+    .custom-input__correct-input {
+      @apply p-4 focus:ring-2 focus:ring-secondaryColor dark:focus:ring-darkSecondaryColor dark:focus:ring-2 dark:focus:ring-darkSecondaryColor;
+    }
+
+    .custom-input__invalid-input {
+      @apply py-4 pl-4 pr-12 ring-2 ring-errorIconColor dark:ring-2 dark:ring-darkErrorIconColor;
+    }
+
+    input {
+      @apply block w-full rounded-md;
+    }
+  }
+}

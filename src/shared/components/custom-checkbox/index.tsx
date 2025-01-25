@@ -1,5 +1,5 @@
-import { InputHTMLAttributes, ReactNode } from 'react';
-import { Path, UseFormRegister } from 'react-hook-form';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { Path, UseFormRegister } from 'react-hook-form';
 
 import FormItemContainer from '@/shared/components/form-item-container';
 
@@ -23,16 +23,18 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
   error,
 }: TCustomCheckbox<FormType>) => (
   <FormItemContainer error={error}>
-    <label className={`custom-checkbox custom-checkbox__${error ? 'invalid' : 'correct'}`}>
-      <div className='custom-checkbox__container'>
-        <div className='custom-checkbox__inner-container'>
+    <label
+      className={`flex text-xs text-justify mt-3 transition-all custom-checkbox__${error ? 'invalid' : 'correct'}`}
+    >
+      <div className='inline-flex items-center'>
+        <div className='relative flex cursor-pointer items-center rounded-full p-0 mr-3'>
           <input
             type='checkbox'
-            className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all custom-checkbox__input custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
+            className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all before:bg-primaryColor checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor dark:checked:border-darkPrimaryColor dark:before:bg-darkPrimaryColor dark:checked:bg-darkPrimaryColor dark:checked:before:bg-darkPrimaryColor custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
             {...checkboxProps}
             {...register(inputKey)}
           />
-          <div className='custom-checkbox__svg-container'>
+          <div className='absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-buttonTextColor dark:text-darkButtonTextColor opacity-0 peer-checked:opacity-100'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-3.5 w-3.5'
