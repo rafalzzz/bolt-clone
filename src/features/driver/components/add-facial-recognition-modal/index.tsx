@@ -1,15 +1,21 @@
 import { useTranslations } from 'next-intl';
+import { type Dispatch, type SetStateAction } from 'react';
+import { UseFormSetValue } from 'react-hook-form';
 
 import CustomModal from '@/shared/components/custom-modal';
 
+import useAddFacialRecognition from '@/features/driver/hooks/use-add-facial-recognition';
+import useStartVideo from '@/features/driver/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
+
+import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 import CameraSvg from '@/shared/svg/camera-svg';
 
-import useStartVideo from '../../hooks/use-start-video';
-
 type TAddFacialRecognitionModal = {
   isVisible: boolean;
+  setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
+  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
   onOk: () => void;
   onCancel: () => void;
 };
@@ -20,6 +26,8 @@ const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
 
 const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
   isVisible,
+  setIsAddFacialRecognitionModalEnabled,
+  setValue,
   onOk,
   onCancel,
 }) => {
@@ -30,9 +38,15 @@ const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
   const videoWidth = windowWidth - PADDING;
   const videoHeight = videoWidth * 0.75;
 
-  const { videoRef, canvasRef, isVideoLoading, isVideoError } = useStartVideo({
+  const { videoRef, canvasRef, intervalRef, isVideoLoading, isVideoError } = useStartVideo({
     videoWidth,
     videoHeight,
+  });
+
+  const addFacialRecognition = useAddFacialRecognition({
+    intervalRef,
+    setIsAddFacialRecognitionModalEnabled,
+    setValue,
   });
 
   const displayLoader = isVideoLoading || isVideoError;
@@ -59,7 +73,7 @@ const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
       </div>
 
       <button
-        /* onClick={() => handleSubmit(videoRef, canvasRef)} */
+        onClick={() => addFacialRecognition(videoRef, canvasRef)}
         disabled={displayLoader}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 default-button-colors'
       >

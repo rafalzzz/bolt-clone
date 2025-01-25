@@ -1,18 +1,11 @@
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
 
+import { type TDetections } from '@/features/driver/types';
+
 type TDisplaySize = {
   width: number;
   height: number;
 };
-
-type TDetections =
-  | faceapi.WithFaceLandmarks<
-      {
-        detection: faceapi.FaceDetection;
-      },
-      faceapi.FaceLandmarks68
-    >
-  | never[];
 
 type TStartFacialRecognition = {
   video: HTMLVideoElement | null;
@@ -24,7 +17,7 @@ type TStartFacialRecognition = {
 
 const RECOGNIZE_FACE_INTERVAL = 200;
 
-const detectFaces = async (video: HTMLVideoElement, displaySize: TDisplaySize) => {
+export const detectFaces = async (video: HTMLVideoElement, displaySize: TDisplaySize) => {
   const detection = await faceapi
     .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
     .withFaceLandmarks();
@@ -36,7 +29,7 @@ const detectFaces = async (video: HTMLVideoElement, displaySize: TDisplaySize) =
   return faceapi.resizeResults(detection, displaySize);
 };
 
-const drawDetections = (canvas: HTMLCanvasElement, detections: TDetections) => {
+export const drawDetections = (canvas: HTMLCanvasElement, detections: TDetections) => {
   const context = canvas.getContext('2d');
   if (!context) return;
 
@@ -47,7 +40,7 @@ const drawDetections = (canvas: HTMLCanvasElement, detections: TDetections) => {
   faceapi.draw.drawFaceLandmarks(canvas, detections);
 };
 
-const startFacialRecognition = ({
+export const startFacialRecognition = ({
   video,
   videoWidth,
   videoHeight,
@@ -74,8 +67,9 @@ const startFacialRecognition = ({
 
   intervalRef.current = setInterval(async () => {
     const detection = await detectFaces(video, displaySize);
+
+    console.log({ detection: detection?.landmarks });
+
     drawDetections(canvas, detection || []);
   }, RECOGNIZE_FACE_INTERVAL);
 };
-
-export default startFacialRecognition;
