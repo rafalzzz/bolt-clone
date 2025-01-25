@@ -1,56 +1,66 @@
-const useAddFacialRecognition = () => {
-  /* const handleSubmit = async (
+import { useTranslations } from 'next-intl';
+import { type Dispatch, type SetStateAction } from 'react';
+import { type RefObject, type MutableRefObject } from 'react';
+import { UseFormSetValue } from 'react-hook-form';
+
+import handleCanvasDrawing from '@/features/driver/utils/handle-canvas-drawing';
+import { type TDetections, detectFaces } from '@/features/driver/utils/start-facial-recognition';
+import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
+import displayWarningToast from '@/shared/utils/display-warning-toast';
+
+import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+
+type TUseAddFacialRecognition = {
+  intervalRef: MutableRefObject<NodeJS.Timeout | null>;
+  setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
+  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
+};
+
+const ERROR_ARIA_LABEL = 'Add facial recognition error';
+
+const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecognition) => {
+  const t = useTranslations('AddFacialRecognitionError');
+
+  const handleError = (error?: unknown) => {
+    const text = error instanceof Error ? error.message : t('errorWhileAddingFaceRecognition');
+
+    displayWarningToast(text, ERROR_ARIA_LABEL);
+  };
+
+  const addFacialRecognition = async (
     videoRef: RefObject<HTMLVideoElement>,
     canvasRef: RefObject<HTMLCanvasElement>,
   ) => {
-    // wait for one last drawing onto the canvas
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
-
-    setIsLoading(true);
-
-    if (!videoRef.current) {
-      setIsLoading(false);
-      return toast.error('Something went wrong when adding the photo');
-    }
-
-    const video = videoRef.current;
-    // stop streaming from user and pause video
-    stopStreamedVideo(video);
-
-    if (!canvasRef.current) {
-      setIsLoading(false);
-      return toast.error('Something went wrong when adding the photo');
-    }
-
-    const canvas = canvasRef.current;
-    // redraw detection at the end of this function
-    const detection = await detectFaces(video, {
-      width: video.width,
-      height: video.height,
-    });
-
-    // clear and repaint the canvas using video data
-    canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.getContext('2d')?.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    canvas.toBlob(async (blob) => {
-      if (!blob) {
-        setIsLoading(false);
-        return toast.error('Something went wrong when adding the photo');
+    try {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
 
-      const filename = `${getRandomPin(
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
-        6,
-      )}.png`;
-      const file = new File([blob], filename, { type: blob.type });
+      const { current: video } = videoRef;
+      const { current: canvas } = canvasRef;
 
-      onSubmit({ file, setIsLoading });
-    });
-    drawDetections(canvas, detection || []);
-  }; */
+      if (!video || !canvas) {
+        throw new Error('Video or canvas element not found');
+      }
+
+      const detections = (await detectFaces(video, {
+        width: video.width,
+        height: video.height,
+      })) as TDetections;
+
+      if (!detections) {
+        return displayWarningToast(t('faceNotFound'), ERROR_ARIA_LABEL);
+      }
+
+      await handleCanvasDrawing({ video, canvas, detections, setValue, handleError });
+
+      stopStreamedVideo(videoRef);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
+  return addFacialRecognition;
 };
 
 export default useAddFacialRecognition;

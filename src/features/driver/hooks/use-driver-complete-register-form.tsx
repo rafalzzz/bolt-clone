@@ -13,6 +13,7 @@ const useDriverCompleteRegisterForm = () => {
 
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<TDriverCompleteRegisterFormSchema>({
@@ -36,6 +37,7 @@ const useDriverCompleteRegisterForm = () => {
     isAddFacialRecognitionModalEnabled,
     setIsAddFacialRecognitionModalEnabled,
     register,
+    setValue,
     onSubmit,
     onOk,
     onCancel,
