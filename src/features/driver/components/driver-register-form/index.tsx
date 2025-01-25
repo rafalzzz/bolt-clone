@@ -93,7 +93,7 @@ const DriverRegisterForm = () => {
               disabled={isLoading}
             >
               {t('submitButtonText')}
-              {isLoading && <LoaderSvg className='driver-register-form__submit-button__loader' />}
+              {isLoading && <LoaderSvg className='custom-button-loader' />}
             </button>
           </div>
           <RedirectionToLoginPage />

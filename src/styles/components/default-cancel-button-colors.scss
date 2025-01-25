@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .default-cancel-button-colors {
+    @apply border-none outline-none focus:outline-none active:outline-none;
+    @apply text-buttonTextColor bg-tertiaryColor hover:bg-quaternaryColor;
+    @apply dark:bg-darkTertiaryColor dark:hover:bg-darkQuaternaryColor dark:text-darkButtonTextColor;
+    @apply transition-all;
+
+    &:disabled {
+      @apply bg-tertiaryColor hover:bg-tertiaryColor;
+      @apply dark:bg-darkTertiaryColor dark:hover:bg-darkTertiaryColor;
+      @apply cursor-not-allowed;
+    }
+  }
+}

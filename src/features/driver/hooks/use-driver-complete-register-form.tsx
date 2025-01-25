@@ -8,26 +8,39 @@ import {
 } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 const useDriverCompleteRegisterForm = () => {
-  const [isAddFaceImageModalEnabled, setIsAddFaceImageModalEnabled] = useState(false);
+  const [isAddFacialRecognitionModalEnabled, setIsAddFacialRecognitionModalEnabled] =
+    useState(false);
 
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<TDriverCompleteRegisterFormSchema>({
     resolver: zodResolver(driverCompleteRegisterFormSchema),
   });
 
-  const onSubmit: SubmitHandler<TDriverCompleteRegisterFormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<TDriverCompleteRegisterFormSchema> = async () => {
     // TODO - finish driver registration
+  };
+
+  const onOk = () => {
+    setIsAddFacialRecognitionModalEnabled(false);
+  };
+
+  const onCancel = () => {
+    setIsAddFacialRecognitionModalEnabled(false);
   };
 
   return {
     errors,
-    isAddFaceImageModalEnabled,
-    setIsAddFaceImageModalEnabled,
+    isAddFacialRecognitionModalEnabled,
+    setIsAddFacialRecognitionModalEnabled,
     register,
+    setValue,
     onSubmit,
+    onOk,
+    onCancel,
     handleSubmit,
   };
 };
