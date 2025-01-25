@@ -1,18 +1,11 @@
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
 
+import { type TDetections } from '@/features/driver/types';
+
 type TDisplaySize = {
   width: number;
   height: number;
 };
-
-export type TDetections =
-  | faceapi.WithFaceLandmarks<
-      {
-        detection: faceapi.FaceDetection;
-      },
-      faceapi.FaceLandmarks68
-    >
-  | never[];
 
 type TStartFacialRecognition = {
   video: HTMLVideoElement | null;

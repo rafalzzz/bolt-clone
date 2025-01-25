@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 
+import CustomError from '@/shared/components/custom-error';
+
 import './form-item-container.scss';
-import CustomError from '../custom-error';
 
 type TFormItemContainer = {
   error?: string;
