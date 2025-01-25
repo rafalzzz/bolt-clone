@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { InputHTMLAttributes, useState } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 
@@ -28,6 +29,8 @@ const PasswordInput = <FormType extends TBasicFormType>({
 }: TPasswordInput<FormType>) => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const t = useTranslations('PasswordInput');
+
   return (
     <FormItemContainer error={error}>
       <CustomInputLabel label={label}>
@@ -41,6 +44,7 @@ const PasswordInput = <FormType extends TBasicFormType>({
           <button
             type='button'
             className='password-input__button'
+            aria-label={showPassword ? t('hidePassword') : t('showPassword')}
             onClick={() => setShowPassword((prevState) => !prevState)}
           >
             {showPassword ? <EyeSlashSvg /> : <EyeSvg />}
