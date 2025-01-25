@@ -1,5 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 
+import '@/styles/components/custom-button-loader.scss';
+import '@/styles/components/custom-close-button.scss';
 import '@/styles/components/custom-close-button.scss';
 import '@/styles/components/custom-padding.scss';
 import '@/styles/components/default-button.scss';

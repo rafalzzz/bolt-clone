@@ -25,6 +25,11 @@ export const driverCompleteRegisterFormSchema = z
       .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
       .max(10, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS)
       .regex(/^[A-Z0-9]*$/, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
+    [EDriverCompleteRegisterFormKeys.FILE]: z
+      .any()
+      .refine((file) => file instanceof File && file.size, {
+        message: EErrorKeys.REQUIRED_FACIAL_RECOGNITION,
+      }),
   })
   .refine(
     (data) =>

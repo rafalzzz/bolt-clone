@@ -1,23 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 
 import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-driver';
 
-import CustomNotifiacation, { EIconClassName } from '@/shared/components/custom-notification';
-
 import useRequest from '@/shared/hooks/use-request';
+
+import displaySuccessToast from '@/shared/utils/display-success-toast';
+import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
   TDriverRegisterFormSchema,
   driverRegisterFormSchema,
 } from '@/features/driver/schemas/driver-register-form-schema';
-
-import { DEFAULT_NOTIFICATION_PROPS } from '@/shared/consts/default-notification-props';
-
-import SuccessSvg from '@/shared/svg/success-svg';
-import WarningSvg from '@/shared/svg/warning-svg';
 
 const useDriverRegisterForm = () => {
   const { state, startRequest, handleSuccess, handleError } = useRequest();
@@ -42,30 +37,14 @@ const useDriverRegisterForm = () => {
         handleSuccess();
         reset();
 
-        toast(CustomNotifiacation, {
-          data: {
-            icon: <SuccessSvg />,
-            iconClassName: EIconClassName.SUCCESS,
-            text: t('initialRegistrationSuccess'),
-          },
-          ariaLabel: 'Email has been sent',
-          ...DEFAULT_NOTIFICATION_PROPS,
-        });
+        displaySuccessToast(t('initialRegistrationSuccess'), 'Email has been sent');
       })
       .catch((error) => {
         handleError(error);
 
-        const errorMessage = 'message' in error ? error.message : t('initialRegistratrionError');
+        const text = 'message' in error ? error.message : t('initialRegistratrionError');
 
-        toast(CustomNotifiacation, {
-          data: {
-            icon: <WarningSvg />,
-            iconClassName: EIconClassName.WARNING,
-            text: errorMessage,
-          },
-          ariaLabel: 'Registration error',
-          ...DEFAULT_NOTIFICATION_PROPS,
-        });
+        displayWarningToast(text, 'Registration error');
       });
   };
 

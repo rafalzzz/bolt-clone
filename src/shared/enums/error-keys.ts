@@ -17,4 +17,5 @@ export const enum EErrorKeys {
   VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS = 'vehicleRegistrationMinimumCharacters',
   VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS = 'vehicleRegistrationMaximumCharacters',
   VEHICLE_REGISTRATION_NUMBER_CHARACTERS = 'vehicleRegistrationCharacters',
+  REQUIRED_FACIAL_RECOGNITION = 'requiredFacialRecognition',
 }
