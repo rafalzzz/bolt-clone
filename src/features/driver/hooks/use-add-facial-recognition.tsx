@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
-import { type Dispatch, type SetStateAction } from 'react';
-import { type RefObject, type MutableRefObject } from 'react';
-import { UseFormSetValue } from 'react-hook-form';
+import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from 'react';
+import type { UseFormSetValue } from 'react-hook-form';
 
 import handleCanvasDrawing from '@/features/driver/utils/handle-canvas-drawing';
 import { detectFaces } from '@/features/driver/utils/start-facial-recognition';
@@ -10,7 +9,7 @@ import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
-import { type TDetections } from '@/features/driver/types';
+import type { TDetections } from '@/features/driver/types';
 
 type TUseAddFacialRecognition = {
   intervalRef: MutableRefObject<NodeJS.Timeout | null>;

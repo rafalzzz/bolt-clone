@@ -13,8 +13,6 @@ import { setCookieValue } from '@/shared/utils/client-side/cookies';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
-import './language-switcher.scss';
-
 const LOCALE_PARAM_INDEX = 1;
 
 const LanguageSwitcher = () => {
@@ -47,7 +45,7 @@ const LanguageSwitcher = () => {
       ref={ref}
       text={locale.toUpperCase()}
       isOpen={isOpen}
-      buttonClassName='default-button default-button-colors language-switcher'
+      buttonClassName='default-button default-button-colors h-11 p-2 rounded-md'
       onClick={handleOnClick}
       ariaLabel='language-switcher'
     >

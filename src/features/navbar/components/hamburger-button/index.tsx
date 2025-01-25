@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './hamburger-button.scss';
 
 const HamburgerButton = () => (

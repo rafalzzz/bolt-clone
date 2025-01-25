@@ -1,14 +1,12 @@
 import Link from 'next/link';
 
-import './redirection-to-login-page.scss';
-
 const RedirectionToLoginPage = () => (
-  <footer className='redirection-to-login-page'>
+  <footer className='flex items-center justify-start mt-8 text-center text-textColor dark:text-darkTextColor transition'>
     <span>Already have an account?</span>
     <Link
       // TODO - add url to login page
       href='#'
-      className='redirection-to-login-page__hyperlink'
+      className='text-primaryColor no-underline hover:underline cursor-pointer dark:text-darkSecondaryColor ml-1 transition'
     >
       Log in &#8599;
     </Link>

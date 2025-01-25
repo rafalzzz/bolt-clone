@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { type Dispatch, type SetStateAction } from 'react';
+import type { FC, Dispatch, SetStateAction } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 
 import CustomModal from '@/shared/components/custom-modal';
@@ -24,7 +24,7 @@ const PADDING = 80;
 const MAX_VIDEO_WIDTH = 696;
 const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
 
-const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
+const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
   isVisible,
   setIsAddFacialRecognitionModalEnabled,
   setValue,

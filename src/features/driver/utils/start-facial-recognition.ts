@@ -1,6 +1,6 @@
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
 
-import { type TDetections } from '@/features/driver/types';
+import { TDetections } from '@/features/driver/types';
 
 type TDisplaySize = {
   width: number;

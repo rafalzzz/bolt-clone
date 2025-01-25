@@ -1,4 +1,4 @@
-import * as tf from '@tensorflow/tfjs';
+import { setBackend, ready } from '@tensorflow/tfjs';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
@@ -40,8 +40,8 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
     setIsVideoLoading(true);
     setIsVideoError(false);
 
-    await tf.setBackend('webgl');
-    await tf.ready();
+    await setBackend('webgl');
+    await ready();
     await loadFaceModels();
 
     startVideo({ video: videoRef.current, onError: handleStartVideoError });

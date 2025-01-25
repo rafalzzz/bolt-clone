@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import AddFaceRecognitionModal from '@/features/driver/components/add-facial-recognition-modal';
 import CustomError from '@/shared/components/custom-error';
+import CustomFormButton from '@/shared/components/custom-form-button';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 import PasswordInput from '@/shared/components/password-input';
@@ -12,8 +13,6 @@ import PasswordInput from '@/shared/components/password-input';
 import useDriverCompleteRegisterForm from '@/features/driver/hooks/use-driver-complete-register-form';
 
 import { EDriverCompleteRegisterFormKeys } from '@/features/driver/enums/driver-complete-register-form-keys';
-
-import './driver-complete-register-form.scss';
 
 const DriverCompleteRegisterForm = () => {
   const {
@@ -43,11 +42,7 @@ const DriverCompleteRegisterForm = () => {
         />
       )}
       <CustomFormWrapper title={t('header')}>
-        <form
-          className='driver-complete-register-form'
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-        >
+        <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)} noValidate>
           <PasswordInput
             label={t('passwordLabel')}
             inputKey={EDriverCompleteRegisterFormKeys.PASSWORD}
@@ -80,24 +75,23 @@ const DriverCompleteRegisterForm = () => {
             }}
           />
           <div>
-            <button
-              type='button'
-              className='driver-complete-register-form__add-facial-recognition-button default-button-colors '
-              aria-label={t('addFaceImageButtonText')}
-              onClick={() => setIsAddFacialRecognitionModalEnabled((prevState) => !prevState)}
-            >
-              {t('addFaceImageButtonText')}
-            </button>
+            <CustomFormButton
+              text={t('addFaceImageButtonText')}
+              additionalClassNames='mt-8'
+              buttonProps={{
+                type: 'button',
+                onClick: () => setIsAddFacialRecognitionModalEnabled((prevState) => !prevState),
+              }}
+            />
             <CustomError
               error={errors?.[EDriverCompleteRegisterFormKeys.FILE]?.message as string}
             />
-            <button
-              type='submit'
-              className='driver-complete-register-form__submit-button default-button-colors '
-              aria-label={t('submitButtonText')}
-            >
-              {t('submitButtonText')}
-            </button>
+            <CustomFormButton
+              text={t('submitButtonText')}
+              buttonProps={{
+                type: 'submit',
+              }}
+            />
           </div>
         </form>
       </CustomFormWrapper>

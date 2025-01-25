@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import CitySelect from '@/features/driver/components/city-select';
 import RedirectionToLoginPage from '@/features/driver/components/redirection-to-login-page';
 import CustomCheckbox from '@/shared/components/custom-checkbox';
+import CustomFormButton from '@/shared/components/custom-form-button';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
@@ -15,10 +16,6 @@ import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-f
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
 import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
-
-import LoaderSvg from '@/shared/svg/loader-svg';
-
-import './driver-register-form.scss';
 
 const DriverRegisterForm = () => {
   const {
@@ -36,7 +33,7 @@ const DriverRegisterForm = () => {
     <>
       <ToastContainer />
       <CustomFormWrapper title={t('header')}>
-        <form className='driver-register-form' onSubmit={handleSubmit(onSubmit)}>
+        <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             label='Email'
             inputKey={EDriverRegisterFormKeys.EMAIL}
@@ -86,15 +83,13 @@ const DriverRegisterForm = () => {
             {t('termsText')}
           </CustomCheckbox>
           <div>
-            <button
-              type='submit'
-              className='driver-register-form__submit-button default-button-colors '
-              aria-label={t('submitButtonText')}
-              disabled={isLoading}
-            >
-              {t('submitButtonText')}
-              {isLoading && <LoaderSvg className='custom-button-loader' />}
-            </button>
+            <CustomFormButton
+              text={t('submitButtonText')}
+              isLoading={isLoading}
+              buttonProps={{
+                type: 'submit',
+              }}
+            />
           </div>
           <RedirectionToLoginPage />
         </form>

@@ -12,8 +12,6 @@ import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
-import './register-button.scss';
-
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +34,7 @@ const RegisterButton = () => {
       ref={ref}
       text={t('register')}
       isOpen={isOpen}
-      buttonClassName='default-button default-button-colors register-button'
+      buttonClassName='default-button default-button-colors h-11 p-2 rounded-md'
       onClick={handleOnClick}
       ariaLabel={t('register')}
     >

@@ -19,8 +19,6 @@ import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 import { TGroupedOption, TOption } from '@/shared/types/react-select';
 
-import './city-select.scss';
-
 const { Control, SingleValue, Option } = components;
 
 type TCitySelect<FormType extends TBasicFormType> = {
@@ -43,11 +41,7 @@ const CitySelect = <FormType extends TBasicFormType>({
   const formatControl = ({
     children,
     ...props
-  }: ControlProps<TOption, false, GroupBase<TOption>>) => (
-    <Control className='city-select__correct-control' {...props}>
-      {children}
-    </Control>
-  );
+  }: ControlProps<TOption, false, GroupBase<TOption>>) => <Control {...props}>{children}</Control>;
 
   const formatSingleValue = (props: SingleValueProps<TOption, false>) => (
     <SingleValue {...props}>{t(props.data.label)}</SingleValue>
@@ -57,7 +51,7 @@ const CitySelect = <FormType extends TBasicFormType>({
     const { icon, label } = props.data as unknown as TGroupedOption;
 
     return (
-      <div className='city-select__option'>
+      <div className='flex items-center p-2'>
         {icon && <Image src={icon} width={20} height={20} alt={`${label} flag`} className='mr-2' />}
         <span>{t(label)}</span>
       </div>
@@ -66,7 +60,7 @@ const CitySelect = <FormType extends TBasicFormType>({
 
   const formatOption = (props: OptionProps<TOption, false>) => (
     <Option {...props}>
-      <div className='city-select__option'>{t(props.data.label)}</div>
+      <div className='flex items-center p-2'>{t(props.data.label)}</div>
     </Option>
   );
 

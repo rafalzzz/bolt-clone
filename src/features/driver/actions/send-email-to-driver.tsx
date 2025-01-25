@@ -4,7 +4,7 @@ import CompleteRegistrationEmailTemplate from '@/features/driver/components/comp
 
 import { sendEmail } from '@/shared/utils/server-side/email';
 
-import { TDriverRegisterFormSchema } from '@/features/driver/schemas/driver-register-form-schema';
+import type { TDriverRegisterFormSchema } from '@/features/driver/schemas/driver-register-form-schema';
 
 import { generateDriverRegistrationToken } from './generate-driver-registration-token';
 
