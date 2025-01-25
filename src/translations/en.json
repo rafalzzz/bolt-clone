@@ -58,7 +58,8 @@
     "requiredVehicleRegistrationNumber": "Providing the vehicle registration number is required",
     "vehicleRegistrationMinimumCharacters": "The vehicle registration number must contain at least 4 characters",
     "vehicleRegistrationMaximumCharacters": "The vehicle registration number can contain a maximum of 10 characters",
-    "vehicleRegistrationCharacters": "The vehicle registration number can contain only uppercase letters and digits"
+    "vehicleRegistrationCharacters": "The vehicle registration number can contain only uppercase letters and digits",
+    "requiredFacialRecognition": "Adding face recognition is required"
   },
   "DriverCompletePage": {
     "description": "Turn the key to adventure and profits with BoltCopy",
@@ -88,7 +89,12 @@
     "okButtonText": "Confirm",
     "cancelButtonText": "Cancel"
   },
-  "AddFaceIdModal": {
+  "AddFacialRecognitionModal": {
     "title": "Add facial recognition"
+  },
+  "AddFacialRecognitionError": {
+    "permissionDenied": "To add a facial photo, access to the camera is required",
+    "errorWhileAddingFaceRecognition": "An error occurred while adding face recognition",
+    "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
   }
 }

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { ToastContainer } from 'react-toastify';
 
 import AddFaceRecognitionModal from '@/features/driver/components/add-facial-recognition-modal';
+import CustomError from '@/shared/components/custom-error';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 import PasswordInput from '@/shared/components/password-input';
@@ -20,6 +21,7 @@ const DriverCompleteRegisterForm = () => {
     isAddFacialRecognitionModalEnabled,
     setIsAddFacialRecognitionModalEnabled,
     register,
+    setValue,
     onSubmit,
     onOk,
     onCancel,
@@ -34,6 +36,8 @@ const DriverCompleteRegisterForm = () => {
       {isAddFacialRecognitionModalEnabled && (
         <AddFaceRecognitionModal
           isVisible={isAddFacialRecognitionModalEnabled}
+          setIsAddFacialRecognitionModalEnabled={setIsAddFacialRecognitionModalEnabled}
+          setValue={setValue}
           onOk={onOk}
           onCancel={onCancel}
         />
@@ -78,12 +82,15 @@ const DriverCompleteRegisterForm = () => {
           <div>
             <button
               type='button'
-              className='driver-complete-register-form__submit-button default-button-colors '
+              className='driver-complete-register-form__add-facial-recognition-button default-button-colors '
               aria-label={t('addFaceImageButtonText')}
               onClick={() => setIsAddFacialRecognitionModalEnabled((prevState) => !prevState)}
             >
               {t('addFaceImageButtonText')}
             </button>
+            <CustomError
+              error={errors?.[EDriverCompleteRegisterFormKeys.FILE]?.message as string}
+            />
             <button
               type='submit'
               className='driver-complete-register-form__submit-button default-button-colors '

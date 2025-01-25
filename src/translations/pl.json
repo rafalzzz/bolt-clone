@@ -58,7 +58,8 @@
     "requiredVehicleRegistrationNumber": "Podanie numeu rejestracyjnego pojazdu jest wymagane",
     "vehicleRegistrationMinimumCharacters": "Numer rejestracyjny pojazdu musi zawierać co najmniej 4 znaki",
     "vehicleRegistrationMaximumCharacters": "Numer rejestracyjny pojazdu nie może być dłuższy niż 10 znaków",
-    "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry"
+    "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
+    "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
   },
   "DriverCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
@@ -88,7 +89,12 @@
     "okButtonText": "Zatwierdź",
     "cancelButtonText": "Anuluj"
   },
-  "AddFaceIdModal": {
+  "AddFacialRecognitionModal": {
     "title": "Dodaj identyfikator twarzy"
+  },
+  "AddFacialRecognitionError": {
+    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
+    "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
+    "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
   }
 }

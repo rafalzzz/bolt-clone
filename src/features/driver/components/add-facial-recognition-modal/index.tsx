@@ -1,16 +1,21 @@
 import { useTranslations } from 'next-intl';
+import { type Dispatch, type SetStateAction } from 'react';
+import { UseFormSetValue } from 'react-hook-form';
 
 import CustomModal from '@/shared/components/custom-modal';
 
+import useAddFacialRecognition from '@/features/driver/hooks/use-add-facial-recognition';
+import useStartVideo from '@/features/driver/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
+import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+
 import CameraSvg from '@/shared/svg/camera-svg';
-import LoaderSvg from '@/shared/svg/loader-svg';
 
-import useAddFacialRecognition from '../../hooks/use-add-facial-recognition';
-
-type TAddFaceIdModal = {
+type TAddFacialRecognitionModal = {
   isVisible: boolean;
+  setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
+  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
   onOk: () => void;
   onCancel: () => void;
 };
@@ -19,18 +24,32 @@ const PADDING = 80;
 const MAX_VIDEO_WIDTH = 696;
 const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
 
-const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk, onCancel }) => {
-  const t = useTranslations('AddFaceIdModal');
+const AddFacialRecognitionModal: React.FC<TAddFacialRecognitionModal> = ({
+  isVisible,
+  setIsAddFacialRecognitionModalEnabled,
+  setValue,
+  onOk,
+  onCancel,
+}) => {
+  const t = useTranslations('AddFacialRecognitionModal');
 
   const { width: windowWidth } = useWindowSize({ maxWidth: MAX_WIDTH });
 
   const videoWidth = windowWidth - PADDING;
   const videoHeight = videoWidth * 0.75;
 
-  const { videoRef, canvasRef, isVideoLoading } = useAddFacialRecognition({
+  const { videoRef, canvasRef, intervalRef, isVideoLoading, isVideoError } = useStartVideo({
     videoWidth,
     videoHeight,
   });
+
+  const addFacialRecognition = useAddFacialRecognition({
+    intervalRef,
+    setIsAddFacialRecognitionModalEnabled,
+    setValue,
+  });
+
+  const displayLoader = isVideoLoading || isVideoError;
 
   return (
     <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
@@ -44,16 +63,21 @@ const AddFacialRecognitionModal: React.FC<TAddFaceIdModal> = ({ isVisible, onOk,
           autoPlay
           muted
         ></video>
-        <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10'></canvas>
-        {isVideoLoading && <div className='absolute z-50 bg-slate-500/50 animate-pulse '></div>}
+        <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10' />
+        {displayLoader && (
+          <div
+            className='absolute top-0 left-0 rounded-sm animate-pulse bg-gray-400/50 dark:bg-white/20'
+            style={{ width: videoWidth, height: videoHeight }}
+          />
+        )}
       </div>
 
       <button
-        /* onClick={() => handleSubmit(videoRef, canvasRef)} */
-        className='absolute cursor-pointer hover:scale-95 transition-all duration-300 hover:bg-slate-800 group border-2 border-white/30 shadow-md bottom-6 bg-slate-950 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2'
+        onClick={() => addFacialRecognition(videoRef, canvasRef)}
+        disabled={displayLoader}
+        className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 default-button-colors'
       >
-        <CameraSvg className='text-white w-8 h-8 absolute group-hover:text-light-blue inset-0 m-auto' />
-        {false && <LoaderSvg className='custom-button-loader' />}
+        <CameraSvg className='text-white w-8 h-8 absolute inset-0 m-auto' />
       </button>
     </CustomModal>
   );
