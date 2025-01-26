@@ -66,7 +66,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
         <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10' />
         {displayLoader && (
           <div
-            className='absolute top-0 left-0 rounded-sm animate-pulse bg-gray-400/50 dark:bg-white/20'
+            className='absolute top-0 left-0 rounded-sm animate-pulse bg-modalVideoLoaderColor'
             style={{ width: videoWidth, height: videoHeight }}
           />
         )}

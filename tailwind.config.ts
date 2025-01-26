@@ -42,6 +42,7 @@ export default {
         focusInputBackgroundColor: 'var(--focus-input-background-color)',
         errorIconColor: 'var(--error-icon-color)',
         modalBackgroundColor: 'var(--modal-background-color)',
+        modalVideoLoaderColor: 'var(--modal-video-loader-color)',
       },
     },
   },

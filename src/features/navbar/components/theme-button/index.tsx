@@ -19,6 +19,8 @@ const ThemeButton = () => {
     const newTheme = isDarkMode ? ETheme.LIGHT : ETheme.DARK;
     htmlElement.classList.add(newTheme);
 
+    console.log({ newTheme });
+
     setCookieValue({ name: THEME, value: newTheme });
   };
 

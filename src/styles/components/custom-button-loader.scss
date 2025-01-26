@@ -4,6 +4,6 @@
 
 @layer components {
   .custom-button-loader {
-    @apply absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor dark:text-secondaryColor dark:fill-buttonTextColor right-[50px];
+    @apply absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px];
   }
 }

@@ -21,10 +21,10 @@ const CustomNotifiacation = ({
 }: TCustomNotification) => (
   <div
     role='alert'
-    className='flex items-center w-full p-4 rounded-lg text-textColor bg-backgroundColor dark:text-textColor dark:bg-backgroundColor ring-1 ring-primaryColor dark:ring-primaryColor transition-all'
+    className='flex items-center w-full p-4 rounded-lg text-textColor bg-backgroundColor ring-1 ring-primaryColor transition-all'
   >
     <div
-      className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 transition rounded-lg bg-backgroundColor dark:bg-backgroundColor text-${iconColor}`}
+      className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 transition rounded-lg bg-backgroundColor text-${iconColor}`}
     >
       {icon}
     </div>

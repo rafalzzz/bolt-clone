@@ -4,10 +4,10 @@
 
 @layer components {
   .default-cancel-button-colors {
-    @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-tertiaryColor hover:bg-quaternaryColor dark:bg-tertiaryColor dark:hover:bg-quaternaryColor dark:text-buttonTextColor transition-all;
+    @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-tertiaryColor hover:bg-quaternaryColor transition-all;
 
     &:disabled {
-      @apply bg-tertiaryColor hover:bg-tertiaryColor dark:bg-tertiaryColor dark:hover:bg-tertiaryColor cursor-not-allowed;
+      @apply bg-tertiaryColor hover:bg-tertiaryColor cursor-not-allowed;
     }
   }
 }

@@ -4,18 +4,18 @@
 
 .custom-checkbox {
   &__correct {
-    @apply text-textColor dark:text-textColor;
+    @apply text-textColor;
   }
 
   &__invalid {
-    @apply text-errorIconColor dark:text-errorIconColor;
+    @apply text-errorIconColor;
   }
 
   &__correct-input {
-    @apply border-primaryColor dark:border-primaryColor;
+    @apply border-primaryColor;
   }
 
   &__invalid-input {
-    @apply border-errorIconColor dark:border-errorIconColor;
+    @apply border-errorIconColor;
   }
 }
