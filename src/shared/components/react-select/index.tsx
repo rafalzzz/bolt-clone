@@ -1,4 +1,4 @@
-import { Path, PathValue, UseFormSetValue } from 'react-hook-form';
+import type { Path, PathValue, UseFormSetValue } from 'react-hook-form';
 import Select, {
   ControlProps,
   GroupHeadingProps,

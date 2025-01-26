@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import Navbar from '@/features/navbar/components/navbar';
 

@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { FC } from 'react';
-
-import './nav-button.scss';
+import type { FC } from 'react';
 
 type TNavButton = Readonly<{
   href: string;
@@ -9,7 +7,10 @@ type TNavButton = Readonly<{
 }>;
 
 const NavButton: FC<TNavButton> = ({ href, text }) => (
-  <Link href={href} className='nav-button default-button-colors'>
+  <Link
+    href={href}
+    className='default-button-colors px-4 py-2 border-2 text-sm font-light rounded-full font-sans'
+  >
     {text}
   </Link>
 );

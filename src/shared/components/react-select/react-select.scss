@@ -3,12 +3,10 @@
 @use 'tailwindcss/utilities';
 
 .react-select {
-  @apply block w-full rounded-lg border-none outline-none bg-backgroundColor;
-  @apply font-normal text-base mt-3 mx-0 transition-all;
+  @apply block w-full rounded-lg border-none outline-none bg-backgroundColor font-normal text-base mt-3 mx-0 transition-all;
 
   .correct-react-select__control {
-    @apply outline-none border-none bg-inputBackgroundColor transition-all;
-    padding: 10px 0;
+    @apply outline-none border-none bg-inputBackgroundColor transition-all py-2.5 px-0;
   }
 
   .correct-react-select__indicator-separator {
@@ -34,9 +32,7 @@
   }
 
   .invalid-react-select__control {
-    @apply outline-none border-none bg-inputBackgroundColor;
-    @apply border-none shadow-none ring-1 ring-errorIconColor transition-all;
-    padding: 10px 0;
+    @apply outline-none border-none bg-inputBackgroundColor border-none shadow-none ring-1 ring-errorIconColor transition-all py-2.5 px-0;
   }
 
   .invalid-react-select__indicator-separator {

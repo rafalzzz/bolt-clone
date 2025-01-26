@@ -1,10 +1,8 @@
-import { FC, PropsWithChildren } from 'react';
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
-import './content-wrapper.scss';
-
-const ContentWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <main className='content-wrapper'>
-    <div className='content-wrapper__container'>{children}</div>
+const ContentWrapper: TFCWithChildren = ({ children }) => (
+  <main className='flex flex-wrap items-center justify-center mx-auto w-full p-0 max-w-5xl py-3'>
+    <div className='h-auto w-full flex p-0 lg:flex-row flex-col'>{children}</div>
   </main>
 );
 

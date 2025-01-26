@@ -3,10 +3,8 @@ import LanguageSwitcher from '@/features/navbar/components/language-switcher';
 import RegisterButton from '@/features/navbar/components/register-button';
 import ThemeButton from '@/features/navbar/components/theme-button';
 
-import './right-navbar-menu.scss';
-
 const RightNavbarMenu = () => (
-  <ul className='right-navbar-menu'>
+  <ul className='flex m-0 p-0'>
     <li className='mr-2'>
       <LanguageSwitcher />
     </li>

@@ -1,4 +1,4 @@
-import { type UseFormSetValue } from 'react-hook-form';
+import type { UseFormSetValue } from 'react-hook-form';
 
 import { drawDetections } from '@/features/driver/utils/start-facial-recognition';
 
@@ -6,7 +6,7 @@ import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/dri
 
 import { EDriverCompleteRegisterFormKeys } from '@/features/driver/enums/driver-complete-register-form-keys';
 
-import { type TDetections } from '@/features/driver/types';
+import { TDetections } from '@/features/driver/types';
 
 type THandleCanvasDrawing = {
   video: HTMLVideoElement;

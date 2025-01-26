@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl';
-import { FC, PropsWithChildren, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import useCustomModal from '@/shared/hooks/use-custom-modal';
 
-import './custom-modal.scss';
+import { TFCWithChildren } from '@/shared/types/fc-with-children';
 
 type TCustomModal = {
   title: ReactNode;
@@ -14,7 +14,7 @@ type TCustomModal = {
   cancelButtonText?: string;
 };
 
-const CustomModal: FC<PropsWithChildren<TCustomModal>> = ({
+const CustomModal: TFCWithChildren<TCustomModal> = ({
   title,
   isVisible,
   children,
@@ -27,11 +27,16 @@ const CustomModal: FC<PropsWithChildren<TCustomModal>> = ({
   const { modalRef } = useCustomModal({ isVisible });
 
   return (
-    <div className='custom-modal__background ' ref={modalRef}>
-      <div className='custom-modal__wrapper'>
-        <div className='custom-modal__content'>
-          <div className='custom-modal__header'>
-            <h3 className='custom-modal__header__title'>{title}</h3>
+    <div
+      ref={modalRef}
+      className='fixed top-0 right-0 left-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full duration-150 ease-in-out bg-modalBackgroundColor dark:bg-darkModalBackgroundColor transition'
+    >
+      <div className='relative p-4 w-full max-w-3xl max-h-full'>
+        <div className='relative bg-backgroundColor rounded-lg shadow dark:bg-darkBackgroundColor'>
+          <div className='flex items-center justify-between p-4 md:p-5 rounded-t border-b border-primaryColor dark:border-darkPrimaryColor'>
+            <h3 className='text-xl font-semibold text-textColor dark:text-darkTextColor'>
+              {title}
+            </h3>
             <button type='button' className='custom-close-button' onClick={onCancel}>
               <svg className='w-3 h-3' fill='none' viewBox='0 0 14 14'>
                 <path
@@ -44,19 +49,21 @@ const CustomModal: FC<PropsWithChildren<TCustomModal>> = ({
               </svg>
             </button>
           </div>
-          <div className='custom-modal__body'>{children}</div>
-          <div className='custom-modal__footer'>
+          <div className='p-4 md:p-5 space-y-4 text-textColor dark:text-darkTextColor'>
+            {children}
+          </div>
+          <div className='flex items-center justify-end p-4 md:p-5 rounded-b border-t border-primaryColor dark:border-darkPrimaryColor'>
             <button
-              data-modal-hide='default-modal'
               type='button'
-              className='custom-modal__footer__cancel-button default-cancel-button-colors'
+              data-modal-hide='default-modal'
+              className='py-2.5 px-5 text-sm font-medium rounded-lg focus:z-10 default-cancel-button-colors'
               onClick={onCancel}
             >
               {cancelButtonText ?? t('cancelButtonText')}
             </button>
             <button
               type='button'
-              className='custom-modal__footer__accept-button default-button-colors'
+              className='ms-3 font-medium rounded-lg text-sm px-5 py-2.5 text-center default-button-colors'
               onClick={onOk}
             >
               {okButtonText ?? t('okButtonText')}

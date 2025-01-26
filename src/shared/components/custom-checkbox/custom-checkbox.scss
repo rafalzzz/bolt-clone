@@ -3,8 +3,6 @@
 @use 'tailwindcss/utilities';
 
 .custom-checkbox {
-  @apply flex text-xs text-justify mt-3 transition-all;
-
   &__correct {
     @apply text-textColor dark:text-darkTextColor;
   }
@@ -13,31 +11,11 @@
     @apply text-errorIconColor dark:text-darkErrorIconColor;
   }
 
-  &__container {
-    @apply inline-flex items-center;
-  }
-
-  &__input {
-    @apply before:bg-primaryColor;
-    @apply checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor;
-    @apply dark:checked:border-darkPrimaryColor dark:before:bg-darkPrimaryColor;
-    @apply dark:checked:bg-darkPrimaryColor dark:checked:before:bg-darkPrimaryColor;
-  }
-
   &__correct-input {
     @apply border-primaryColor dark:border-darkPrimaryColor;
   }
 
   &__invalid-input {
     @apply border-errorIconColor dark:border-darkErrorIconColor;
-  }
-
-  &__inner-container {
-    @apply relative flex cursor-pointer items-center rounded-full p-0 mr-3;
-  }
-
-  &__svg-container {
-    @apply absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
-    @apply text-buttonTextColor dark:text-darkButtonTextColor opacity-0 peer-checked:opacity-100;
   }
 }

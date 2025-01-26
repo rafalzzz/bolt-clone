@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 import { host } from '@/config';
 import { Locale, getPathname, routing } from '@/i18n/routing';
