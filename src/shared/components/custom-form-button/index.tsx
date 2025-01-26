@@ -17,7 +17,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
 }) => (
   <button
     className={
-      'default-button-colors w-full p-4 flex justify-center font-semibold shadow-lg rounded-full tracking-wide cursor-pointer font-semibold ' +
+      'w-full p-4 flex justify-center font-semibold shadow-lg rounded-full tracking-wide cursor-pointer font-semibold primary-button ' +
       additionalClassNames
     }
     aria-label={text}

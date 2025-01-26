@@ -1,6 +1,7 @@
+import type { FC } from 'react';
 import { ToastContentProps } from 'react-toastify';
 
-import CloseSvg from '@/shared/svg/close-svg';
+import CustomCloseButton from '@/shared/components/custom-close-button';
 
 export const enum EIconColor {
   GREEN = 'green-500',
@@ -15,10 +16,10 @@ type TCustomNotification = ToastContentProps<{
 
 export const NOTIFICATION_TIMEOUT = 5000;
 
-const CustomNotifiacation = ({
+const CustomNotifiacation: FC<TCustomNotification> = ({
   closeToast,
   data: { icon, iconColor, text },
-}: TCustomNotification) => (
+}) => (
   <div
     role='alert'
     className='flex items-center w-full p-4 rounded-lg text-textColor bg-backgroundColor ring-1 ring-primaryColor transition-all'
@@ -29,9 +30,7 @@ const CustomNotifiacation = ({
       {icon}
     </div>
     <div className='ms-3 text-sm font-normal tracking-wide'>{text}</div>
-    <button type='button' className='custom-close-button' aria-label='Close' onClick={closeToast}>
-      <CloseSvg />
-    </button>
+    <CustomCloseButton onClick={closeToast} />
   </div>
 );
 

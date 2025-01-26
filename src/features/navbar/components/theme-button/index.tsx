@@ -27,7 +27,7 @@ const ThemeButton = () => {
   return (
     <button
       type='button'
-      className='default-button default-button-colors h-11 w-11 p-2 rounded-md'
+      className='h-11 w-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       aria-label='Theme button'
     >

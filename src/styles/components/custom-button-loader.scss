@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .custom-button-loader {
-    @apply absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px];
-  }
-}

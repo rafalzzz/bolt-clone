@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .default-button-colors {
+  .primary-button {
     @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-primaryColor hover:bg-secondaryColor transition-all;
 
     &:disabled {
