@@ -1,6 +1,4 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-
-import ContentWrapper from '@/shared/components/content-wrapper';
+import { getTranslations } from 'next-intl/server';
 
 import { TFCWithChildren } from '@/shared/types/fc-with-children';
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
@@ -20,12 +18,6 @@ export async function generateMetadata({ params }: TLayoutParamsPromise) {
   };
 }
 
-const DriverPageLayout: TFCWithChildren<TLayoutParamsPromise> = async ({ children, params }) => {
-  const { locale } = await params;
-
-  setRequestLocale(locale);
-
-  return <ContentWrapper>{children}</ContentWrapper>;
-};
+const DriverPageLayout: TFCWithChildren = ({ children }) => children;
 
 export default DriverPageLayout;
