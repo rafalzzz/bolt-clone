@@ -1,4 +1,5 @@
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
+import type { MutableRefObject } from 'react';
 
 import { TDetections } from '@/features/driver/types';
 
@@ -12,7 +13,7 @@ type TStartFacialRecognition = {
   videoWidth: number;
   videoHeight: number;
   canvas: HTMLCanvasElement | null;
-  intervalRef: React.MutableRefObject<NodeJS.Timeout | null>;
+  intervalRef: MutableRefObject<NodeJS.Timeout | null>;
 };
 
 const RECOGNIZE_FACE_INTERVAL = 200;
