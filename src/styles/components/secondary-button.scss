@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .secondary-button {
+    @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-tertiaryColor hover:bg-quaternaryColor transition-all;
+
+    &:disabled {
+      @apply bg-tertiaryColor hover:bg-tertiaryColor cursor-not-allowed;
+    }
+  }
+}

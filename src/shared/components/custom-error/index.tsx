@@ -10,7 +10,7 @@ const CustomError: FC<TCustomError> = ({ error }) => {
 
   return (
     !!error && (
-      <p className='mt-1 text-sm font-normal tracking-wide text-errorIconColor dark:text-darkErrorIconColor transition'>
+      <p className='mt-1 text-sm font-normal tracking-wide text-errorIconColor transition'>
         {t(error)}
       </p>
     )
