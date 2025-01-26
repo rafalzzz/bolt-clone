@@ -17,7 +17,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
 }) => (
   <button
     className={
-      'default-button-colors w-full p-4 flex justify-center font-semibold shadow-lg rounded-full tracking-wide cursor-pointer font-semibold ' +
+      'w-full p-4 flex justify-center font-semibold shadow-lg rounded-full tracking-wide cursor-pointer font-semibold primary-button ' +
       additionalClassNames
     }
     aria-label={text}
@@ -25,7 +25,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
   >
     {text}
     {isLoading && (
-      <LoaderSvg className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor dark:text-darkSecondaryColor dark:fill-darkButtonTextColor right-[50px]' />
+      <LoaderSvg className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px]' />
     )}
   </button>
 );

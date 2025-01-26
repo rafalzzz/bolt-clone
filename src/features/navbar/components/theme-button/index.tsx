@@ -2,27 +2,32 @@
 
 import { getCookieValue, setCookieValue } from '@/shared/utils/client-side/cookies';
 
-import { DARK_MODE } from '@/shared/consts/cookie-names';
-import { DARK } from '@/shared/consts/theme-class-names';
+import { THEME } from '@/shared/consts/cookie-names';
 
-import { EDarkMode } from '@/shared/enums/cookie-values';
+import { ETheme } from '@/shared/enums/theme';
 
 const ThemeButton = () => {
   const handleOnClick = () => {
     const htmlElement = document.documentElement;
-    const isDarkModeEnabled = getCookieValue(DARK_MODE) === EDarkMode.ENABLED;
+    const prevTheme = getCookieValue(THEME);
+    const isDarkMode = prevTheme === ETheme.DARK;
 
-    const classListMethod = isDarkModeEnabled ? 'remove' : 'add';
-    htmlElement.classList[classListMethod](DARK);
+    if (prevTheme) {
+      htmlElement.classList.remove(prevTheme);
+    }
 
-    const updatedCookieValue = !isDarkModeEnabled;
-    setCookieValue({ name: DARK_MODE, value: updatedCookieValue.toString() });
+    const newTheme = isDarkMode ? ETheme.LIGHT : ETheme.DARK;
+    htmlElement.classList.add(newTheme);
+
+    console.log({ newTheme });
+
+    setCookieValue({ name: THEME, value: newTheme });
   };
 
   return (
     <button
       type='button'
-      className='default-button default-button-colors h-11 w-11 p-2 rounded-md'
+      className='h-11 w-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       aria-label='Theme button'
     >

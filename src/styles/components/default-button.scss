@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .default-button {
-    @apply flex items-center text-sm font-bold;
-  }
-}

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
+import CustomDropdownMenuItem from '@/shared/components/custom-dropdown-menu-item';
 import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
@@ -27,6 +28,11 @@ const RegisterButton = () => {
 
   const dropdownButtonOnClick = (url: string) => router.push(addParamsToUrl(url, { locale }));
 
+  const onDropdownMenuItemClick = (href: string) => {
+    dropdownButtonOnClick(href);
+    hideDropdownMenu();
+  };
+
   useOnClickOutside(ref, hideDropdownMenu);
 
   return (
@@ -34,25 +40,17 @@ const RegisterButton = () => {
       ref={ref}
       text={t('register')}
       isOpen={isOpen}
-      buttonClassName='default-button default-button-colors h-11 p-2 rounded-md'
+      buttonClassName='h-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       ariaLabel={t('register')}
     >
       <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
           <li key={translation}>
-            <button
-              type='button'
-              role='menu-item'
-              className='custom-dropdown-menu-item'
-              aria-label={t(translation)}
-              onClick={() => {
-                dropdownButtonOnClick(href);
-                hideDropdownMenu();
-              }}
-            >
-              {t(translation)}
-            </button>
+            <CustomDropdownMenuItem
+              text={t(translation)}
+              onClick={() => onDropdownMenuItemClick(href)}
+            />
           </li>
         ))}
       </ul>

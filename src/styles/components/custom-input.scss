@@ -15,27 +15,27 @@
     }
 
     .custom-input__input-prefix {
-      @apply flex flex-row items-center justify-center rounded-md p-4 mr-4 text-textColor dark:text-darkTextColor transition;
+      @apply flex flex-row items-center justify-center rounded-md p-4 mr-4 text-textColor transition;
     }
 
     .custom-input__input {
-      @apply bg-inputBackgroundColor outline-none mt-3 font-normal text-base transition focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor dark:bg-darkInputBackgroundColor dark:focus:bg-darkInputBackgroundColor dark:ring-1 dark:ring-darkTertiaryColor dark:placeholder-darkInputPlaceholderColor;
+      @apply bg-inputBackgroundColor outline-none mt-3 font-normal text-base transition focus:bg-focusInputBackgroundColor placeholder-inputPlaceholderColor dark:focus:bg-inputBackgroundColor dark:ring-1 dark:ring-tertiaryColor dark:placeholder-inputPlaceholderColor;
     }
 
     .custom-input__error-icon {
-      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-errorIconColor dark:text-darkErrorIconColor transition-all;
+      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-errorIconColor transition-all;
     }
 
     .custom-input__button {
-      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-textColor dark:text-darkTextColor transition-all;
+      @apply absolute px-1 py-2 flex flex-row items-center justify-center right-8 translate-y-[50%] bg-transparent text-textColor transition-all;
     }
 
     .custom-input__correct-input {
-      @apply p-4 focus:ring-2 focus:ring-secondaryColor dark:focus:ring-darkSecondaryColor dark:focus:ring-2 dark:focus:ring-darkSecondaryColor;
+      @apply p-4 focus:ring-2 focus:ring-secondaryColor;
     }
 
     .custom-input__invalid-input {
-      @apply py-4 pl-4 pr-12 ring-2 ring-errorIconColor dark:ring-2 dark:ring-darkErrorIconColor;
+      @apply py-4 pl-4 pr-12 ring-2 ring-errorIconColor;
     }
 
     input {

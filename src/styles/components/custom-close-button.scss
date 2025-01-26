@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .custom-close-button {
-    @apply ms-auto -mx-1.5 -my-1.5 rounded-lg inline-flex justify-center items-center focus:ring-2 p-1.5 h-8 w-8 text-textColor bg-backgroundColor hover:bg-quinaryColor dark:text-darkTextColor dark:bg-darkBackgroundColor dark:hover:bg-darkQuinaryColor transition;
-  }
-}
