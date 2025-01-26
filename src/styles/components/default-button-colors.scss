@@ -4,10 +4,10 @@
 
 @layer components {
   .default-button-colors {
-    @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-primaryColor hover:bg-secondaryColor dark:bg-darkPrimaryColor dark:hover:bg-darkSecondaryColor dark:text-darkButtonTextColor transition-all;
+    @apply border-none outline-none focus:outline-none active:outline-none text-buttonTextColor bg-primaryColor hover:bg-secondaryColor dark:bg-primaryColor dark:hover:bg-secondaryColor dark:text-buttonTextColor transition-all;
 
     &:disabled {
-      @apply bg-primaryColor hover:bg-primaryColor dark:bg-darkPrimaryColor dark:hover:bg-darkPrimaryColor cursor-not-allowed;
+      @apply bg-primaryColor hover:bg-primaryColor dark:bg-primaryColor dark:hover:bg-primaryColor cursor-not-allowed;
     }
   }
 }

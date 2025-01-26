@@ -15,7 +15,7 @@
 
   .correct-react-select__control--is-focused,
   .correct-react-select__control--menu-is-open {
-    @apply border-none shadow-none ring-1 ring-darkPrimaryColor transition-all;
+    @apply border-none shadow-none ring-1 ring-primaryColor transition-all;
   }
 
   .correct-react-select__option {
@@ -64,53 +64,53 @@
 }
 
 .dark .react-select {
-  @apply bg-darkInputBackgroundColor;
+  @apply bg-inputBackgroundColor;
 
   .correct-react-select__control {
-    @apply bg-darkInputBackgroundColor ring-1 ring-darkTertiaryColor;
+    @apply bg-inputBackgroundColor ring-1 ring-tertiaryColor;
   }
 
   .correct-react-select__control--is-focused,
   .correct-react-select__control--is-active,
   .correct-react-select__control--menu-is-open {
-    @apply ring-1 ring-darkSecondaryColor transition-all;
+    @apply ring-1 ring-secondaryColor transition-all;
   }
 
   .correct-react-select__menu {
-    @apply bg-darkInputBackgroundColor;
+    @apply bg-inputBackgroundColor;
   }
 
   .correct-react-select__option {
-    @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
+    @apply bg-inputBackgroundColor text-buttonTextColor;
   }
 
   .correct-react-select__single-value {
-    @apply text-darkTextColor;
+    @apply text-textColor;
   }
 
   .correct-react-select__option--is-focused,
   .correct-react-select__option:hover {
-    @apply bg-secondaryColor dark:hover:text-darkTextColor transition-all;
+    @apply bg-secondaryColor dark:hover:text-textColor transition-all;
   }
 
   .invalid-react-select__control {
-    @apply bg-darkInputBackgroundColor ring-1 ring-darkErrorIconColor;
+    @apply bg-inputBackgroundColor ring-1 ring-errorIconColor;
   }
 
   .invalid-react-select__menu {
-    @apply bg-darkInputBackgroundColor;
+    @apply bg-inputBackgroundColor;
   }
 
   .invalid-react-select__option {
-    @apply bg-darkInputBackgroundColor text-darkButtonTextColor;
+    @apply bg-inputBackgroundColor text-buttonTextColor;
   }
 
   .invalid-react-select__single-value {
-    @apply text-darkTextColor;
+    @apply text-textColor;
   }
 
   .invalid-react-select__option--is-focused,
   .invalid-react-select__option:hover {
-    @apply bg-secondaryColor dark:hover:text-darkTextColor;
+    @apply bg-secondaryColor dark:hover:text-textColor;
   }
 }

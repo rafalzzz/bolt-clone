@@ -30,11 +30,11 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
         <div className='relative flex cursor-pointer items-center rounded-full p-0 mr-3'>
           <input
             type='checkbox'
-            className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all before:bg-primaryColor checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor dark:checked:border-darkPrimaryColor dark:before:bg-darkPrimaryColor dark:checked:bg-darkPrimaryColor dark:checked:before:bg-darkPrimaryColor custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
+            className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all before:bg-primaryColor checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor dark:checked:border-primaryColor dark:before:bg-primaryColor dark:checked:bg-primaryColor dark:checked:before:bg-primaryColor custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
             {...checkboxProps}
             {...register(inputKey)}
           />
-          <div className='absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-buttonTextColor dark:text-darkButtonTextColor opacity-0 peer-checked:opacity-100'>
+          <div className='absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-buttonTextColor dark:text-buttonTextColor opacity-0 peer-checked:opacity-100'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-3.5 w-3.5'

@@ -5,7 +5,7 @@ type TCustomInputLabel = {
 };
 
 const CustomInputLabel: TFCWithChildren<TCustomInputLabel> = ({ label, children }) => (
-  <label className='text-sm font-bold tracking-wide text-textColor dark:text-darkTextColor transition-all'>
+  <label className='text-sm font-bold tracking-wide text-textColor dark:text-textColor transition-all'>
     {label}
     <>{children}</>
   </label>

@@ -6,10 +6,9 @@ import Navbar from '@/features/navbar/components/navbar';
 
 import getServerCookie from '@/shared/utils/server-side/cookies';
 
-import { DARK_MODE } from '@/shared/consts/cookie-names';
-import { DARK } from '@/shared/consts/theme-class-names';
+import { THEME } from '@/shared/consts/cookie-names';
 
-import { EDarkMode } from '@/shared/enums/cookie-values';
+import { ETheme } from '@/shared/enums/theme';
 
 type TBaseLayout = {
   children: ReactNode;
@@ -19,12 +18,14 @@ type TBaseLayout = {
 const BaseLayout: FC<TBaseLayout> = async ({ locale, children }) => {
   const messages = await getMessages();
 
-  const darkModeCookie = await getServerCookie(DARK_MODE);
-  const isDarkModeEnabled = darkModeCookie?.value === EDarkMode.ENABLED;
+  const themeCookie = await getServerCookie(THEME);
+  const themeValue = themeCookie?.value ?? '';
+  const isThemeDefined = Object.keys(ETheme).includes(themeValue);
+  const themeClassName = isThemeDefined ? themeValue : ETheme.LIGHT;
 
   return (
-    <html className={`h-full ${isDarkModeEnabled ? DARK : undefined}`} lang={locale}>
-      <body className='antialiased bg-backgroundColor dark:bg-darkBackgroundColor transition'>
+    <html className={`h-full ${themeClassName}`} lang={locale}>
+      <body className='antialiased bg-backgroundColor dark:bg-backgroundColor transition'>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

@@ -25,7 +25,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
   >
     {text}
     {isLoading && (
-      <LoaderSvg className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor dark:text-darkSecondaryColor dark:fill-darkButtonTextColor right-[50px]' />
+      <LoaderSvg className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor dark:text-secondaryColor dark:fill-buttonTextColor right-[50px]' />
     )}
   </button>
 );

@@ -48,7 +48,7 @@ const DropdownButton: TFCWithChildren<TDropdownButton> = ({
     {isOpen && (
       <div
         x-show='open'
-        className='absolute right-0 text-buttonTextColor bg-backgroundColor border border-primaryColor dark:border-darkPrimaryColor px-0 py-2 mt-2 text-sm rounded-lg shadow-xl min-w-max dark:bg-darkBackgroundColor'
+        className='absolute right-0 text-buttonTextColor bg-backgroundColor border border-primaryColor dark:border-primaryColor px-0 py-2 mt-2 text-sm rounded-lg shadow-xl min-w-max dark:bg-backgroundColor'
       >
         {children}
       </div>
