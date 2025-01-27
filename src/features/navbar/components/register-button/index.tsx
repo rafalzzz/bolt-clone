@@ -45,7 +45,7 @@ const RegisterButton = () => {
       buttonClassName='h-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       ariaLabel={t('register')}
-      buttonTestId={REGISTER_BUTTON}
+      testId={REGISTER_BUTTON}
     >
       <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (

@@ -18,7 +18,11 @@ const config: NextConfig = {
     ];
   },
   compiler: {
-    reactRemoveProperties: { properties: ['^data-testid$'] },
+    ...(process.env.NODE_ENV === 'production'
+      ? {
+          reactRemoveProperties: { properties: ['^data-testid$'] },
+        }
+      : {}),
   },
 };
 
