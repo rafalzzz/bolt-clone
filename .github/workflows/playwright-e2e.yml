@@ -19,35 +19,18 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install --force
+        run: npm i --force
 
-      - name: Install Playwright browsers
+      - name: Install playwright browsers
         run: npx playwright install
 
-      - name: Start application server
-        run: npm run dev &
-        env:
-          CI: true
-
-      - name: Wait for the server to be ready
-        run: |
-          timeout=60 # wait 1 minute
-          while ! curl --output /dev/null --silent --head --fail http://localhost:4000; do
-            timeout=$((timeout - 1))
-            if [ "$timeout" -le 0 ]; then
-              echo "Server did not start in time"
-              exit 1
-            fi
-            sleep 1
-          done
-
       - name: Run playwright tests
-        run: npx playwright test
+        run: npm run test:e2e
 
       - name: Upload playwright report
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: playwright-report
-          path: tests/e2e/reports/
+          path: tests/e2e/report/
           retention-days: 30
