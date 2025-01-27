@@ -12,6 +12,7 @@ type TDropdownButton = {
   ref?: RefObject<HTMLDivElement>;
   showArrow?: boolean;
   ariaLabel?: string;
+  testId?: string;
 };
 
 const DropdownButton: TFCWithChildren<TDropdownButton> = ({
@@ -23,10 +24,17 @@ const DropdownButton: TFCWithChildren<TDropdownButton> = ({
   ref,
   showArrow = false,
   ariaLabel,
+  testId,
 }) => (
   <div className='relative inline-block' ref={ref}>
     <div>
-      <button type='button' className={buttonClassName} onClick={onClick} aria-label={ariaLabel}>
+      <button
+        type='button'
+        className={buttonClassName}
+        onClick={onClick}
+        aria-label={ariaLabel}
+        data-testid={testId}
+      >
         {text}
         {showArrow && (
           <svg

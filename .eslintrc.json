@@ -49,6 +49,21 @@
             "position": "before"
           },
           {
+            "pattern": "**/config/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "**/page-models/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@/test-ids/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "**/enums/**",
             "group": "internal",
             "position": "before"

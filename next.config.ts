@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 import { NextConfig } from 'next';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -17,6 +16,13 @@ const config: NextConfig = {
         ],
       },
     ];
+  },
+  compiler: {
+    ...(process.env.NODE_ENV === 'production'
+      ? {
+          reactRemoveProperties: { properties: ['^data-testid$'] },
+        }
+      : {}),
   },
 };
 
