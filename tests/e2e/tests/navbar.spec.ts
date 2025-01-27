@@ -15,9 +15,7 @@ test.beforeEach('Visit app', async ({ page }) => {
   await landingPage.visit();
 });
 
-test('Should change language', async ({ page }) => {
-  await page.waitForLoadState('domcontentloaded');
-
+test('Should change language', async () => {
   await navbar.clickLanguageBtn();
   await navbar.selectLanguage('PL');
   await navbar.assertHeaderButtons({
