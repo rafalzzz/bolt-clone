@@ -13,6 +13,8 @@ import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
+import { REGISTER_BUTTON } from '@/test-ids/navbar';
+
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,6 +45,7 @@ const RegisterButton = () => {
       buttonClassName='h-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       ariaLabel={t('register')}
+      buttonTestId={REGISTER_BUTTON}
     >
       <ul role='none'>
         {REGISTER_BUTTON_MENU.map(({ translation, href }) => (

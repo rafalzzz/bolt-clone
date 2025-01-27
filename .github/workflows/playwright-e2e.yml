@@ -1,0 +1,36 @@
+name: Playwright E2E tests
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js 20.15.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm i --force
+
+      - name: Install playwright browsers
+        run: npx playwright install
+
+      - name: Run playwright tests
+        run: npx playwright test
+
+      - name: Upload playwright report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: e2e-test-files/report/
+          retention-days: 30

@@ -14,6 +14,8 @@ import { setCookieValue } from '@/shared/utils/client-side/cookies';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
 
+import { LANGUAGE_BUTTON, LANGUAGE_ITEM } from '@/test-ids/navbar';
+
 const LOCALE_PARAM_INDEX = 1;
 
 const LanguageSwitcher = () => {
@@ -53,7 +55,8 @@ const LanguageSwitcher = () => {
       isOpen={isOpen}
       buttonClassName='h-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={onClick}
-      ariaLabel='language-switcher'
+      ariaLabel='Language switcher'
+      testId={LANGUAGE_BUTTON}
     >
       <ul role='none'>
         {LANGUAGES.map((lang) => (
@@ -61,6 +64,7 @@ const LanguageSwitcher = () => {
             <CustomDropdownMenuItem
               text={lang.toUpperCase()}
               onClick={() => onDropdownMenuItemClick(lang)}
+              testId={LANGUAGE_ITEM}
             />
           </li>
         ))}

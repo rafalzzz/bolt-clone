@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./",
+    "types": ["@playwright/test", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/config/*": ["./e2e/config/*"],
+      "@/page-models/*": ["./e2e/page-models/*"],
+      "@/tests/*": ["./e2e/tests/*"],
+      "@/test-ids/*": ["./utils/test-ids/*"]
+    }
+  },
+  "include": ["e2e/page-models/**/*.ts", "e2e/tests/**/*.ts", "e2e/config/playwright.config.ts"]
+}
