@@ -3,7 +3,7 @@ import { expect, Page } from '@playwright/test';
 import {
   NAVBAR,
   LANGUAGE_BUTTON,
-  LANGUAGE_ITEM,
+  LANGUAGE_BUTTON_ITEM,
   THEME_BUTTON,
   REGISTER_BUTTON,
   REGISTER_BUTTON_ITEM,
@@ -34,7 +34,10 @@ export class Navbar {
 
   async changeLanguage(language: string) {
     await this.clickButtonByTestId({ testId: LANGUAGE_BUTTON });
-    await this.clickButtonByTestId({ testId: LANGUAGE_ITEM, buttonText: language.toUpperCase() });
+    await this.clickButtonByTestId({
+      testId: LANGUAGE_BUTTON_ITEM,
+      buttonText: language.toUpperCase(),
+    });
 
     return this;
   }
