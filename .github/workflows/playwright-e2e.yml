@@ -2,6 +2,12 @@ name: Playwright E2E tests
 
 on: [pull_request, workflow_dispatch]
 
+env:
+  RESEND_API_KEY: 're_123'
+  REGISTER_DRIVER_TOKEN_SECRET_KEY: 'registerDriverTokenSecretKey'
+  DOMAIN_URL: 'localhost:3000'
+  ENVIRONMENT: 'development'
+
 jobs:
   build:
     runs-on: ubuntu-latest
