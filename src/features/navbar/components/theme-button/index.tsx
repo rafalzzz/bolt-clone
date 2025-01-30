@@ -1,27 +1,29 @@
 'use client';
 
-import { getCookieValue, setCookieValue } from '@/shared/utils/client-side/cookies';
+import { setCookieValue } from '@/shared/utils/client-side/cookies';
 
 import { THEME } from '@/shared/consts/cookie-names';
+
+import { THEME_BUTTON } from '@/test-ids/navbar';
 
 import { ETheme } from '@/shared/enums/theme';
 
 const ThemeButton = () => {
   const handleOnClick = () => {
     const htmlElement = document.documentElement;
-    const prevTheme = getCookieValue(THEME);
-    const isDarkMode = prevTheme === ETheme.DARK;
+    const htmlClassList = htmlElement.classList;
+    const themeClassName = htmlClassList[1];
 
-    if (prevTheme) {
-      htmlElement.classList.remove(prevTheme);
-    }
-
+    const isDarkMode = themeClassName === ETheme.DARK;
     const newTheme = isDarkMode ? ETheme.LIGHT : ETheme.DARK;
-    htmlElement.classList.add(newTheme);
-
-    console.log({ newTheme });
 
     setCookieValue({ name: THEME, value: newTheme });
+
+    if (themeClassName) {
+      return htmlClassList.replace(themeClassName, newTheme);
+    }
+
+    htmlClassList.add(newTheme);
   };
 
   return (
@@ -30,6 +32,7 @@ const ThemeButton = () => {
       className='h-11 w-11 p-2 rounded-md flex items-center text-sm font-bold primary-button'
       onClick={handleOnClick}
       aria-label='Theme button'
+      data-testid={THEME_BUTTON}
     >
       <svg className='block dark:hidden' fill='currentColor' viewBox='0 0 20 20'>
         <path d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z'></path>

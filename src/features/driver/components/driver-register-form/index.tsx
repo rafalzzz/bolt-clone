@@ -15,6 +15,8 @@ import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-f
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
+import { DRIVER_PAGE_FORM } from '@/test-ids/driver-page';
+
 import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
 
 const DriverRegisterForm = () => {
@@ -32,7 +34,7 @@ const DriverRegisterForm = () => {
   return (
     <>
       <ToastContainer />
-      <CustomFormWrapper title={t('header')}>
+      <CustomFormWrapper title={t('header')} testId={DRIVER_PAGE_FORM}>
         <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             label='Email'

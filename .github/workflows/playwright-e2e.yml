@@ -2,6 +2,12 @@ name: Playwright E2E tests
 
 on: [pull_request, workflow_dispatch]
 
+env:
+  RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+  REGISTER_DRIVER_TOKEN_SECRET_KEY: ${{ secrets.REGISTER_DRIVER_TOKEN_SECRET_KEY }}
+  DOMAIN_URL: 'localhost:3000'
+  ENVIRONMENT: 'development'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +34,7 @@ jobs:
         run: npm run test:e2e
 
       - name: Upload playwright report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
