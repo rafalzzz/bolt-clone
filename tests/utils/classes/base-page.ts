@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 export class BasePage {
   readonly page: Page;
@@ -16,5 +16,17 @@ export class BasePage {
     if (currentURL !== this.url) {
       throw new Error(`Expected URL to be "${this.url}", but got "${currentURL}"`);
     }
+  }
+
+  private getElementByTestId(testId: string) {
+    return this.page.getByTestId(testId);
+  }
+
+  async assertAuthPageVisible(pageElementsIds: string[]) {
+    for (const testId of pageElementsIds) {
+      await expect(this.getElementByTestId(testId)).toBeVisible();
+    }
+
+    return this;
   }
 }

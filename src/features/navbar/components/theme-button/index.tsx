@@ -17,13 +17,13 @@ const ThemeButton = () => {
     const isDarkMode = themeClassName === ETheme.DARK;
     const newTheme = isDarkMode ? ETheme.LIGHT : ETheme.DARK;
 
+    setCookieValue({ name: THEME, value: newTheme });
+
     if (themeClassName) {
-      htmlClassList.replace(themeClassName, newTheme);
-    } else {
-      htmlClassList.add(newTheme);
+      return htmlClassList.replace(themeClassName, newTheme);
     }
 
-    setCookieValue({ name: THEME, value: newTheme });
+    htmlClassList.add(newTheme);
   };
 
   return (

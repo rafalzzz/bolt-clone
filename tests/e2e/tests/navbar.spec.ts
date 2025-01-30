@@ -5,6 +5,7 @@ import { DriverPage } from '@/page-models/authentication/driver-page';
 import { LandingPage } from '@/page-models/landing-page';
 import { Navbar } from '@/page-models/navbar';
 
+import { DRIVER_PAGE_DESCRIPTION, DRIVER_PAGE_FORM } from '@/test-ids/driver-page';
 import { ABOUT_BUTTON, CONTACT_BUTTON, LANGUAGE_BUTTON, REGISTER_BUTTON } from '@/test-ids/navbar';
 
 import { ETheme } from '@/enums/theme';
@@ -47,9 +48,11 @@ test('Should verify sign up redirect', async ({ page }) => {
   const driverAuth = new DriverPage(page);
   const clientAuth = new ClientPage(page);
 
+  const driverPageElements = [DRIVER_PAGE_DESCRIPTION, DRIVER_PAGE_FORM];
+
   await navbar.clickSignButton('Become a driver');
   await driverAuth.assertUrl();
-  await driverAuth.assertAuthPageVisible();
+  await driverAuth.assertAuthPageVisible(driverPageElements);
 
   await navbar.clickSignButton('Become a client');
   await clientAuth.assertUrl();

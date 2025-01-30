@@ -35,7 +35,7 @@ export const drawDetections = (canvas: HTMLCanvasElement, detections: TDetection
   if (!context) return;
 
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.globalAlpha = 0;
+  /* context.globalAlpha = 0; */
 
   faceapi.draw.drawDetections(canvas, detections);
   faceapi.draw.drawFaceLandmarks(canvas, detections);
