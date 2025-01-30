@@ -13,7 +13,7 @@ import addParamsToUrl from '@/shared/utils/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
-import { REGISTER_BUTTON } from '@/test-ids/navbar';
+import { REGISTER_BUTTON, REGISTER_BUTTON_ITEM } from '@/test-ids/navbar';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +53,7 @@ const RegisterButton = () => {
             <CustomDropdownMenuItem
               text={t(translation)}
               onClick={() => onDropdownMenuItemClick(href)}
+              testId={REGISTER_BUTTON_ITEM}
             />
           </li>
         ))}

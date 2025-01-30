@@ -29,6 +29,11 @@
             "position": "before"
           },
           {
+            "pattern": "**/classes/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "**/hooks/**",
             "group": "internal",
             "position": "before"

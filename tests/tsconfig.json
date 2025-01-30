@@ -7,9 +7,11 @@
     "baseUrl": ".",
     "paths": {
       "@/config/*": ["./e2e/config/*"],
+      "@/enums/*": ["./e2e/enums/*"],
       "@/page-models/*": ["./e2e/page-models/*"],
       "@/tests/*": ["./e2e/tests/*"],
-      "@/test-ids/*": ["./utils/test-ids/*"]
+      "@/test-ids/*": ["./utils/test-ids/*"],
+      "@/classes/*": ["./utils/classes/*"]
     }
   },
   "include": ["e2e/page-models/**/*.ts", "e2e/tests/**/*.ts", "e2e/config/playwright.config.ts"]
