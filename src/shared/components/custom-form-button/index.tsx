@@ -5,6 +5,7 @@ import LoaderSvg from '@/shared/svg/loader-svg';
 type TCustomFormButton = {
   text: string;
   buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
+  testId?: string;
   isLoading?: boolean;
   additionalClassNames?: string;
 };
@@ -12,6 +13,7 @@ type TCustomFormButton = {
 const CustomFormButton: FC<TCustomFormButton> = ({
   text,
   buttonProps,
+  testId,
   isLoading = false,
   additionalClassNames = 'my-8',
 }) => (
@@ -21,6 +23,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
       additionalClassNames
     }
     aria-label={text}
+    data-testid={testId}
     {...buttonProps}
   >
     {text}

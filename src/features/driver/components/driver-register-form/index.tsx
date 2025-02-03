@@ -15,7 +15,7 @@ import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-f
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
-import { DRIVER_PAGE_FORM } from '@/test-ids/driver-page';
+import { DRIVER_PAGE_FORM, DRIVER_PAGE_FORM_SUBMIT_BUTTON } from '@/test-ids/driver-page';
 
 import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
 
@@ -88,6 +88,7 @@ const DriverRegisterForm = () => {
             <CustomFormButton
               text={t('submitButtonText')}
               isLoading={isLoading}
+              testId={DRIVER_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
               }}

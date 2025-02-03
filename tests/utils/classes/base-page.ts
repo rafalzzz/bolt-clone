@@ -9,6 +9,10 @@ export class BasePage {
     this.url = url;
   }
 
+  async visit() {
+    await this.page.goto(this.url);
+  }
+
   async assertUrl(): Promise<void> {
     await this.page.waitForURL(this.url);
     const currentURL = this.page.url();
@@ -18,7 +22,7 @@ export class BasePage {
     }
   }
 
-  private getElementByTestId(testId: string) {
+  getElementByTestId(testId: string) {
     return this.page.getByTestId(testId);
   }
 

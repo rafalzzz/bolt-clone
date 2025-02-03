@@ -22,7 +22,7 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
   checkboxProps,
   error,
 }: TCustomCheckbox<FormType>) => (
-  <FormItemContainer error={error}>
+  <FormItemContainer inputKey={inputKey} error={error}>
     <label
       className={`flex text-xs text-justify mt-3 transition-all custom-checkbox__${error ? 'invalid' : 'correct'}`}
     >

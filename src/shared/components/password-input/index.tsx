@@ -30,7 +30,7 @@ const PasswordInput = <FormType extends TBasicFormType>({
   const t = useTranslations('PasswordInput');
 
   return (
-    <FormItemContainer error={error}>
+    <FormItemContainer inputKey={inputKey} error={error}>
       <CustomInputLabel label={label}>
         <div className='custom-input'>
           <input

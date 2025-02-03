@@ -25,7 +25,7 @@ const CustomInput = <FormType extends TBasicFormType>({
   error,
   prefix,
 }: TCustomInput<FormType>) => (
-  <FormItemContainer error={error}>
+  <FormItemContainer inputKey={inputKey} error={error}>
     <CustomInputLabel label={label}>
       <div className='custom-input'>
         {prefix && <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>}
@@ -33,6 +33,7 @@ const CustomInput = <FormType extends TBasicFormType>({
           className={`custom-input__input custom-input__${error ? 'invalid' : 'correct'}-input`}
           {...props}
           {...register(inputKey)}
+          data-testid={`${inputKey}Input`}
         />
         {error && (
           <div className='custom-input__error-icon'>

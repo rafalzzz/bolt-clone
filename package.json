@@ -11,7 +11,8 @@
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run lint:fix && npm run prettier:fix",
-    "test:e2e": "playwright test --config=tests/e2e/config/playwright.config.ts"
+    "test:e2e": "playwright test --config=tests/e2e/config/playwright.config.ts --grep @critical",
+    "test:e2e:tag": "playwright test --config=tests/e2e/config/playwright.config.ts --grep @driverPage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
