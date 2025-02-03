@@ -38,13 +38,14 @@ const CitySelect = <FormType extends TBasicFormType>({
 
   register(inputKey);
 
-  const formatControl =
-    (inputKey: string) =>
-    ({ children, ...props }: ControlProps<TOption, false, GroupBase<TOption>>) => (
-      <Control {...props} data-testid={`${inputKey}Input`}>
-        {children}
-      </Control>
-    );
+  const formatControl = ({
+    children,
+    ...props
+  }: ControlProps<TOption, false, GroupBase<TOption>>) => (
+    <Control {...props} data-testid={`${inputKey}Input`}>
+      {children}
+    </Control>
+  );
 
   const formatSingleValue = (props: SingleValueProps<TOption, false>) => (
     <SingleValue {...props}>{t(props.data.label)}</SingleValue>
@@ -76,7 +77,7 @@ const CitySelect = <FormType extends TBasicFormType>({
       name={EDriverRegisterFormKeys.CITY}
       options={CITY_OPTIONS}
       error={error}
-      formatControl={formatControl(inputKey)}
+      formatControl={formatControl}
       formatSingleValue={formatSingleValue}
       formatGroupLabel={formatGroupLabel}
       formatOption={formatOption}
