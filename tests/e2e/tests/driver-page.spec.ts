@@ -19,15 +19,21 @@ test.describe('DriverPage tests', { tag: ['@driverPage', '@critical'] }, async (
   });
 
   test('Should show error about required fields when form inputs are not filled', async () => {
-    await driverPage.clickFormSubmitbutton();
+    await driverPage.clickFormSubmitButton();
     await driverPage.assertRequiredFieldsErrorMessages();
   });
 
-  test('Should show error about wrong input value format', async () => {
+  test('Should show errors about wrong input value format', async () => {
     await driverPage.fillInputsWithInvalidValues();
-    await driverPage.clickFormSubmitbutton();
+    await driverPage.clickFormSubmitButton();
     await driverPage.assertInvalidFormatErrorMessages();
     await driverPage.fillInputsWithValidValues();
+    await driverPage.assertErrorsAreNotVisible();
+  });
+
+  test('Submit button shows loader while processing', async () => {
+    await driverPage.fillForm();
+    await driverPage.assertSubmitButtonLoader();
     await driverPage.assertErrorsAreNotVisible();
   });
 });

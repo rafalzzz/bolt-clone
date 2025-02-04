@@ -85,6 +85,12 @@ export class DriverPage extends BaseForm {
     await this.changeInputsValue(wrongFormatErrorMessages);
   }
 
+  async fillForm() {
+    await this.fillInputsWithValidValues();
+    await this.selectReactSelectOption('Warsaw');
+    await this.checkCheckbox(EDriverRegisterFormKeys.RULES);
+  }
+
   async assertErrorsAreNotVisible() {
     const inputKeys: Readonly<string[]> = [
       EDriverRegisterFormKeys.EMAIL,
@@ -94,7 +100,11 @@ export class DriverPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(inputKeys);
   }
 
-  async clickFormSubmitbutton() {
+  async clickFormSubmitButton() {
     await this.clickSubmitButton(this.submitButtonTestId);
+  }
+
+  async assertSubmitButtonLoader() {
+    await this.assertSubmitButtonLoaderWhenProcessing(this.submitButtonTestId);
   }
 }

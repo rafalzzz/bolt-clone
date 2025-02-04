@@ -5,6 +5,8 @@ import { TTestObject } from '@/types/test-object';
 import { BasePage } from './base-page';
 
 export class BaseForm extends BasePage {
+  readonly reactSelectSelector = '.correct-react-select';
+
   constructor(page: Page, url: string) {
     super(page, url);
   }
@@ -17,9 +19,13 @@ export class BaseForm extends BasePage {
     return this.getElementByTestId(`${inputKey}Input`);
   }
 
+  private getCheckboxElement(inputKey: string) {
+    return this.getElementByTestId(`${inputKey}Checkbox`);
+  }
+
   private async changeSingleInputValue(inputKey: string, value: string) {
-    const element = this.getInputElement(inputKey);
-    await element.fill(value);
+    const inputElement = this.getInputElement(inputKey);
+    await inputElement.fill(value);
   }
 
   async changeInputsValue(inputsObject: TTestObject) {
@@ -30,19 +36,32 @@ export class BaseForm extends BasePage {
     }
   }
 
+  async checkCheckbox(inputKey: string) {
+    const checkboxElement = this.getCheckboxElement(inputKey);
+    checkboxElement.click();
+  }
+
   private async checkElementText(element: Locator, text: string) {
     await expect(element).toHaveText(text);
+  }
+
+  // React-select methods
+  async checkReactSelectPlaceholder(placeholder: string) {
+    const reactSelectPlaceholderElement = this.page.locator(
+      `${this.reactSelectSelector}__placeholder`,
+    );
+
+    await this.checkElementText(reactSelectPlaceholderElement, placeholder);
+  }
+
+  async selectReactSelectOption(optionText: string) {
+    await this.page.click(`${this.reactSelectSelector}__control`);
+    await this.page.click(`text=${optionText}`);
   }
 
   // Placeholder methods
   async checkInputPlaceholder(inputKey: string, placeholder: string) {
     await expect(this.getInputElement(inputKey)).toHaveAttribute('placeholder', placeholder);
-  }
-
-  async checkReactSelectPlaceholder(placeholder: string) {
-    const reactSelectPlaceholderElement = this.page.locator('.correct-react-select__placeholder');
-
-    await this.checkElementText(reactSelectPlaceholderElement, placeholder);
   }
 
   // Error methods
@@ -89,5 +108,16 @@ export class BaseForm extends BasePage {
 
   async clickSubmitButton(testId: string) {
     await this.getSubmitButton(testId).click();
+  }
+
+  async assertSubmitButtonLoaderWhenProcessing(testId: string) {
+    const submitButton = this.getSubmitButton(testId);
+    const submitButtonLoader = this.getElementByTestId(`${testId}Loader`);
+
+    await submitButton.click();
+    await submitButtonLoader.waitFor({ state: 'visible' });
+
+    const isSubmitButtonLoaderVisible = await submitButtonLoader.isVisible();
+    expect(isSubmitButtonLoaderVisible).toBeTruthy();
   }
 }

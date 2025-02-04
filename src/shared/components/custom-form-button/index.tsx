@@ -28,7 +28,10 @@ const CustomFormButton: FC<TCustomFormButton> = ({
   >
     {text}
     {isLoading && (
-      <LoaderSvg className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px]' />
+      <LoaderSvg
+        data-testid={`${testId}Loader`}
+        className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px]'
+      />
     )}
   </button>
 );
