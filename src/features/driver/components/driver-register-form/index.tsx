@@ -45,6 +45,7 @@ const DriverRegisterForm = () => {
               name: EDriverRegisterFormKeys.EMAIL,
               placeholder: t('emailPlaceholder'),
               type: 'text',
+              maxLength: 200,
             }}
           />
           <CustomInput
@@ -69,6 +70,7 @@ const DriverRegisterForm = () => {
               name: EDriverRegisterFormKeys.PHONE_NUMBER,
               placeholder: t('phoneNumberPlaceholder'),
               type: 'text',
+              maxLength: 20,
             }}
           />
           <CitySelect

@@ -19,7 +19,15 @@ test.describe('DriverPage tests', { tag: ['@driverPage', '@critical'] }, async (
   });
 
   test('Should show error about required fields when form inputs are not filled', async () => {
-    await driverPage.clickSubmitButton(driverPage.submitButtonTestId);
+    await driverPage.clickFormSubmitbutton();
     await driverPage.assertRequiredFieldsErrorMessages();
+  });
+
+  test('Should show error about wrong format', async () => {
+    await driverPage.fillInputsWithInvalidValues();
+    await driverPage.clickFormSubmitbutton();
+    await driverPage.assertInvalidFormatErrorMessages();
+    await driverPage.fillInputsWithValidValues();
+    await driverPage.assertErrorsAreNotVisible();
   });
 });

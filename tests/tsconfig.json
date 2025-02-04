@@ -10,6 +10,7 @@
       "@/enums/*": ["./e2e/enums/*"],
       "@/page-models/*": ["./e2e/page-models/*"],
       "@/tests/*": ["./e2e/tests/*"],
+      "@/types/*": ["./e2e/types/*"],
       "@/test-ids/*": ["./utils/test-ids/*"],
       "@/classes/*": ["./utils/classes/*"]
     }
