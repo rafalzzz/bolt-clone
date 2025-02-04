@@ -23,7 +23,7 @@ test.describe('DriverPage tests', { tag: ['@driverPage', '@critical'] }, async (
     await driverPage.assertRequiredFieldsErrorMessages();
   });
 
-  test('Should show error about wrong format', async () => {
+  test('Should show error about wrong input value format', async () => {
     await driverPage.fillInputsWithInvalidValues();
     await driverPage.clickFormSubmitbutton();
     await driverPage.assertInvalidFormatErrorMessages();
