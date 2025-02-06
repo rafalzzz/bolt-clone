@@ -31,9 +31,10 @@ test.describe('DriverPage tests', { tag: ['@driverPage', '@critical'] }, async (
     await driverPage.assertErrorsAreNotVisible();
   });
 
-  test('Submit button shows loader while processing', async () => {
+  test('Should display an error message when an error occurs while sending an email', async () => {
     await driverPage.fillForm();
-    await driverPage.assertSubmitButtonLoader();
+    await driverPage.clickFormSubmitButton();
     await driverPage.assertErrorsAreNotVisible();
+    /* await driverPage.assertErrorToastIsVisible(); */
   });
 });

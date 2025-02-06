@@ -24,12 +24,14 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
 }: TCustomCheckbox<FormType>) => (
   <FormItemContainer inputKey={inputKey} error={error}>
     <label
+      htmlFor={inputKey}
       data-testid={`${inputKey}Checkbox`}
       className={`flex text-xs text-justify mt-3 transition-all custom-checkbox__${error ? 'invalid' : 'correct'}`}
     >
       <div className='inline-flex items-center'>
         <div className='relative flex cursor-pointer items-center rounded-full p-0 mr-3'>
           <input
+            id={inputKey}
             type='checkbox'
             className={`peer relative h-5 w-5 cursor-pointer appearance-none rounded-sm border transition-all before:bg-primaryColor checked:border-primaryColor checked:bg-primaryColor checked:before:bg-primaryColor custom-checkbox__${error ? 'invalid' : 'correct'}-input`}
             {...checkboxProps}

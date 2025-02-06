@@ -26,6 +26,18 @@ export class BasePage {
     return this.page.getByTestId(testId);
   }
 
+  private getElementByText(text: string) {
+    return this.page.locator(`text="${text}"`);
+  }
+
+  async isErrorVisible(errorText: string) {
+    const errorMessage = this.getElementByText(errorText);
+
+    const isVisible = await errorMessage.isVisible();
+
+    expect(isVisible).toBeTruthy();
+  }
+
   async assertAuthPageVisible(pageElementsIds: string[]) {
     for (const testId of pageElementsIds) {
       await expect(this.getElementByTestId(testId)).toBeVisible();

@@ -38,7 +38,7 @@ export class BaseForm extends BasePage {
 
   async checkCheckbox(inputKey: string) {
     const checkboxElement = this.getCheckboxElement(inputKey);
-    checkboxElement.click();
+    await checkboxElement.click();
   }
 
   private async checkElementText(element: Locator, text: string) {

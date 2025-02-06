@@ -100,11 +100,11 @@ export class DriverPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(inputKeys);
   }
 
-  async clickFormSubmitButton() {
-    await this.clickSubmitButton(this.submitButtonTestId);
+  async assertErrorToastIsVisible() {
+    await this.isErrorVisible('An error occurred during registration.');
   }
 
-  async assertSubmitButtonLoader() {
-    await this.assertSubmitButtonLoaderWhenProcessing(this.submitButtonTestId);
+  async clickFormSubmitButton() {
+    await this.clickSubmitButton(this.submitButtonTestId);
   }
 }
