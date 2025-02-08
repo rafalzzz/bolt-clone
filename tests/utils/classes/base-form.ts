@@ -4,6 +4,10 @@ import { TTestObject } from '@/types/test-object';
 
 import { BasePage } from './base-page';
 
+import getCheckboxTestId from '@/helpers/get-checkbox-test-id';
+import getErrorTestId from '@/helpers/get-error-test-id';
+import getInputTestId from '@/helpers/get-input-test-id';
+
 export class BaseForm extends BasePage {
   readonly reactSelectSelector = '.correct-react-select';
 
@@ -12,15 +16,15 @@ export class BaseForm extends BasePage {
   }
 
   private getErrorElement(inputKey: string) {
-    return this.getElementByTestId(`${inputKey}Error`);
+    return this.getElementByTestId(getErrorTestId(inputKey));
   }
 
   private getInputElement(inputKey: string) {
-    return this.getElementByTestId(`${inputKey}Input`);
+    return this.getElementByTestId(getInputTestId(inputKey));
   }
 
   private getCheckboxElement(inputKey: string) {
-    return this.getElementByTestId(`${inputKey}Checkbox`);
+    return this.getElementByTestId(getCheckboxTestId(inputKey));
   }
 
   private async changeSingleInputValue(inputKey: string, value: string) {
@@ -87,14 +91,6 @@ export class BaseForm extends BasePage {
     }
   }
 
-  async assertFormErrorsAreVisible(inputKeys: Readonly<string[]>) {
-    for (const inputKey of inputKeys) {
-      const errorElement = this.getErrorElement(inputKey);
-
-      await expect(errorElement).toBeVisible();
-    }
-  }
-
   // Submit button methods
   private getSubmitButton(testId: string) {
     return this.page.getByTestId(testId);
@@ -108,16 +104,5 @@ export class BaseForm extends BasePage {
 
   async clickSubmitButton(testId: string) {
     await this.getSubmitButton(testId).click();
-  }
-
-  async assertSubmitButtonLoaderWhenProcessing(testId: string) {
-    const submitButton = this.getSubmitButton(testId);
-    const submitButtonLoader = this.getElementByTestId(`${testId}Loader`);
-
-    await submitButton.click();
-    await submitButtonLoader.waitFor({ state: 'visible' });
-
-    const isSubmitButtonLoaderVisible = await submitButtonLoader.isVisible();
-    expect(isSubmitButtonLoaderVisible).toBeTruthy();
   }
 }

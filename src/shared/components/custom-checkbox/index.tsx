@@ -3,6 +3,8 @@ import type { Path, UseFormRegister } from 'react-hook-form';
 
 import FormItemContainer from '@/shared/components/form-item-container';
 
+import getCheckboxTestId from '@/test-helpers/get-checkbox-test-id';
+
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 
 import './custom-checkbox.scss';
@@ -25,7 +27,7 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
   <FormItemContainer inputKey={inputKey} error={error}>
     <label
       htmlFor={inputKey}
-      data-testid={`${inputKey}Checkbox`}
+      data-testid={getCheckboxTestId(inputKey)}
       className={`flex text-xs text-justify mt-3 transition-all custom-checkbox__${error ? 'invalid' : 'correct'}`}
     >
       <div className='inline-flex items-center'>

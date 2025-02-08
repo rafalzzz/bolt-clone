@@ -1,5 +1,7 @@
 import type { ButtonHTMLAttributes, FC } from 'react';
 
+import getLoaderTestId from '@/test-helpers/get-loader-test-id';
+
 import LoaderSvg from '@/shared/svg/loader-svg';
 
 type TCustomFormButton = {
@@ -13,7 +15,7 @@ type TCustomFormButton = {
 const CustomFormButton: FC<TCustomFormButton> = ({
   text,
   buttonProps,
-  testId,
+  testId = '',
   isLoading = false,
   additionalClassNames = 'my-8',
 }) => (
@@ -29,7 +31,7 @@ const CustomFormButton: FC<TCustomFormButton> = ({
     {text}
     {isLoading && (
       <LoaderSvg
-        data-testid={`${testId}Loader`}
+        data-testid={getLoaderTestId(testId)}
         className='absolute ml-3 w-6 h-6 animate-spin text-secondaryColor fill-buttonTextColor right-[50px]'
       />
     )}

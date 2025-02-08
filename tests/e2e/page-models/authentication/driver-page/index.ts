@@ -123,10 +123,6 @@ export class DriverPage extends BaseForm {
     });
   }
 
-  async assertErrorToastIsVisible() {
-    await this.isErrorVisible('An error occurred during registration.');
-  }
-
   async clickFormSubmitButton() {
     await this.clickSubmitButton(this.submitButtonTestId);
   }

@@ -4,6 +4,8 @@ import { Path, UseFormRegister } from 'react-hook-form';
 import CustomInputLabel from '@/shared/components/custom-input-label';
 import FormItemContainer from '@/shared/components/form-item-container';
 
+import getInputTestId from '@/test-helpers/get-input-test-id';
+
 import ErrorSvg from '@/shared/svg/error-svg';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
@@ -33,7 +35,7 @@ const CustomInput = <FormType extends TBasicFormType>({
           className={`custom-input__input custom-input__${error ? 'invalid' : 'correct'}-input`}
           {...props}
           {...register(inputKey)}
-          data-testid={`${inputKey}Input`}
+          data-testid={getInputTestId(inputKey)}
         />
         {error && (
           <div className='custom-input__error-icon'>

@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
 
+import getErrorTestId from '@/test-helpers/get-error-test-id';
+
 type TCustomError = {
   inputKey: string;
   error?: string;
@@ -13,7 +15,7 @@ const CustomError: FC<TCustomError> = ({ inputKey, error }) => {
     !!error && (
       <p
         className='mt-1 text-sm font-normal tracking-wide text-errorIconColor transition'
-        data-testid={`${inputKey}Error`}
+        data-testid={getErrorTestId(inputKey)}
       >
         {t(error)}
       </p>
