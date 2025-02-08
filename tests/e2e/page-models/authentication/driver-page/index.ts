@@ -8,6 +8,8 @@ import {
   DRIVER_PAGE_DESCRIPTION,
   DRIVER_PAGE_FORM,
   DRIVER_PAGE_FORM_SUBMIT_BUTTON,
+  REGISTRATION_FAILURE_MESSAGE,
+  REGISTRATION_SUCCESS_MESSAGE,
 } from '@/test-ids/driver-page';
 
 import { EDriverRegisterFormKeys } from '@/enums/driver-register-form-keys';
@@ -100,11 +102,54 @@ export class DriverPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(inputKeys);
   }
 
+  async mockFailureRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/en/driver',
+      options: {
+        status: 400,
+        contentType: 'application/json',
+      },
+    });
+  }
+
+  async mockSuccessRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/en/driver',
+      options: {
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ isSuccess: true, error: false }),
+      },
+    });
+  }
+
   async assertErrorToastIsVisible() {
     await this.isErrorVisible('An error occurred during registration.');
   }
 
   async clickFormSubmitButton() {
     await this.clickSubmitButton(this.submitButtonTestId);
+  }
+
+  async getRegistrationResponse() {
+    return this.getRequestPromise(`${baseURL}/en/driver`);
+  }
+
+  async assertErrorToastMessage() {
+    const errorMessage = await this.waitForElementWithTestId(REGISTRATION_FAILURE_MESSAGE);
+
+    await this.checkElementTextContent(
+      errorMessage,
+      'An unexpected response was received from the server.',
+    );
+  }
+
+  async assertSuccessToastMessage() {
+    const successMessage = await this.waitForElementWithTestId(REGISTRATION_SUCCESS_MESSAGE);
+
+    await this.checkElementTextContent(
+      successMessage,
+      'Registration was successful! Check your email.',
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 import { DriverPage } from '@/page-models/authentication/driver-page';
 
@@ -33,8 +33,29 @@ test.describe('DriverPage tests', { tag: ['@driverPage', '@critical'] }, async (
 
   test('Should display an error message when an error occurs while sending an email', async () => {
     await driverPage.fillForm();
+    await driverPage.mockFailureRegistrationResponse();
+
+    const requestPromise = driverPage.getRegistrationResponse();
+
     await driverPage.clickFormSubmitButton();
     await driverPage.assertErrorsAreNotVisible();
-    /* await driverPage.assertErrorToastIsVisible(); */
+
+    await requestPromise;
+
+    await driverPage.assertErrorToastMessage();
+  });
+
+  test('Should display a success message when the email has been sent.', async () => {
+    await driverPage.fillForm();
+    await driverPage.mockSuccessRegistrationResponse();
+
+    const requestPromise = driverPage.getRegistrationResponse();
+
+    await driverPage.clickFormSubmitButton();
+    await driverPage.assertErrorsAreNotVisible();
+
+    await requestPromise;
+
+    await driverPage.assertSuccessToastMessage();
   });
 });
