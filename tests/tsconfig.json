@@ -10,8 +10,10 @@
       "@/enums/*": ["./e2e/enums/*"],
       "@/page-models/*": ["./e2e/page-models/*"],
       "@/tests/*": ["./e2e/tests/*"],
-      "@/test-ids/*": ["./utils/test-ids/*"],
-      "@/classes/*": ["./utils/classes/*"]
+      "@/types/*": ["./e2e/types/*"],
+      "@/classes/*": ["./utils/classes/*"],
+      "@/helpers/*": ["./utils/helpers/*"],
+      "@/test-ids/*": ["./utils/test-ids/*"]
     }
   },
   "include": ["e2e/page-models/**/*.ts", "e2e/tests/**/*.ts", "e2e/config/playwright.config.ts"]

@@ -12,13 +12,14 @@ type TCustomNotification = ToastContentProps<{
   icon: JSX.Element;
   iconColor: EIconColor;
   text: string;
+  testId?: string;
 }>;
 
 export const NOTIFICATION_TIMEOUT = 5000;
 
 const CustomNotifiacation: FC<TCustomNotification> = ({
+  data: { icon, iconColor, text, testId },
   closeToast,
-  data: { icon, iconColor, text },
 }) => (
   <div
     role='alert'
@@ -29,7 +30,9 @@ const CustomNotifiacation: FC<TCustomNotification> = ({
     >
       {icon}
     </div>
-    <div className='ms-3 text-sm font-normal tracking-wide'>{text}</div>
+    <div className='ms-3 text-sm font-normal tracking-wide' data-testid={testId}>
+      {text}
+    </div>
     <CustomCloseButton onClick={closeToast} />
   </div>
 );

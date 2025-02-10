@@ -42,7 +42,7 @@ const ReactSelect = <FormType extends TBasicFormType>({
   formatGroupLabel,
   formatOption,
 }: TReactSelectProps<FormType>) => (
-  <FormItemContainer error={error}>
+  <FormItemContainer inputKey={inputKey} error={error}>
     <CustomInputLabel label={label}>
       <Select
         className='react-select'

@@ -64,6 +64,11 @@
             "position": "before"
           },
           {
+            "pattern": "@/test-helpers/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "@/test-ids/**",
             "group": "internal",
             "position": "before"

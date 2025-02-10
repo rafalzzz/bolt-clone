@@ -26,6 +26,6 @@ export async function sendEmailToDriver(formData: TDriverRegisterFormSchema) {
 
     return { isSuccess: false, error };
   } catch (error: unknown) {
-    return { isSuccess: true, error };
+    return { isSuccess: false, error };
   }
 }

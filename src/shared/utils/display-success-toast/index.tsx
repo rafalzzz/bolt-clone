@@ -6,12 +6,15 @@ import { DEFAULT_NOTIFICATION_PROPS } from '@/shared/consts/default-notification
 
 import SuccessSvg from '@/shared/svg/success-svg';
 
-const displaySuccessToast = (text: string, ariaLabel: string) => {
+import { TToastParams } from '@/shared/types/toast-params';
+
+const displaySuccessToast = ({ text, ariaLabel, testId }: TToastParams) => {
   toast(CustomNotifiacation, {
     data: {
       icon: <SuccessSvg />,
       iconColor: EIconColor.GREEN,
       text,
+      testId,
     },
     ariaLabel,
     ...DEFAULT_NOTIFICATION_PROPS,

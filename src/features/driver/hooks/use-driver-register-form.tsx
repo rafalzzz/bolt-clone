@@ -14,6 +14,8 @@ import {
   driverRegisterFormSchema,
 } from '@/features/driver/schemas/driver-register-form-schema';
 
+import { REGISTRATION_FAILURE_MESSAGE, REGISTRATION_SUCCESS_MESSAGE } from '@/test-ids/driver-page';
+
 const useDriverRegisterForm = () => {
   const { state, startRequest, handleSuccess, handleError } = useRequest();
 
@@ -37,14 +39,23 @@ const useDriverRegisterForm = () => {
         handleSuccess();
         reset();
 
-        displaySuccessToast(t('initialRegistrationSuccess'), 'Email has been sent');
+        displaySuccessToast({
+          text: t('initialRegistrationSuccess'),
+          ariaLabel: 'Email has been sent',
+          testId: REGISTRATION_SUCCESS_MESSAGE,
+        });
       })
-      .catch((error) => {
-        handleError(error);
+      .catch((error: unknown) => {
+        const errorMessage =
+          error instanceof Error ? error.message : t('initialRegistratrionError');
 
-        const text = 'message' in error ? error.message : t('initialRegistratrionError');
+        handleError(errorMessage);
 
-        displayWarningToast(text, 'Registration error');
+        displayWarningToast({
+          text: errorMessage,
+          ariaLabel: 'Registration error',
+          testId: REGISTRATION_FAILURE_MESSAGE,
+        });
       });
   };
 
