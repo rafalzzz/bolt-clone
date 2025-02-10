@@ -1,4 +1,9 @@
-import { expect, type Page } from '@playwright/test';
+import { ElementHandle, expect, type Page } from '@playwright/test';
+
+type TMockResponseParams<Options> = {
+  endpoint: string;
+  options: Options;
+};
 
 export class BasePage {
   readonly page: Page;
@@ -7,6 +12,10 @@ export class BasePage {
   constructor(page: Page, url: string) {
     this.page = page;
     this.url = url;
+  }
+
+  async visit() {
+    await this.page.goto(this.url);
   }
 
   async assertUrl(): Promise<void> {
@@ -18,8 +27,20 @@ export class BasePage {
     }
   }
 
-  private getElementByTestId(testId: string) {
+  getElementByTestId(testId: string) {
     return this.page.getByTestId(testId);
+  }
+
+  private getElementByText(text: string) {
+    return this.page.locator(`text="${text}"`);
+  }
+
+  async isErrorVisible(errorText: string) {
+    const errorMessage = this.getElementByText(errorText);
+
+    const isVisible = await errorMessage.isVisible();
+
+    expect(isVisible).toBeTruthy();
   }
 
   async assertAuthPageVisible(pageElementsIds: string[]) {
@@ -28,5 +49,28 @@ export class BasePage {
     }
 
     return this;
+  }
+
+  async mockRequestResponse<T extends Record<string, unknown>>({
+    endpoint,
+    options,
+  }: TMockResponseParams<T>) {
+    await this.page.route(endpoint, (route) => route.fulfill(options));
+  }
+
+  async getRequestPromise(endpoint: string) {
+    return this.page.waitForRequest(endpoint);
+  }
+
+  async waitForElementWithTestId(testId: string) {
+    return await this.page.waitForSelector(`data-testid=${testId}`);
+  }
+
+  async checkElementTextContent(
+    element: ElementHandle<SVGElement | HTMLElement>,
+    exptectedText: string,
+  ) {
+    const text = await element.textContent();
+    expect(text).toBe(exptectedText);
   }
 }

@@ -84,6 +84,7 @@ const DriverCompleteRegisterForm = () => {
               }}
             />
             <CustomError
+              inputKey='file'
               error={errors?.[EDriverCompleteRegisterFormKeys.FILE]?.message as string}
             />
             <CustomFormButton

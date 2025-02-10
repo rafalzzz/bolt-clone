@@ -41,7 +41,11 @@ const CitySelect = <FormType extends TBasicFormType>({
   const formatControl = ({
     children,
     ...props
-  }: ControlProps<TOption, false, GroupBase<TOption>>) => <Control {...props}>{children}</Control>;
+  }: ControlProps<TOption, false, GroupBase<TOption>>) => (
+    <Control {...props} data-testid={`${inputKey}Input`}>
+      {children}
+    </Control>
+  );
 
   const formatSingleValue = (props: SingleValueProps<TOption, false>) => (
     <SingleValue {...props}>{t(props.data.label)}</SingleValue>

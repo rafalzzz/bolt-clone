@@ -31,7 +31,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
       const text = isCameraDisabled ? t('permissionDenied') : error;
 
       setIsVideoError(true);
-      displayWarningToast(text, PERMISSION_DENIED_ERROR);
+      displayWarningToast({ text, ariaLabel: PERMISSION_DENIED_ERROR });
     },
     [t],
   );

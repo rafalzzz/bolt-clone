@@ -25,7 +25,7 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
   const handleError = (error?: unknown) => {
     const text = error instanceof Error ? error.message : t('errorWhileAddingFaceRecognition');
 
-    displayWarningToast(text, ERROR_ARIA_LABEL);
+    displayWarningToast({ text, ariaLabel: ERROR_ARIA_LABEL });
   };
 
   const addFacialRecognition = async (
@@ -50,7 +50,7 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
       })) as TDetections;
 
       if (!detections) {
-        return displayWarningToast(t('faceNotFound'), ERROR_ARIA_LABEL);
+        return displayWarningToast({ text: t('faceNotFound'), ariaLabel: ERROR_ARIA_LABEL });
       }
 
       await handleCanvasDrawing({ video, canvas, detections, setValue, handleError });

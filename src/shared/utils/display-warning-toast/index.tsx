@@ -6,12 +6,15 @@ import { DEFAULT_NOTIFICATION_PROPS } from '@/shared/consts/default-notification
 
 import WarningSvg from '@/shared/svg/warning-svg';
 
-const displayWarningToast = (text: string, ariaLabel: string) => {
+import { TToastParams } from '@/shared/types/toast-params';
+
+const displayWarningToast = ({ text, ariaLabel, testId }: TToastParams) => {
   toast(CustomNotifiacation, {
     data: {
       icon: <WarningSvg />,
       iconColor: EIconColor.RED,
       text,
+      testId,
     },
     ariaLabel,
     ...DEFAULT_NOTIFICATION_PROPS,
