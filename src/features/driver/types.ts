@@ -18,3 +18,7 @@ export type TDetections =
       FaceLandmarks68
     >
   | never[];
+
+export type TDriverCompleteRegistration = {
+  token: string;
+};

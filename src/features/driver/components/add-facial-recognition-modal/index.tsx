@@ -8,14 +8,14 @@ import useAddFacialRecognition from '@/features/driver/hooks/use-add-facial-reco
 import useStartVideo from '@/features/driver/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
-import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 import CameraSvg from '@/shared/svg/camera-svg';
 
 type TAddFacialRecognitionModal = {
   isVisible: boolean;
   setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
-  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
+  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
   onOk: () => void;
   onCancel: () => void;
 };

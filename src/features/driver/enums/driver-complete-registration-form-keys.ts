@@ -1,4 +1,4 @@
-export const enum EDriverCompleteRegisterFormKeys {
+export const enum EDriverCompleteRegistrationFormKeys {
   PASSWORD = 'password',
   REPEAT_PASSWORD = 'repeatPassword',
   VEHICLE_REGISTRATION_NUMBER = 'vehicleRegistrationNumber',

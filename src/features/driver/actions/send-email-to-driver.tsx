@@ -4,13 +4,13 @@ import CompleteRegistrationEmailTemplate from '@/features/driver/components/comp
 
 import { sendEmail } from '@/shared/utils/server-side/email';
 
-import type { TDriverRegisterFormSchema } from '@/features/driver/schemas/driver-register-form-schema';
+import type { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-register-form-schema';
 
 import { generateDriverRegistrationToken } from './generate-driver-registration-token';
 
 const EMAIL_TITLE = 'Welcome to BoltCopy!';
 
-export async function sendEmailToDriver(formData: TDriverRegisterFormSchema) {
+export async function sendEmailToDriver(formData: TDriverRegistrationFormSchema) {
   try {
     const token = await generateDriverRegistrationToken(formData);
 

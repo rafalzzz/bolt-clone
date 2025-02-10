@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { EDriverCompleteRegisterFormKeys } from '@/features/driver/enums/driver-complete-register-form-keys';
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EErrorKeys } from '@/shared/enums/error-keys';
 
-export const driverCompleteRegisterFormSchema = z
+export const driverCompleteRegistrationFormSchema = z
   .object({
-    [EDriverCompleteRegisterFormKeys.PASSWORD]: z
+    [EDriverCompleteRegistrationFormKeys.PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_PASSWORD)
       .min(8, EErrorKeys.PASSWORD_MINIMUM_CHARACTERS)
@@ -16,16 +16,16 @@ export const driverCompleteRegisterFormSchema = z
         /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\.\>\/\?\|\\\`~]/,
         EErrorKeys.PASSWORD_SPECIAL_CHARACTER,
       ),
-    [EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD]: z
+    [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_REPEAT_PASSWORD),
-    [EDriverCompleteRegisterFormKeys.VEHICLE_REGISTRATION_NUMBER]: z
+    [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_VEHICLE_REGISTRATION_NUMBER)
       .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
       .max(10, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS)
       .regex(/^[A-Z0-9]*$/, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
-    [EDriverCompleteRegisterFormKeys.FILE]: z
+    [EDriverCompleteRegistrationFormKeys.FILE]: z
       .any()
       .refine((file) => file instanceof File && file.size, {
         message: EErrorKeys.REQUIRED_FACIAL_RECOGNITION,
@@ -33,16 +33,18 @@ export const driverCompleteRegisterFormSchema = z
   })
   .refine(
     (data) =>
-      data[EDriverCompleteRegisterFormKeys.PASSWORD] ===
-      data[EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD],
+      data[EDriverCompleteRegistrationFormKeys.PASSWORD] ===
+      data[EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD],
     {
       message: EErrorKeys.PASSWORDS_MUST_MATCH,
-      path: [EDriverCompleteRegisterFormKeys.REPEAT_PASSWORD],
+      path: [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD],
     },
   );
 
-export type TDriverCompleteRegisterFormSchema = z.infer<typeof driverCompleteRegisterFormSchema>;
+export type TDriverCompleteRegistrationFormSchema = z.infer<
+  typeof driverCompleteRegistrationFormSchema
+>;
 
-export type TDriverCompleteRegisterFormSchemaError = z.inferFlattenedErrors<
-  typeof driverCompleteRegisterFormSchema
+export type TDriverCompleteRegistrationFormSchemaError = z.inferFlattenedErrors<
+  typeof driverCompleteRegistrationFormSchema
 >;

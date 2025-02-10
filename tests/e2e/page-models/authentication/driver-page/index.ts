@@ -12,13 +12,13 @@ import {
   REGISTRATION_SUCCESS_MESSAGE,
 } from '@/test-ids/driver-page';
 
-import { EDriverRegisterFormKeys } from '@/enums/driver-register-form-keys';
+import { EDriverRegistrationFormKeys } from '@/enums/driver-register-form-keys';
 import { ELanguage } from '@/enums/language';
 
 import { TTestObject } from '@/types/test-object';
 
 export class DriverPage extends BaseForm {
-  readonly inputKeys: string[] = Object.values(EDriverRegisterFormKeys);
+  readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_PAGE_FORM_SUBMIT_BUTTON;
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
@@ -33,15 +33,15 @@ export class DriverPage extends BaseForm {
 
   async assertInputPlaceholders() {
     const inputPlaceholders: TTestObject = {
-      [EDriverRegisterFormKeys.EMAIL]: 'Enter email address',
-      [EDriverRegisterFormKeys.PHONE_NUMBER]: 'Mobile number',
-      [EDriverRegisterFormKeys.CITY]: 'City where you will drive',
+      [EDriverRegistrationFormKeys.EMAIL]: 'Enter email address',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Mobile number',
+      [EDriverRegistrationFormKeys.CITY]: 'City where you will drive',
     };
 
     const inputKeys = Object.keys(inputPlaceholders);
 
     for (const inputKey of inputKeys) {
-      if (inputKey === EDriverRegisterFormKeys.CITY) {
+      if (inputKey === EDriverRegistrationFormKeys.CITY) {
         return await this.checkReactSelectPlaceholder(inputPlaceholders[inputKey]);
       }
 
@@ -51,10 +51,10 @@ export class DriverPage extends BaseForm {
 
   async assertRequiredFieldsErrorMessages() {
     const requiredFieldErrorMessages: TTestObject = {
-      [EDriverRegisterFormKeys.EMAIL]: 'Providing the email is required',
-      [EDriverRegisterFormKeys.PHONE_NUMBER]: 'Providing the phone number is required',
-      [EDriverRegisterFormKeys.CITY]: 'Providing the city is required',
-      [EDriverRegisterFormKeys.RULES]: 'You must agree to continue',
+      [EDriverRegistrationFormKeys.EMAIL]: 'Providing the email is required',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Providing the phone number is required',
+      [EDriverRegistrationFormKeys.CITY]: 'Providing the city is required',
+      [EDriverRegistrationFormKeys.RULES]: 'You must agree to continue',
     };
 
     await this.checkErrorMessages(requiredFieldErrorMessages);
@@ -62,8 +62,8 @@ export class DriverPage extends BaseForm {
 
   async fillInputsWithInvalidValues() {
     const invalidInputFormat: TTestObject = {
-      [EDriverRegisterFormKeys.EMAIL]: 'test@pl',
-      [EDriverRegisterFormKeys.PHONE_NUMBER]: '99999999',
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
     };
 
     await this.changeInputsValue(invalidInputFormat);
@@ -71,8 +71,8 @@ export class DriverPage extends BaseForm {
 
   async assertInvalidFormatErrorMessages() {
     const invalidFormatErrorMessages: TTestObject = {
-      [EDriverRegisterFormKeys.EMAIL]: 'Please enter a valid email',
-      [EDriverRegisterFormKeys.PHONE_NUMBER]: 'Invalid phone format',
+      [EDriverRegistrationFormKeys.EMAIL]: 'Please enter a valid email',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Invalid phone format',
     };
 
     await this.checkErrorMessages(invalidFormatErrorMessages);
@@ -80,8 +80,8 @@ export class DriverPage extends BaseForm {
 
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
-      [EDriverRegisterFormKeys.EMAIL]: 'test@test.pl',
-      [EDriverRegisterFormKeys.PHONE_NUMBER]: '999999999',
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
     };
 
     await this.changeInputsValue(wrongFormatErrorMessages);
@@ -90,13 +90,13 @@ export class DriverPage extends BaseForm {
   async fillForm() {
     await this.fillInputsWithValidValues();
     await this.selectReactSelectOption('Warsaw');
-    await this.checkCheckbox(EDriverRegisterFormKeys.RULES);
+    await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
   }
 
   async assertErrorsAreNotVisible() {
     const inputKeys: Readonly<string[]> = [
-      EDriverRegisterFormKeys.EMAIL,
-      EDriverRegisterFormKeys.PHONE_NUMBER,
+      EDriverRegistrationFormKeys.EMAIL,
+      EDriverRegistrationFormKeys.PHONE_NUMBER,
     ];
 
     await this.assertFormErrorsAreNotVisible(inputKeys);

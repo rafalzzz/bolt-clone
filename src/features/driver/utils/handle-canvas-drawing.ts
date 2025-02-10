@@ -2,9 +2,9 @@ import type { UseFormSetValue } from 'react-hook-form';
 
 import { drawDetections } from '@/features/driver/utils/start-facial-recognition';
 
-import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
-import { EDriverCompleteRegisterFormKeys } from '@/features/driver/enums/driver-complete-register-form-keys';
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
 import { TDetections } from '@/features/driver/types';
 
@@ -12,7 +12,7 @@ type THandleCanvasDrawing = {
   video: HTMLVideoElement;
   canvas: HTMLCanvasElement;
   detections: TDetections;
-  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
+  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
   handleError: (error?: unknown) => void;
 };
 
@@ -35,7 +35,7 @@ const handleCanvasDrawing = async ({
       const filename = `${Date.now()}.png`;
       const file = new File([blob], filename, { type: blob.type });
 
-      setValue(EDriverCompleteRegisterFormKeys.FILE, file);
+      setValue(EDriverCompleteRegistrationFormKeys.FILE, file);
     });
 
     drawDetections(canvas, detections);

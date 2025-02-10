@@ -7,14 +7,14 @@ import { detectFaces } from '@/features/driver/utils/start-facial-recognition';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
-import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
 
 import type { TDetections } from '@/features/driver/types';
 
 type TUseAddFacialRecognition = {
   intervalRef: MutableRefObject<NodeJS.Timeout | null>;
   setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
-  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
+  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
 };
 
 const ERROR_ARIA_LABEL = 'Add facial recognition error';

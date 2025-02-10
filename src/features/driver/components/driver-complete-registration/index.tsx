@@ -2,11 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
+import type { FC } from 'react';
 
-import DriverCompleteRegisterForm from '@/features/driver/components/driver-complete-register-form';
+import DriverCompleteRegistrationForm from '@/features/driver/components/driver-complete-registration-form';
 import PageDescription from '@/shared/components/page-description';
 
-const DriverCompleteRegistration = () => {
+import { TDriverCompleteRegistration } from '../../types';
+
+const DriverCompleteRegistration: FC<TDriverCompleteRegistration> = ({ token }) => {
   const t = useTranslations('DriverCompletePage');
 
   return (
@@ -15,7 +18,7 @@ const DriverCompleteRegistration = () => {
         description={t('description')}
         secondaryDescription={t('secondaryDescription')}
       />
-      <DriverCompleteRegisterForm />
+      <DriverCompleteRegistrationForm token={token} />
     </>
   );
 };
