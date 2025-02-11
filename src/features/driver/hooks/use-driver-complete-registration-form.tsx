@@ -47,6 +47,8 @@ const useDriverCompleteRegistrationForm = ({
       const value = driverData[key as keyof TDriverCompleteRegistrationFormSchema];
       formData.append(key, value);
     });
+
+    // TODO - connect form to BE
   };
 
   const onOk = () => {
