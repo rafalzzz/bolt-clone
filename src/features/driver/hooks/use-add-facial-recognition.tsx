@@ -7,7 +7,7 @@ import { detectFaces } from '@/features/driver/utils/start-facial-recognition';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
-import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
 import type { TDetections } from '@/features/driver/types';
 

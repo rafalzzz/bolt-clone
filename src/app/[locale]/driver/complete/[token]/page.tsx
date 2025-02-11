@@ -2,6 +2,9 @@ import dynamic from 'next/dynamic';
 
 import DefaultLoader from '@/shared/components/default-loader';
 
+import { decryptJwtToken } from '@/shared/utils/server-side/json-web-token';
+import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
+
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 const DriverCompleteRegistration = dynamic(
@@ -11,12 +14,17 @@ const DriverCompleteRegistration = dynamic(
   },
 );
 
+const secretKey = process.env.NEXT_PUBLIC_REGISTER_DRIVER_TOKEN_SECRET_KEY;
+
 const CompleteDriverRegistrationPage: React.FC<TLayoutParamsPromise> = async ({ params }) => {
   const { token } = await params;
 
-  console.log({ token });
+  const tokenPayload = await decryptJwtToken({
+    token,
+    secretKey: encodeSecretKey(secretKey ?? ''),
+  });
 
-  return <DriverCompleteRegistration token={token} />;
+  return <DriverCompleteRegistration tokenPayload={tokenPayload} />;
 };
 
 export default CompleteDriverRegistrationPage;

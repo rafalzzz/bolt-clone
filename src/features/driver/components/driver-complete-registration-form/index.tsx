@@ -11,7 +11,6 @@ import CustomFormButton from '@/shared/components/custom-form-button';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 
 import useDriverCompleteRegistrationForm from '@/features/driver/hooks/use-driver-complete-registration-form';
-import useGetTokenPayload from '@/shared/hooks/use-get-token-payload';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
@@ -24,12 +23,7 @@ const AddFaceRecognitionModal = dynamic(
   },
 );
 
-const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token }) => {
-  const tokenPayload = useGetTokenPayload({
-    token,
-    secretKey: process.env.NEXT_PUBLIC_REGISTER_DRIVER_TOKEN_SECRET_KEY,
-  });
-
+const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
   const {
     errors,
     isAddFacialRecognitionModalEnabled,

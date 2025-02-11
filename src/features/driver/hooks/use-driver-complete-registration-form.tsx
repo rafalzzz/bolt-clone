@@ -8,6 +8,8 @@ import {
   driverCompleteRegistrationFormSchema,
 } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
+import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
+
 type TUseDriverCompleteRegistrationForm = {
   tokenPayload: JWTPayload | null;
 };
@@ -21,6 +23,7 @@ const useDriverCompleteRegistrationForm = ({
   const {
     register,
     setValue,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm<TDriverCompleteRegistrationFormSchema>({
@@ -32,17 +35,22 @@ const useDriverCompleteRegistrationForm = ({
       return;
     }
 
-    /* const driverData = { ...tokenPayload, ...values }; */
-
     const formData = new FormData();
 
-    Object.keys(values).forEach((key) => {
-      const value = values[key as keyof TDriverCompleteRegistrationFormSchema];
+    const driverData = { ...tokenPayload, ...values };
+
+    Object.keys(driverData).forEach((key) => {
+      if (key === EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD) {
+        return;
+      }
+
+      const value = driverData[key as keyof TDriverCompleteRegistrationFormSchema];
       formData.append(key, value);
     });
   };
 
   const onOk = () => {
+    clearErrors(EDriverCompleteRegistrationFormKeys.FILE);
     setIsAddFacialRecognitionModalEnabled(false);
   };
 
