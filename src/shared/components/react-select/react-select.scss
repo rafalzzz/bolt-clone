@@ -9,7 +9,8 @@
     @apply outline-none border-none bg-inputBackgroundColor transition-all py-2.5 px-0;
   }
 
-  .correct-react-select__indicator-separator {
+  .correct-react-select__indicator-separator,
+  .invalid-react-select__indicator-separator {
     display: none;
   }
 
@@ -18,7 +19,8 @@
     @apply border-none shadow-none ring-1 ring-primaryColor transition-all;
   }
 
-  .correct-react-select__option {
+  .correct-react-select__option,
+  .invalid-react-select__option {
     @apply px-0 py-3;
 
     &--is-selected {
@@ -33,23 +35,6 @@
 
   .invalid-react-select__control {
     @apply outline-none border-none bg-inputBackgroundColor border-none shadow-none ring-1 ring-errorIconColor transition-all py-2.5 px-0;
-  }
-
-  .invalid-react-select__indicator-separator {
-    display: none;
-  }
-
-  .invalid-react-select__option {
-    @apply px-0 py-3;
-
-    &--is-selected {
-      @apply bg-backgroundColor text-textColor;
-    }
-
-    &--is-focused,
-    &:hover {
-      @apply text-buttonTextColor bg-secondaryColor;
-    }
   }
 }
 
@@ -76,41 +61,29 @@
     @apply ring-1 ring-secondaryColor transition-all;
   }
 
-  .correct-react-select__menu {
-    @apply bg-inputBackgroundColor;
-  }
-
-  .correct-react-select__option {
-    @apply bg-inputBackgroundColor text-buttonTextColor;
-  }
-
-  .correct-react-select__single-value {
-    @apply text-textColor;
-  }
-
-  .correct-react-select__option--is-focused,
-  .correct-react-select__option:hover {
-    @apply bg-secondaryColor dark:hover:text-textColor transition-all;
-  }
-
-  .invalid-react-select__control {
-    @apply bg-inputBackgroundColor ring-1 ring-errorIconColor;
-  }
-
+  .correct-react-select__menu,
   .invalid-react-select__menu {
     @apply bg-inputBackgroundColor;
   }
 
+  .correct-react-select__option,
   .invalid-react-select__option {
-    @apply bg-inputBackgroundColor text-buttonTextColor;
+    @apply bg-inputBackgroundColor text-textColor;
   }
 
+  .correct-react-select__single-value,
   .invalid-react-select__single-value {
     @apply text-textColor;
   }
 
+  .correct-react-select__option--is-focused,
   .invalid-react-select__option--is-focused,
+  .correct-react-select__option:hover,
   .invalid-react-select__option:hover {
-    @apply bg-secondaryColor dark:hover:text-textColor;
+    @apply bg-secondaryColor dark:hover:text-buttonTextColor;
+  }
+
+  .invalid-react-select__control {
+    @apply bg-inputBackgroundColor ring-1 ring-errorIconColor;
   }
 }

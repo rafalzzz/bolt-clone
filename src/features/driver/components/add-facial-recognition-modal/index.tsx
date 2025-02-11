@@ -77,7 +77,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
         disabled={displayLoader}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
       >
-        <CameraSvg className='text-white w-8 h-8 absolute inset-0 m-auto' />
+        <CameraSvg className='w-8 h-8 absolute inset-0 m-auto text-buttonTextColor' />
       </button>
     </CustomModal>
   );
