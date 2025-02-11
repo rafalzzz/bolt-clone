@@ -47,6 +47,7 @@ const ReactSelect = <FormType extends TBasicFormType>({
       <Select
         className='react-select'
         classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
+        isSearchable={false}
         options={options}
         name={name}
         onChange={(selected: SingleValue<TOption>) => {

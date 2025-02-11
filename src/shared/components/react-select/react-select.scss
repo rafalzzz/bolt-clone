@@ -16,7 +16,7 @@
 
   .correct-react-select__control--is-focused,
   .correct-react-select__control--menu-is-open {
-    @apply border-none shadow-none ring-1 ring-primaryColor transition-all;
+    @apply border-none shadow-none ring-2 ring-primaryColor transition-all;
   }
 
   .correct-react-select__option,
@@ -34,7 +34,7 @@
   }
 
   .invalid-react-select__control {
-    @apply outline-none border-none bg-inputBackgroundColor border-none shadow-none ring-1 ring-errorIconColor transition-all py-2.5 px-0;
+    @apply outline-none border-none bg-inputBackgroundColor border-none shadow-none ring-2 ring-errorIconColor transition-all py-2.5 px-0;
   }
 }
 
@@ -58,7 +58,12 @@
   .correct-react-select__control--is-focused,
   .correct-react-select__control--is-active,
   .correct-react-select__control--menu-is-open {
-    @apply ring-1 ring-secondaryColor transition-all;
+    @apply ring-2 ring-secondaryColor transition-all;
+  }
+
+  .correct-react-select__placeholder,
+  .invalid-react-select__placeholder {
+    @apply text-inputPlaceholderColor;
   }
 
   .correct-react-select__menu,
@@ -84,6 +89,6 @@
   }
 
   .invalid-react-select__control {
-    @apply bg-inputBackgroundColor ring-1 ring-errorIconColor;
+    @apply bg-inputBackgroundColor ring-2 ring-errorIconColor;
   }
 }
