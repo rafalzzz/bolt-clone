@@ -2,12 +2,22 @@
 
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
+import type { FC } from 'react';
 
-import DriverCompleteRegisterForm from '@/features/driver/components/driver-complete-register-form';
+import DriverCompleteRegistrationForm from '@/features/driver/components/driver-complete-registration-form';
 import PageDescription from '@/shared/components/page-description';
+import PageError from '@/shared/components/page-error';
 
-const DriverCompleteRegistration = () => {
+import { TDriverCompleteRegistration } from '../../types';
+
+const DriverCompleteRegistration: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
   const t = useTranslations('DriverCompletePage');
+
+  const tokenErrors = useTranslations('JwtTokenErrors');
+
+  if ('error' in tokenPayload) {
+    return <PageError>{tokenErrors(tokenPayload.error)}</PageError>;
+  }
 
   return (
     <>
@@ -15,7 +25,7 @@ const DriverCompleteRegistration = () => {
         description={t('description')}
         secondaryDescription={t('secondaryDescription')}
       />
-      <DriverCompleteRegisterForm />
+      <DriverCompleteRegistrationForm tokenPayload={tokenPayload} />
     </>
   );
 };

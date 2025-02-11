@@ -1,4 +1,4 @@
-export const enum EDriverRegisterFormKeys {
+export const enum EDriverRegistrationFormKeys {
   EMAIL = 'email',
   PHONE_NUMBER = 'phoneNumber',
   CITY = 'city',

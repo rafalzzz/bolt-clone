@@ -3,6 +3,7 @@ import type {
   FaceDetection,
   FaceLandmarks68,
 } from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
+import { type JWTPayload } from 'jose';
 import type { Dispatch, SetStateAction } from 'react';
 
 export type TAddFacialRecognitionOnSubmit = {
@@ -18,3 +19,7 @@ export type TDetections =
       FaceLandmarks68
     >
   | never[];
+
+export type TDriverCompleteRegistration = {
+  tokenPayload: JWTPayload;
+};

@@ -23,7 +23,7 @@
   "Manifest": {
     "name": "Przykład kopii Bolta"
   },
-  "DriverRegisterForm": {
+  "DriverRegistrationForm": {
     "header": "Zostań kierowcą",
     "phoneNumberLabel": "Numer telefonu",
     "emailPlaceholder": "Wprowadź adres email",
@@ -70,7 +70,7 @@
     "description": "Zakończ swoją rejestrację i zacznij przygodę jako kierowca BoltCopy. Oferujemy elastyczność, świetne zarobki i łatwość w zarządzaniu własnym czasem. Nie zwlekaj, zacznij już dziś!",
     "keywords": "zarobek dla kierowcy, niezależna praca, aplikacja do zarabiania, zostanie kierowcą, praca z elastycznym grafikiem, praca kierowca na własnych zasadach, zakończenie rejestracji, zarabianie na prowadzeniu"
   },
-  "DriverCompleteRegisterForm": {
+  "DriverCompleteRegistrationForm": {
     "header": "Dokończ rejestrację, by zostać kierowcą Bolt",
     "passwordLabel": "Hasło",
     "passwordPlaceholder": "Hasło",
@@ -96,5 +96,12 @@
     "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
     "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
     "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
+  },
+  "JwtTokenErrors": {
+    "missingTokenOrSecretKey": "Brakuje tokenu lub klucza do rozszyfrowania tokenu",
+    "expiredToken": "Token wygasł",
+    "invalidToken": "Token jest nieprawidłowy",
+    "unknownError": "Wystąpił nieznany błąd podczas rozszyfrowywania tokenu",
+    "failedToVerifyToken": "Nie udało się zweryfikować tokenu"
   }
 }

@@ -24,6 +24,9 @@ const config: NextConfig = {
         }
       : {}),
   },
+  env: {
+    NEXT_PUBLIC_REGISTER_DRIVER_TOKEN_SECRET_KEY: process.env.REGISTER_DRIVER_TOKEN_SECRET_KEY,
+  },
 };
 
 module.exports = withNextIntl(config);

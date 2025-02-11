@@ -23,7 +23,7 @@
   "Manifest": {
     "name": "BoltCopy copy example"
   },
-  "DriverRegisterForm": {
+  "DriverRegistrationForm": {
     "header": "Become a driver",
     "phoneNumberLabel": "Phone number",
     "emailPlaceholder": "Enter email address",
@@ -70,7 +70,7 @@
     "description": "Complete your registration and start your adventure as a BoltCopy driver. We offer flexibility, great earnings, and ease of managing your own time. Don't delay, start today!",
     "keywords": "driver earnings, independent work, earning app, becoming a driver, work with flexible schedule, driver work on your own terms, completion of registration, earning by driving"
   },
-  "DriverCompleteRegisterForm": {
+  "DriverCompleteRegistrationForm": {
     "header": "Complete the registration to become a Bolt driver",
     "passwordLabel": "Password",
     "passwordPlaceholder": "Password",
@@ -96,5 +96,12 @@
     "permissionDenied": "To add a facial photo, access to the camera is required",
     "errorWhileAddingFaceRecognition": "An error occurred while adding face recognition",
     "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
+  },
+  "JwtTokenErrors": {
+    "missingTokenOrSecretKey": "Missing token or secret key",
+    "expiredToken": "Token has expired",
+    "invalidToken": "Token is invalid",
+    "unknownError": "An unknown error occurred during decrypting token",
+    "failedToVerifyToken": "Failed to verify token"
   }
 }

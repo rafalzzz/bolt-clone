@@ -1,4 +1,4 @@
-export enum EDriverRegisterFormKeys {
+export enum EDriverRegistrationFormKeys {
   EMAIL = 'email',
   PHONE_NUMBER = 'phoneNumber',
   CITY = 'city',

@@ -14,7 +14,7 @@ import ReactSelect from '@/shared/components/react-select';
 
 import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
 
-import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
+import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 import { TGroupedOption, TOption } from '@/shared/types/react-select';
@@ -74,7 +74,7 @@ const CitySelect = <FormType extends TBasicFormType>({
       inputKey={inputKey}
       setValue={setValue}
       placeholder={t('cityPlaceholder')}
-      name={EDriverRegisterFormKeys.CITY}
+      name={EDriverRegistrationFormKeys.CITY}
       options={CITY_OPTIONS}
       error={error}
       formatControl={formatControl}

@@ -11,15 +11,15 @@ import CustomFormButton from '@/shared/components/custom-form-button';
 import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import CustomInput from '@/shared/components/custom-input';
 
-import useDriverRegisterForm from '@/features/driver/hooks/use-driver-register-form';
+import useDriverRegistrationForm from '@/features/driver/hooks/use-driver-registration-form';
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
 import { DRIVER_PAGE_FORM, DRIVER_PAGE_FORM_SUBMIT_BUTTON } from '@/test-ids/driver-page';
 
-import { EDriverRegisterFormKeys } from '@/features/driver/enums/driver-register-form-keys';
+import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
-const DriverRegisterForm = () => {
+const DriverRegistrationForm = () => {
   const {
     state: { isLoading },
     errors,
@@ -27,9 +27,9 @@ const DriverRegisterForm = () => {
     setValue,
     onSubmit,
     handleSubmit,
-  } = useDriverRegisterForm();
+  } = useDriverRegistrationForm();
 
-  const t = useTranslations('DriverRegisterForm');
+  const t = useTranslations('DriverRegistrationForm');
 
   return (
     <>
@@ -38,11 +38,11 @@ const DriverRegisterForm = () => {
         <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             label='Email'
-            inputKey={EDriverRegisterFormKeys.EMAIL}
+            inputKey={EDriverRegistrationFormKeys.EMAIL}
             register={register}
-            error={errors?.[EDriverRegisterFormKeys.EMAIL]?.message}
+            error={errors?.[EDriverRegistrationFormKeys.EMAIL]?.message}
             props={{
-              name: EDriverRegisterFormKeys.EMAIL,
+              name: EDriverRegistrationFormKeys.EMAIL,
               placeholder: t('emailPlaceholder'),
               type: 'text',
               maxLength: 200,
@@ -50,9 +50,9 @@ const DriverRegisterForm = () => {
           />
           <CustomInput
             label={t('phoneNumberLabel')}
-            inputKey={EDriverRegisterFormKeys.PHONE_NUMBER}
+            inputKey={EDriverRegistrationFormKeys.PHONE_NUMBER}
             register={register}
-            error={errors?.[EDriverRegisterFormKeys.PHONE_NUMBER]?.message}
+            error={errors?.[EDriverRegistrationFormKeys.PHONE_NUMBER]?.message}
             prefix={
               <>
                 <Image
@@ -67,22 +67,22 @@ const DriverRegisterForm = () => {
               </>
             }
             props={{
-              name: EDriverRegisterFormKeys.PHONE_NUMBER,
+              name: EDriverRegistrationFormKeys.PHONE_NUMBER,
               placeholder: t('phoneNumberPlaceholder'),
               type: 'text',
               maxLength: 20,
             }}
           />
           <CitySelect
-            inputKey={EDriverRegisterFormKeys.CITY}
+            inputKey={EDriverRegistrationFormKeys.CITY}
             register={register}
             setValue={setValue}
-            error={errors?.[EDriverRegisterFormKeys.CITY]?.message}
+            error={errors?.[EDriverRegistrationFormKeys.CITY]?.message}
           />
           <CustomCheckbox
-            inputKey={EDriverRegisterFormKeys.RULES}
+            inputKey={EDriverRegistrationFormKeys.RULES}
             register={register}
-            error={errors?.[EDriverRegisterFormKeys.RULES]?.message}
+            error={errors?.[EDriverRegistrationFormKeys.RULES]?.message}
           >
             {t('termsText')}
           </CustomCheckbox>
@@ -103,4 +103,4 @@ const DriverRegisterForm = () => {
   );
 };
 
-export default DriverRegisterForm;
+export default DriverRegistrationForm;

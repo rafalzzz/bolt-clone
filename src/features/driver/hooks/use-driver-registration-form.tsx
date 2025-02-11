@@ -10,13 +10,13 @@ import displaySuccessToast from '@/shared/utils/display-success-toast';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
-  TDriverRegisterFormSchema,
-  driverRegisterFormSchema,
-} from '@/features/driver/schemas/driver-register-form-schema';
+  TDriverRegistrationFormSchema,
+  driverRegistrationFormSchema,
+} from '@/features/driver/schemas/driver-registration-form-schema';
 
 import { REGISTRATION_FAILURE_MESSAGE, REGISTRATION_SUCCESS_MESSAGE } from '@/test-ids/driver-page';
 
-const useDriverRegisterForm = () => {
+const useDriverRegistrationForm = () => {
   const { state, startRequest, handleSuccess, handleError } = useRequest();
 
   const {
@@ -25,13 +25,13 @@ const useDriverRegisterForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TDriverRegisterFormSchema>({
-    resolver: zodResolver(driverRegisterFormSchema),
+  } = useForm<TDriverRegistrationFormSchema>({
+    resolver: zodResolver(driverRegistrationFormSchema),
   });
 
-  const t = useTranslations('DriverRegisterForm');
+  const t = useTranslations('DriverRegistrationForm');
 
-  const onSubmit: SubmitHandler<TDriverRegisterFormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<TDriverRegistrationFormSchema> = async (data) => {
     startRequest();
 
     sendEmailToDriver(data)
@@ -62,4 +62,4 @@ const useDriverRegisterForm = () => {
   return { state, errors, register, setValue, onSubmit, handleSubmit };
 };
 
-export default useDriverRegisterForm;
+export default useDriverRegistrationForm;

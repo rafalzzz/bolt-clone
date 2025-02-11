@@ -69,8 +69,6 @@ export const startFacialRecognition = ({
   intervalRef.current = setInterval(async () => {
     const detection = await detectFaces(video, displaySize);
 
-    console.log({ detection: detection?.landmarks });
-
     drawDetections(canvas, detection || []);
   }, RECOGNIZE_FACE_INTERVAL);
 };
