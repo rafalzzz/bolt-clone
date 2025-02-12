@@ -57,7 +57,6 @@
     "passwordMustMatch": "The entered passwords do not match",
     "requiredVehicleRegistrationNumber": "Providing the vehicle registration number is required",
     "vehicleRegistrationMinimumCharacters": "The vehicle registration number must contain at least 4 characters",
-    "vehicleRegistrationMaximumCharacters": "The vehicle registration number can contain a maximum of 10 characters",
     "vehicleRegistrationCharacters": "The vehicle registration number can contain only uppercase letters and digits",
     "requiredFacialRecognition": "Adding face recognition is required"
   },

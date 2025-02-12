@@ -57,7 +57,6 @@
     "passwordMustMatch": "Wpisane hasła różnią się od siebie",
     "requiredVehicleRegistrationNumber": "Podanie numeu rejestracyjnego pojazdu jest wymagane",
     "vehicleRegistrationMinimumCharacters": "Numer rejestracyjny pojazdu musi zawierać co najmniej 4 znaki",
-    "vehicleRegistrationMaximumCharacters": "Numer rejestracyjny pojazdu nie może być dłuższy niż 10 znaków",
     "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
     "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
   },

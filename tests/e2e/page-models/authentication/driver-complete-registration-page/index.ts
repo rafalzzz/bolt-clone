@@ -108,6 +108,83 @@ export class DriverCompleteRegistrationPage extends BaseForm {
     await this.checkErrorMessages(requiredFieldErrorMessages);
   }
 
+  async fillInputsWithInvalidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Test1!',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'tst',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'tst',
+    };
+
+    await this.changeInputsValue(wrongFormatErrorMessages);
+  }
+
+  async fillInputsWithValidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'TEST1',
+    };
+
+    await this.changeInputsValue(wrongFormatErrorMessages);
+  }
+
+  async assertInvalidFormatErrorMessages() {
+    const invalidFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password must contain at least 8 characters',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'The entered passwords do not match',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
+        'The vehicle registration number must contain at least 4 characters',
+    };
+
+    await this.checkErrorMessages(invalidFormatErrorMessages);
+  }
+
+  private async changePasswordInputValue(value: string) {
+    await this.changeSingleInputValue(EDriverCompleteRegistrationFormKeys.PASSWORD, value);
+  }
+
+  private async assertPasswordInputError(errorMessage: string) {
+    await this.checkErrorMessages({
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: errorMessage,
+    });
+  }
+
+  async assertRemainingPasswordInputErrors() {
+    const inputErrors = [
+      { value: 'testtest1', errorMessage: 'Password must contain at least one uppercase letter' },
+      { value: 'TESTTEST1', errorMessage: 'Password must contain at least one lowercase letter' },
+      { value: 'TestTest', errorMessage: 'Password must contain at least one digit' },
+      { value: 'TestTest1', errorMessage: 'Password must contain at least one special character' },
+    ];
+
+    for (const inputError of inputErrors) {
+      const { value, errorMessage } = inputError;
+
+      await this.changePasswordInputValue(value);
+      await this.assertPasswordInputError(errorMessage);
+    }
+  }
+
+  async assertRemainingVehicleRegistrationNumberInputError() {
+    await this.changeSingleInputValue(
+      EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
+      'test!',
+    );
+
+    await this.checkErrorMessages({
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
+        'The vehicle registration number can contain only uppercase letters and digits',
+    });
+  }
+
+  async assertInputErorrsAreNotVisible() {
+    await this.assertFormErrorsAreNotVisible([
+      EDriverCompleteRegistrationFormKeys.PASSWORD,
+      EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD,
+      EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
+    ]);
+  }
+
   async clickFormSubmitButton() {
     await this.clickSubmitButton(this.submitButtonTestId);
   }

@@ -58,5 +58,17 @@ test.describe(
       await driverCompleteRegistrationPage.clickFormSubmitButton();
       await driverCompleteRegistrationPage.assertRequiredFieldsErrorMessages();
     });
+
+    test('Should show errors about wrong input value format', async () => {
+      await driverCompleteRegistrationPage.fillInputsWithInvalidValues();
+      await driverCompleteRegistrationPage.clickFormSubmitButton();
+      await driverCompleteRegistrationPage.assertInvalidFormatErrorMessages();
+
+      await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
+      await driverCompleteRegistrationPage.assertRemainingVehicleRegistrationNumberInputError();
+
+      await driverCompleteRegistrationPage.fillInputsWithValidValues();
+      await driverCompleteRegistrationPage.assertInputErorrsAreNotVisible();
+    });
   },
 );

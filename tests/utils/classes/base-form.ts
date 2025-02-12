@@ -27,7 +27,7 @@ export class BaseForm extends BasePage {
     return this.getElementByTestId(getCheckboxTestId(inputKey));
   }
 
-  private async changeSingleInputValue(inputKey: string, value: string) {
+  async changeSingleInputValue(inputKey: string, value: string) {
     const inputElement = this.getInputElement(inputKey);
     await inputElement.fill(value);
   }
