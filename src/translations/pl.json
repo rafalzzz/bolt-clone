@@ -11,11 +11,11 @@
   "LocaleLayout": {
     "title": "Polski"
   },
-  "DriverPage": {
+  "DriverRegistrationPage": {
     "description": "Zarabiaj do 1901 zł tygodniowo, jeżdżąc z BoltCopy",
     "secondaryDescription": "Zostań kierowcą BoltCopy, ustalaj swój własny grafik i zarabiaj dodatkowe pieniądze, wożąc pasażerów!"
   },
-  "DriverPageHeadSection": {
+  "DriverRegistrationPageHeadSection": {
     "title": "Dołącz do BoltCopy jako Kierowca – zarabiaj kiedy chcesz",
     "description": "Zostań kierowcą w BoltCopy i zacznij zarabiać! Elastyczne godziny pracy, atrakcyjne zarobki, prosta rejestracja. Aplikuj teraz i prowadź na własnych warunkach!",
     "keywords": "praca kierowca, zarabianie jako kierowca, aplikacja do transportu, dołącz jako kierowca, elastyczna praca, praca na pełny etat kierowca, praca na pół etatu kierowca, rekrutacja kierowców"
@@ -61,11 +61,11 @@
     "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
     "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
   },
-  "DriverCompletePage": {
+  "DriverRegistrationCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
     "secondaryDescription": "Dołącz do grona zadowolonych kierowców BoltCopy! Wybieraj godziny pracy, które Ci odpowiadają i zarabiaj pieniądze, spełniając potrzeby podróżnych!"
   },
-  "DriverCompletePageHeadSection": {
+  "DriverRegistrationCompletePageHeadSection": {
     "title": "Ostatni krok do zarabiania z BoltCopy!",
     "description": "Zakończ swoją rejestrację i zacznij przygodę jako kierowca BoltCopy. Oferujemy elastyczność, świetne zarobki i łatwość w zarządzaniu własnym czasem. Nie zwlekaj, zacznij już dziś!",
     "keywords": "zarobek dla kierowcy, niezależna praca, aplikacja do zarabiania, zostanie kierowcą, praca z elastycznym grafikiem, praca kierowca na własnych zasadach, zakończenie rejestracji, zarabianie na prowadzeniu"

@@ -8,15 +8,20 @@ import DriverCompleteRegistrationForm from '@/features/driver/components/driver-
 import PageDescription from '@/shared/components/page-description';
 import PageError from '@/shared/components/page-error';
 
+import {
+  DRIVER_REGISTRATION_COMPLETE_PAGE_DESCRIPTION,
+  JWT_TOKEN_ERROR,
+} from '@/test-ids/driver-registration-complete-page';
+
 import { TDriverCompleteRegistration } from '../../types';
 
 const DriverCompleteRegistration: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
-  const t = useTranslations('DriverCompletePage');
+  const t = useTranslations('DriverRegistrationCompletePage');
 
   const tokenErrors = useTranslations('JwtTokenErrors');
 
   if ('error' in tokenPayload) {
-    return <PageError>{tokenErrors(tokenPayload.error)}</PageError>;
+    return <PageError testId={JWT_TOKEN_ERROR}>{tokenErrors(tokenPayload.error)}</PageError>;
   }
 
   return (
@@ -24,6 +29,7 @@ const DriverCompleteRegistration: FC<TDriverCompleteRegistration> = ({ tokenPayl
       <PageDescription
         description={t('description')}
         secondaryDescription={t('secondaryDescription')}
+        testId={DRIVER_REGISTRATION_COMPLETE_PAGE_DESCRIPTION}
       />
       <DriverCompleteRegistrationForm tokenPayload={tokenPayload} />
     </>

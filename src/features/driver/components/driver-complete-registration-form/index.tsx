@@ -12,6 +12,11 @@ import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 
 import useDriverCompleteRegistrationForm from '@/features/driver/hooks/use-driver-complete-registration-form';
 
+import {
+  DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
+  DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON,
+} from '@/test-ids/driver-registration-complete-page';
+
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
 import { TDriverCompleteRegistration } from '../../types';
@@ -52,7 +57,7 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
           onCancel={onCancel}
         />
       )}
-      <CustomFormWrapper title={t('header')}>
+      <CustomFormWrapper title={t('header')} testId={DRIVER_REGISTRATION_COMPLETE_PAGE_FORM}>
         <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)} noValidate>
           <DriverCompleteRegistrationFormFields errors={errors} register={register} />
           <div>
@@ -65,11 +70,12 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
               }}
             />
             <CustomError
-              inputKey='file'
+              inputKey={EDriverCompleteRegistrationFormKeys.FILE}
               error={errors?.[EDriverCompleteRegistrationFormKeys.FILE]?.message as string}
             />
             <CustomFormButton
               text={t('submitButtonText')}
+              testId={DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
               }}

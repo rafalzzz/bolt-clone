@@ -11,11 +11,11 @@
   "LocaleLayout": {
     "title": "English"
   },
-  "DriverPage": {
+  "DriverRegistrationPage": {
     "description": "Earn up to 1901 zł per week by driving with BoltCopy",
     "secondaryDescription": "Become a BoltCopy driver, set your schedule and earn money by driving!"
   },
-  "DriverPageHeadSection": {
+  "DriverRegistrationPageHeadSection": {
     "title": "Join BoltCopy as a driver – earn whenever you want",
     "description": "Become a driver with BoltCopy and start earning! Flexible working hours, attractive earnings, easy registration. Apply now and drive on your own terms!",
     "keywords": "driver jobs, earning as a driver, transport app, join as a driver, flexible work, full-time driver jobs, part-time driver jobs, driver recruitment"
@@ -61,11 +61,11 @@
     "vehicleRegistrationCharacters": "The vehicle registration number can contain only uppercase letters and digits",
     "requiredFacialRecognition": "Adding face recognition is required"
   },
-  "DriverCompletePage": {
+  "DriverRegistrationCompletePage": {
     "description": "Turn the key to adventure and profits with BoltCopy",
     "secondaryDescription": "Join the ranks of satisfied BoltCopy drivers! Choose work hours that suit you and earn money by meeting travelers needs!"
   },
-  "DriverCompletePageHeadSection": {
+  "DriverRegistrationCompletePageHeadSection": {
     "title": "The final step to earning with BoltCopy!",
     "description": "Complete your registration and start your adventure as a BoltCopy driver. We offer flexibility, great earnings, and ease of managing your own time. Don't delay, start today!",
     "keywords": "driver earnings, independent work, earning app, becoming a driver, work with flexible schedule, driver work on your own terms, completion of registration, earning by driving"
@@ -99,7 +99,7 @@
   },
   "JwtTokenErrors": {
     "missingTokenOrSecretKey": "Missing token or secret key",
-    "expiredToken": "Token has expired",
+    "tokenHasExpired": "Token has expired",
     "invalidToken": "Token is invalid",
     "unknownError": "An unknown error occurred during decrypting token",
     "failedToVerifyToken": "Failed to verify token"

@@ -50,7 +50,10 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
       })) as TDetections;
 
       if (!detections) {
-        return displayWarningToast({ text: t('faceNotFound'), ariaLabel: ERROR_ARIA_LABEL });
+        return displayWarningToast({
+          text: t('faceNotFound'),
+          ariaLabel: t('faceNotFound'),
+        });
       }
 
       await handleCanvasDrawing({ video, canvas, detections, setValue, handleError });

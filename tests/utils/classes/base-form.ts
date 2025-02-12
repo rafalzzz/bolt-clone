@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { TTestObject } from '@/types/test-object';
 
@@ -43,10 +43,6 @@ export class BaseForm extends BasePage {
   async checkCheckbox(inputKey: string) {
     const checkboxElement = this.getCheckboxElement(inputKey);
     await checkboxElement.click();
-  }
-
-  private async checkElementText(element: Locator, text: string) {
-    await expect(element).toHaveText(text);
   }
 
   // React-select methods
