@@ -53,5 +53,10 @@ test.describe(
         driverCompleteRegistrationPage.submitButtonTestId,
       );
     });
+
+    test('Should show error about required fields when form inputs are not filled', async () => {
+      await driverCompleteRegistrationPage.clickFormSubmitButton();
+      await driverCompleteRegistrationPage.assertRequiredFieldsErrorMessages();
+    });
   },
 );

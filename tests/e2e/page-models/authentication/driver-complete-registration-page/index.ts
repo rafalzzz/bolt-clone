@@ -96,6 +96,18 @@ export class DriverCompleteRegistrationPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(this.inputKeys);
   }
 
+  async assertRequiredFieldsErrorMessages() {
+    const requiredFieldErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password is required',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'Repeat password is required',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
+        'Providing the vehicle registration number is required',
+      [EDriverCompleteRegistrationFormKeys.FILE]: 'Adding face recognition is required',
+    };
+
+    await this.checkErrorMessages(requiredFieldErrorMessages);
+  }
+
   async clickFormSubmitButton() {
     await this.clickSubmitButton(this.submitButtonTestId);
   }
