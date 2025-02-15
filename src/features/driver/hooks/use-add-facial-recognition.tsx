@@ -2,12 +2,14 @@ import { useTranslations } from 'next-intl';
 import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from 'react';
 import type { UseFormSetValue } from 'react-hook-form';
 
-import handleCanvasDrawing from '@/features/driver/utils/handle-canvas-drawing';
+import getCanvasDrawing from '@/features/driver/utils/get-canvas-drawing';
 import { detectFaces } from '@/features/driver/utils/start-facial-recognition';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
 import type { TDetections } from '@/features/driver/types';
 
@@ -56,8 +58,9 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
         });
       }
 
-      await handleCanvasDrawing({ video, canvas, detections, setValue, handleError });
+      const file = await getCanvasDrawing({ video, canvas, detections });
 
+      setValue(EDriverCompleteRegistrationFormKeys.FILE, file);
       stopStreamedVideo(videoRef);
     } catch (error) {
       handleError(error);

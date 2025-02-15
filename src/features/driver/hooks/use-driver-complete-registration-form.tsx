@@ -48,6 +48,10 @@ const useDriverCompleteRegistrationForm = ({
       formData.append(key, value);
     });
 
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     // TODO - connect form to BE
   };
 
