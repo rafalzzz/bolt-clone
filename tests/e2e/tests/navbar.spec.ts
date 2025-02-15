@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 
 import { ClientPage } from '@/page-models/authentication/client-page';
-import { DriverPage } from '@/page-models/authentication/driver-page';
+import { DriverRegistrationPage } from '@/page-models/authentication/driver-registration-page';
 import { LandingPage } from '@/page-models/landing-page';
 import { Navbar } from '@/page-models/navbar';
 
@@ -45,7 +45,7 @@ test.describe('Navbar tests', { tag: ['@navbar', '@critical'] }, () => {
   });
 
   test('Should verify sign up redirect', async ({ page }) => {
-    const driverPage = new DriverPage(page);
+    const driverPage = new DriverRegistrationPage(page);
     const clientPage = new ClientPage(page);
 
     await navbar.clickSignButton('Become a driver');

@@ -1,4 +1,4 @@
-import { ElementHandle, expect, type Page } from '@playwright/test';
+import { ElementHandle, type Locator, expect, type Page } from '@playwright/test';
 
 type TMockResponseParams<Options> = {
   endpoint: string;
@@ -14,8 +14,8 @@ export class BasePage {
     this.url = url;
   }
 
-  async visit() {
-    await this.page.goto(this.url);
+  async visit(additionalParams: string | undefined = '') {
+    await this.page.goto(this.url + additionalParams);
   }
 
   async assertUrl(): Promise<void> {
@@ -49,6 +49,10 @@ export class BasePage {
     }
 
     return this;
+  }
+
+  async checkElementText(element: Locator, text: string) {
+    await expect(element).toHaveText(text);
   }
 
   async mockRequestResponse<T extends Record<string, unknown>>({

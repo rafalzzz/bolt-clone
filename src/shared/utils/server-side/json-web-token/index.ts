@@ -35,12 +35,14 @@ export const decryptJwtToken = async ({ token, secretKey }: TDecryptJwtToken) =>
     });
     return payload;
   } catch (error) {
+    console.log({ error });
+
     if (error instanceof Error) {
-      if (error.message.includes('expired')) {
+      if (error.message.includes('exp')) {
         return { error: EDecryptJwtTokenErrors.EXPIRED_TOKEN };
       }
 
-      if (error.message.includes('invalid')) {
+      if (error.message.includes('verification failed')) {
         return { error: EDecryptJwtTokenErrors.INVALID_TOKEN };
       }
 

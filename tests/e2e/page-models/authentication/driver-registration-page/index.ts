@@ -5,28 +5,31 @@ import { BaseForm } from '@/classes/base-form';
 import { baseURL } from '@/config/playwright.config';
 
 import {
-  DRIVER_PAGE_DESCRIPTION,
-  DRIVER_PAGE_FORM,
-  DRIVER_PAGE_FORM_SUBMIT_BUTTON,
+  DRIVER_REGISTRATION_PAGE_DESCRIPTION,
+  DRIVER_REGISTRATION_PAGE_FORM,
+  DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON,
   REGISTRATION_FAILURE_MESSAGE,
   REGISTRATION_SUCCESS_MESSAGE,
-} from '@/test-ids/driver-page';
+} from '@/test-ids/driver-registration-page';
 
-import { EDriverRegistrationFormKeys } from '@/enums/driver-register-form-keys';
+import { EDriverRegistrationFormKeys } from '@/enums/driver-registration-form-keys';
 import { ELanguage } from '@/enums/language';
 
 import { TTestObject } from '@/types/test-object';
 
-export class DriverPage extends BaseForm {
+export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
-  readonly submitButtonTestId: string = DRIVER_PAGE_FORM_SUBMIT_BUTTON;
+  readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver`);
   }
 
   async assertPageLayoutVisible() {
-    const pageElementIds: string[] = [DRIVER_PAGE_DESCRIPTION, DRIVER_PAGE_FORM];
+    const pageElementIds: string[] = [
+      DRIVER_REGISTRATION_PAGE_DESCRIPTION,
+      DRIVER_REGISTRATION_PAGE_FORM,
+    ];
 
     return this.assertAuthPageVisible(pageElementIds);
   }
@@ -47,6 +50,10 @@ export class DriverPage extends BaseForm {
 
       await this.checkInputPlaceholder(inputKey, inputPlaceholders[inputKey]);
     }
+  }
+
+  async assertAllFormErrorsAreNotVisible() {
+    await this.assertFormErrorsAreNotVisible(this.inputKeys);
   }
 
   async assertRequiredFieldsErrorMessages() {
@@ -93,7 +100,7 @@ export class DriverPage extends BaseForm {
     await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
   }
 
-  async assertErrorsAreNotVisible() {
+  async assertFormInputErrorsAreNotVisible() {
     const inputKeys: Readonly<string[]> = [
       EDriverRegistrationFormKeys.EMAIL,
       EDriverRegistrationFormKeys.PHONE_NUMBER,

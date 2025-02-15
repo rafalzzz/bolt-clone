@@ -15,7 +15,10 @@ import useDriverRegistrationForm from '@/features/driver/hooks/use-driver-regist
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
-import { DRIVER_PAGE_FORM, DRIVER_PAGE_FORM_SUBMIT_BUTTON } from '@/test-ids/driver-page';
+import {
+  DRIVER_REGISTRATION_PAGE_FORM,
+  DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON,
+} from '@/test-ids/driver-registration-page';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
@@ -34,7 +37,7 @@ const DriverRegistrationForm = () => {
   return (
     <>
       <ToastContainer />
-      <CustomFormWrapper title={t('header')} testId={DRIVER_PAGE_FORM}>
+      <CustomFormWrapper title={t('header')} testId={DRIVER_REGISTRATION_PAGE_FORM}>
         <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             label='Email'
@@ -90,7 +93,7 @@ const DriverRegistrationForm = () => {
             <CustomFormButton
               text={t('submitButtonText')}
               isLoading={isLoading}
-              testId={DRIVER_PAGE_FORM_SUBMIT_BUTTON}
+              testId={DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
               }}

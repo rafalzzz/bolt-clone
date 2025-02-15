@@ -23,7 +23,6 @@ export const driverCompleteRegistrationFormSchema = z
       .string()
       .nonempty(EErrorKeys.REQUIRED_VEHICLE_REGISTRATION_NUMBER)
       .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
-      .max(10, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MAXIMUM_CHARACTERS)
       .regex(/^[A-Z0-9]*$/, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
     [EDriverCompleteRegistrationFormKeys.FILE]: z
       .any()

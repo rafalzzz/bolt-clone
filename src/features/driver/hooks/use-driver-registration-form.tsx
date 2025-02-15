@@ -14,7 +14,10 @@ import {
   driverRegistrationFormSchema,
 } from '@/features/driver/schemas/driver-registration-form-schema';
 
-import { REGISTRATION_FAILURE_MESSAGE, REGISTRATION_SUCCESS_MESSAGE } from '@/test-ids/driver-page';
+import {
+  REGISTRATION_FAILURE_MESSAGE,
+  REGISTRATION_SUCCESS_MESSAGE,
+} from '@/test-ids/driver-registration-page';
 
 const useDriverRegistrationForm = () => {
   const { state, startRequest, handleSuccess, handleError } = useRequest();

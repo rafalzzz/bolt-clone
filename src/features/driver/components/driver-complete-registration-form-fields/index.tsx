@@ -54,7 +54,7 @@ const DriverCompleteRegistrationFormFields: React.FC<TDriverCompleteRegistration
           name: EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
           placeholder: t('vehicleRegistrationNumberPlaceholder'),
           type: 'text',
-          maxLength: 20,
+          maxLength: 10,
         }}
       />
     </>

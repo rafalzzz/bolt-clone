@@ -5,6 +5,8 @@ import type { Path, UseFormRegister } from 'react-hook-form';
 import CustomInputLabel from '@/shared/components/custom-input-label';
 import FormItemContainer from '@/shared/components/form-item-container';
 
+import getInputTestId from '@/test-helpers/get-input-test-id';
+
 import EyeSlashSvg from '@/shared/svg/closed-slash-svg';
 import EyeSvg from '@/shared/svg/eye-svg';
 
@@ -38,6 +40,7 @@ const PasswordInput = <FormType extends TBasicFormType>({
             {...props}
             {...register(inputKey)}
             type={showPassword ? 'text' : 'password'}
+            data-testid={getInputTestId(inputKey)}
           />
           <button
             type='button'

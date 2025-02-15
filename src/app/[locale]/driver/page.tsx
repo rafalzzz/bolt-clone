@@ -9,6 +9,6 @@ const DriverRegistration = dynamic(
   },
 );
 
-const DriverPage = async () => <DriverRegistration />;
+const DriverRegistrationPage = async () => <DriverRegistration />;
 
-export default DriverPage;
+export default DriverRegistrationPage;
