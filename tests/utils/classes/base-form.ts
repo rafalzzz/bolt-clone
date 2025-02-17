@@ -88,17 +88,9 @@ export class BaseForm extends BasePage {
   }
 
   // Submit button methods
-  private getSubmitButton(testId: string) {
-    return this.page.getByTestId(testId);
-  }
-
   async assertSubmitButtonEnabled(testId: string) {
-    const button = this.getSubmitButton(testId);
+    const button = this.getElementByTestId(testId);
 
     return await button.isEnabled();
-  }
-
-  async clickSubmitButton(testId: string) {
-    await this.getSubmitButton(testId).click();
   }
 }

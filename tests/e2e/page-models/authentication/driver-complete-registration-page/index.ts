@@ -9,6 +9,7 @@ import {
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON,
   JWT_TOKEN_ERROR,
+  OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON,
 } from '@/test-ids/driver-registration-complete-page';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/enums/driver-complete-registration-form-keys';
@@ -74,7 +75,7 @@ export class DriverCompleteRegistrationPage extends BaseForm {
       DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
     ];
 
-    return this.assertAuthPageVisible(pageElementIds);
+    return this.assertPageElementsVisibility(pageElementIds);
   }
 
   async assertInputPlaceholders() {
@@ -186,6 +187,10 @@ export class DriverCompleteRegistrationPage extends BaseForm {
   }
 
   async clickFormSubmitButton() {
-    await this.clickSubmitButton(this.submitButtonTestId);
+    await this.clickButton(this.submitButtonTestId);
+  }
+
+  async openAddFacialRecognitionModal() {
+    await this.clickButton(OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON);
   }
 }

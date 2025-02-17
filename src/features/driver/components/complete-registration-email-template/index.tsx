@@ -10,11 +10,13 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
+import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
+
 type TCompleteRegistrationEmailTemplate = {
   token: string;
 };
 
-const PROTOCOL = process.env.ENVIRONMENT === 'development' ? 'http' : 'https';
+const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
 
 const baseUrl = process.env.DOMAIN_URL
   ? `${PROTOCOL}://${process.env.DOMAIN_URL}/en/driver/complete/`

@@ -10,6 +10,12 @@ import useWindowSize from '@/shared/hooks/use-window-resize';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
+import {
+  ADD_FACIAL_RECOGNITION_BUTTON,
+  ADD_FACIAL_RECOGNITION_CANCEL_BUTTON,
+  ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
+} from '@/test-ids/add-facial-recognition-modal';
+
 import CameraSvg from '@/shared/svg/camera-svg';
 
 type TAddFacialRecognitionModal = {
@@ -52,7 +58,14 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
   const displayLoader = isVideoLoading || isVideoError;
 
   return (
-    <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
+    <CustomModal
+      title={t('title')}
+      isVisible={isVisible}
+      okButtonTestId={ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON}
+      cancelButtonTestId={ADD_FACIAL_RECOGNITION_CANCEL_BUTTON}
+      onOk={onOk}
+      onCancel={onCancel}
+    >
       <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>
         <video
           ref={videoRef}
@@ -75,6 +88,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
       <button
         onClick={() => addFacialRecognition(videoRef, canvasRef)}
         disabled={displayLoader}
+        data-testid={ADD_FACIAL_RECOGNITION_BUTTON}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
       >
         <CameraSvg className='w-8 h-8 absolute inset-0 m-auto text-buttonTextColor' />

@@ -13,6 +13,7 @@ import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import useDriverCompleteRegistrationForm from '@/features/driver/hooks/use-driver-complete-registration-form';
 
 import {
+  OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON,
 } from '@/test-ids/driver-registration-complete-page';
@@ -21,7 +22,7 @@ import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/dri
 
 import { TDriverCompleteRegistration } from '../../types';
 
-const AddFaceRecognitionModal = dynamic(
+const AddFacialRecognitionModal = dynamic(
   () => import('@/features/driver/components/add-facial-recognition-modal'),
   {
     ssr: false,
@@ -49,7 +50,7 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
     <>
       <ToastContainer />
       {isAddFacialRecognitionModalEnabled && (
-        <AddFaceRecognitionModal
+        <AddFacialRecognitionModal
           isVisible={isAddFacialRecognitionModalEnabled}
           setIsAddFacialRecognitionModalEnabled={setIsAddFacialRecognitionModalEnabled}
           setValue={setValue}
@@ -64,6 +65,7 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
             <CustomFormButton
               text={t('addFaceImageButtonText')}
               additionalClassNames='mt-8'
+              testId={OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON}
               buttonProps={{
                 type: 'button',
                 onClick: () => setIsAddFacialRecognitionModalEnabled((prevState) => !prevState),

@@ -26,6 +26,8 @@ const config: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_REGISTER_DRIVER_TOKEN_SECRET_KEY: process.env.REGISTER_DRIVER_TOKEN_SECRET_KEY,
+    NEXT_PUBLIC_ENVIRONMENT: process.env.ENVIRONMENT,
+    NEXT_PUBLIC_TF_BACKEND: process.env.TF_BACKEND,
   },
 };
 

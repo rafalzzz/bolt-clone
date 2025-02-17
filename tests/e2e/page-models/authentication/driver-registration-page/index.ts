@@ -31,7 +31,7 @@ export class DriverRegistrationPage extends BaseForm {
       DRIVER_REGISTRATION_PAGE_FORM,
     ];
 
-    return this.assertAuthPageVisible(pageElementIds);
+    return this.assertPageElementsVisibility(pageElementIds);
   }
 
   async assertInputPlaceholders() {
@@ -131,7 +131,7 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   async clickFormSubmitButton() {
-    await this.clickSubmitButton(this.submitButtonTestId);
+    await this.clickButton(this.submitButtonTestId);
   }
 
   async getRegistrationResponse() {

@@ -7,6 +7,7 @@ import { startFacialRecognition } from '@/features/driver/utils/start-facial-rec
 import startVideo from '@/features/driver/utils/start-video';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
+import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
 type TUseHandleVideo = {
   videoWidth: number;
@@ -40,7 +41,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
     setIsVideoLoading(true);
     setIsVideoError(false);
 
-    await setBackend('webgl');
+    await setBackend(isDevelopmentEnvironment() ? 'cpu' : 'webgl');
     await ready();
     await loadFaceModels();
 
