@@ -15,6 +15,7 @@ type TUseHandleVideo = {
 };
 
 const PERMISSION_DENIED_ERROR = 'Permission denied';
+const TF_BACKEND_NAME = isDevelopmentEnvironment() ? 'cpu' : 'webgl';
 
 const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const [isVideoLoading, setIsVideoLoading] = useState<boolean>(true);
@@ -41,7 +42,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
     setIsVideoLoading(true);
     setIsVideoError(false);
 
-    await setBackend(isDevelopmentEnvironment() ? 'cpu' : 'webgl');
+    await setBackend(TF_BACKEND_NAME);
     await ready();
     await loadFaceModels();
 
