@@ -36,11 +36,12 @@ export class AddFacialRecognitionModal extends BaseForm {
             const canvas = document.createElement('canvas');
             canvas.width = image.width;
             canvas.height = image.height;
+            canvas.style.backgroundColor = 'red';
 
             const ctx = canvas.getContext('2d');
             ctx.drawImage(image, 0, 0, image.width, image.height);
 
-            const stream = canvas.captureStream(0);
+            const stream = canvas.captureStream(25);
             resolve(stream);
           };
 
@@ -71,8 +72,6 @@ export class AddFacialRecognitionModal extends BaseForm {
   }
 
   async clickModalSubmitButton() {
-    await this.page.waitForTimeout(5000);
-
     await this.clickButton(this.modalSubmitButtonTestId);
   }
 

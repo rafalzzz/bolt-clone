@@ -85,18 +85,13 @@ test.describe(
       driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
       addFacialRecognitionModal = new AddFacialRecognitionModal(page);
 
-      page.on('console', (msg) => {
-        console.log(`[Browser console] ${msg.type()}: ${msg.text()}`);
-      });
-
       await driverCompleteRegistrationPage.visitPageWithValidToken();
     });
 
-    test('Should mount modal without errors', async () => {
-      await addFacialRecognitionModal.mockUserCamera();
-
+    test('Should display an error message about not added photo for facial recognition', async () => {
       await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
 
+      await addFacialRecognitionModal.mockUserCamera();
       await addFacialRecognitionModal.assertAddFacialRecognitionModal();
       await addFacialRecognitionModal.clickModalSubmitButton();
       await addFacialRecognitionModal.assertErrorToastMessage();
