@@ -50,7 +50,7 @@ test.describe(
         driverCompleteRegistrationPage.inputKeys,
       );
 
-      await driverCompleteRegistrationPage.assertSubmitButtonEnabled(
+      await driverCompleteRegistrationPage.assertButtonIsEnabled(
         driverCompleteRegistrationPage.submitButtonTestId,
       );
     });
@@ -88,6 +88,15 @@ test.describe(
       await driverCompleteRegistrationPage.visitPageWithValidToken();
     });
 
+    test('Should display an error message about required camera when camera is disabled', async () => {
+      await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
+
+      await addFacialRecognitionModal.mockDisabledUserCamera();
+      await addFacialRecognitionModal.assertAddFacialRecognitionButtonIsDisabled();
+      await addFacialRecognitionModal.assertSubmitButtonIsDisabled();
+      await addFacialRecognitionModal.assertRequiredCameraErrorToastMessage();
+    });
+
     test('Should display an error message about not added photo for facial recognition', async () => {
       await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
 
@@ -96,5 +105,15 @@ test.describe(
       await addFacialRecognitionModal.clickModalSubmitButton();
       await addFacialRecognitionModal.assertErrorToastMessage();
     });
+
+    /* test('Should add photo to facial recognition correctly', async () => {
+      await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
+
+      await addFacialRecognitionModal.mockUserCamera();
+      await addFacialRecognitionModal.assertAddFacialRecognitionModal();
+      await addFacialRecognitionModal.clickAddFacialRecognitionButton();
+      await addFacialRecognitionModal.clickModalSubmitButton();
+      await addFacialRecognitionModal.assertErrorToastMessage();
+    }); */
   },
 );

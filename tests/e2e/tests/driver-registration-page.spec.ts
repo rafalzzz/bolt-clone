@@ -18,9 +18,7 @@ test.describe(
       await driverRegistrationPage.assertPageLayoutVisible();
       await driverRegistrationPage.assertInputPlaceholders();
       await driverRegistrationPage.assertAllFormErrorsAreNotVisible();
-      await driverRegistrationPage.assertSubmitButtonEnabled(
-        driverRegistrationPage.submitButtonTestId,
-      );
+      await driverRegistrationPage.assertButtonIsEnabled(driverRegistrationPage.submitButtonTestId);
     });
 
     test('Should show error about required fields when form inputs are not filled', async () => {

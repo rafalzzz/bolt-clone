@@ -55,7 +55,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
     setValue,
   });
 
-  const displayLoader = isVideoLoading || isVideoError;
+  const isCameraDisabled = isVideoLoading || isVideoError;
 
   return (
     <CustomModal
@@ -63,8 +63,11 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
       isVisible={isVisible}
       okButtonTestId={ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON}
       cancelButtonTestId={ADD_FACIAL_RECOGNITION_CANCEL_BUTTON}
-      onOk={onOk}
       onCancel={onCancel}
+      okButtonProps={{
+        onClick: onOk,
+        disabled: isCameraDisabled,
+      }}
     >
       <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>
         <video
@@ -77,7 +80,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
           muted
         ></video>
         <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10' />
-        {displayLoader && (
+        {isCameraDisabled && (
           <div
             className='absolute top-0 left-0 rounded-sm animate-pulse bg-modalVideoLoaderColor'
             style={{ width: videoWidth, height: videoHeight }}
@@ -87,7 +90,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
 
       <button
         onClick={() => addFacialRecognition(videoRef, canvasRef)}
-        disabled={displayLoader}
+        disabled={isCameraDisabled}
         data-testid={ADD_FACIAL_RECOGNITION_BUTTON}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
       >

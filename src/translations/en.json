@@ -94,7 +94,7 @@
   "AddFacialRecognitionError": {
     "permissionDenied": "To add a facial photo, access to the camera is required",
     "errorWhileAddingFaceRecognition": "An error occurred while adding face recognition",
-    "photoIsNotAdded": "The photo for facial recognition has not been added.",
+    "photoIsNotAdded": "The photo for facial recognition has not been added",
     "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
   },
   "JwtTokenErrors": {

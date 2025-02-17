@@ -9,6 +9,8 @@ import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
+import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
+
 type TUseHandleVideo = {
   videoWidth: number;
   videoHeight: number;
@@ -33,7 +35,11 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
       const text = isCameraDisabled ? t('permissionDenied') : error;
 
       setIsVideoError(true);
-      displayWarningToast({ text, ariaLabel: PERMISSION_DENIED_ERROR });
+      displayWarningToast({
+        text,
+        ariaLabel: text,
+        testId: ADD_FACIAL_RECOGNITION_ERROR,
+      });
     },
     [t],
   );

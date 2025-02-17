@@ -94,7 +94,7 @@
   "AddFacialRecognitionError": {
     "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
     "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
-    "photoIsNotAdded": "Zdjęcie w celu rozpoznawania twarzy nie zostało dodane.",
+    "photoIsNotAdded": "Zdjęcie w celu rozpoznawania twarzy nie zostało dodane",
     "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
   },
   "JwtTokenErrors": {

@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import CustomCloseButton from '@/shared/components/custom-close-button';
 
@@ -10,8 +10,9 @@ import { TFCWithChildren } from '@/shared/types/fc-with-children';
 type TCustomModal = {
   title: ReactNode;
   isVisible: boolean;
-  onOk: () => void;
   onCancel: () => void;
+  okButtonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
+  cancelButtonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
   okButtonText?: string;
   cancelButtonText?: string;
   okButtonTestId?: string;
@@ -22,10 +23,11 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
   title,
   isVisible,
   children,
-  onOk,
   onCancel,
   okButtonText,
   cancelButtonText,
+  okButtonProps = {},
+  cancelButtonProps = {},
   okButtonTestId,
   cancelButtonTestId,
 }) => {
@@ -51,6 +53,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
               className='py-2.5 px-5 text-sm font-medium rounded-lg focus:z-10 secondary-button'
               data-testid={cancelButtonTestId}
               onClick={onCancel}
+              {...cancelButtonProps}
             >
               {cancelButtonText ?? t('cancelButtonText')}
             </button>
@@ -58,7 +61,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
               type='button'
               className='ms-3 font-medium rounded-lg text-sm px-5 py-2.5 text-center primary-button'
               data-testid={okButtonTestId}
-              onClick={onOk}
+              {...okButtonProps}
             >
               {okButtonText ?? t('okButtonText')}
             </button>

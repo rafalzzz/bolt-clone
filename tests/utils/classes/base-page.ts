@@ -81,4 +81,16 @@ export class BasePage {
   async clickButton(testId: string) {
     await this.getElementByTestId(testId).click();
   }
+
+  async assertButtonIsEnabled(testId: string) {
+    const button = this.getElementByTestId(testId);
+
+    return await button.isEnabled();
+  }
+
+  async assertButtonIsDisabled(testId: string) {
+    const button = this.getElementByTestId(testId);
+
+    return await button.isDisabled();
+  }
 }

@@ -20,6 +20,18 @@ export class AddFacialRecognitionModal extends BaseForm {
     super(page, '');
   }
 
+  async mockDisabledUserCamera() {
+    await this.page.evaluate(() => {
+      navigator.mediaDevices.getUserMedia = async (constraints: MediaStreamConstraints) => {
+        if (constraints.video || constraints.audio) {
+          return Promise.reject(new DOMException('Permission denied', 'NotAllowedError'));
+        }
+
+        throw new Error('Media type not supported');
+      };
+    });
+  }
+
   async mockUserCamera() {
     const faceImagePath =
       'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg';
@@ -71,6 +83,23 @@ export class AddFacialRecognitionModal extends BaseForm {
     return this.assertPageElementsVisibility(pageElementIds);
   }
 
+  async assertAddFacialRecognitionButtonIsDisabled() {
+    return this.assertButtonIsDisabled(this.addFacialRecognitionButtonTestId);
+  }
+
+  async assertSubmitButtonIsDisabled() {
+    return this.assertButtonIsDisabled(this.modalSubmitButtonTestId);
+  }
+
+  async assertRequiredCameraErrorToastMessage() {
+    const errorMessage = await this.waitForElementWithTestId(ADD_FACIAL_RECOGNITION_ERROR);
+
+    await this.checkElementTextContent(
+      errorMessage,
+      'To add a facial photo, access to the camera is required',
+    );
+  }
+
   async clickModalSubmitButton() {
     await this.clickButton(this.modalSubmitButtonTestId);
   }
@@ -80,7 +109,11 @@ export class AddFacialRecognitionModal extends BaseForm {
 
     await this.checkElementTextContent(
       errorMessage,
-      'The photo for facial recognition has not been added.',
+      'The photo for facial recognition has not been added',
     );
+  }
+
+  async clickAddFacialRecognitionButton() {
+    await this.clickButton(this.addFacialRecognitionButtonTestId);
   }
 }

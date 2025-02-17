@@ -86,11 +86,4 @@ export class BaseForm extends BasePage {
       await expect(errorElement).not.toBeVisible();
     }
   }
-
-  // Submit button methods
-  async assertSubmitButtonEnabled(testId: string) {
-    const button = this.getElementByTestId(testId);
-
-    return await button.isEnabled();
-  }
 }
