@@ -1,12 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type JWTPayload } from 'jose';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+
+import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
   TDriverCompleteRegistrationFormSchema,
   driverCompleteRegistrationFormSchema,
 } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+
+import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
 
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
 
@@ -20,8 +25,11 @@ const useDriverCompleteRegistrationForm = ({
   const [isAddFacialRecognitionModalEnabled, setIsAddFacialRecognitionModalEnabled] =
     useState(false);
 
+  const t = useTranslations('AddFacialRecognitionError');
+
   const {
     register,
+    getValues,
     setValue,
     clearErrors,
     handleSubmit,
@@ -52,6 +60,18 @@ const useDriverCompleteRegistrationForm = ({
   };
 
   const onOk = () => {
+    const isFacialRecognitionAdded = getValues('file');
+
+    console.log({ isFacialRecognitionAdded });
+
+    if (!isFacialRecognitionAdded) {
+      return displayWarningToast({
+        text: t('photoIsNotAdded'),
+        ariaLabel: t('photoIsNotAdded'),
+        testId: ADD_FACIAL_RECOGNITION_ERROR,
+      });
+    }
+
     clearErrors(EDriverCompleteRegistrationFormKeys.FILE);
     setIsAddFacialRecognitionModalEnabled(false);
   };

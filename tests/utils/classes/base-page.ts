@@ -43,7 +43,7 @@ export class BasePage {
     expect(isVisible).toBeTruthy();
   }
 
-  async assertAuthPageVisible(pageElementsIds: string[]) {
+  async assertPageElementsVisibility(pageElementsIds: string[]) {
     for (const testId of pageElementsIds) {
       await expect(this.getElementByTestId(testId)).toBeVisible();
     }
@@ -76,5 +76,9 @@ export class BasePage {
   ) {
     const text = await element.textContent();
     expect(text).toBe(exptectedText);
+  }
+
+  async clickButton(testId: string) {
+    await this.getElementByTestId(testId).click();
   }
 }

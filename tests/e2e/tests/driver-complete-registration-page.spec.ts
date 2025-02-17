@@ -1,5 +1,6 @@
 import { test } from '@playwright/test';
 
+import { AddFacialRecognitionModal } from '@/page-models/authentication/add-facial-recognition-modal';
 import { DriverCompleteRegistrationPage } from '@/page-models/authentication/driver-complete-registration-page';
 
 test.describe(
@@ -69,6 +70,36 @@ test.describe(
 
       await driverCompleteRegistrationPage.fillInputsWithValidValues();
       await driverCompleteRegistrationPage.assertInputErorrsAreNotVisible();
+    });
+  },
+);
+
+test.describe(
+  'DriverCompleteRegistrationPage - Add facial recognition tests',
+  { tag: ['@driverCompleteRegistrationPage', '@critical'] },
+  async () => {
+    let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
+    let addFacialRecognitionModal: AddFacialRecognitionModal;
+
+    test.beforeEach('Visit driver registration page', async ({ page }) => {
+      driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
+      addFacialRecognitionModal = new AddFacialRecognitionModal(page);
+
+      page.on('console', (msg) => {
+        console.log(`[Browser console] ${msg.type()}: ${msg.text()}`);
+      });
+
+      await driverCompleteRegistrationPage.visitPageWithValidToken();
+    });
+
+    test('Should mount modal without errors', async () => {
+      await addFacialRecognitionModal.mockUserCamera();
+
+      await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
+
+      await addFacialRecognitionModal.assertAddFacialRecognitionModal();
+      await addFacialRecognitionModal.clickModalSubmitButton();
+      await addFacialRecognitionModal.assertErrorToastMessage();
     });
   },
 );

@@ -14,16 +14,20 @@ type TCustomModal = {
   onCancel: () => void;
   okButtonText?: string;
   cancelButtonText?: string;
+  okButtonTestId?: string;
+  cancelButtonTestId?: string;
 };
 
 const CustomModal: TFCWithChildren<TCustomModal> = ({
   title,
   isVisible,
   children,
-  okButtonText,
-  cancelButtonText,
   onOk,
   onCancel,
+  okButtonText,
+  cancelButtonText,
+  okButtonTestId,
+  cancelButtonTestId,
 }) => {
   const t = useTranslations('CustomModal');
   const { modalRef } = useCustomModal({ isVisible });
@@ -45,6 +49,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
               type='button'
               data-modal-hide='default-modal'
               className='py-2.5 px-5 text-sm font-medium rounded-lg focus:z-10 secondary-button'
+              data-testid={okButtonTestId}
               onClick={onCancel}
             >
               {cancelButtonText ?? t('cancelButtonText')}
@@ -52,6 +57,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
             <button
               type='button'
               className='ms-3 font-medium rounded-lg text-sm px-5 py-2.5 text-center primary-button'
+              data-testid={cancelButtonTestId}
               onClick={onOk}
             >
               {okButtonText ?? t('okButtonText')}
