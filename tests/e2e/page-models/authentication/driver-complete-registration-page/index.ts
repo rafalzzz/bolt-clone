@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { baseURL } from '@/config/playwright.config';
 
@@ -196,12 +196,8 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   }
 
   async assertRegistrationSuccessMessage() {
-    const errorMessage = await this.waitForElementWithTestId(
+    await this.checkToastMessage(
       DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
-    );
-
-    await this.checkElementTextContent(
-      errorMessage,
       'You have been registered! You can start using our application.',
     );
   }

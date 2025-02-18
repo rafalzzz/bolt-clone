@@ -93,4 +93,10 @@ export class BasePage {
 
     return await button.isDisabled();
   }
+
+  async checkToastMessage(toastTestId: string, text: string) {
+    const errorMessage = await this.waitForElementWithTestId(toastTestId);
+
+    await this.checkElementTextContent(errorMessage, text);
+  }
 }

@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { BaseForm } from '@/classes/base-form';
 
@@ -139,19 +139,15 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   async assertErrorToastMessage() {
-    const errorMessage = await this.waitForElementWithTestId(REGISTRATION_FAILURE_MESSAGE);
-
-    await this.checkElementTextContent(
-      errorMessage,
+    await this.checkToastMessage(
+      REGISTRATION_FAILURE_MESSAGE,
       'An unexpected response was received from the server.',
     );
   }
 
   async assertSuccessToastMessage() {
-    const successMessage = await this.waitForElementWithTestId(REGISTRATION_SUCCESS_MESSAGE);
-
-    await this.checkElementTextContent(
-      successMessage,
+    await this.checkToastMessage(
+      REGISTRATION_SUCCESS_MESSAGE,
       'Registration was successful! Check your email.',
     );
   }
