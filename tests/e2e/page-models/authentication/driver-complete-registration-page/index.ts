@@ -1,10 +1,11 @@
 import { Page } from '@playwright/test';
 
-import { BaseForm } from '@/classes/base-form';
-
 import { baseURL } from '@/config/playwright.config';
 
+import { AddFacialRecognitionModal } from '@/page-models/authentication/add-facial-recognition-modal';
+
 import {
+  DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
   DRIVER_REGISTRATION_COMPLETE_PAGE_DESCRIPTION,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON,
@@ -17,7 +18,7 @@ import { ELanguage } from '@/enums/language';
 
 import { TTestObject } from '@/types/test-object';
 
-export class DriverCompleteRegistrationPage extends BaseForm {
+export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   readonly inputKeys: string[] = Object.values(EDriverCompleteRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON;
 
@@ -178,7 +179,7 @@ export class DriverCompleteRegistrationPage extends BaseForm {
     });
   }
 
-  async assertInputErorrsAreNotVisible() {
+  async assertInputErrorsAreNotVisible() {
     await this.assertFormErrorsAreNotVisible([
       EDriverCompleteRegistrationFormKeys.PASSWORD,
       EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD,
@@ -192,5 +193,16 @@ export class DriverCompleteRegistrationPage extends BaseForm {
 
   async openAddFacialRecognitionModal() {
     await this.clickButton(OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON);
+  }
+
+  async assertRegistrationSuccessMessage() {
+    const errorMessage = await this.waitForElementWithTestId(
+      DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+    );
+
+    await this.checkElementTextContent(
+      errorMessage,
+      'You have been registered! You can start using our application.',
+    );
   }
 }

@@ -4,6 +4,9 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import useRequest from '@/shared/hooks/use-request';
+
+import displaySuccessToast from '@/shared/utils/display-success-toast';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
@@ -12,7 +15,12 @@ import {
 } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
 import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
+import {
+  DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+  DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
+} from '@/test-ids/driver-registration-complete-page';
 
+import { registerDriver } from '../actions/register-driver';
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
 
 type TUseDriverCompleteRegistrationForm = {
@@ -26,6 +34,9 @@ const useDriverCompleteRegistrationForm = ({
     useState(false);
 
   const t = useTranslations('AddFacialRecognitionError');
+  const registrationMessages = useTranslations('DriverRegistrationCompleteMessages');
+
+  const { startRequest, handleSuccess, handleRequestError } = useRequest();
 
   const {
     register,
@@ -56,13 +67,29 @@ const useDriverCompleteRegistrationForm = ({
       formData.append(key, value);
     });
 
-    // TODO - connect form to BE
+    startRequest();
+
+    registerDriver(formData)
+      .then(() => {
+        handleSuccess();
+
+        displaySuccessToast({
+          text: registrationMessages('registrationSuccess'),
+          ariaLabel: 'Registered Successfully',
+          testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+        });
+      })
+      .catch(
+        handleRequestError({
+          uniqueMessage: registrationMessages('registrationError'),
+          ariaLabel: 'Registration error',
+          testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
+        }),
+      );
   };
 
   const onOk = () => {
     const isFacialRecognitionAdded = getValues('file');
-
-    console.log({ isFacialRecognitionAdded });
 
     if (!isFacialRecognitionAdded) {
       return displayWarningToast({

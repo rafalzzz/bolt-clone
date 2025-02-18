@@ -9,6 +9,8 @@ import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
+import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
+
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
 import type { TDetections } from '@/features/driver/types';
@@ -55,6 +57,7 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
         return displayWarningToast({
           text: t('faceNotFound'),
           ariaLabel: t('faceNotFound'),
+          testId: ADD_FACIAL_RECOGNITION_ERROR,
         });
       }
 

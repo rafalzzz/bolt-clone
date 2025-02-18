@@ -103,5 +103,9 @@
     "invalidToken": "Token is invalid",
     "unknownError": "An unknown error occurred during decrypting token",
     "failedToVerifyToken": "Failed to verify token"
+  },
+  "DriverRegistrationCompleteMessages": {
+    "registrationSuccess": "You have been registered! You can start using our application.",
+    "registrationError": "An error occurred during registration, please try again."
   }
 }

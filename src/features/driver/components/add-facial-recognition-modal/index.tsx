@@ -13,6 +13,7 @@ import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas
 import {
   ADD_FACIAL_RECOGNITION_BUTTON,
   ADD_FACIAL_RECOGNITION_CANCEL_BUTTON,
+  ADD_FACIAL_RECOGNITION_MODAL,
   ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
 } from '@/test-ids/add-facial-recognition-modal';
 
@@ -63,6 +64,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
       isVisible={isVisible}
       okButtonTestId={ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON}
       cancelButtonTestId={ADD_FACIAL_RECOGNITION_CANCEL_BUTTON}
+      modalTestId={ADD_FACIAL_RECOGNITION_MODAL}
       onCancel={onCancel}
       okButtonProps={{
         onClick: onOk,

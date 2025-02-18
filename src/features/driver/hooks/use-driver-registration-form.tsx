@@ -7,7 +7,6 @@ import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-drive
 import useRequest from '@/shared/hooks/use-request';
 
 import displaySuccessToast from '@/shared/utils/display-success-toast';
-import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
   TDriverRegistrationFormSchema,
@@ -20,7 +19,7 @@ import {
 } from '@/test-ids/driver-registration-page';
 
 const useDriverRegistrationForm = () => {
-  const { state, startRequest, handleSuccess, handleError } = useRequest();
+  const { state, startRequest, handleSuccess, handleRequestError } = useRequest();
 
   const {
     register,
@@ -48,18 +47,13 @@ const useDriverRegistrationForm = () => {
           testId: REGISTRATION_SUCCESS_MESSAGE,
         });
       })
-      .catch((error: unknown) => {
-        const errorMessage =
-          error instanceof Error ? error.message : t('initialRegistratrionError');
-
-        handleError(errorMessage);
-
-        displayWarningToast({
-          text: errorMessage,
+      .catch(
+        handleRequestError({
+          uniqueMessage: t('initialRegistratrionError'),
           ariaLabel: 'Registration error',
           testId: REGISTRATION_FAILURE_MESSAGE,
-        });
-      });
+        }),
+      );
   };
 
   return { state, errors, register, setValue, onSubmit, handleSubmit };

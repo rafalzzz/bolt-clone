@@ -15,6 +15,7 @@ type TCustomModal = {
   cancelButtonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
   okButtonText?: string;
   cancelButtonText?: string;
+  modalTestId?: string;
   okButtonTestId?: string;
   cancelButtonTestId?: string;
 };
@@ -28,6 +29,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
   cancelButtonText,
   okButtonProps = {},
   cancelButtonProps = {},
+  modalTestId,
   okButtonTestId,
   cancelButtonTestId,
 }) => {
@@ -37,6 +39,7 @@ const CustomModal: TFCWithChildren<TCustomModal> = ({
   return (
     <div
       ref={modalRef}
+      data-testid={modalTestId}
       className='fixed top-0 right-0 left-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full duration-150 ease-in-out bg-modalBackgroundColor transition'
     >
       <div className='relative p-4 w-full max-w-3xl max-h-full'>

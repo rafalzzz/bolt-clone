@@ -103,5 +103,9 @@
     "invalidToken": "Token jest nieprawidłowy",
     "unknownError": "Wystąpił nieznany błąd podczas rozszyfrowywania tokenu",
     "failedToVerifyToken": "Nie udało się zweryfikować tokenu"
+  },
+  "DriverRegistrationCompleteMessages": {
+    "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji.",
+    "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie."
   }
 }
