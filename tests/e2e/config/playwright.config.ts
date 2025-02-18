@@ -6,6 +6,7 @@ export default defineConfig({
   testDir: '../tests',
   outputDir: '../reports',
   fullyParallel: true,
+  /* workers: !process.env['CI'] ? 3 : undefined, */
   workers: 1,
   webServer: {
     command: 'npm run dev -- -p 4000',
