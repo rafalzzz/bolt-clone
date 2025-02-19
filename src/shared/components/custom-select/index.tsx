@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { Path, UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import type { Path, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import {
-  ControlProps,
-  GroupBase,
-  GroupHeadingProps,
-  OptionProps,
-  SingleValueProps,
+  type ControlProps,
+  type GroupBase,
+  type GroupHeadingProps,
+  type OptionProps,
+  type SingleValueProps,
   components,
 } from 'react-select';
 

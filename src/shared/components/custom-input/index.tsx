@@ -1,5 +1,5 @@
-import { InputHTMLAttributes, ReactNode } from 'react';
-import { Path, UseFormRegister } from 'react-hook-form';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { Path, UseFormRegister } from 'react-hook-form';
 
 import CustomInputLabel from '@/shared/components/custom-input-label';
 import FormItemContainer from '@/shared/components/form-item-container';

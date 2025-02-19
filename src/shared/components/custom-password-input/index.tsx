@@ -12,7 +12,7 @@ import EyeSvg from '@/shared/svg/eye-svg';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 
-type TPasswordInput<FormType extends TBasicFormType> = {
+export type TCustomPasswordInput<FormType extends TBasicFormType> = {
   label: string;
   props: InputHTMLAttributes<HTMLInputElement>;
   inputKey: Path<FormType>;
@@ -20,13 +20,13 @@ type TPasswordInput<FormType extends TBasicFormType> = {
   error?: string;
 };
 
-const PasswordInput = <FormType extends TBasicFormType>({
+const CustomPasswordInput = <FormType extends TBasicFormType>({
   label,
   props,
   inputKey,
   error,
   register,
-}: TPasswordInput<FormType>) => {
+}: TCustomPasswordInput<FormType>) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const t = useTranslations('PasswordInput');
@@ -56,4 +56,4 @@ const PasswordInput = <FormType extends TBasicFormType>({
   );
 };
 
-export default PasswordInput;
+export default CustomPasswordInput;

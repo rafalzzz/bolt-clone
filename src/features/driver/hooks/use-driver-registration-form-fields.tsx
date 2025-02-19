@@ -4,7 +4,7 @@ import type { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-f
 
 import useCityOptions from '@/features/driver/hooks/use-city-options';
 
-import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
+import type { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
 import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 

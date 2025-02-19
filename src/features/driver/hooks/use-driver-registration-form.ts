@@ -10,7 +10,7 @@ import useRequest from '@/shared/hooks/use-request';
 import displaySuccessToast from '@/shared/utils/display-success-toast';
 
 import {
-  TDriverRegistrationFormSchema,
+  type TDriverRegistrationFormSchema,
   driverRegistrationFormSchema,
 } from '@/features/driver/schemas/driver-registration-form-schema';
 

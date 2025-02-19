@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import type { FC, Dispatch, SetStateAction } from 'react';
-import { UseFormSetValue } from 'react-hook-form';
+import type { UseFormSetValue } from 'react-hook-form';
 
 import CustomModal from '@/shared/components/custom-modal';
 
@@ -8,7 +8,7 @@ import useAddFacialRecognition from '@/features/driver/hooks/use-add-facial-reco
 import useStartVideo from '@/features/driver/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
-import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
 import {
   ADD_FACIAL_RECOGNITION_BUTTON,

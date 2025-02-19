@@ -1,10 +1,10 @@
 import type { Path, PathValue, UseFormSetValue } from 'react-hook-form';
 import Select, {
-  ControlProps,
-  GroupHeadingProps,
-  OptionProps,
-  SingleValue,
-  SingleValueProps,
+  type ControlProps,
+  type GroupHeadingProps,
+  type OptionProps,
+  type SingleValue,
+  type SingleValueProps,
 } from 'react-select';
 
 import CustomInputLabel from '@/shared/components/custom-input-label';

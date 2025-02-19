@@ -8,6 +8,8 @@ import { EFieldType } from '@/shared/enums/field-type';
 
 import { TCustomFormField, TFieldTypeMap } from '@/shared/types/custom-form-field';
 
+import CustomPasswordInput from '../custom-password-input';
+
 type TCustomFormFields<FormType extends FieldValues> = {
   formFields: TCustomFormField<FormType>[];
 };
@@ -38,6 +40,13 @@ const CustomFormFields = <FormType extends FieldValues>({
           <CustomCheckbox
             key={inputKey}
             {...(fieldProps as TFieldTypeMap<FormType>[EFieldType.CHECKBOX])}
+          />
+        );
+      case EFieldType.PASSWORD:
+        return (
+          <CustomPasswordInput
+            key={inputKey}
+            {...(fieldProps as TFieldTypeMap<FormType>[EFieldType.PASSWORD])}
           />
         );
       default:

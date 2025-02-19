@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { type FC } from 'react';
+import type { FC } from 'react';
 
 import getErrorTestId from '@/test-helpers/get-error-test-id';
 

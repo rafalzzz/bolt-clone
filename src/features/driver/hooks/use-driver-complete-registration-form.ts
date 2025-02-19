@@ -10,7 +10,7 @@ import displaySuccessToast from '@/shared/utils/display-success-toast';
 import displayWarningToast from '@/shared/utils/display-warning-toast';
 
 import {
-  TDriverCompleteRegistrationFormSchema,
+  type TDriverCompleteRegistrationFormSchema,
   driverCompleteRegistrationFormSchema,
 } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
@@ -23,6 +23,8 @@ import {
 import { registerDriver } from '../actions/register-driver';
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
 
+import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
+
 type TUseDriverCompleteRegistrationForm = {
   tokenPayload: JWTPayload | null;
 };
@@ -33,21 +35,23 @@ const useDriverCompleteRegistrationForm = ({
   const [isAddFacialRecognitionModalEnabled, setIsAddFacialRecognitionModalEnabled] =
     useState(false);
 
-  const t = useTranslations('AddFacialRecognitionError');
-  const registrationMessages = useTranslations('DriverRegistrationCompleteMessages');
-
   const { startRequest, handleSuccess, handleRequestError } = useRequest();
 
   const {
     register,
-    getValues,
     setValue,
+    getValues,
     clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm<TDriverCompleteRegistrationFormSchema>({
     resolver: zodResolver(driverCompleteRegistrationFormSchema),
   });
+
+  const facialRecognitionMessages = useTranslations('AddFacialRecognitionError');
+  const registrationMessages = useTranslations('DriverRegistrationCompleteMessages');
+
+  const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
 
   const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (values) => {
     if (!tokenPayload) {
@@ -93,8 +97,8 @@ const useDriverCompleteRegistrationForm = ({
 
     if (!isFacialRecognitionAdded) {
       return displayWarningToast({
-        text: t('photoIsNotAdded'),
-        ariaLabel: t('photoIsNotAdded'),
+        text: facialRecognitionMessages('photoIsNotAdded'),
+        ariaLabel: facialRecognitionMessages('photoIsNotAdded'),
         testId: ADD_FACIAL_RECOGNITION_ERROR,
       });
     }
@@ -108,10 +112,10 @@ const useDriverCompleteRegistrationForm = ({
   };
 
   return {
-    errors,
     isAddFacialRecognitionModalEnabled,
+    formFields,
+    errors,
     setIsAddFacialRecognitionModalEnabled,
-    register,
     setValue,
     onSubmit,
     onOk,
