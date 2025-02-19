@@ -28,14 +28,14 @@
     "phoneNumberLabel": "Phone number",
     "emailPlaceholder": "Enter email address",
     "phoneNumberPlaceholder": "Mobile number",
+    "cityLabel": "City",
+    "cityPlaceholder": "City where you will drive",
     "termsText": "By registering, you agree to our Terms of Service and Privacy policy, commit to comply with obligations under the European Union and local legislation and provide only legal services and content on the BoltCopy Platform.",
     "submitButtonText": "Register as a driver",
     "initialRegistrationSuccess": "Registration was successful! Check your email.",
     "initialRegistratrionError": "An error occurred during registration."
   },
   "CitySelect": {
-    "cityLabel": "City",
-    "cityPlaceholder": "City where you will drive",
     "poland": "Poland",
     "rzeszow": "Rzeszow",
     "warsaw": "Warsaw"

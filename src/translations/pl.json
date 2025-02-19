@@ -28,14 +28,14 @@
     "phoneNumberLabel": "Numer telefonu",
     "emailPlaceholder": "Wprowadź adres email",
     "phoneNumberPlaceholder": "Numer telefonu",
+    "cityLabel": "Miasto",
+    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
     "termsText": "Rejestrując się, zgadzasz się z naszym Regulaminem i Polityką Prywatności, zobowiązujesz się do przestrzegania obowiązków wynikających z przepisów Unii Europejskiej i lokalnych oraz do dostarczania wyłącznie legalnych usług i treści na Platformie BoltCopy.",
     "submitButtonText": "Zarejestruj się jako kierowca",
     "initialRegistrationSuccess": "Rejestracja przebiegła pomyślnie! Sprawdź swój email.",
     "initialRegistratrionError": "Wystąpił błąd podczas rejestracji."
   },
   "CitySelect": {
-    "cityLabel": "Miasto",
-    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
     "poland": "Polska",
     "rzeszow": "Rzeszów",
     "warsaw": "Warszawa"

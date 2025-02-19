@@ -4,6 +4,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-driver';
 
+import useDriverRegistrationFormFields from '@/features/driver/hooks/use-driver-registration-form-fields';
 import useRequest from '@/shared/hooks/use-request';
 
 import displaySuccessToast from '@/shared/utils/display-success-toast';
@@ -32,6 +33,7 @@ const useDriverRegistrationForm = () => {
   });
 
   const t = useTranslations('DriverRegistrationForm');
+  const formFields = useDriverRegistrationFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverRegistrationFormSchema> = async (data) => {
     startRequest();
@@ -56,7 +58,7 @@ const useDriverRegistrationForm = () => {
       );
   };
 
-  return { state, errors, register, setValue, onSubmit, handleSubmit };
+  return { state, formFields, onSubmit, handleSubmit };
 };
 
 export default useDriverRegistrationForm;

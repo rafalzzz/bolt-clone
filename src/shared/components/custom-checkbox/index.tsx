@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { InputHTMLAttributes } from 'react';
 import type { Path, UseFormRegister } from 'react-hook-form';
 
 import FormItemContainer from '@/shared/components/form-item-container';
@@ -9,17 +9,17 @@ import { TBasicFormType } from '@/shared/types/basic-form-type';
 
 import './custom-checkbox.scss';
 
-type TCustomCheckbox<FormType extends TBasicFormType> = {
-  children: ReactNode;
+export type TCustomCheckbox<FormType extends TBasicFormType> = {
   inputKey: Path<FormType>;
+  text: string;
   register: UseFormRegister<FormType>;
   checkboxProps?: InputHTMLAttributes<HTMLInputElement>;
   error?: string;
 };
 
 const CustomCheckbox = <FormType extends TBasicFormType>({
-  children,
   inputKey,
+  text,
   register,
   checkboxProps,
   error,
@@ -57,7 +57,7 @@ const CustomCheckbox = <FormType extends TBasicFormType>({
           </div>
         </div>
       </div>
-      {children}
+      {text}
     </label>
   </FormItemContainer>
 );

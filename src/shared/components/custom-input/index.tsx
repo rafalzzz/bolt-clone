@@ -10,7 +10,7 @@ import ErrorSvg from '@/shared/svg/error-svg';
 
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 
-type TCustomInput<FormType extends TBasicFormType> = {
+export type TCustomInput<FormType extends TBasicFormType> = {
   label: string;
   props: InputHTMLAttributes<HTMLInputElement>;
   inputKey: Path<FormType>;

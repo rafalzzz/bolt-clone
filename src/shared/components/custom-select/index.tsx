@@ -12,30 +12,30 @@ import {
 
 import ReactSelect from '@/shared/components/react-select';
 
-import { CITY_OPTIONS } from '@/features/driver/consts/city-options';
-
-import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
-
 import { TBasicFormType } from '@/shared/types/basic-form-type';
 import { TGroupedOption, TOption } from '@/shared/types/react-select';
 
 const { Control, SingleValue, Option } = components;
 
-type TCitySelect<FormType extends TBasicFormType> = {
+export type TCustomSelect<FormType extends TBasicFormType> = {
   inputKey: Path<FormType>;
+  label: string;
+  placeholder: string;
+  options: TGroupedOption[];
   register: UseFormRegister<FormType>;
   setValue: UseFormSetValue<FormType>;
   error?: string;
 };
 
-const CitySelect = <FormType extends TBasicFormType>({
+const CustomSelect = <FormType extends TBasicFormType>({
   inputKey,
+  label,
+  placeholder,
+  options,
   register,
   setValue,
   error,
-}: TCitySelect<FormType>) => {
-  const t = useTranslations('CitySelect');
-
+}: TCustomSelect<FormType>) => {
   register(inputKey);
 
   const formatControl = ({
@@ -48,35 +48,35 @@ const CitySelect = <FormType extends TBasicFormType>({
   );
 
   const formatSingleValue = (props: SingleValueProps<TOption, false>) => (
-    <SingleValue {...props}>{t(props.data.label)}</SingleValue>
+    <SingleValue {...props}>{props.data.label}</SingleValue>
   );
 
   const formatGroupLabel = (props: GroupHeadingProps<TOption, false>) => {
-    const { icon, label } = props.data as unknown as TGroupedOption;
+    const { icon, label } = props.data as TGroupedOption;
 
     return (
       <div className='flex items-center p-2'>
         {icon && <Image src={icon} width={20} height={20} alt={`${label} flag`} className='mr-2' />}
-        <span>{t(label)}</span>
+        <span>{label}</span>
       </div>
     );
   };
 
   const formatOption = (props: OptionProps<TOption, false>) => (
     <Option {...props}>
-      <div className='flex items-center p-2'>{t(props.data.label)}</div>
+      <div className='flex items-center p-2'>{props.data.label}</div>
     </Option>
   );
 
   return (
     <ReactSelect
-      label={t('cityLabel')}
+      label={label}
       inputKey={inputKey}
-      setValue={setValue}
-      placeholder={t('cityPlaceholder')}
-      name={EDriverRegistrationFormKeys.CITY}
-      options={CITY_OPTIONS}
+      placeholder={placeholder}
+      name={inputKey}
+      options={options}
       error={error}
+      setValue={setValue}
       formatControl={formatControl}
       formatSingleValue={formatSingleValue}
       formatGroupLabel={formatGroupLabel}
@@ -85,4 +85,4 @@ const CitySelect = <FormType extends TBasicFormType>({
   );
 };
 
-export default CitySelect;
+export default CustomSelect;
