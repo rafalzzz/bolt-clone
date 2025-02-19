@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { Path, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import {
   ControlProps,
