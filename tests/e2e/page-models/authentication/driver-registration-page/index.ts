@@ -25,6 +25,7 @@ export class DriverRegistrationPage extends BaseForm {
     super(page, `${baseURL}/${language}/driver`);
   }
 
+  // Check general layout methods
   async assertPageLayoutVisible() {
     const pageElementIds: string[] = [
       DRIVER_REGISTRATION_PAGE_DESCRIPTION,
@@ -34,6 +35,82 @@ export class DriverRegistrationPage extends BaseForm {
     return this.assertPageElementsVisibility(pageElementIds);
   }
 
+  // Requests methods
+  async mockFailureRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/en/driver',
+      options: {
+        status: 400,
+        contentType: 'application/json',
+      },
+    });
+  }
+
+  async mockSuccessRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/en/driver',
+      options: {
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ isSuccess: true, error: false }),
+      },
+    });
+  }
+
+  private async getRegistrationResponse() {
+    return this.getRequestPromise(`${baseURL}/en/driver`);
+  }
+
+  async waitForRegistrationRequest() {
+    const requestPromise = this.getRegistrationResponse();
+
+    await this.clickFormSubmitButton();
+    await this.assertAllFormErrorsAreNotVisible();
+
+    await requestPromise;
+  }
+
+  // Check request result methods
+  async assertErrorToastMessage() {
+    await this.checkToastMessage(
+      REGISTRATION_FAILURE_MESSAGE,
+      'An unexpected response was received from the server.',
+    );
+  }
+
+  async assertSuccessToastMessage() {
+    await this.checkToastMessage(
+      REGISTRATION_SUCCESS_MESSAGE,
+      'Registration was successful! Check your email.',
+    );
+  }
+
+  // Change form elements methods
+  async fillInputsWithInvalidValues() {
+    const invalidInputFormat: TTestObject = {
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
+    };
+
+    await this.changeInputsValues(invalidInputFormat);
+  }
+
+  async fillInputsWithValidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
+    };
+
+    await this.changeInputsValues(wrongFormatErrorMessages);
+  }
+
+  async fillForm() {
+    await this.fillInputsWithValidValues();
+    await this.selectReactSelectOption('Warsaw');
+    await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
+  }
+
+  // Form methods
   async assertInputPlaceholders() {
     const inputPlaceholders: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]: 'Enter email address',
@@ -64,16 +141,7 @@ export class DriverRegistrationPage extends BaseForm {
       [EDriverRegistrationFormKeys.RULES]: 'You must agree to continue',
     };
 
-    await this.checkErrorMessages(requiredFieldErrorMessages);
-  }
-
-  async fillInputsWithInvalidValues() {
-    const invalidInputFormat: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
-    };
-
-    await this.changeInputsValue(invalidInputFormat);
+    await this.checkErrorsMessages(requiredFieldErrorMessages);
   }
 
   async assertInvalidFormatErrorMessages() {
@@ -82,22 +150,7 @@ export class DriverRegistrationPage extends BaseForm {
       [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Invalid phone format',
     };
 
-    await this.checkErrorMessages(invalidFormatErrorMessages);
-  }
-
-  async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
-    };
-
-    await this.changeInputsValue(wrongFormatErrorMessages);
-  }
-
-  async fillForm() {
-    await this.fillInputsWithValidValues();
-    await this.selectReactSelectOption('Warsaw');
-    await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
+    await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
   async assertFormInputErrorsAreNotVisible() {
@@ -109,46 +162,7 @@ export class DriverRegistrationPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(inputKeys);
   }
 
-  async mockFailureRegistrationResponse() {
-    await this.mockRequestResponse({
-      endpoint: '**/en/driver',
-      options: {
-        status: 400,
-        contentType: 'application/json',
-      },
-    });
-  }
-
-  async mockSuccessRegistrationResponse() {
-    await this.mockRequestResponse({
-      endpoint: '**/en/driver',
-      options: {
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ isSuccess: true, error: false }),
-      },
-    });
-  }
-
   async clickFormSubmitButton() {
     await this.clickButton(this.submitButtonTestId);
-  }
-
-  async getRegistrationResponse() {
-    return this.getRequestPromise(`${baseURL}/en/driver`);
-  }
-
-  async assertErrorToastMessage() {
-    await this.checkToastMessage(
-      REGISTRATION_FAILURE_MESSAGE,
-      'An unexpected response was received from the server.',
-    );
-  }
-
-  async assertSuccessToastMessage() {
-    await this.checkToastMessage(
-      REGISTRATION_SUCCESS_MESSAGE,
-      'Registration was successful! Check your email.',
-    );
   }
 }

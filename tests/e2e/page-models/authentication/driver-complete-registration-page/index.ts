@@ -26,6 +26,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     super(page, `${baseURL}/${language}/driver/complete/`);
   }
 
+  // JWT token methods
   async visitPageWithWrongToken() {
     const wrongToken: string = 'test';
 
@@ -70,6 +71,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.checkJwtTokenErrorMessage('Token has expired');
   }
 
+  // Check general layout methods
   async assertPageLayoutVisible() {
     const pageElementIds: string[] = [
       DRIVER_REGISTRATION_COMPLETE_PAGE_DESCRIPTION,
@@ -79,6 +81,40 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     return this.assertPageElementsVisibility(pageElementIds);
   }
 
+  // Check request result methods
+  async assertRegistrationSuccessMessage() {
+    await this.checkToastMessage(
+      DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+      'You have been registered! You can start using our application.',
+    );
+  }
+
+  // Change form elements methods
+  async fillInputsWithInvalidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Test1!',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'tst',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'tst',
+    };
+
+    await this.changeInputsValues(wrongFormatErrorMessages);
+  }
+
+  async fillInputsWithValidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
+      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'TEST1',
+    };
+
+    await this.changeInputsValues(wrongFormatErrorMessages);
+  }
+
+  private async changePasswordInputValue(value: string) {
+    await this.changeSingleInputValue(EDriverCompleteRegistrationFormKeys.PASSWORD, value);
+  }
+
+  // Form methods
   async assertInputPlaceholders() {
     const inputPlaceholders: TTestObject = {
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password',
@@ -107,27 +143,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
       [EDriverCompleteRegistrationFormKeys.FILE]: 'Adding face recognition is required',
     };
 
-    await this.checkErrorMessages(requiredFieldErrorMessages);
-  }
-
-  async fillInputsWithInvalidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
-      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Test1!',
-      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'tst',
-      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'tst',
-    };
-
-    await this.changeInputsValue(wrongFormatErrorMessages);
-  }
-
-  async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
-      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
-      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
-      [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'TEST1',
-    };
-
-    await this.changeInputsValue(wrongFormatErrorMessages);
+    await this.checkErrorsMessages(requiredFieldErrorMessages);
   }
 
   async assertInvalidFormatErrorMessages() {
@@ -138,15 +154,11 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
         'The vehicle registration number must contain at least 4 characters',
     };
 
-    await this.checkErrorMessages(invalidFormatErrorMessages);
-  }
-
-  private async changePasswordInputValue(value: string) {
-    await this.changeSingleInputValue(EDriverCompleteRegistrationFormKeys.PASSWORD, value);
+    await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
   private async assertPasswordInputError(errorMessage: string) {
-    await this.checkErrorMessages({
+    await this.checkErrorsMessages({
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: errorMessage,
     });
   }
@@ -173,7 +185,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
       'test!',
     );
 
-    await this.checkErrorMessages({
+    await this.checkErrorsMessages({
       [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
         'The vehicle registration number can contain only uppercase letters and digits',
     });
@@ -193,12 +205,5 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
   async openAddFacialRecognitionModal() {
     await this.clickButton(OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON);
-  }
-
-  async assertRegistrationSuccessMessage() {
-    await this.checkToastMessage(
-      DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
-      'You have been registered! You can start using our application.',
-    );
   }
 }

@@ -69,17 +69,18 @@ test.describe(
       });
     });
 
-    test.describe('Add facial recognition errors', async () => {
+    test.describe('Driver registration with adding facial recognition', async () => {
       test.describe.configure({ mode: 'serial' });
 
       let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
 
       test.beforeEach(async ({ page }) => {
         driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
+
+        await driverCompleteRegistrationPage.visitPageWithValidToken();
       });
 
       test('Should display an error message about required camera when camera is disabled', async () => {
-        await driverCompleteRegistrationPage.visitPageWithValidToken();
         await driverCompleteRegistrationPage.mockDisabledUserCamera();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
         await driverCompleteRegistrationPage.assertAddFacialRecognitionButtonIsDisabled();
@@ -88,7 +89,6 @@ test.describe(
       });
 
       test('Should display an error message about not detected face', async ({ page }) => {
-        await driverCompleteRegistrationPage.visitPageWithValidToken();
         await driverCompleteRegistrationPage.mockUserCameraWithoutFace();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
 
@@ -103,7 +103,6 @@ test.describe(
       test('Should display an error message about not added photo for facial recognition', async ({
         page,
       }) => {
-        await driverCompleteRegistrationPage.visitPageWithValidToken();
         await driverCompleteRegistrationPage.mockUserCameraWithFace();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
 
@@ -113,18 +112,8 @@ test.describe(
         await driverCompleteRegistrationPage.clickModalSubmitButton();
         await driverCompleteRegistrationPage.assertPhotoNotAddedErrorToastMessage();
       });
-    });
 
-    test.describe('Registration result', async () => {
-      let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
-
-      test.beforeEach('Visit driver registration page', async ({ page }) => {
-        driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
-
-        await driverCompleteRegistrationPage.visitPageWithValidToken();
-      });
-
-      test('Should display registration success message', async () => {
+      test('Should register driver successfully', async () => {
         await driverCompleteRegistrationPage.mockUserCameraWithFace();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();

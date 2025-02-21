@@ -23,32 +23,20 @@ export class AddFacialRecognitionModal extends BaseForm {
     this.userCamera = new UserCamera(page);
   }
 
+  // Camera methods
   async mockDisabledUserCamera() {
     await this.userCamera.mockDisabledUserCamera();
   }
 
   async mockUserCameraWithFace() {
-    const imageUrl =
-      'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg';
-
-    await this.userCamera.mockUserCamera(imageUrl);
+    await this.userCamera.mockUserCameraWithFace();
   }
 
   async mockUserCameraWithoutFace() {
-    const imageUrl =
-      'https://img.freepik.com/free-photo/beautiful-view-sunset-sea_23-2148019892.jpg';
-
-    await this.userCamera.mockUserCamera(imageUrl);
+    await this.userCamera.mockUserCameraWithoutFace();
   }
 
-  async assertAddFacialRecognitionButtonIsDisabled() {
-    return this.assertButtonIsDisabled(this.addFacialRecognitionButtonTestId);
-  }
-
-  async assertModalSubmitButtonIsDisabled() {
-    return this.assertButtonIsDisabled(this.modalSubmitButtonTestId);
-  }
-
+  // Facial recognition error methods
   async assertRequiredCameraErrorToastMessage() {
     await this.checkToastMessage(
       ADD_FACIAL_RECOGNITION_ERROR,
@@ -70,6 +58,15 @@ export class AddFacialRecognitionModal extends BaseForm {
     );
   }
 
+  // Modal buttons methods
+  async assertAddFacialRecognitionButtonIsDisabled() {
+    return this.assertButtonIsDisabled(this.addFacialRecognitionButtonTestId);
+  }
+
+  async assertModalSubmitButtonIsDisabled() {
+    return this.assertButtonIsDisabled(this.modalSubmitButtonTestId);
+  }
+
   async clickModalSubmitButton() {
     await this.clickButton(this.modalSubmitButtonTestId);
   }
@@ -78,13 +75,13 @@ export class AddFacialRecognitionModal extends BaseForm {
     await this.clickButton(this.addFacialRecognitionButtonTestId);
   }
 
-  async assertModalIsNotVisible() {
-    const modal = this.getElementByTestId(ADD_FACIAL_RECOGNITION_MODAL);
-    await expect(modal).toBeHidden();
-  }
+  // General facial recognition methods
+  private async assertModalIsNotVisible() {
+    const addFacialRecognitionModal = await this.waitForElementWithTestId(
+      ADD_FACIAL_RECOGNITION_MODAL,
+    );
 
-  async waitForDrawMarksOnDetectedFace() {
-    await this.page.waitForTimeout(2000);
+    await expect(addFacialRecognitionModal).toBeHidden();
   }
 
   async addFacialRecognition() {
@@ -93,11 +90,6 @@ export class AddFacialRecognitionModal extends BaseForm {
 
     await this.clickAddFacialRecognitionButton();
     await this.clickModalSubmitButton();
-
-    const addFacialRecognitionModal = await this.waitForElementWithTestId(
-      ADD_FACIAL_RECOGNITION_MODAL,
-    );
-
-    await expect(addFacialRecognitionModal).toBeHidden();
+    await this.assertModalIsNotVisible();
   }
 }
