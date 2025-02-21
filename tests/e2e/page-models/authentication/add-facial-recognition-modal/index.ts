@@ -49,11 +49,6 @@ export class AddFacialRecognitionModal extends BaseForm {
     return this.assertButtonIsDisabled(this.modalSubmitButtonTestId);
   }
 
-  async assertFacialRecognitionErrorToastMessage(message: string) {
-    const errorMessage = await this.waitForElementWithTestId(ADD_FACIAL_RECOGNITION_ERROR);
-    await this.checkElementTextContent(errorMessage, message);
-  }
-
   async assertRequiredCameraErrorToastMessage() {
     await this.checkToastMessage(
       ADD_FACIAL_RECOGNITION_ERROR,
@@ -85,19 +80,24 @@ export class AddFacialRecognitionModal extends BaseForm {
 
   async assertModalIsNotVisible() {
     const modal = this.getElementByTestId(ADD_FACIAL_RECOGNITION_MODAL);
-    await expect(modal).not.toBeVisible();
+    await expect(modal).toBeHidden();
+  }
+
+  async waitForDrawMarksOnDetectedFace() {
+    await this.page.waitForTimeout(2000);
   }
 
   async addFacialRecognition() {
-    await this.mockUserCameraWithFace();
-
-    // Necessary to check if image is loaded
-    await this.page.waitForSelector('canvas', { state: 'attached' });
-
     // Necessary to draw marks on detected face
     await this.page.waitForTimeout(1000);
 
     await this.clickAddFacialRecognitionButton();
     await this.clickModalSubmitButton();
+
+    const addFacialRecognitionModal = await this.waitForElementWithTestId(
+      ADD_FACIAL_RECOGNITION_MODAL,
+    );
+
+    await expect(addFacialRecognitionModal).toBeHidden();
   }
 }

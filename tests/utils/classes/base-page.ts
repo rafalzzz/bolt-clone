@@ -1,4 +1,4 @@
-import { ElementHandle, type Locator, expect, type Page } from '@playwright/test';
+import { type Locator, expect, type Page } from '@playwright/test';
 
 type TMockResponseParams<Options> = {
   endpoint: string;
@@ -67,15 +67,11 @@ export class BasePage {
   }
 
   async waitForElementWithTestId(testId: string) {
-    return await this.page.waitForSelector(`data-testid=${testId}`);
+    return this.page.locator(`data-testid=${testId}`).first();
   }
 
-  async checkElementTextContent(
-    element: ElementHandle<SVGElement | HTMLElement>,
-    exptectedText: string,
-  ) {
-    const text = await element.textContent();
-    expect(text).toBe(exptectedText);
+  async checkElementTextContent(element: Locator, exptectedText: string) {
+    await expect(element).toHaveText(exptectedText);
   }
 
   async clickButton(testId: string) {
@@ -96,7 +92,6 @@ export class BasePage {
 
   async checkToastMessage(toastTestId: string, text: string) {
     const errorMessage = await this.waitForElementWithTestId(toastTestId);
-
     await this.checkElementTextContent(errorMessage, text);
   }
 }

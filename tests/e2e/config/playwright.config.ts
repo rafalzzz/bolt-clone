@@ -7,7 +7,7 @@ export default defineConfig({
   outputDir: '../reports',
   fullyParallel: true,
   /* workers: !process.env['CI'] ? 3 : undefined, */
-  workers: 1,
+  workers: 6,
   webServer: {
     command: 'npm run dev -- -p 4000',
     url: 'http://localhost:4000',
