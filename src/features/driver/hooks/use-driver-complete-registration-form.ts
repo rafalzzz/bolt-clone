@@ -6,8 +6,8 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import useRequest from '@/shared/hooks/use-request';
 
-import displaySuccessToast from '@/shared/utils/display-success-toast';
-import displayWarningToast from '@/shared/utils/display-warning-toast';
+import displaySuccessToast from '@/shared/utils/client-side/display-success-toast';
+import displayWarningToast from '@/shared/utils/client-side/display-warning-toast';
 
 import {
   type TDriverCompleteRegistrationFormSchema,
@@ -79,14 +79,12 @@ const useDriverCompleteRegistrationForm = ({
 
         displaySuccessToast({
           text: registrationMessages('registrationSuccess'),
-          ariaLabel: 'Registered Successfully',
           testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
         });
       })
       .catch(
         handleRequestError({
           uniqueMessage: registrationMessages('registrationError'),
-          ariaLabel: 'Registration error',
           testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
         }),
       );
@@ -98,7 +96,6 @@ const useDriverCompleteRegistrationForm = ({
     if (!isFacialRecognitionAdded) {
       return displayWarningToast({
         text: facialRecognitionMessages('photoIsNotAdded'),
-        ariaLabel: facialRecognitionMessages('photoIsNotAdded'),
         testId: ADD_FACIAL_RECOGNITION_ERROR,
       });
     }

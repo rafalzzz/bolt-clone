@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import displayWarningToast from '@/shared/utils/display-warning-toast';
+import displayWarningToast from '@/shared/utils/client-side/display-warning-toast';
 
 type TState = {
   isSuccess: boolean;
@@ -19,7 +19,7 @@ type TAction =
   | { type: EAction.SUCCESS }
   | { type: EAction.ERROR; error: string };
 
-type THandleRequestErrorParams = Record<'uniqueMessage' | 'ariaLabel' | 'testId', string>;
+type THandleRequestErrorParams = Record<'uniqueMessage' | 'testId', string>;
 
 const initialState = {
   isSuccess: false,
@@ -71,7 +71,7 @@ const useRequest = () => {
   };
 
   const handleRequestError =
-    ({ uniqueMessage, ariaLabel, testId }: THandleRequestErrorParams) =>
+    ({ uniqueMessage, testId }: THandleRequestErrorParams) =>
     (error: unknown) => {
       const errorMessage = error instanceof Error ? error.message : uniqueMessage;
 
@@ -79,7 +79,6 @@ const useRequest = () => {
 
       displayWarningToast({
         text: errorMessage,
-        ariaLabel,
         testId,
       });
     };

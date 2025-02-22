@@ -4,21 +4,21 @@ import CustomNotifiacation, { EIconColor } from '@/shared/components/custom-noti
 
 import { DEFAULT_NOTIFICATION_PROPS } from '@/shared/consts/default-notification-props';
 
-import WarningSvg from '@/shared/svg/warning-svg';
+import SuccessSvg from '@/shared/svg/success-svg';
 
 import { TToastParams } from '@/shared/types/toast-params';
 
-const displayWarningToast = ({ text, ariaLabel, testId }: TToastParams) => {
+const displaySuccessToast = ({ text, testId }: TToastParams) => {
   toast(CustomNotifiacation, {
     data: {
-      icon: <WarningSvg />,
-      iconColor: EIconColor.RED,
+      icon: <SuccessSvg />,
+      iconColor: EIconColor.GREEN,
       text,
       testId,
     },
-    ariaLabel,
+    ariaLabel: text,
     ...DEFAULT_NOTIFICATION_PROPS,
   });
 };
 
-export default displayWarningToast;
+export default displaySuccessToast;
