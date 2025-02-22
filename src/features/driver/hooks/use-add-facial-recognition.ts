@@ -21,8 +21,6 @@ type TUseAddFacialRecognition = {
   setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
 };
 
-const ERROR_ARIA_LABEL = 'Add facial recognition error';
-
 const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecognition) => {
   const t = useTranslations('AddFacialRecognitionError');
 
