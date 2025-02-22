@@ -6,7 +6,7 @@ import loadFaceModels from '@/features/driver/utils/load-face-models';
 import { startFacialRecognition } from '@/features/driver/utils/start-facial-recognition';
 import startVideo from '@/features/driver/utils/start-video';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
-import displayWarningToast from '@/shared/utils/client-side/display-warning-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
 import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
 import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
@@ -35,7 +35,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
       const text = isCameraDisabled ? t('permissionDenied') : error;
 
       setIsVideoError(true);
-      displayWarningToast({
+      displayToast({
         text,
         testId: ADD_FACIAL_RECOGNITION_ERROR,
       });

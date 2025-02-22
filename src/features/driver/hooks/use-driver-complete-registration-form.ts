@@ -6,8 +6,8 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import useRequest from '@/shared/hooks/use-request';
 
-import displaySuccessToast from '@/shared/utils/client-side/display-success-toast';
-import displayWarningToast from '@/shared/utils/client-side/display-warning-toast';
+import displaySuccessToast from '@/shared/utils/client-side/display-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
 
 import {
   type TDriverCompleteRegistrationFormSchema,
@@ -19,6 +19,8 @@ import {
   DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
   DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
 } from '@/test-ids/driver-registration-complete-page';
+
+import { EToastType } from '@/shared/enums/toast-type';
 
 import { registerDriver } from '../actions/register-driver';
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
@@ -78,6 +80,7 @@ const useDriverCompleteRegistrationForm = ({
         handleSuccess();
 
         displaySuccessToast({
+          type: EToastType.SUCCESS,
           text: registrationMessages('registrationSuccess'),
           testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
         });
@@ -94,7 +97,7 @@ const useDriverCompleteRegistrationForm = ({
     const isFacialRecognitionAdded = getValues('file');
 
     if (!isFacialRecognitionAdded) {
-      return displayWarningToast({
+      return displayToast({
         text: facialRecognitionMessages('photoIsNotAdded'),
         testId: ADD_FACIAL_RECOGNITION_ERROR,
       });

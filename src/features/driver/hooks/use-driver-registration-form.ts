@@ -7,7 +7,7 @@ import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-drive
 import useDriverRegistrationFormFields from '@/features/driver/hooks/use-driver-registration-form-fields';
 import useRequest from '@/shared/hooks/use-request';
 
-import displaySuccessToast from '@/shared/utils/client-side/display-success-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
 
 import {
   type TDriverRegistrationFormSchema,
@@ -18,6 +18,8 @@ import {
   REGISTRATION_FAILURE_MESSAGE,
   REGISTRATION_SUCCESS_MESSAGE,
 } from '@/test-ids/driver-registration-page';
+
+import { EToastType } from '@/shared/enums/toast-type';
 
 const useDriverRegistrationForm = () => {
   const { state, startRequest, handleSuccess, handleRequestError } = useRequest();
@@ -43,7 +45,8 @@ const useDriverRegistrationForm = () => {
         handleSuccess();
         reset();
 
-        displaySuccessToast({
+        displayToast({
+          type: EToastType.SUCCESS,
           text: t('initialRegistrationSuccess'),
           testId: REGISTRATION_SUCCESS_MESSAGE,
         });

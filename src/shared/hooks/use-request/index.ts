@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import displayWarningToast from '@/shared/utils/client-side/display-warning-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
 
 type TState = {
   isSuccess: boolean;
@@ -77,7 +77,7 @@ const useRequest = () => {
 
       handleError(errorMessage);
 
-      displayWarningToast({
+      displayToast({
         text: errorMessage,
         testId,
       });
