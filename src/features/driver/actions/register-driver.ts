@@ -13,8 +13,8 @@ const keysToEcrypt = [
 
 const keysToOmit = [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function registerDriver(data: TDriverRegistrationFormData) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const encryptedData = encryptSensitiveData<TDriverRegistrationFormData, TDriverItem>({
     data,
     keysToEcrypt,
