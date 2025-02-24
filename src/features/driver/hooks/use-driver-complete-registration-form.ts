@@ -22,7 +22,7 @@ import {
 
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { registerDriver } from '../actions/register-driver';
+import { TRegisterDriverFormData, registerDriver } from '../actions/register-driver';
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
 
 import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
@@ -60,22 +60,11 @@ const useDriverCompleteRegistrationForm = ({
       return;
     }
 
-    const formData = new FormData();
-
-    const driverData = { ...tokenPayload, ...values };
-
-    Object.keys(driverData).forEach((key) => {
-      if (key === EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD) {
-        return;
-      }
-
-      const value = driverData[key as keyof TDriverCompleteRegistrationFormSchema];
-      formData.append(key, value);
-    });
+    const driverData = { ...tokenPayload, ...values } as TRegisterDriverFormData;
 
     startRequest();
 
-    registerDriver(formData)
+    registerDriver(driverData)
       .then(() => {
         handleSuccess();
 

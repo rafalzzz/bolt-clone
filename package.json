@@ -24,6 +24,7 @@
     "@tensorflow/tfjs-core": "^4.22.0",
     "@vladmandic/face-api": "^1.7.14",
     "cookie": "^1.0.2",
+    "crypto": "^1.0.1",
     "jose": "^5.9.6",
     "js-cookie": "^3.0.5",
     "next": "^15.1.2",

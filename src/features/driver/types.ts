@@ -6,6 +6,9 @@ import type {
 import { type JWTPayload } from 'jose';
 import type { Dispatch, SetStateAction } from 'react';
 
+import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
+
 export type TAddFacialRecognitionOnSubmit = {
   file: File;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -23,3 +26,10 @@ export type TDetections =
 export type TDriverCompleteRegistration = {
   tokenPayload: JWTPayload;
 };
+
+export type TDriverRegistrationTokenPayload = Omit<TDriverRegistrationFormSchema, 'rules'>;
+
+export type TDriverRegistrationFormData = TDriverCompleteRegistrationFormSchema &
+  TDriverRegistrationTokenPayload;
+
+export type TDriverItem = Omit<TDriverRegistrationFormData, 'repeatPassword'>;
