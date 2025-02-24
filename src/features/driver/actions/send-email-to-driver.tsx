@@ -27,8 +27,10 @@ export async function sendEmailToDriver(data: TDriverRegistrationFormSchema) {
 
     const token = await generateDriverRegistrationToken(encryptedData);
 
+    const { email } = data;
+
     const { error } = await sendEmail({
-      email: data.email,
+      email,
       subject: EMAIL_TITLE,
 
       emailTemplate: <CompleteRegistrationEmailTemplate token={token} />,

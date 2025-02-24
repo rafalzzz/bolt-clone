@@ -24,14 +24,7 @@
       "@/test-ids/*": ["./tests/utils/test-ids/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next.config.js",
-    "src/lib/tables/drivers.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],
   "exclude": [
     "node_modules",
     "tests/e2e/page-models",
