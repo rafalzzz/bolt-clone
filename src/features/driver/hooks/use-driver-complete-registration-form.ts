@@ -22,8 +22,9 @@ import {
 
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { TRegisterDriverFormData, registerDriver } from '../actions/register-driver';
+import { registerDriver } from '../actions/register-driver';
 import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
+import { TDriverRegistrationFormData } from '../types';
 
 import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
 
@@ -60,7 +61,7 @@ const useDriverCompleteRegistrationForm = ({
       return;
     }
 
-    const driverData = { ...tokenPayload, ...values } as TRegisterDriverFormData;
+    const driverData = { ...tokenPayload, ...values } as TDriverRegistrationFormData;
 
     startRequest();
 

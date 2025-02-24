@@ -29,7 +29,7 @@ export type TDriverCompleteRegistration = {
 
 export type TDriverRegistrationTokenPayload = Omit<TDriverRegistrationFormSchema, 'rules'>;
 
-export type TDriverRegistrationFormData = TDriverCompleteRegistrationFormSchema &
+export type TDriverRegistrationFormData = Required<TDriverCompleteRegistrationFormSchema> &
   TDriverRegistrationTokenPayload;
 
 export type TDriverItem = Omit<TDriverRegistrationFormData, 'repeatPassword'>;
