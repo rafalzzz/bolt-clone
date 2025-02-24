@@ -21,6 +21,36 @@ const useDriverCompleteRegistrationFormFields = ({
 
   const formFields: TCustomFormField<TDriverCompleteRegistrationFormSchema>[] = [
     {
+      type: EFieldType.TEXT,
+      fieldProps: {
+        inputKey: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
+        label: t('firstNameLabel'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.FIRST_NAME]?.message,
+        register,
+        props: {
+          name: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
+          placeholder: t('firstNamePlaceholder'),
+          type: 'text',
+          maxLength: 100,
+        },
+      },
+    },
+    {
+      type: EFieldType.TEXT,
+      fieldProps: {
+        inputKey: EDriverCompleteRegistrationFormKeys.LAST_NAME,
+        label: t('lastNameLabel'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.LAST_NAME]?.message,
+        register,
+        props: {
+          name: EDriverCompleteRegistrationFormKeys.LAST_NAME,
+          placeholder: t('lastNamePlaceholder'),
+          type: 'text',
+          maxLength: 100,
+        },
+      },
+    },
+    {
       type: EFieldType.PASSWORD,
       fieldProps: {
         inputKey: EDriverCompleteRegistrationFormKeys.PASSWORD,

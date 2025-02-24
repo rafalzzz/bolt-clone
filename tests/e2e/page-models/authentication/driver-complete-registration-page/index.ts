@@ -92,6 +92,8 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   // Change form elements methods
   async fillInputsWithInvalidValues() {
     const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'T',
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'T',
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Test1!',
       [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'tst',
       [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'tst',
@@ -102,6 +104,8 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Test',
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
       [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
       [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: 'TEST1',
@@ -136,6 +140,8 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
   async assertRequiredFieldsErrorMessages() {
     const requiredFieldErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'First name is required',
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Last name is required',
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password is required',
       [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'Repeat password is required',
       [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
@@ -148,6 +154,10 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
   async assertInvalidFormatErrorMessages() {
     const invalidFormatErrorMessages: TTestObject = {
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]:
+        'First name must contain at least 2 characters',
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]:
+        'Last name must contain at least 2 characters',
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password must contain at least 8 characters',
       [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'The entered passwords do not match',
       [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]:
@@ -177,6 +187,22 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
       await this.changePasswordInputValue(value);
       await this.assertPasswordInputError(errorMessage);
     }
+  }
+
+  async assertRemainingFirstNameInputError() {
+    await this.changeSingleInputValue(EDriverCompleteRegistrationFormKeys.FIRST_NAME, 'test1');
+
+    await this.checkErrorsMessages({
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'First name can contain only letters',
+    });
+  }
+
+  async assertRemainingLastNameInputError() {
+    await this.changeSingleInputValue(EDriverCompleteRegistrationFormKeys.LAST_NAME, 'test1');
+
+    await this.checkErrorsMessages({
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Last name can contain only letters',
+    });
   }
 
   async assertRemainingVehicleRegistrationNumberInputError() {

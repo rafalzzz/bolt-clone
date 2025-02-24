@@ -3,8 +3,20 @@ import { z } from 'zod';
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EErrorKeys } from '@/shared/enums/error-keys';
 
+const ONLY_LETTERS_REGEX = /^[A-Za-z]+$/;
+
 export const driverCompleteRegistrationFormSchema = z
   .object({
+    [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: z
+      .string()
+      .nonempty(EErrorKeys.REQUIRED_FIRST_NAME)
+      .min(2, EErrorKeys.FIRST_NAME_MINIMUM_CHARACTERS)
+      .regex(ONLY_LETTERS_REGEX, EErrorKeys.FIRST_NAME_CHARACTERS),
+    [EDriverCompleteRegistrationFormKeys.LAST_NAME]: z
+      .string()
+      .nonempty(EErrorKeys.REQUIRED_LAST_NAME)
+      .min(2, EErrorKeys.LAST_NAME_MINIMUM_CHARACTERS)
+      .regex(ONLY_LETTERS_REGEX, EErrorKeys.LAST_NAME_CHARACTERS),
     [EDriverCompleteRegistrationFormKeys.PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_PASSWORD)
