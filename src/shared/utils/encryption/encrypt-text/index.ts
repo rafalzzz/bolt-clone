@@ -6,6 +6,7 @@ const ENCRYPT_KEY = process.env.ENCRYPT_KEY as string;
 const ENCRYPT_IV = process.env.ENCRYPT_IV as string;
 
 export const encryptText = (text: string): string => {
+  console.log({ ENCRYPT_IV });
   const keyBuffer = Buffer.from(ENCRYPT_KEY, ENCODING);
   const ivBuffer = Buffer.from(ENCRYPT_IV, ENCODING);
 

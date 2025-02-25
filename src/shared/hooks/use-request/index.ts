@@ -70,9 +70,8 @@ const useRequest = () => {
     dispatch({ type: EAction.ERROR, error });
   };
 
-  const handleRequestError =
-    ({ uniqueMessage, testId }: THandleRequestErrorParams) =>
-    (error: unknown) => {
+  const handleRequestError = ({ uniqueMessage, testId }: THandleRequestErrorParams) => {
+    return (error: unknown) => {
       const errorMessage = error instanceof Error ? error.message : uniqueMessage;
 
       handleError(errorMessage);
@@ -82,6 +81,7 @@ const useRequest = () => {
         testId,
       });
     };
+  };
 
   return {
     state,

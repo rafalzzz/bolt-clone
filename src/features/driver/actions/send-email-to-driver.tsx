@@ -4,6 +4,7 @@ import CompleteRegistrationEmailTemplate from '@/features/driver/components/comp
 
 import { sendEmail } from '@/shared/utils/server-side/email';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import throwError from '@/shared/utils/server-side/throw-error';
 
 import type { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
@@ -27,21 +28,18 @@ export async function sendEmailToDriver(data: TDriverRegistrationFormSchema) {
 
     const token = await generateDriverRegistrationToken(encryptedData);
 
-    const { email } = data;
+    const { email: to } = data;
 
     const { error } = await sendEmail({
-      email,
+      to,
       subject: EMAIL_TITLE,
-
       emailTemplate: <CompleteRegistrationEmailTemplate token={token} />,
     });
 
-    if (!error) {
-      return { isSuccess: true, error: false };
+    if (error) {
+      throwError(error);
     }
-
-    return { isSuccess: false, error };
   } catch (error: unknown) {
-    return { isSuccess: false, error };
+    throwError(error);
   }
 }

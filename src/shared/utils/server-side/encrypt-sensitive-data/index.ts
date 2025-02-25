@@ -17,15 +17,19 @@ const encryptSensitiveData = <
   Object.entries(data).reduce((acc, [key, value]) => {
     const keyTyped = key as keyof InitialObject;
 
-    if (
-      !keysToEcrypt.includes(keyTyped) ||
-      keysToOmit?.includes(keyTyped) ||
-      typeof value !== 'string'
-    ) {
+    const omitKey = keysToOmit?.includes(keyTyped);
+
+    if (omitKey) {
       return acc;
     }
 
-    return { ...acc, [key]: encryptText(value) };
+    const encryptKey = keysToEcrypt.includes(keyTyped);
+
+    if (encryptKey && typeof value === 'string') {
+      return { ...acc, [key]: encryptText(value) };
+    }
+
+    return { ...acc, [key]: value };
   }, {} as EndodedObject);
 
 export default encryptSensitiveData;
