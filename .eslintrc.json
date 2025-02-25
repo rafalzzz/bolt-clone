@@ -19,6 +19,11 @@
             "position": "before"
           },
           {
+            "pattern": "**/lib/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "**/actions/**",
             "group": "internal",
             "position": "before"

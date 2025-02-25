@@ -4,9 +4,10 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import { registerDriver } from '@/features/driver/actions/register-driver';
+
 import useRequest from '@/shared/hooks/use-request';
 
-import displaySuccessToast from '@/shared/utils/client-side/display-toast';
 import displayToast from '@/shared/utils/client-side/display-toast';
 
 import {
@@ -20,11 +21,10 @@ import {
   DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
 } from '@/test-ids/driver-registration-complete-page';
 
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { registerDriver } from '../actions/register-driver';
-import { EDriverCompleteRegistrationFormKeys } from '../enums/driver-complete-registration-form-keys';
-import { TDriverRegistrationFormData } from '../types';
+import { TRegisterDriverFormData } from '@/features/driver/types';
 
 import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
 
@@ -56,20 +56,18 @@ const useDriverCompleteRegistrationForm = ({
 
   const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
 
-  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (values) => {
+  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (formData) => {
     if (!tokenPayload) {
       return;
     }
 
-    const driverData = { ...tokenPayload, ...values } as TDriverRegistrationFormData;
-
     startRequest();
 
-    registerDriver(driverData)
+    registerDriver(formData as TRegisterDriverFormData, tokenPayload)
       .then(() => {
         handleSuccess();
 
-        displaySuccessToast({
+        displayToast({
           type: EToastType.SUCCESS,
           text: registrationMessages('registrationSuccess'),
           testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,

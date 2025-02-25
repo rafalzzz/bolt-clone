@@ -1,9 +1,15 @@
 import { z } from 'zod';
 
+import {
+  ONLY_DIGITS_REGEX,
+  ONLY_LETTERS_REGEX,
+  ONLY_LOWERCASE_LETTERS_REGEX,
+  ONLY_UPPERCASE_LETTERS_REGEX,
+  VEHICLE_REGISTRATION_NUMBER_REGEX,
+} from '@/shared/consts/regex';
+
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EErrorKeys } from '@/shared/enums/error-keys';
-
-const ONLY_LETTERS_REGEX = /^[A-Za-z]+$/;
 
 export const driverCompleteRegistrationFormSchema = z
   .object({
@@ -21,9 +27,9 @@ export const driverCompleteRegistrationFormSchema = z
       .string()
       .nonempty(EErrorKeys.REQUIRED_PASSWORD)
       .min(8, EErrorKeys.PASSWORD_MINIMUM_CHARACTERS)
-      .regex(/[A-Z]/, EErrorKeys.PASSWORD_UPPER_CASE)
-      .regex(/[a-z]/, EErrorKeys.PASSWORD_LOWER_CASE)
-      .regex(/[0-9]/, EErrorKeys.PASSWORD_DIGIT)
+      .regex(ONLY_UPPERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_UPPER_CASE)
+      .regex(ONLY_LOWERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_LOWER_CASE)
+      .regex(ONLY_DIGITS_REGEX, EErrorKeys.PASSWORD_DIGIT)
       .regex(
         /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\.\>\/\?\|\\\`~]/,
         EErrorKeys.PASSWORD_SPECIAL_CHARACTER,
@@ -35,7 +41,7 @@ export const driverCompleteRegistrationFormSchema = z
       .string()
       .nonempty(EErrorKeys.REQUIRED_VEHICLE_REGISTRATION_NUMBER)
       .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
-      .regex(/^[A-Z0-9]*$/, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
+      .regex(VEHICLE_REGISTRATION_NUMBER_REGEX, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
     [EDriverCompleteRegistrationFormKeys.FILE]: z
       .any()
       .refine((file) => file instanceof File && file.size, {

@@ -1,27 +1,37 @@
 'use server';
 
+import { JWTPayload } from 'jose';
+
+import { supabase } from '@/lib/supabase';
+
+import getDriverDto from '@/features/driver/utils/get-driver-dto';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import throwError from '@/shared/utils/server-side/throw-error';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
-import { TDriverItem, TDriverRegistrationFormData } from '@/features/driver/types';
+import { TRegisterDriverFormData } from '@/features/driver/types';
 
 const keysToEcrypt = [
   EDriverCompleteRegistrationFormKeys.PASSWORD,
   EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
 ];
 
-const keysToOmit = [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
+export async function registerDriver(data: TRegisterDriverFormData, tokenPayload: JWTPayload) {
+  try {
+    const encryptedData = encryptSensitiveData<TRegisterDriverFormData>({
+      data,
+      keysToEcrypt,
+    });
 
-export async function registerDriver(data: TDriverRegistrationFormData) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const encryptedData = encryptSensitiveData<TDriverRegistrationFormData, TDriverItem>({
-    data,
-    keysToEcrypt,
-    keysToOmit,
-  });
+    const driverDto = getDriverDto(encryptedData, tokenPayload);
 
-  // TODO - save registered driver in Database
+    const { error } = await supabase.from('Drivers').insert(driverDto);
 
-  return { isSuccess: true };
+    if (error) {
+      throwError(error);
+    }
+  } catch (error: unknown) {
+    throwError(error);
+  }
 }
