@@ -13,7 +13,7 @@ export async function sendEmail({ to, subject, emailTemplate }: TSendEmail) {
   return await resend.emails.send({
     // Default email for testing purposes
     from: 'onboarding@resend.dev',
-    to: to + '!!!!',
+    to,
     subject,
     react: emailTemplate,
   });
