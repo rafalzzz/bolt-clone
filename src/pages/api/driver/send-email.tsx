@@ -55,6 +55,6 @@ export default async function POST(
 
     res.status(200).end();
   } catch (error: unknown) {
-    res.status(500).json({ message: 'Failed to register driver', error: getErrorMessage(error) });
+    res.status(500).json({ message: getErrorMessage(error) });
   }
 }
