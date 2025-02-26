@@ -4,8 +4,6 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { registerDriver } from '@/features/driver/actions/register-driver';
-
 import useRequest from '@/shared/hooks/use-request';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
@@ -24,8 +22,6 @@ import {
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { TRegisterDriverFormData } from '@/features/driver/types';
-
 import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
 
 type TUseDriverCompleteRegistrationForm = {
@@ -38,7 +34,7 @@ const useDriverCompleteRegistrationForm = ({
   const [isAddFacialRecognitionModalEnabled, setIsAddFacialRecognitionModalEnabled] =
     useState(false);
 
-  const { startRequest, handleSuccess, handleRequestError } = useRequest();
+  const { state, handleRequest } = useRequest();
 
   const {
     register,
@@ -56,29 +52,28 @@ const useDriverCompleteRegistrationForm = ({
 
   const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
 
-  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (formData) => {
+  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (data) => {
     if (!tokenPayload) {
       return;
     }
 
-    startRequest();
+    const response = await handleRequest({
+      endpoint: '/driver/register',
+      method: 'POST',
+      data: { data, tokenPayload },
+      errorMessage: {
+        uniqueMessage: registrationMessages('registrationError'),
+        testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
+      },
+    });
 
-    registerDriver(formData as TRegisterDriverFormData, tokenPayload)
-      .then(() => {
-        handleSuccess();
-
-        displayToast({
-          type: EToastType.SUCCESS,
-          text: registrationMessages('registrationSuccess'),
-          testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
-        });
-      })
-      .catch(
-        handleRequestError({
-          uniqueMessage: registrationMessages('registrationError'),
-          testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
-        }),
-      );
+    if (response?.ok) {
+      displayToast({
+        type: EToastType.SUCCESS,
+        text: registrationMessages('registrationSuccess'),
+        testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+      });
+    }
   };
 
   const onOk = () => {
@@ -100,6 +95,7 @@ const useDriverCompleteRegistrationForm = ({
   };
 
   return {
+    state,
     isAddFacialRecognitionModalEnabled,
     formFields,
     errors,

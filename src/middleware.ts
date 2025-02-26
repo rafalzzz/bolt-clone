@@ -1,3 +1,4 @@
+import { NextResponse, type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
@@ -18,3 +19,22 @@ export const config = {
     '/((?!_next|_vercel|.*\\..*).*)',
   ],
 };
+
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone();
+  const pathname = url.pathname;
+
+  // Delete locale part from api url
+  if (pathname.includes('/api/')) {
+    const segments = pathname.split('/');
+
+    if (segments.length > 2 && segments[1] === 'api' && /^[a-z]{2}$/.test(segments[2])) {
+      segments.splice(2, 1);
+      url.pathname = segments.join('/');
+
+      return NextResponse.rewrite(url);
+    }
+  }
+
+  return NextResponse.next();
+}

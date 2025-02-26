@@ -1,14 +1,16 @@
-import { createCipheriv } from 'crypto';
+import { createCipheriv, randomBytes } from 'crypto';
 
 import { ALGORITHM, ENCODING } from '@/shared/consts/encryption';
 
-const ENCRYPT_KEY = process.env.ENCRYPT_KEY as string;
-const ENCRYPT_IV = process.env.ENCRYPT_IV as string;
+const ENCRYPT_SECRET = process.env.ENCRYPT_SECRET as string;
+
+const IV_SIZE = 16;
+
+const generateIV = () => randomBytes(IV_SIZE);
 
 export const encryptText = (text: string): string => {
-  console.log({ ENCRYPT_IV });
-  const keyBuffer = Buffer.from(ENCRYPT_KEY, ENCODING);
-  const ivBuffer = Buffer.from(ENCRYPT_IV, ENCODING);
+  const keyBuffer = Buffer.from(ENCRYPT_SECRET, ENCODING);
+  const ivBuffer = generateIV();
 
   const cipher = createCipheriv(ALGORITHM, keyBuffer, ivBuffer);
 

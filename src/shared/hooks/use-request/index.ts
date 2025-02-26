@@ -2,6 +2,16 @@ import { useReducer } from 'react';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
 
+type THandleRequestErrorParams = Partial<Record<'uniqueMessage' | 'testId', string>>;
+
+type TRequestParams = {
+  endpoint: string;
+  method: RequestInit['method'];
+  headers?: RequestInit['headers'];
+  data?: unknown;
+  errorMessage?: THandleRequestErrorParams;
+};
+
 type TState = {
   isSuccess: boolean;
   isLoading: boolean;
@@ -18,8 +28,6 @@ type TAction =
   | { type: EAction.START }
   | { type: EAction.SUCCESS }
   | { type: EAction.ERROR; error: string };
-
-type THandleRequestErrorParams = Record<'uniqueMessage' | 'testId', string>;
 
 const initialState = {
   isSuccess: false,
@@ -70,24 +78,51 @@ const useRequest = () => {
     dispatch({ type: EAction.ERROR, error });
   };
 
-  const handleRequestError = ({ uniqueMessage, testId }: THandleRequestErrorParams) => {
-    return (error: unknown) => {
+  const handleRequestError =
+    ({ uniqueMessage = '', testId }: THandleRequestErrorParams) =>
+    (error: unknown) => {
       const errorMessage = error instanceof Error ? error.message : uniqueMessage;
 
       handleError(errorMessage);
 
-      displayToast({
-        text: errorMessage,
-        testId,
-      });
+      if (errorMessage) {
+        displayToast({
+          text: errorMessage,
+          testId,
+        });
+      }
     };
+
+  const handleRequest = async ({
+    endpoint,
+    method,
+    headers = {
+      'Content-Type': 'application/json',
+    },
+    data,
+    errorMessage = {},
+  }: TRequestParams) => {
+    startRequest();
+
+    try {
+      const response = await fetch(`/api${endpoint}`, {
+        method,
+        headers,
+        body: data ? JSON.stringify(data) : null,
+      });
+
+      handleSuccess();
+
+      return response;
+    } catch (error) {
+      console.log(error);
+      handleRequestError(errorMessage)(error);
+    }
   };
 
   return {
     state,
-    startRequest,
-    handleSuccess,
-    handleRequestError,
+    handleRequest,
   };
 };
 

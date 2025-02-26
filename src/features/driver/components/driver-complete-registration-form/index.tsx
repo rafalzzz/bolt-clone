@@ -31,6 +31,7 @@ const AddFacialRecognitionModal = dynamic(
 
 const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
   const {
+    state: { isLoading },
     isAddFacialRecognitionModalEnabled,
     formFields,
     errors,
@@ -77,6 +78,7 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
             />
             <CustomFormButton
               text={t('submitButtonText')}
+              isLoading={isLoading}
               testId={DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',

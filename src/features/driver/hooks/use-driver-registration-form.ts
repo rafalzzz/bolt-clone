@@ -2,8 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { sendEmailToDriver } from '@/features/driver/actions/send-email-to-driver';
-
 import useDriverRegistrationFormFields from '@/features/driver/hooks/use-driver-registration-form-fields';
 import useRequest from '@/shared/hooks/use-request';
 
@@ -22,7 +20,7 @@ import {
 import { EToastType } from '@/shared/enums/toast-type';
 
 const useDriverRegistrationForm = () => {
-  const { state, startRequest, handleSuccess, handleRequestError } = useRequest();
+  const { state, handleRequest } = useRequest();
 
   const {
     register,
@@ -38,25 +36,27 @@ const useDriverRegistrationForm = () => {
   const formFields = useDriverRegistrationFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverRegistrationFormSchema> = async (data) => {
-    startRequest();
+    const response = await handleRequest({
+      endpoint: '/driver/send-email/',
+      method: 'POST',
+      data,
+      errorMessage: {
+        uniqueMessage: t('initialRegistratrionError'),
+        testId: REGISTRATION_FAILURE_MESSAGE,
+      },
+    });
 
-    sendEmailToDriver(data)
-      .then(() => {
-        handleSuccess();
-        reset();
+    console.log({ response });
 
-        displayToast({
-          type: EToastType.SUCCESS,
-          text: t('initialRegistrationSuccess'),
-          testId: REGISTRATION_SUCCESS_MESSAGE,
-        });
-      })
-      .catch(
-        handleRequestError({
-          uniqueMessage: t('initialRegistratrionError'),
-          testId: REGISTRATION_FAILURE_MESSAGE,
-        }),
-      );
+    if (response?.ok) {
+      reset();
+
+      displayToast({
+        type: EToastType.SUCCESS,
+        text: t('initialRegistrationSuccess'),
+        testId: REGISTRATION_SUCCESS_MESSAGE,
+      });
+    }
   };
 
   return { state, formFields, onSubmit, handleSubmit };

@@ -1,8 +1,8 @@
-import { encryptText } from '../../encryption/encrypt-text';
+import { encryptText } from '../encrypt-text';
 
 type TEncryptSensitivityData<InitialObject extends Record<keyof InitialObject, unknown>> = {
   data: InitialObject;
-  keysToEcrypt: (keyof InitialObject)[];
+  keysToEncrypt: (keyof InitialObject)[];
   keysToOmit?: (keyof InitialObject)[];
 };
 
@@ -11,7 +11,7 @@ const encryptSensitiveData = <
   EndodedObject extends Record<keyof EndodedObject, unknown> = InitialObject,
 >({
   data,
-  keysToEcrypt,
+  keysToEncrypt,
   keysToOmit,
 }: TEncryptSensitivityData<InitialObject>): EndodedObject =>
   Object.entries(data).reduce((acc, [key, value]) => {
@@ -23,7 +23,7 @@ const encryptSensitiveData = <
       return acc;
     }
 
-    const encryptKey = keysToEcrypt.includes(keyTyped);
+    const encryptKey = keysToEncrypt.includes(keyTyped);
 
     if (encryptKey && typeof value === 'string') {
       return { ...acc, [key]: encryptText(value) };
