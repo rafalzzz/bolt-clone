@@ -78,16 +78,45 @@ const useRequest = () => {
     dispatch({ type: EAction.ERROR, error });
   };
 
+  const getResponseError = async (response: Response) => {
+    try {
+      const errorData = await response.json();
+
+      return errorData.message;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      return await response.text();
+    }
+  };
+
+  const getErrorMessage = async (error: unknown) => {
+    if (error instanceof Response) {
+      const responseError = await getResponseError(error);
+
+      if (responseError) {
+        return responseError;
+      }
+    } else if (error instanceof Error) {
+      return error.message;
+    }
+  };
+
   const handleRequestError =
     ({ uniqueMessage = '', testId }: THandleRequestErrorParams) =>
-    (error: unknown) => {
-      const errorMessage = error instanceof Error ? error.message : uniqueMessage;
+    async (error: unknown) => {
+      let text = uniqueMessage;
 
-      handleError(errorMessage);
+      const errorMessage = await getErrorMessage(error);
 
       if (errorMessage) {
+        text = errorMessage;
+      }
+
+      handleError(text);
+
+      if (text) {
         displayToast({
-          text: errorMessage,
+          text,
           testId,
         });
       }
@@ -111,11 +140,15 @@ const useRequest = () => {
         body: data ? JSON.stringify(data) : null,
       });
 
+      if (!response.ok) {
+        throw response;
+      }
+
       handleSuccess();
 
       return response;
     } catch (error) {
-      console.log(error);
+      console.log({ error });
       handleRequestError(errorMessage)(error);
     }
   };

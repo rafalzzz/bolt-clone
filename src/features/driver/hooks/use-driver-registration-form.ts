@@ -26,7 +26,6 @@ const useDriverRegistrationForm = () => {
     register,
     setValue,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<TDriverRegistrationFormSchema>({
     resolver: zodResolver(driverRegistrationFormSchema),
@@ -46,11 +45,7 @@ const useDriverRegistrationForm = () => {
       },
     });
 
-    console.log({ response });
-
     if (response?.ok) {
-      reset();
-
       displayToast({
         type: EToastType.SUCCESS,
         text: t('initialRegistrationSuccess'),
