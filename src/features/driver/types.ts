@@ -7,7 +7,6 @@ import { type JWTPayload } from 'jose';
 import type { Dispatch, SetStateAction } from 'react';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
-import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
 export type TAddFacialRecognitionOnSubmit = {
   file: File;
@@ -27,7 +26,11 @@ export type TDriverCompleteRegistration = {
   tokenPayload: JWTPayload;
 };
 
-export type TDriverRegistrationTokenPayload = Omit<TDriverRegistrationFormSchema, 'rules'>;
+export type TDriverRegistrationTokenPayload = Record<
+  'email' | 'phoneNumber' | 'phoneNumberHash' | 'city',
+  string
+>;
+
 export type TRegisterDriverFormData = Required<TDriverCompleteRegistrationFormSchema>;
 
 export const enum TDriverEntityKeys {

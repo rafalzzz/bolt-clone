@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 
 import getDriverDto from '@/features/driver/utils/get-driver-dto';
 import getErrorMessage from '@/shared/utils/common/get-error-message';
+import createHash from '@/shared/utils/server-side/create-hash';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
 
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
@@ -30,6 +31,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       data: TRegisterDriverFormData;
       tokenPayload: JWTPayload;
     };
+
+    const { vehicleRegistrationNumber } = data;
+
+    const vehicleRegistrationNumberHash = createHash(vehicleRegistrationNumber);
 
     const encryptedData = encryptSensitiveData({
       data,
