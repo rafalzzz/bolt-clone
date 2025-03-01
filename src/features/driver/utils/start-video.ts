@@ -1,4 +1,4 @@
-import getErrorMessage from '@/shared/utils/get-error-message';
+import getErrorMessage from '@/shared/utils/common/get-error-message';
 
 type TStartVideo = {
   video: HTMLVideoElement | null;

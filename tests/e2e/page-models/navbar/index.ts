@@ -1,5 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
+import { BasePage } from '@/classes/base-page';
+
 import {
   NAVBAR,
   LANGUAGE_BUTTON,
@@ -11,12 +13,7 @@ import {
 
 import { ETheme } from '@/enums/theme';
 
-type TClickButtonByTestId = {
-  testId: string;
-  buttonText?: string;
-};
-
-export class Navbar {
+export class Navbar extends BasePage {
   page: Page;
   themeColors = {
     light: '255, 255, 255',
@@ -24,37 +21,24 @@ export class Navbar {
   };
 
   constructor(page: Page) {
+    super(page);
+
     this.page = page;
   }
 
-  private async clickButtonByTestId({ testId, buttonText }: TClickButtonByTestId) {
-    const button = this.page.getByTestId(testId).filter({ hasText: buttonText });
-    await button.click();
-  }
-
   async changeLanguage(language: string) {
-    await this.clickButtonByTestId({ testId: LANGUAGE_BUTTON });
-    await this.clickButtonByTestId({
-      testId: LANGUAGE_BUTTON_ITEM,
-      buttonText: language.toUpperCase(),
-    });
-
-    return this;
+    await this.clickButton(LANGUAGE_BUTTON);
+    await this.clickButton(LANGUAGE_BUTTON_ITEM, language.toUpperCase());
   }
 
   async assertHeaderButtons(buttons: Record<string, string>) {
-    for (const [testId, text] of Object.entries(buttons)) {
-      const button = this.page.getByTestId(testId);
-
-      await expect(button).toBeVisible();
-      await expect(button).toHaveText(text);
-    }
+    await this.assertElementsText(buttons);
   }
 
   async toggleTheme(theme: ETheme) {
     const htmlElement = this.page.locator('html').first();
 
-    await this.clickButtonByTestId({ testId: THEME_BUTTON });
+    await this.clickButton(THEME_BUTTON);
     await this.page.waitForFunction(
       (theme) => document.documentElement.classList.contains(theme),
       theme,
@@ -70,19 +54,17 @@ export class Navbar {
     }
 
     await expect(htmlElement).toHaveClass(new RegExp(`\\b${theme}\\b`, 'i'));
-
-    return this;
   }
 
   async assertNavbarBackgroundColor(theme: ETheme) {
-    const navbar = this.page.getByTestId(NAVBAR);
+    const navbar = this.getElementByTestId(NAVBAR);
     const expectedColor = `rgb(${this.themeColors[theme]})`;
 
     await expect(navbar).toHaveCSS('background-color', expectedColor);
   }
 
   async clickSignButton(buttonText: 'Become a driver' | 'Become a client') {
-    await this.clickButtonByTestId({ testId: REGISTER_BUTTON });
-    await this.clickButtonByTestId({ testId: REGISTER_BUTTON_ITEM, buttonText });
+    await this.clickButton(REGISTER_BUTTON);
+    await this.clickButton(REGISTER_BUTTON_ITEM, buttonText);
   }
 }
