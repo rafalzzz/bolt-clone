@@ -1,5 +1,17 @@
 import { useReducer } from 'react';
 
+import displayToast from '@/shared/utils/client-side/display-toast';
+
+type THandleRequestErrorParams = Partial<Record<'uniqueMessage' | 'testId', string>>;
+
+type TRequestParams = {
+  endpoint: string;
+  method: RequestInit['method'];
+  headers?: RequestInit['headers'];
+  data?: unknown;
+  errorMessage?: THandleRequestErrorParams;
+};
+
 type TState = {
   isSuccess: boolean;
   isLoading: boolean;
@@ -66,11 +78,84 @@ const useRequest = () => {
     dispatch({ type: EAction.ERROR, error });
   };
 
+  const getResponseError = async (response: Response) => {
+    try {
+      const errorData = await response.json();
+
+      return errorData.message;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_: unknown) {
+      return await response.text();
+    }
+  };
+
+  const getErrorMessage = async (error: unknown) => {
+    if (error instanceof Response) {
+      const responseError = await getResponseError(error);
+
+      if (responseError) {
+        return responseError;
+      }
+    } else if (error instanceof Error) {
+      return error.message;
+    }
+  };
+
+  const handleRequestError = async (
+    { uniqueMessage = '', testId }: THandleRequestErrorParams,
+    error: unknown,
+  ) => {
+    let text = uniqueMessage;
+
+    const errorMessage = await getErrorMessage(error);
+
+    if (errorMessage) {
+      text = errorMessage;
+    }
+
+    handleError(text);
+
+    if (text) {
+      displayToast({
+        text,
+        testId,
+      });
+    }
+  };
+
+  const handleRequest = async ({
+    endpoint,
+    method,
+    headers = {
+      'Content-Type': 'application/json',
+    },
+    data,
+    errorMessage = {},
+  }: TRequestParams) => {
+    startRequest();
+
+    try {
+      const response = await fetch(`/api${endpoint}`, {
+        method,
+        headers,
+        body: data ? JSON.stringify(data) : null,
+      });
+
+      if (!response.ok) {
+        throw response;
+      }
+
+      handleSuccess();
+
+      return response;
+    } catch (error) {
+      handleRequestError(errorMessage, error);
+    }
+  };
+
   return {
     state,
-    startRequest,
-    handleSuccess,
-    handleError,
+    handleRequest,
   };
 };
 

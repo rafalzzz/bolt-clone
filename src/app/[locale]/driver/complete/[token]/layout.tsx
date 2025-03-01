@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: TLayoutParamsPromise) {
 
   const t = await getTranslations({
     locale,
-    namespace: 'DriverCompletePageHeadSection',
+    namespace: 'DriverRegistrationCompletePageHeadSection',
   });
 
   return {
@@ -18,6 +18,6 @@ export async function generateMetadata({ params }: TLayoutParamsPromise) {
   };
 }
 
-const DriverPageLayout: TFCWithChildren = ({ children }) => children;
+const DriverRegistrationPageLayout: TFCWithChildren = ({ children }) => children;
 
-export default DriverPageLayout;
+export default DriverRegistrationPageLayout;

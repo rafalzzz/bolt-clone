@@ -1,4 +1,4 @@
-import { ElementHandle, expect, type Page } from '@playwright/test';
+import { type Locator, expect, type Page } from '@playwright/test';
 
 type TMockResponseParams<Options> = {
   endpoint: string;
@@ -9,13 +9,13 @@ export class BasePage {
   readonly page: Page;
   readonly url: string;
 
-  constructor(page: Page, url: string) {
+  constructor(page: Page, url?: string) {
     this.page = page;
     this.url = url;
   }
 
-  async visit() {
-    await this.page.goto(this.url);
+  async visit(additionalParams = '') {
+    await this.page.goto(this.url + additionalParams);
   }
 
   async assertUrl(): Promise<void> {
@@ -27,28 +27,27 @@ export class BasePage {
     }
   }
 
-  getElementByTestId(testId: string) {
-    return this.page.getByTestId(testId);
+  getElementByTestId(testId: string, text?: string) {
+    return this.page.getByTestId(testId).filter({ hasText: text });
   }
 
-  private getElementByText(text: string) {
-    return this.page.locator(`text="${text}"`);
+  async checkElementText(element: Locator, text: string) {
+    await expect(element).toHaveText(text);
   }
 
-  async isErrorVisible(errorText: string) {
-    const errorMessage = this.getElementByText(errorText);
-
-    const isVisible = await errorMessage.isVisible();
-
-    expect(isVisible).toBeTruthy();
-  }
-
-  async assertAuthPageVisible(pageElementsIds: string[]) {
+  async assertPageElementsVisibility(pageElementsIds: string[]) {
     for (const testId of pageElementsIds) {
       await expect(this.getElementByTestId(testId)).toBeVisible();
     }
+  }
 
-    return this;
+  async assertElementsText(elements: Record<string, string>) {
+    for (const [testId, text] of Object.entries(elements)) {
+      const button = this.getElementByTestId(testId);
+
+      await expect(button).toBeVisible();
+      await this.checkElementText(button, text);
+    }
   }
 
   async mockRequestResponse<T extends Record<string, unknown>>({
@@ -63,14 +62,31 @@ export class BasePage {
   }
 
   async waitForElementWithTestId(testId: string) {
-    return await this.page.waitForSelector(`data-testid=${testId}`);
+    return this.page.locator(`data-testid=${testId}`).first();
   }
 
-  async checkElementTextContent(
-    element: ElementHandle<SVGElement | HTMLElement>,
-    exptectedText: string,
-  ) {
-    const text = await element.textContent();
-    expect(text).toBe(exptectedText);
+  async checkElementTextContent(element: Locator, exptectedText: string) {
+    await expect(element).toHaveText(exptectedText);
+  }
+
+  async clickButton(testId: string, text?: string) {
+    await this.getElementByTestId(testId, text).click();
+  }
+
+  async assertButtonIsEnabled(testId: string) {
+    const button = this.getElementByTestId(testId);
+
+    return await button.isEnabled();
+  }
+
+  async assertButtonIsDisabled(testId: string) {
+    const button = this.getElementByTestId(testId);
+
+    return await button.isDisabled();
+  }
+
+  async checkToastMessage(toastTestId: string, text: string) {
+    const errorMessage = await this.waitForElementWithTestId(toastTestId);
+    await this.checkElementTextContent(errorMessage, text);
   }
 }
