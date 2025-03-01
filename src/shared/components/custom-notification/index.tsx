@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { ToastContentProps } from 'react-toastify';
+import type { ToastContentProps } from 'react-toastify';
 
 import CustomCloseButton from '@/shared/components/custom-close-button';
 
