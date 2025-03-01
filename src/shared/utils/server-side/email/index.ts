@@ -9,12 +9,13 @@ type TSendEmail = {
   emailTemplate?: ReactNode;
 };
 
-export async function sendEmail({ to, subject, emailTemplate }: TSendEmail) {
-  return await resend.emails.send({
+const sendEmail = async ({ to, subject, emailTemplate }: TSendEmail) =>
+  await resend.emails.send({
     // Default email for testing purposes
     from: 'onboarding@resend.dev',
     to,
     subject,
     react: emailTemplate,
   });
-}
+
+export default sendEmail;

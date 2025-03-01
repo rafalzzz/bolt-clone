@@ -4,35 +4,44 @@ import CustomResponseError from '@/shared/classes/custom-response-error';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
+import { EDriverEntityKeys } from '@/features/driver/enums/driver-entity-keys';
+import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver/enums/driver-registration-form-keys';
+
+type TDriverData = Record<EDriverEntityKeys.PHONE_NUMBER_HASH | EDriverEntityKeys.EMAIL, string>;
+
+type TNewDriverData = Record<
+  EDriverRegistrationTokenPayloadKeys.PHONE_NUMBER_HASH | EDriverRegistrationTokenPayloadKeys.EMAIL,
+  string
+>;
+
+type THandleUniqueColumnsCheckParams = Record<
+  | EDriverRegistrationTokenPayloadKeys.EMAIL
+  | EDriverRegistrationTokenPayloadKeys.PHONE_NUMBER_HASH
+  | 'takenEmailMessage'
+  | 'takenPhoneNumberMessage',
+  string
+>;
+
 const checkUniqueDriverColumns = async (phoneNumberHash: string, email: string) =>
   await supabase
     .from('Drivers')
-    .select('phone_number_hash, email')
-    .or(`phone_number_hash.eq.${phoneNumberHash},email.eq.${email}`)
+    .select(`${EDriverEntityKeys.PHONE_NUMBER_HASH}, ${EDriverEntityKeys.EMAIL}`)
+    .or(
+      `${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash},${EDriverEntityKeys.EMAIL}.eq.${email}`,
+    )
     .maybeSingle();
 
-type TDriverData = {
-  phone_number_hash: string;
-  email: string;
-};
-
-type TNewDriverData = {
-  phoneNumberHash: string;
-  email: string;
-};
-
-const areDriverUniqueColumnsTaken = (
-  driver: TDriverData | null,
-  { email, phoneNumberHash }: TNewDriverData,
-) => {
+const areDriverUniqueColumnsTaken = (driver: TDriverData | null, newDriver: TNewDriverData) => {
   if (!driver) {
     return { isEmailTaken: false, isPhoneNumberTaken: false };
   }
 
-  const { phone_number_hash: driverPhoneNumberHash, email: driverEmail } = driver;
+  const isEmailTaken =
+    driver[EDriverEntityKeys.EMAIL] === newDriver[EDriverRegistrationTokenPayloadKeys.EMAIL];
 
-  const isEmailTaken = driverEmail === email;
-  const isPhoneNumberTaken = driverPhoneNumberHash === phoneNumberHash;
+  const isPhoneNumberTaken =
+    driver[EDriverEntityKeys.PHONE_NUMBER_HASH] ===
+    newDriver[EDriverRegistrationTokenPayloadKeys.PHONE_NUMBER_HASH];
 
   return { isEmailTaken, isPhoneNumberTaken };
 };
@@ -42,10 +51,7 @@ const handleUniqueColumnsCheck = async ({
   email,
   takenEmailMessage,
   takenPhoneNumberMessage,
-}: Record<
-  'phoneNumberHash' | 'email' | 'takenEmailMessage' | 'takenPhoneNumberMessage',
-  string
->) => {
+}: THandleUniqueColumnsCheckParams) => {
   const { data: driver, error: findDriverError } = await checkUniqueDriverColumns(
     phoneNumberHash,
     email,

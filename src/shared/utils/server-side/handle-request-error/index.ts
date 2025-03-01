@@ -1,4 +1,4 @@
-import { NextApiResponse } from 'next/types';
+import type { NextApiResponse } from 'next/types';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 

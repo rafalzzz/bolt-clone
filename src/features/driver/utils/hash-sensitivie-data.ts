@@ -1,12 +1,15 @@
 import createHash from '@/shared/utils/server-side/create-hash';
 
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
+
 import { TCompleteDriverRegistrationFormData } from '@/features/driver/types';
 
 const hashSensitiveData = (data: TCompleteDriverRegistrationFormData) => {
-  const { carRegistrationNumber, password } = data;
+  const passwordHash = createHash(data[EDriverCompleteRegistrationFormKeys.PASSWORD]);
 
-  const passwordHash = createHash(password);
-  const carRegistrationNumberHash = createHash(carRegistrationNumber);
+  const carRegistrationNumberHash = createHash(
+    data[EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER],
+  );
 
   return { carRegistrationNumberHash, passwordHash };
 };
