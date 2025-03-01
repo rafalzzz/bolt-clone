@@ -22,7 +22,7 @@ const useColorOptions = () => {
   const colorOptions: TOption[] = COLORS.map((value) => ({
     label: t(value),
     value,
-  }));
+  })).sort((a, b) => a.label.localeCompare(b.label));
 
   return colorOptions;
 };
