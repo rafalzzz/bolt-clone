@@ -17,7 +17,7 @@ import './react-select.scss';
 
 export type TReactSelectProps<FormType extends TBasicFormType> = {
   label: string;
-  options: TGroupedOption[];
+  options: TGroupedOption[] | TOption[];
   inputKey: Path<FormType>;
   setValue: UseFormSetValue<FormType>;
   placeholder?: string;

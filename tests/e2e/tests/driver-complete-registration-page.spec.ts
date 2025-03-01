@@ -61,6 +61,8 @@ test.describe(
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertInvalidFormatErrorMessages();
 
+        await driverCompleteRegistrationPage.assertRemainingFirstNameInputError();
+        await driverCompleteRegistrationPage.assertRemainingLastNameInputError();
         await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
         await driverCompleteRegistrationPage.assertRemainingVehicleRegistrationNumberInputError();
 

@@ -20,7 +20,7 @@ export type TCustomSelect<FormType extends TBasicFormType> = {
   inputKey: Path<FormType>;
   label: string;
   placeholder: string;
-  options: TGroupedOption[];
+  options: TGroupedOption[] | TOption[];
   register: UseFormRegister<FormType>;
   setValue: UseFormSetValue<FormType>;
   error?: string;

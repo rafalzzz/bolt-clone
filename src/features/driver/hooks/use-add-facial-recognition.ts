@@ -5,7 +5,7 @@ import type { UseFormSetValue } from 'react-hook-form';
 import getCanvasDrawing from '@/features/driver/utils/get-canvas-drawing';
 import { detectFaces } from '@/features/driver/utils/start-facial-recognition';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
-import displayWarningToast from '@/shared/utils/display-warning-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
 
 import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
@@ -21,15 +21,13 @@ type TUseAddFacialRecognition = {
   setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
 };
 
-const ERROR_ARIA_LABEL = 'Add facial recognition error';
-
 const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecognition) => {
   const t = useTranslations('AddFacialRecognitionError');
 
   const handleError = (error?: unknown) => {
     const text = error instanceof Error ? error.message : t('errorWhileAddingFaceRecognition');
 
-    displayWarningToast({ text, ariaLabel: ERROR_ARIA_LABEL });
+    displayToast({ text });
   };
 
   const addFacialRecognition = async (
@@ -54,9 +52,8 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
       })) as TDetections;
 
       if (!detections) {
-        return displayWarningToast({
+        return displayToast({
           text: t('faceNotFound'),
-          ariaLabel: t('faceNotFound'),
           testId: ADD_FACIAL_RECOGNITION_ERROR,
         });
       }
