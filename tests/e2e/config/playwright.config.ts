@@ -17,6 +17,9 @@ export default defineConfig({
     baseURL: baseURL,
     viewport: { width: 1920, height: 1080 },
     testIdAttribute: 'data-testid',
+    launchOptions: {
+      args: ['--disable-web-security', '--disable-features=IsolateOrigins,site-per-process'],
+    },
   },
   reporter: [['html', { outputFolder: '../reports/' }]],
 });

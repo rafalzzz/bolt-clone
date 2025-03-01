@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { BaseForm } from '@/classes/base-form';
 
@@ -20,20 +20,99 @@ import { TTestObject } from '@/types/test-object';
 export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
+  readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email`;
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver`);
   }
 
+  // Check general layout methods
   async assertPageLayoutVisible() {
     const pageElementIds: string[] = [
       DRIVER_REGISTRATION_PAGE_DESCRIPTION,
       DRIVER_REGISTRATION_PAGE_FORM,
     ];
 
-    return this.assertAuthPageVisible(pageElementIds);
+    return this.assertPageElementsVisibility(pageElementIds);
   }
 
+  // Requests methods
+  async mockFailureRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: 'http://localhost:4000/api/driver/send-email',
+      options: {
+        status: 500,
+        contentType: 'application/json',
+        body: JSON.stringify({ message: 'An unexpected response was received from the server.' }),
+      },
+    });
+  }
+
+  async mockSuccessRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/api/driver/send-email',
+      options: {
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ message: 'Success' }),
+      },
+    });
+  }
+
+  private async getRegistrationResponse() {
+    return this.getRequestPromise(this.sendEmailEndpoint);
+  }
+
+  async waitForRegistrationRequest() {
+    const requestPromise = this.getRegistrationResponse();
+
+    await this.clickFormSubmitButton();
+    await this.assertAllFormErrorsAreNotVisible();
+
+    await requestPromise;
+  }
+
+  // Check request result methods
+  async assertErrorToastMessage() {
+    await this.checkToastMessage(
+      REGISTRATION_FAILURE_MESSAGE,
+      'An unexpected response was received from the server.',
+    );
+  }
+
+  async assertSuccessToastMessage() {
+    await this.checkToastMessage(
+      REGISTRATION_SUCCESS_MESSAGE,
+      'Registration was successful! Check your email.',
+    );
+  }
+
+  // Change form elements methods
+  async fillInputsWithInvalidValues() {
+    const invalidInputFormat: TTestObject = {
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
+    };
+
+    await this.changeInputsValues(invalidInputFormat);
+  }
+
+  async fillInputsWithValidValues() {
+    const wrongFormatErrorMessages: TTestObject = {
+      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
+    };
+
+    await this.changeInputsValues(wrongFormatErrorMessages);
+  }
+
+  async fillForm() {
+    await this.fillInputsWithValidValues();
+    await this.selectReactSelectOption('Warsaw');
+    await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
+  }
+
+  // Form methods
   async assertInputPlaceholders() {
     const inputPlaceholders: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]: 'Enter email address',
@@ -64,16 +143,7 @@ export class DriverRegistrationPage extends BaseForm {
       [EDriverRegistrationFormKeys.RULES]: 'You must agree to continue',
     };
 
-    await this.checkErrorMessages(requiredFieldErrorMessages);
-  }
-
-  async fillInputsWithInvalidValues() {
-    const invalidInputFormat: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
-    };
-
-    await this.changeInputsValue(invalidInputFormat);
+    await this.checkErrorsMessages(requiredFieldErrorMessages);
   }
 
   async assertInvalidFormatErrorMessages() {
@@ -82,22 +152,7 @@ export class DriverRegistrationPage extends BaseForm {
       [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Invalid phone format',
     };
 
-    await this.checkErrorMessages(invalidFormatErrorMessages);
-  }
-
-  async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
-    };
-
-    await this.changeInputsValue(wrongFormatErrorMessages);
-  }
-
-  async fillForm() {
-    await this.fillInputsWithValidValues();
-    await this.selectReactSelectOption('Warsaw');
-    await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
+    await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
   async assertFormInputErrorsAreNotVisible() {
@@ -109,50 +164,7 @@ export class DriverRegistrationPage extends BaseForm {
     await this.assertFormErrorsAreNotVisible(inputKeys);
   }
 
-  async mockFailureRegistrationResponse() {
-    await this.mockRequestResponse({
-      endpoint: '**/en/driver',
-      options: {
-        status: 400,
-        contentType: 'application/json',
-      },
-    });
-  }
-
-  async mockSuccessRegistrationResponse() {
-    await this.mockRequestResponse({
-      endpoint: '**/en/driver',
-      options: {
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ isSuccess: true, error: false }),
-      },
-    });
-  }
-
   async clickFormSubmitButton() {
-    await this.clickSubmitButton(this.submitButtonTestId);
-  }
-
-  async getRegistrationResponse() {
-    return this.getRequestPromise(`${baseURL}/en/driver`);
-  }
-
-  async assertErrorToastMessage() {
-    const errorMessage = await this.waitForElementWithTestId(REGISTRATION_FAILURE_MESSAGE);
-
-    await this.checkElementTextContent(
-      errorMessage,
-      'An unexpected response was received from the server.',
-    );
-  }
-
-  async assertSuccessToastMessage() {
-    const successMessage = await this.waitForElementWithTestId(REGISTRATION_SUCCESS_MESSAGE);
-
-    await this.checkElementTextContent(
-      successMessage,
-      'Registration was successful! Check your email.',
-    );
+    await this.clickButton(this.submitButtonTestId);
   }
 }

@@ -9,7 +9,7 @@ import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
-import addParamsToUrl from '@/shared/utils/add-params-to-url';
+import addParamsToUrl from '@/shared/utils/client-side/add-params-to-url';
 
 import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
