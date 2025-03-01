@@ -1,14 +1,14 @@
 import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
+import useColorOptions from '@/features/driver/hooks/use-color-options';
+
+import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EFieldType } from '@/shared/enums/field-type';
 
 import { TCustomFormField } from '@/shared/types/custom-form-field';
-
-import type { TDriverCompleteRegistrationFormSchema } from '../schemas/driver-complete-registration-form-schema';
-
-import useColorOptions from './use-color-options';
 
 type TUseDriverCompleteRegistrationFormFields = {
   errors: FieldErrors<TDriverCompleteRegistrationFormSchema>;

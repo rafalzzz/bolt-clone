@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import useDriverCompleteRegistrationFormFields from '@/features/driver/hooks/use-driver-complete-registration-form-fields';
 import useRequest from '@/shared/hooks/use-request';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
@@ -21,8 +22,6 @@ import {
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EToastType } from '@/shared/enums/toast-type';
-
-import useDriverCompleteRegistrationFormFields from './use-driver-complete-registration-form-fields';
 
 type TUseDriverCompleteRegistrationForm = {
   tokenPayload: JWTPayload | null;

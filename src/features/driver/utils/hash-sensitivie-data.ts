@@ -1,6 +1,6 @@
 import createHash from '@/shared/utils/server-side/create-hash';
 
-import { TCompleteDriverRegistrationFormData } from '../types';
+import { TCompleteDriverRegistrationFormData } from '@/features/driver/types';
 
 const hashSensitiveData = (data: TCompleteDriverRegistrationFormData) => {
   const { carRegistrationNumber, password } = data;

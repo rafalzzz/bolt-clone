@@ -1,6 +1,9 @@
 import { type NextApiRequest } from 'next/types';
 
-import { TCompleteDriverRegistrationFormData, TDriverRegistrationTokenPayload } from '../types';
+import {
+  TCompleteDriverRegistrationFormData,
+  TDriverRegistrationTokenPayload,
+} from '@/features/driver/types';
 
 const extractCompleteRegistrationData = (body: NextApiRequest['body']) => {
   const { data, tokenPayload } = body as {

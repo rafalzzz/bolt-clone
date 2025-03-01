@@ -8,7 +8,7 @@ import type { Dispatch, SetStateAction } from 'react';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
-import { EDriverRegistrationTokenPayloadKeys } from './enums/driver-registration-form-keys';
+import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
 export type TAddFacialRecognitionOnSubmit = {
   file: File;
