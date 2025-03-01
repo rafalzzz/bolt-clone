@@ -18,7 +18,7 @@ import { TApiResponse } from '@/shared/types/api-response';
 
 const keysToEncrypt = [
   EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD,
-  EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
+  EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER,
 ];
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<TApiResponse>) {
@@ -32,9 +32,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       tokenPayload: JWTPayload;
     };
 
-    const { vehicleRegistrationNumber } = data;
+    const { carRegistrationNumber } = data;
 
-    const vehicleRegistrationNumberHash = createHash(vehicleRegistrationNumber);
+    const carRegistrationNumberHash = createHash(carRegistrationNumber);
 
     const encryptedData = encryptSensitiveData({
       data,

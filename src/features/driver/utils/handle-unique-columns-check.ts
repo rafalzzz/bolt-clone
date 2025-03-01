@@ -1,5 +1,7 @@
 import { supabase } from '@/lib/supabase';
 
+import CustomResponseError from '@/shared/classes/custom-response-error';
+
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
 const checkUniqueDriverColumns = async (phoneNumberHash: string, email: string) =>
@@ -51,11 +53,11 @@ const handleUniqueColumnsCheck = async (phoneNumberHash: string, email: string) 
   });
 
   if (isEmailTaken) {
-    throw new Error('Email is already taken');
+    throw new CustomResponseError(409, 'Email is already taken');
   }
 
   if (isPhoneNumberTaken) {
-    throw new Error('Phone number is already taken');
+    throw new CustomResponseError(409, 'Phone number is already taken');
   }
 };
 

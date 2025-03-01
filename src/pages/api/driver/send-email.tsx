@@ -2,6 +2,8 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import CustomResponseError from '@/shared/classes/custom-response-error';
+
 import { generateDriverRegistrationToken } from '@/features/driver/utils/generate-driver-registration-token';
 import handleUniqueColumnsCheck from '@/features/driver/utils/handle-unique-columns-check';
 import sendDriverRegistrationEmail from '@/features/driver/utils/send-driver-registration-email';
@@ -48,6 +50,11 @@ export default async function POST(
 
     res.status(200).end();
   } catch (error: unknown) {
+    if (error instanceof CustomResponseError) {
+      const { statusCode, message } = error;
+      res.status(statusCode).json({ message });
+    }
+
     res.status(500).json({ message: getErrorMessage(error) });
   }
 }

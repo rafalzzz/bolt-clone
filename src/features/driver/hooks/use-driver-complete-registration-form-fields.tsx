@@ -8,6 +8,8 @@ import { TCustomFormField } from '@/shared/types/custom-form-field';
 
 import type { TDriverCompleteRegistrationFormSchema } from '../schemas/driver-complete-registration-form-schema';
 
+import useColorOptions from './use-color-options';
+
 type TUseDriverCompleteRegistrationFormFields = {
   errors: FieldErrors<TDriverCompleteRegistrationFormSchema>;
   register: UseFormRegister<TDriverCompleteRegistrationFormSchema>;
@@ -18,6 +20,8 @@ const useDriverCompleteRegistrationFormFields = ({
   register,
 }: TUseDriverCompleteRegistrationFormFields) => {
   const t = useTranslations('DriverCompleteRegistrationForm');
+
+  const options = useColorOptions();
 
   const formFields: TCustomFormField<TDriverCompleteRegistrationFormSchema>[] = [
     {
@@ -81,13 +85,62 @@ const useDriverCompleteRegistrationFormFields = ({
     {
       type: EFieldType.TEXT,
       fieldProps: {
-        inputKey: EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
-        label: t('vehicleRegistrationNumberLabel'),
-        error: errors?.[EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]?.message,
+        inputKey: EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER,
+        label: t('carRegistrationNumberLabel'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER]?.message,
+        errorValues: { number: 4 },
         register,
         props: {
-          name: EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER,
-          placeholder: t('vehicleRegistrationNumberPlaceholder'),
+          name: EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER,
+          placeholder: t('carRegistrationNumberPlaceholder'),
+          type: 'text',
+          maxLength: 10,
+        },
+      },
+    },
+    {
+      type: EFieldType.TEXT,
+      fieldProps: {
+        inputKey: EDriverCompleteRegistrationFormKeys.CAR_BRAND,
+        label: t('carBrandLabel'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_BRAND]?.message,
+        errorValues: { number: 4 },
+        register,
+        props: {
+          name: EDriverCompleteRegistrationFormKeys.CAR_BRAND,
+          placeholder: t('carBrandPlaceholder'),
+          type: 'text',
+          maxLength: 20,
+        },
+      },
+    },
+    {
+      type: EFieldType.TEXT,
+      fieldProps: {
+        inputKey: EDriverCompleteRegistrationFormKeys.CAR_MODEL,
+        label: t('carModelLabel'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_MODEL]?.message,
+        errorValues: { number: 4 },
+        register,
+        props: {
+          name: EDriverCompleteRegistrationFormKeys.CAR_MODEL,
+          placeholder: t('carModelPlaceholder'),
+          type: 'text',
+          maxLength: 20,
+        },
+      },
+    },
+    {
+      type: EFieldType.SELECT,
+      fieldProps: {
+        inputKey: EDriverCompleteRegistrationFormKeys.CAR_COLOR,
+        label: t('carColorLabel'),
+        placeholder: t('carColorPlaceholder'),
+        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_COLOR]?.message,
+        options,
+        register,
+        props: {
+          name: EDriverCompleteRegistrationFormKeys.CAR_COLOR,
           type: 'text',
           maxLength: 10,
         },

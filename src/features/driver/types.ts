@@ -38,9 +38,14 @@ export const enum TDriverEntityKeys {
   FIRST_NAME = 'first_name',
   LAST_NAME = 'last_name',
   PHONE_NUMBER = 'phone_number',
+  PHONE_NUMBER_HASH = 'phone_number_hash',
   CITY = 'city',
   PASSWORD = 'password',
-  VEHICLE_NUMBER = 'vehicle_number',
+  CAR_NUMBER = 'car_number',
+  CAR_NUMBER_HASH = 'car_number_hash',
+  CAR_BRAND = 'car_brand',
+  CAR_MODEL = 'car_model',
+  CAR_COLOR = 'car_color',
   TERMS = 'terms',
 }
 
@@ -50,7 +55,7 @@ export type TDriverEntity = {
   [TDriverEntityKeys.FIRST_NAME]: string;
   [TDriverEntityKeys.CITY]: string;
   [TDriverEntityKeys.LAST_NAME]: string;
-  [TDriverEntityKeys.VEHICLE_NUMBER]: string;
+  [TDriverEntityKeys.CAR_NUMBER]: string;
   [TDriverEntityKeys.PASSWORD]: string;
   [TDriverEntityKeys.TERMS]: boolean;
 };

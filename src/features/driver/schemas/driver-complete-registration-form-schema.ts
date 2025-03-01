@@ -2,10 +2,12 @@ import { z } from 'zod';
 
 import {
   ONLY_DIGITS_REGEX,
-  ONLY_LETTERS_REGEX,
+  ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX,
   ONLY_LOWERCASE_LETTERS_REGEX,
   ONLY_UPPERCASE_LETTERS_REGEX,
-  VEHICLE_REGISTRATION_NUMBER_REGEX,
+  ONLY_LETTERS_REGEX,
+  ONLY_LETTERS_AND_DIGITS_REGEX,
+  CAR_REGISTRATION_NUMBER_REGEX,
 } from '@/shared/consts/regex';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
@@ -15,17 +17,17 @@ export const driverCompleteRegistrationFormSchema = z
   .object({
     [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: z
       .string()
-      .nonempty(EErrorKeys.REQUIRED_FIRST_NAME)
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
       .min(2, EErrorKeys.FIRST_NAME_MINIMUM_CHARACTERS)
-      .regex(ONLY_LETTERS_REGEX, EErrorKeys.FIRST_NAME_CHARACTERS),
+      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.FIRST_NAME_CHARACTERS),
     [EDriverCompleteRegistrationFormKeys.LAST_NAME]: z
       .string()
-      .nonempty(EErrorKeys.REQUIRED_LAST_NAME)
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
       .min(2, EErrorKeys.LAST_NAME_MINIMUM_CHARACTERS)
-      .regex(ONLY_LETTERS_REGEX, EErrorKeys.LAST_NAME_CHARACTERS),
+      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.LAST_NAME_CHARACTERS),
     [EDriverCompleteRegistrationFormKeys.PASSWORD]: z
       .string()
-      .nonempty(EErrorKeys.REQUIRED_PASSWORD)
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
       .min(8, EErrorKeys.PASSWORD_MINIMUM_CHARACTERS)
       .regex(ONLY_UPPERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_UPPER_CASE)
       .regex(ONLY_LOWERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_LOWER_CASE)
@@ -36,12 +38,27 @@ export const driverCompleteRegistrationFormSchema = z
       ),
     [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: z
       .string()
-      .nonempty(EErrorKeys.REQUIRED_REPEAT_PASSWORD),
-    [EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER]: z
+      .nonempty(EErrorKeys.REQUIRED_FIELD),
+    [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER]: z
       .string()
-      .nonempty(EErrorKeys.REQUIRED_VEHICLE_REGISTRATION_NUMBER)
-      .min(4, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_MINIMUM_CHARACTERS)
-      .regex(VEHICLE_REGISTRATION_NUMBER_REGEX, EErrorKeys.VEHICLE_REGISTRATION_NUMBER_CHARACTERS),
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
+      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .regex(CAR_REGISTRATION_NUMBER_REGEX, EErrorKeys.CAR_REGISTRATION_NUMBER_CHARACTERS),
+    [EDriverCompleteRegistrationFormKeys.CAR_BRAND]: z
+      .string()
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
+      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .regex(ONLY_LETTERS_REGEX, EErrorKeys.ONLY_LETTERS),
+    [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: z
+      .string()
+      .nonempty(EErrorKeys.REQUIRED_FIELD)
+      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .regex(ONLY_LETTERS_AND_DIGITS_REGEX, EErrorKeys.ONLY_LETTERS_AND_DIGITS),
+    [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: z
+      .string({ message: EErrorKeys.REQUIRED_FIELD })
+      .nonempty({
+        message: EErrorKeys.REQUIRED_FIELD,
+      }),
     [EDriverCompleteRegistrationFormKeys.FILE]: z
       .any()
       .refine((file) => file instanceof File && file.size, {

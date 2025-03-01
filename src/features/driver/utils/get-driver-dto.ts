@@ -11,8 +11,7 @@ const getDriverDto = (data: TRegisterDriverFormData, tokenPayload: JWTPayload) =
   [TDriverEntityKeys.CITY]: tokenPayload[EDriverRegistrationFormKeys.CITY],
   [TDriverEntityKeys.FIRST_NAME]: data[EDriverCompleteRegistrationFormKeys.FIRST_NAME],
   [TDriverEntityKeys.LAST_NAME]: data[EDriverCompleteRegistrationFormKeys.LAST_NAME],
-  [TDriverEntityKeys.VEHICLE_NUMBER]:
-    data[EDriverCompleteRegistrationFormKeys.VEHICLE_REGISTRATION_NUMBER],
+  [TDriverEntityKeys.CAR_NUMBER]: data[EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER],
   [TDriverEntityKeys.PASSWORD]: data[EDriverCompleteRegistrationFormKeys.PASSWORD],
   [TDriverEntityKeys.TERMS]: true,
 });

@@ -1,3 +1,4 @@
+import type { TranslationValues } from 'next-intl';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import type { Path, UseFormRegister } from 'react-hook-form';
 
@@ -16,6 +17,7 @@ export type TCustomInput<FormType extends TBasicFormType> = {
   inputKey: Path<FormType>;
   register: UseFormRegister<FormType>;
   error?: string;
+  errorValues?: TranslationValues;
   prefix?: ReactNode;
 };
 
@@ -25,26 +27,33 @@ const CustomInput = <FormType extends TBasicFormType>({
   inputKey,
   register,
   error,
+  errorValues,
   prefix,
-}: TCustomInput<FormType>) => (
-  <FormItemContainer inputKey={inputKey} error={error}>
-    <CustomInputLabel label={label}>
-      <div className='custom-input'>
-        {prefix && <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>}
-        <input
-          className={`custom-input__input custom-input__${error ? 'invalid' : 'correct'}-input`}
-          {...props}
-          {...register(inputKey)}
-          data-testid={getInputTestId(inputKey)}
-        />
-        {error && (
-          <div className='custom-input__error-icon'>
-            <ErrorSvg />
-          </div>
-        )}
-      </div>
-    </CustomInputLabel>
-  </FormItemContainer>
-);
+}: TCustomInput<FormType>) => {
+  console.log({ errorValues });
+
+  return (
+    <FormItemContainer inputKey={inputKey} error={error} errorValues={errorValues}>
+      <CustomInputLabel label={label}>
+        <div className='custom-input'>
+          {prefix && (
+            <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>
+          )}
+          <input
+            className={`custom-input__input custom-input__${error ? 'invalid' : 'correct'}-input`}
+            {...props}
+            {...register(inputKey)}
+            data-testid={getInputTestId(inputKey)}
+          />
+          {error && (
+            <div className='custom-input__error-icon'>
+              <ErrorSvg />
+            </div>
+          )}
+        </div>
+      </CustomInputLabel>
+    </FormItemContainer>
+  );
+};
 
 export default CustomInput;
