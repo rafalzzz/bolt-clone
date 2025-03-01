@@ -1,3 +1,4 @@
+import type { TranslationValues } from 'next-intl';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import type { Path, UseFormRegister } from 'react-hook-form';
 
@@ -16,6 +17,7 @@ export type TCustomInput<FormType extends TBasicFormType> = {
   inputKey: Path<FormType>;
   register: UseFormRegister<FormType>;
   error?: string;
+  errorValues?: TranslationValues;
   prefix?: ReactNode;
 };
 
@@ -25,9 +27,10 @@ const CustomInput = <FormType extends TBasicFormType>({
   inputKey,
   register,
   error,
+  errorValues,
   prefix,
 }: TCustomInput<FormType>) => (
-  <FormItemContainer inputKey={inputKey} error={error}>
+  <FormItemContainer inputKey={inputKey} error={error} errorValues={errorValues}>
     <CustomInputLabel label={label}>
       <div className='custom-input'>
         {prefix && <span className='custom-input__input custom-input__input-prefix'>{prefix}</span>}

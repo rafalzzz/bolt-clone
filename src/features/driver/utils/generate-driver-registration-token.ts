@@ -6,17 +6,13 @@ import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
 const REGISTER_DRIVER_TOKEN_SECRET_KEY = process.env.REGISTER_DRIVER_TOKEN_SECRET_KEY;
 const TOKEN_EXPIRATION = '3d';
 
-export async function generateDriverRegistrationToken({
-  email,
-  phoneNumber,
-  city,
-}: TDriverRegistrationTokenPayload) {
+export async function generateDriverRegistrationToken(payload: TDriverRegistrationTokenPayload) {
   if (!REGISTER_DRIVER_TOKEN_SECRET_KEY) {
     throw new Error('Missing REGISTER_DRIVER_TOKEN_SECRET_KEY env variable');
   }
 
   return encryptJwtToken({
-    payload: { email, phoneNumber, city },
+    payload,
     expire: TOKEN_EXPIRATION,
     secretKey: encodeSecretKey(REGISTER_DRIVER_TOKEN_SECRET_KEY),
   });

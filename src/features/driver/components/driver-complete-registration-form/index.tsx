@@ -20,7 +20,7 @@ import {
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
-import { TDriverCompleteRegistration } from '../../types';
+import { TDriverCompleteRegistration } from '@/features/driver/types';
 
 const AddFacialRecognitionModal = dynamic(
   () => import('@/features/driver/components/add-facial-recognition-modal'),

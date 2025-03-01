@@ -7,7 +7,9 @@ import { type JWTPayload } from 'jose';
 import type { Dispatch, SetStateAction } from 'react';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
-import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
+
+import { EDriverEntityKeys } from '@/features/driver/enums/driver-entity-keys';
+import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
 export type TAddFacialRecognitionOnSubmit = {
   file: File;
@@ -27,27 +29,26 @@ export type TDriverCompleteRegistration = {
   tokenPayload: JWTPayload;
 };
 
-export type TDriverRegistrationTokenPayload = Omit<TDriverRegistrationFormSchema, 'rules'>;
-export type TRegisterDriverFormData = Required<TDriverCompleteRegistrationFormSchema>;
+export type TDriverRegistrationTokenPayload = Record<EDriverRegistrationTokenPayloadKeys, string>;
 
-export const enum TDriverEntityKeys {
-  EMAIL = 'email',
-  FIRST_NAME = 'first_name',
-  LAST_NAME = 'last_name',
-  PHONE_NUMBER = 'phone_number',
-  CITY = 'city',
-  PASSWORD = 'password',
-  VEHICLE_NUMBER = 'vehicle_number',
-  TERMS = 'terms',
-}
+export type TCompleteDriverRegistrationFormData = Required<TDriverCompleteRegistrationFormSchema>;
+
+export type TEncryptedCompleteDriverRegistrationFormData = Omit<
+  TCompleteDriverRegistrationFormData,
+  'repeatPassword' | 'file'
+>;
 
 export type TDriverEntity = {
-  [TDriverEntityKeys.EMAIL]: string;
-  [TDriverEntityKeys.PHONE_NUMBER]: string;
-  [TDriverEntityKeys.FIRST_NAME]: string;
-  [TDriverEntityKeys.CITY]: string;
-  [TDriverEntityKeys.LAST_NAME]: string;
-  [TDriverEntityKeys.VEHICLE_NUMBER]: string;
-  [TDriverEntityKeys.PASSWORD]: string;
-  [TDriverEntityKeys.TERMS]: boolean;
+  [EDriverEntityKeys.EMAIL]: string;
+  [EDriverEntityKeys.FIRST_NAME]: string;
+  [EDriverEntityKeys.LAST_NAME]: string;
+  [EDriverEntityKeys.PHONE_NUMBER]: string;
+  [EDriverEntityKeys.PHONE_NUMBER_HASH]: string;
+  [EDriverEntityKeys.CITY]: string;
+  [EDriverEntityKeys.PASSWORD]: string;
+  [EDriverEntityKeys.CAR_NUMBER]: string;
+  [EDriverEntityKeys.CAR_NUMBER_HASH]: string;
+  [EDriverEntityKeys.CAR_BRAND]: string;
+  [EDriverEntityKeys.CAR_MODEL]: string;
+  [EDriverEntityKeys.CAR_COLOR]: string;
 };

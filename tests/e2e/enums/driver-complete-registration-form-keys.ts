@@ -3,6 +3,6 @@ export enum EDriverCompleteRegistrationFormKeys {
   LAST_NAME = 'lastName',
   PASSWORD = 'password',
   REPEAT_PASSWORD = 'repeatPassword',
-  VEHICLE_REGISTRATION_NUMBER = 'vehicleRegistrationNumber',
+  CAR_REGISTRATION_NUMBER = 'carRegistrationNumber',
   FILE = 'file',
 }
