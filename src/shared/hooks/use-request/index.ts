@@ -84,7 +84,7 @@ const useRequest = () => {
 
       return errorData.message;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
+    } catch (_: unknown) {
       return await response.text();
     }
   };
@@ -101,26 +101,27 @@ const useRequest = () => {
     }
   };
 
-  const handleRequestError =
-    ({ uniqueMessage = '', testId }: THandleRequestErrorParams) =>
-    async (error: unknown) => {
-      let text = uniqueMessage;
+  const handleRequestError = async (
+    { uniqueMessage = '', testId }: THandleRequestErrorParams,
+    error: unknown,
+  ) => {
+    let text = uniqueMessage;
 
-      const errorMessage = await getErrorMessage(error);
+    const errorMessage = await getErrorMessage(error);
 
-      if (errorMessage) {
-        text = errorMessage;
-      }
+    if (errorMessage) {
+      text = errorMessage;
+    }
 
-      handleError(text);
+    handleError(text);
 
-      if (text) {
-        displayToast({
-          text,
-          testId,
-        });
-      }
-    };
+    if (text) {
+      displayToast({
+        text,
+        testId,
+      });
+    }
+  };
 
   const handleRequest = async ({
     endpoint,
@@ -148,8 +149,7 @@ const useRequest = () => {
 
       return response;
     } catch (error) {
-      console.log({ error });
-      handleRequestError(errorMessage)(error);
+      handleRequestError(errorMessage, error);
     }
   };
 
