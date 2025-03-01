@@ -35,6 +35,10 @@
     "initialRegistrationSuccess": "Registration was successful! Check your email.",
     "initialRegistratrionError": "An error occurred during registration."
   },
+  "RedirectionToLoginPage": {
+    "haveAnAccount": "Already have an account?",
+    "login": "Log in"
+  },
   "CitySelect": {
     "poland": "Poland",
     "rzeszow": "Rzeszow",

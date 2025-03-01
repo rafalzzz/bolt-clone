@@ -4,7 +4,10 @@ import CustomResponseError from '@/shared/classes/custom-response-error';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
-const checkUniqueCarNumber = async (carRegistrationNumberHash: string) => {
+const checkUniqueCarNumber = async (
+  carRegistrationNumberHash: string,
+  takenCarRegistrationNumbeMessage: string,
+) => {
   const { data: driver, error: searchDriverError } = await supabase
     .from('Drivers')
     .select('car_number_hash')
@@ -16,7 +19,7 @@ const checkUniqueCarNumber = async (carRegistrationNumberHash: string) => {
   }
 
   if (driver) {
-    throw new CustomResponseError(409, 'Car registration number is already taken');
+    throw new CustomResponseError(409, takenCarRegistrationNumbeMessage);
   }
 };
 

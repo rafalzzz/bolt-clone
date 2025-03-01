@@ -37,7 +37,15 @@ const areDriverUniqueColumnsTaken = (
   return { isEmailTaken, isPhoneNumberTaken };
 };
 
-const handleUniqueColumnsCheck = async (phoneNumberHash: string, email: string) => {
+const handleUniqueColumnsCheck = async ({
+  phoneNumberHash,
+  email,
+  takenEmailMessage,
+  takenPhoneNumberMessage,
+}: Record<
+  'phoneNumberHash' | 'email' | 'takenEmailMessage' | 'takenPhoneNumberMessage',
+  string
+>) => {
   const { data: driver, error: findDriverError } = await checkUniqueDriverColumns(
     phoneNumberHash,
     email,
@@ -53,11 +61,11 @@ const handleUniqueColumnsCheck = async (phoneNumberHash: string, email: string) 
   });
 
   if (isEmailTaken) {
-    throw new CustomResponseError(409, 'Email is already taken');
+    throw new CustomResponseError(409, takenEmailMessage);
   }
 
   if (isPhoneNumberTaken) {
-    throw new CustomResponseError(409, 'Phone number is already taken');
+    throw new CustomResponseError(409, takenPhoneNumberMessage);
   }
 };
 

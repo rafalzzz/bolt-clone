@@ -9,6 +9,7 @@ import handleUniqueColumnsCheck from '@/features/driver/utils/handle-unique-colu
 import sendDriverRegistrationEmail from '@/features/driver/utils/send-driver-registration-email';
 import createHash from '@/shared/utils/server-side/create-hash';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
 import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
@@ -25,7 +26,7 @@ const keysToEncrypt = [EDriverRegistrationFormKeys.PHONE_NUMBER];
 const keysToOmit = [EDriverRegistrationFormKeys.RULES];
 
 export default async function POST(
-  { method, body: data }: NextApiRequest,
+  { method, headers: { cookie }, body: data }: NextApiRequest,
   res: NextApiResponse<TApiResponse>,
 ) {
   if (method !== 'POST') {
@@ -37,7 +38,14 @@ export default async function POST(
   const phoneNumberHash = createHash(String(phoneNumber));
 
   try {
-    await handleUniqueColumnsCheck(phoneNumberHash, email);
+    const t = await getApiTranslations(cookie);
+
+    await handleUniqueColumnsCheck({
+      phoneNumberHash,
+      email,
+      takenEmailMessage: t('emailTaken'),
+      takenPhoneNumberMessage: t('phoneNumberTaken'),
+    });
 
     const encryptedData = encryptSensitiveData<
       TDriverRegistrationFormSchema,

@@ -8,6 +8,7 @@ import getDriverDto from '@/features/driver/utils/get-driver-dto';
 import hashSensitiveData from '@/features/driver/utils/hash-sensitivie-data';
 import insertDriverData from '@/features/driver/utils/insert-driver-data';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
@@ -28,7 +29,7 @@ const keysToOmit = [
 ];
 
 export default async function POST(
-  { method, body }: NextApiRequest,
+  { method, headers: { cookie }, body }: NextApiRequest,
   res: NextApiResponse<TApiResponse>,
 ) {
   if (method !== 'POST') {
@@ -36,10 +37,11 @@ export default async function POST(
   }
 
   try {
+    const t = await getApiTranslations(cookie);
     const { data, tokenPayload } = extractCompleteRegistrationData(body);
     const { carRegistrationNumberHash, passwordHash } = hashSensitiveData(data);
 
-    await checkUniqueCarNumber(carRegistrationNumberHash);
+    await checkUniqueCarNumber(carRegistrationNumberHash, t('takenCarRegistrationNumber'));
 
     const encryptedDriverData = encryptSensitiveData<
       TCompleteDriverRegistrationFormData,

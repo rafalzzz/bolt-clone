@@ -35,6 +35,10 @@
     "initialRegistrationSuccess": "Rejestracja przebiegła pomyślnie! Sprawdź swój email.",
     "initialRegistratrionError": "Wystąpił błąd podczas rejestracji."
   },
+  "RedirectionToLoginPage": {
+    "haveAnAccount": "Posiadasz już konto?",
+    "login": "Zaloguj się"
+  },
   "CitySelect": {
     "poland": "Polska",
     "rzeszow": "Rzeszów",
