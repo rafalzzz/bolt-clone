@@ -7,9 +7,9 @@ import CustomResponseError from '@/shared/classes/custom-response-error';
 import { generateDriverRegistrationToken } from '@/features/driver/utils/generate-driver-registration-token';
 import handleUniqueColumnsCheck from '@/features/driver/utils/handle-unique-columns-check';
 import sendDriverRegistrationEmail from '@/features/driver/utils/send-driver-registration-email';
-import getErrorMessage from '@/shared/utils/common/get-error-message';
 import createHash from '@/shared/utils/server-side/create-hash';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
 import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
@@ -29,7 +29,7 @@ export default async function POST(
   res: NextApiResponse<TApiResponse>,
 ) {
   if (method !== 'POST') {
-    return res.status(405).json({ message: METHOD_NOT_ALLOWED });
+    throw new CustomResponseError(405, METHOD_NOT_ALLOWED);
   }
 
   const { email, phoneNumber } = data;
@@ -50,11 +50,6 @@ export default async function POST(
 
     res.status(200).end();
   } catch (error: unknown) {
-    if (error instanceof CustomResponseError) {
-      const { statusCode, message } = error;
-      res.status(statusCode).json({ message });
-    }
-
-    res.status(500).json({ message: getErrorMessage(error) });
+    handleRequestError(res, error);
   }
 }

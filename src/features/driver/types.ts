@@ -8,6 +8,8 @@ import type { Dispatch, SetStateAction } from 'react';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
 
+import { EDriverRegistrationTokenPayloadKeys } from './enums/driver-registration-form-keys';
+
 export type TAddFacialRecognitionOnSubmit = {
   file: File;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -26,12 +28,14 @@ export type TDriverCompleteRegistration = {
   tokenPayload: JWTPayload;
 };
 
-export type TDriverRegistrationTokenPayload = Record<
-  'email' | 'phoneNumber' | 'phoneNumberHash' | 'city',
-  string
->;
+export type TDriverRegistrationTokenPayload = Record<EDriverRegistrationTokenPayloadKeys, string>;
 
-export type TRegisterDriverFormData = Required<TDriverCompleteRegistrationFormSchema>;
+export type TCompleteDriverRegistrationFormData = Required<TDriverCompleteRegistrationFormSchema>;
+
+export type TEncryptedCompleteDriverRegistrationFormData = Omit<
+  TCompleteDriverRegistrationFormData,
+  'repeatPassword' | 'file'
+>;
 
 export const enum TDriverEntityKeys {
   EMAIL = 'email',
@@ -51,11 +55,15 @@ export const enum TDriverEntityKeys {
 
 export type TDriverEntity = {
   [TDriverEntityKeys.EMAIL]: string;
-  [TDriverEntityKeys.PHONE_NUMBER]: string;
   [TDriverEntityKeys.FIRST_NAME]: string;
-  [TDriverEntityKeys.CITY]: string;
   [TDriverEntityKeys.LAST_NAME]: string;
-  [TDriverEntityKeys.CAR_NUMBER]: string;
+  [TDriverEntityKeys.PHONE_NUMBER]: string;
+  [TDriverEntityKeys.PHONE_NUMBER_HASH]: string;
+  [TDriverEntityKeys.CITY]: string;
   [TDriverEntityKeys.PASSWORD]: string;
-  [TDriverEntityKeys.TERMS]: boolean;
+  [TDriverEntityKeys.CAR_NUMBER]: string;
+  [TDriverEntityKeys.CAR_NUMBER_HASH]: string;
+  [TDriverEntityKeys.CAR_BRAND]: string;
+  [TDriverEntityKeys.CAR_MODEL]: string;
+  [TDriverEntityKeys.CAR_COLOR]: string;
 };

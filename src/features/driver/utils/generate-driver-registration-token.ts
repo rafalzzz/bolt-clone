@@ -9,6 +9,7 @@ const TOKEN_EXPIRATION = '3d';
 export async function generateDriverRegistrationToken({
   email,
   phoneNumber,
+  phoneNumberHash,
   city,
 }: TDriverRegistrationTokenPayload) {
   if (!REGISTER_DRIVER_TOKEN_SECRET_KEY) {
@@ -16,7 +17,7 @@ export async function generateDriverRegistrationToken({
   }
 
   return encryptJwtToken({
-    payload: { email, phoneNumber, city },
+    payload: { email, phoneNumber, phoneNumberHash, city },
     expire: TOKEN_EXPIRATION,
     secretKey: encodeSecretKey(REGISTER_DRIVER_TOKEN_SECRET_KEY),
   });

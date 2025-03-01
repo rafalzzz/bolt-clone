@@ -52,7 +52,9 @@ const useDriverCompleteRegistrationForm = ({
 
   const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
 
-  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (
+    data: TDriverCompleteRegistrationFormSchema,
+  ) => {
     if (!tokenPayload) {
       return;
     }
