@@ -20,6 +20,7 @@ import { TTestObject } from '@/types/test-object';
 export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
+  readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email`;
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver`);
@@ -38,27 +39,28 @@ export class DriverRegistrationPage extends BaseForm {
   // Requests methods
   async mockFailureRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/en/driver',
+      endpoint: 'http://localhost:4000/api/driver/send-email',
       options: {
-        status: 400,
+        status: 500,
         contentType: 'application/json',
+        body: JSON.stringify({ message: 'An unexpected response was received from the server.' }),
       },
     });
   }
 
   async mockSuccessRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/en/driver',
+      endpoint: '**/api/driver/send-email',
       options: {
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ isSuccess: true, error: false }),
+        body: JSON.stringify({ message: 'Success' }),
       },
     });
   }
 
   private async getRegistrationResponse() {
-    return this.getRequestPromise(`${baseURL}/en/driver`);
+    return this.getRequestPromise(this.sendEmailEndpoint);
   }
 
   async waitForRegistrationRequest() {

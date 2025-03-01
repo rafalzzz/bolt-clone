@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { type TranslationValues, useTranslations } from 'next-intl';
 import type { FC } from 'react';
 
 import getErrorTestId from '@/test-helpers/get-error-test-id';
@@ -6,9 +6,10 @@ import getErrorTestId from '@/test-helpers/get-error-test-id';
 type TCustomError = {
   inputKey: string;
   error?: string;
+  errorValues?: TranslationValues;
 };
 
-const CustomError: FC<TCustomError> = ({ inputKey, error }) => {
+const CustomError: FC<TCustomError> = ({ inputKey, error, errorValues }) => {
   const t = useTranslations('FormErrors');
 
   return (
@@ -17,7 +18,7 @@ const CustomError: FC<TCustomError> = ({ inputKey, error }) => {
         className='mt-1 text-sm font-normal tracking-wide text-errorIconColor transition'
         data-testid={getErrorTestId(inputKey)}
       >
-        {t(error)}
+        {t(error, errorValues)}
       </p>
     )
   );

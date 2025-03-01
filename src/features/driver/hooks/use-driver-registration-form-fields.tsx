@@ -48,7 +48,7 @@ const useDriverRegistrationFormFields = ({
       type: EFieldType.TEXT,
       fieldProps: {
         inputKey: EDriverRegistrationFormKeys.PHONE_NUMBER,
-        text: t('termsText'),
+        label: t('phoneNumberLabel'),
         error: errors?.[EDriverRegistrationFormKeys.PHONE_NUMBER]?.message,
         register,
         prefix: (
