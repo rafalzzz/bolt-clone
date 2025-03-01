@@ -5,6 +5,8 @@ on: [pull_request, workflow_dispatch]
 env:
   RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
   REGISTER_DRIVER_TOKEN_SECRET_KEY: ${{ secrets.REGISTER_DRIVER_TOKEN_SECRET_KEY }}
+  API_URL: ${{ secrets.API_URL }}
+  API_KEY: ${{ secrets.API_KEY }}
   DOMAIN_URL: 'localhost:3000'
   ENVIRONMENT: 'development'
 

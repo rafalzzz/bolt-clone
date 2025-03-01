@@ -2,13 +2,12 @@ import type { FieldValues } from 'react-hook-form';
 
 import CustomCheckbox from '@/shared/components/custom-checkbox';
 import CustomInput from '@/shared/components/custom-input';
+import CustomPasswordInput from '@/shared/components/custom-password-input';
 import CustomSelect from '@/shared/components/custom-select';
 
 import { EFieldType } from '@/shared/enums/field-type';
 
 import { TCustomFormField, TFieldTypeMap } from '@/shared/types/custom-form-field';
-
-import CustomPasswordInput from '../custom-password-input';
 
 type TCustomFormFields<FormType extends FieldValues> = {
   formFields: TCustomFormField<FormType>[];
