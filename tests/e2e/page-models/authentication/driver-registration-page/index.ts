@@ -20,7 +20,7 @@ import { TTestObject } from '@/types/test-object';
 export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
-  readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email`;
+  readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email/`;
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver`);
@@ -39,7 +39,8 @@ export class DriverRegistrationPage extends BaseForm {
   // Requests methods
   async mockFailureRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: 'http://localhost:4000/api/driver/send-email',
+      endpoint: '**/api/driver/send-email/',
+      method: 'POST',
       options: {
         status: 500,
         contentType: 'application/json',
@@ -50,7 +51,8 @@ export class DriverRegistrationPage extends BaseForm {
 
   async mockSuccessRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/api/driver/send-email',
+      endpoint: '**/api/driver/send-email/',
+      method: 'POST',
       options: {
         status: 200,
         contentType: 'application/json',
@@ -137,10 +139,10 @@ export class DriverRegistrationPage extends BaseForm {
 
   async assertRequiredFieldsErrorMessages() {
     const requiredFieldErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'Providing the email is required',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Providing the phone number is required',
-      [EDriverRegistrationFormKeys.CITY]: 'Providing the city is required',
-      [EDriverRegistrationFormKeys.RULES]: 'You must agree to continue',
+      [EDriverRegistrationFormKeys.EMAIL]: 'This field is required',
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'This field is required',
+      [EDriverRegistrationFormKeys.CITY]: 'This field is required',
+      [EDriverRegistrationFormKeys.RULES]: 'This field is required',
     };
 
     await this.checkErrorsMessages(requiredFieldErrorMessages);
