@@ -22,12 +22,12 @@ type THandleUniqueColumnsCheckParams = Record<
   string
 >;
 
-const checkUniqueDriverColumns = async (phoneNumberHash: string, email: string) =>
+const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) =>
   await supabase
     .from('Drivers')
-    .select(`${EDriverEntityKeys.PHONE_NUMBER_HASH}, ${EDriverEntityKeys.EMAIL}`)
+    .select(`${EDriverEntityKeys.EMAIL}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}`)
     .or(
-      `${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash},${EDriverEntityKeys.EMAIL}.eq.${email}`,
+      `${EDriverEntityKeys.EMAIL}.eq.${email}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash}`,
     )
     .maybeSingle();
 
@@ -53,8 +53,8 @@ const handleUniqueColumnsCheck = async ({
   takenPhoneNumberMessage,
 }: THandleUniqueColumnsCheckParams) => {
   const { data: driver, error: findDriverError } = await checkUniqueDriverColumns(
-    phoneNumberHash,
     email,
+    phoneNumberHash,
   );
 
   if (findDriverError) {

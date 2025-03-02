@@ -49,7 +49,7 @@ const useDriverCompleteRegistrationForm = ({
   const facialRecognitionMessages = useTranslations('AddFacialRecognitionError');
   const registrationMessages = useTranslations('DriverRegistrationCompleteMessages');
 
-  const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
+  const formFields = useDriverCompleteRegistrationFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (
     data: TDriverCompleteRegistrationFormSchema,

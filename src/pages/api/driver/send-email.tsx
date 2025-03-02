@@ -43,8 +43,8 @@ export default async function POST(
     await handleUniqueColumnsCheck({
       phoneNumberHash,
       email,
-      takenEmailMessage: t('emailTaken'),
-      takenPhoneNumberMessage: t('phoneNumberTaken'),
+      takenEmailMessage: t('takenEmail'),
+      takenPhoneNumberMessage: t('takenPhoneNumber'),
     });
 
     const encryptedData = encryptSensitiveData<

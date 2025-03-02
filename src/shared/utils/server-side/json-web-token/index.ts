@@ -35,8 +35,6 @@ export const decryptJwtToken = async ({ token, secretKey }: TDecryptJwtToken) =>
     });
     return payload;
   } catch (error) {
-    console.log({ error });
-
     if (error instanceof Error) {
       if (error.message.includes('exp')) {
         return { error: EDecryptJwtTokenErrors.EXPIRED_TOKEN };

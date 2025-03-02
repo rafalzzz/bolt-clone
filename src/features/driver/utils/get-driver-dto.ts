@@ -24,19 +24,23 @@ const keyToMap = {
   [EDriverCompleteRegistrationFormKeys.LAST_NAME]: EDriverEntityKeys.LAST_NAME,
   [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER]: EDriverEntityKeys.CAR_NUMBER,
   [EDriverCompleteRegistrationFormKeys.CAR_BRAND]: EDriverEntityKeys.CAR_BRAND,
+  [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: EDriverEntityKeys.CAR_MODEL,
   [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: EDriverEntityKeys.CAR_COLOR,
   carRegistrationNumberHash: EDriverEntityKeys.CAR_NUMBER_HASH,
 };
 
 const getDriverDto = ({
   encryptedDriverData,
-  tokenPayload,
+  tokenPayload: { email, phoneNumber, phoneNumberHash, city },
   passwordHash,
   carRegistrationNumberHash,
 }: TGetDriverDtoParams): TDriverEntity => {
   const driverData = {
     ...encryptedDriverData,
-    ...tokenPayload,
+    email,
+    phoneNumber,
+    phoneNumberHash,
+    city,
     password: passwordHash,
     carRegistrationNumberHash,
   };

@@ -52,7 +52,7 @@ export const driverCompleteRegistrationFormSchema = z
     [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
       .regex(ONLY_LETTERS_AND_DIGITS_REGEX, EErrorKeys.ONLY_LETTERS_AND_DIGITS),
     [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: z
       .string({ message: EErrorKeys.REQUIRED_FIELD })
