@@ -44,7 +44,11 @@ test.describe(
     test('Should display a success message when the email has been sent', async () => {
       await driverRegistrationPage.mockSuccessRegistrationResponse();
       await driverRegistrationPage.fillForm();
-      await driverRegistrationPage.waitForRegistrationRequest();
+
+      const request = await driverRegistrationPage.waitForRegistrationRequest();
+      const requestBody = JSON.parse(request.postData() || '{}');
+
+      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
       await driverRegistrationPage.assertSuccessToastMessage();
     });
   },

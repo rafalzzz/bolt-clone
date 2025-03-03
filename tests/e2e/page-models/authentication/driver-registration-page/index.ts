@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { BaseForm } from '@/classes/base-form';
 
@@ -21,6 +21,12 @@ export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
   readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email/`;
+  readonly correctRequestBody = {
+    [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
+    [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
+    [EDriverRegistrationFormKeys.CITY]: 'warsaw',
+    [EDriverRegistrationFormKeys.RULES]: true,
+  };
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver`);
@@ -72,9 +78,14 @@ export class DriverRegistrationPage extends BaseForm {
     await this.assertAllFormErrorsAreNotVisible();
 
     await requestPromise;
+    return requestPromise;
   }
 
   // Check request result methods
+  asserRequestBodyCorrectness(requestBody: Record<string, unknown>) {
+    expect(requestBody).toEqual(this.correctRequestBody);
+  }
+
   async assertErrorToastMessage() {
     await this.checkToastMessage(
       REGISTRATION_FAILURE_MESSAGE,
@@ -101,8 +112,10 @@ export class DriverRegistrationPage extends BaseForm {
 
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
+      [EDriverRegistrationFormKeys.EMAIL]:
+        this.correctRequestBody[EDriverRegistrationFormKeys.EMAIL],
+      [EDriverRegistrationFormKeys.PHONE_NUMBER]:
+        this.correctRequestBody[EDriverRegistrationFormKeys.PHONE_NUMBER],
     };
 
     await this.changeInputsValues(wrongFormatErrorMessages);
