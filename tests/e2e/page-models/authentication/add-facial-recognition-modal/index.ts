@@ -36,6 +36,19 @@ export class AddFacialRecognitionModal extends BaseForm {
     await this.userCamera.mockUserCameraWithoutFace();
   }
 
+  // Requests methods
+  async mockFailureRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: '**/api/driver/register/',
+      method: 'POST',
+      options: {
+        status: 500,
+        contentType: 'application/json',
+        body: JSON.stringify({ message: 'An unexpected response was received from the server.' }),
+      },
+    });
+  }
+
   // Facial recognition error methods
   async assertRequiredCameraErrorToastMessage() {
     await this.checkToastMessage(

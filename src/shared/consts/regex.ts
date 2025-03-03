@@ -6,3 +6,5 @@ export const CAR_REGISTRATION_NUMBER_REGEX = /^[A-Z0-9]+$/;
 export const ONLY_UPPERCASE_LETTERS_REGEX = /[A-ZĄĆĘŁŃÓŚŹŻ]/;
 export const ONLY_LOWERCASE_LETTERS_REGEX = /[a-ząćęłńóśźż]/;
 export const PHONE_NUMBER_REGEX = /^\D*(\d\D*){9}$/;
+export const SPECIAL_CHARACTER_REGEX =
+  /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\.\>\/\?\|\\\`~]/;

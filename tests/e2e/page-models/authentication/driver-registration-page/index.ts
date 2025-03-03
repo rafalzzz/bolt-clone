@@ -67,12 +67,8 @@ export class DriverRegistrationPage extends BaseForm {
     });
   }
 
-  private async getRegistrationResponse() {
-    return this.getRequestPromise(this.sendEmailEndpoint);
-  }
-
   async waitForRegistrationRequest() {
-    const requestPromise = this.getRegistrationResponse();
+    const requestPromise = this.getRequestPromise(this.sendEmailEndpoint);
 
     await this.clickFormSubmitButton();
     await this.assertAllFormErrorsAreNotVisible();

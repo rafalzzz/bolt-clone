@@ -32,6 +32,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
         label: t('firstNameLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.FIRST_NAME]?.message,
+        errorValues: { number: 3 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
@@ -47,6 +48,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.LAST_NAME,
         label: t('lastNameLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.LAST_NAME]?.message,
+        errorValues: { number: 3 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.LAST_NAME,
@@ -106,7 +108,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.CAR_BRAND,
         label: t('carBrandLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_BRAND]?.message,
-        errorValues: { number: 4 },
+        errorValues: { number: 2 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.CAR_BRAND,

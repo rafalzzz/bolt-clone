@@ -8,6 +8,7 @@ import {
   ONLY_LETTERS_REGEX,
   ONLY_LETTERS_AND_DIGITS_REGEX,
   CAR_REGISTRATION_NUMBER_REGEX,
+  SPECIAL_CHARACTER_REGEX,
 } from '@/shared/consts/regex';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
@@ -18,13 +19,13 @@ export const driverCompleteRegistrationFormSchema = z
     [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(2, EErrorKeys.FIRST_NAME_MINIMUM_CHARACTERS)
-      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.FIRST_NAME_CHARACTERS),
+      .min(3, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.ONLY_LETTERS),
     [EDriverCompleteRegistrationFormKeys.LAST_NAME]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(2, EErrorKeys.LAST_NAME_MINIMUM_CHARACTERS)
-      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.LAST_NAME_CHARACTERS),
+      .min(3, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .regex(ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX, EErrorKeys.ONLY_LETTERS),
     [EDriverCompleteRegistrationFormKeys.PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD)
@@ -32,10 +33,7 @@ export const driverCompleteRegistrationFormSchema = z
       .regex(ONLY_UPPERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_UPPER_CASE)
       .regex(ONLY_LOWERCASE_LETTERS_REGEX, EErrorKeys.PASSWORD_LOWER_CASE)
       .regex(ONLY_DIGITS_REGEX, EErrorKeys.PASSWORD_DIGIT)
-      .regex(
-        /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\.\>\/\?\|\\\`~]/,
-        EErrorKeys.PASSWORD_SPECIAL_CHARACTER,
-      ),
+      .regex(SPECIAL_CHARACTER_REGEX, EErrorKeys.PASSWORD_SPECIAL_CHARACTER),
     [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD),
@@ -47,7 +45,7 @@ export const driverCompleteRegistrationFormSchema = z
     [EDriverCompleteRegistrationFormKeys.CAR_BRAND]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
+      .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
       .regex(ONLY_LETTERS_REGEX, EErrorKeys.ONLY_LETTERS),
     [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: z
       .string()
@@ -55,8 +53,9 @@ export const driverCompleteRegistrationFormSchema = z
       .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
       .regex(ONLY_LETTERS_AND_DIGITS_REGEX, EErrorKeys.ONLY_LETTERS_AND_DIGITS),
     [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: z
-      .string({ message: EErrorKeys.REQUIRED_FIELD })
-      .nonempty({
+      .string()
+      .optional()
+      .refine((val) => val !== undefined && val.trim() !== '', {
         message: EErrorKeys.REQUIRED_FIELD,
       }),
     [EDriverCompleteRegistrationFormKeys.FILE]: z

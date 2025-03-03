@@ -48,8 +48,8 @@ test.describe(
       const request = await driverRegistrationPage.waitForRegistrationRequest();
       const requestBody = JSON.parse(request.postData() || '{}');
 
-      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
       await driverRegistrationPage.assertSuccessToastMessage();
+      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
     });
   },
 );

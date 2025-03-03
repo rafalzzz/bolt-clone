@@ -66,10 +66,6 @@
     "requiredPhoneNumber": "Providing the phone number is required",
     "invalidPhoneNumber": "Invalid phone format",
     "requiredRules": "You must agree to continue",
-    "firstNameMinimumCharacters": "First name must contain at least 2 characters",
-    "firstNameCharacters": "First name can contain only letters",
-    "lastNameMinimumCharacters": "Last name must contain at least 2 characters",
-    "lastNameCharacters": "Last name can contain only letters",
     "passwordMinimumCharacters": "Password must contain at least 8 characters",
     "passwordUpperCase": "Password must contain at least one uppercase letter",
     "passwordLowerCase": "Password must contain at least one lowercase letter",
@@ -134,7 +130,7 @@
     "failedToVerifyToken": "Failed to verify token"
   },
   "DriverRegistrationCompleteMessages": {
-    "registrationSuccess": "You have been registered! You can start using our application.",
-    "registrationError": "An error occurred during registration, please try again."
+    "registrationSuccess": "You have been registered! You can start using our application",
+    "registrationError": "An error occurred during registration, please try again"
   }
 }
