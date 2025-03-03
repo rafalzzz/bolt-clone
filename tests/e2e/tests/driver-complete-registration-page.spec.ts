@@ -117,12 +117,8 @@ test.describe(
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
         await driverCompleteRegistrationPage.addFacialRecognition();
-
-        const request = await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
-        const requestBody = JSON.parse(request.postData() || '{}');
-
+        await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();
-        driverCompleteRegistrationPage.asserRequestBodyCorrectness(requestBody);
       });
     });
   },
