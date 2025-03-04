@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type JWTPayload } from 'jose';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -23,8 +22,12 @@ import {
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 import { EToastType } from '@/shared/enums/toast-type';
 
+import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
+
+import getDriverFormData from '../utils/get-driver-form-data';
+
 type TUseDriverCompleteRegistrationForm = {
-  tokenPayload: JWTPayload | null;
+  tokenPayload: TDriverRegistrationTokenPayload | null;
 };
 
 const useDriverCompleteRegistrationForm = ({
@@ -52,16 +55,19 @@ const useDriverCompleteRegistrationForm = ({
   const formFields = useDriverCompleteRegistrationFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (
-    data: TDriverCompleteRegistrationFormSchema,
+    formValues: TDriverCompleteRegistrationFormSchema,
   ) => {
     if (!tokenPayload) {
       return;
     }
 
+    const data = getDriverFormData({ tokenPayload, formValues });
+
     const response = await handleRequest({
       endpoint: '/driver/register/',
       method: 'POST',
-      data: { data, tokenPayload },
+      data,
+      addHeaders: false,
       errorMessage: {
         uniqueMessage: registrationMessages('registrationError'),
         testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
