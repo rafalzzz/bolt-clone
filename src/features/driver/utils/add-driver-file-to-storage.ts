@@ -12,6 +12,11 @@ type TAddFileToStorageParams = {
   missingFileMessage: string;
 };
 
+const getFileExtension = (fileName: string | null = '') => fileName?.split('.').pop();
+
+const generateFileName = (extension = '') =>
+  `drivers/${Date.now()}-${Math.random().toString(36).substring(2)}.${extension}`;
+
 const addFileToStorage = async ({
   file,
   bucketName,
@@ -24,11 +29,12 @@ const addFileToStorage = async ({
   }
 
   const fileBuffer = fs.readFileSync(fileToAdd.filepath);
-  const fileExt = fileToAdd.originalFilename?.split('.').pop();
-  const fileName = `drivers/${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+
+  const fileExtension = getFileExtension(fileToAdd.originalFilename);
+  const fileName = generateFileName(fileExtension);
 
   const { data, error } = await supabase.storage
-    .from(bucketName) //
+    .from(bucketName)
     .upload(fileName, fileBuffer, { contentType: fileToAdd.mimetype ?? undefined });
 
   if (error) {
