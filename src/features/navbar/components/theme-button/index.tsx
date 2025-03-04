@@ -2,11 +2,11 @@
 
 import { setCookieValue } from '@/shared/utils/client-side/cookies';
 
-import { THEME } from '@/shared/consts/cookie-names';
-
 import { THEME_BUTTON } from '@/test-ids/navbar';
 
 import { ETheme } from '@/shared/enums/theme';
+
+import { THEME } from '@/shared/consts/cookie-names';
 
 const ThemeButton = () => {
   const handleOnClick = () => {

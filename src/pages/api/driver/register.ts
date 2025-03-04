@@ -11,14 +11,13 @@ import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-d
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
-import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
-
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
 
 import {
   TCompleteDriverRegistrationFormData,
   TEncryptedCompleteDriverRegistrationFormData,
 } from '@/features/driver/types';
+import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
 import { TApiResponse } from '@/shared/types/api-response';
 

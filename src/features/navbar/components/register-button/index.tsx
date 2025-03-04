@@ -11,9 +11,9 @@ import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
 import addParamsToUrl from '@/shared/utils/client-side/add-params-to-url';
 
-import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
-
 import { REGISTER_BUTTON, REGISTER_BUTTON_ITEM } from '@/test-ids/navbar';
+
+import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);

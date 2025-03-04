@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
+import { EErrorKeys } from '@/shared/enums/error-keys';
+
 import {
   ONLY_DIGITS_REGEX,
   ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX,
@@ -10,9 +13,6 @@ import {
   CAR_REGISTRATION_NUMBER_REGEX,
   SPECIAL_CHARACTER_REGEX,
 } from '@/shared/consts/regex';
-
-import { EDriverCompleteRegistrationFormKeys } from '@/features/driver/enums/driver-complete-registration-form-keys';
-import { EErrorKeys } from '@/shared/enums/error-keys';
 
 export const driverCompleteRegistrationFormSchema = z
   .object({

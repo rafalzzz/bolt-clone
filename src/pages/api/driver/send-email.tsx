@@ -14,11 +14,10 @@ import handleRequestError from '@/shared/utils/server-side/handle-request-error'
 
 import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
-import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
-
 import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 
 import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
+import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
 import { TApiResponse } from '@/shared/types/api-response';
 
