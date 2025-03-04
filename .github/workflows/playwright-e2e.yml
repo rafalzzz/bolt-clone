@@ -7,6 +7,8 @@ env:
   REGISTER_DRIVER_TOKEN_SECRET_KEY: ${{ secrets.REGISTER_DRIVER_TOKEN_SECRET_KEY }}
   API_URL: ${{ secrets.API_URL }}
   API_KEY: ${{ secrets.API_KEY }}
+  ENCRYPT_SECRET: ${{ secrets.ENCRYPT_SECRET }}
+  HASH_SECRET: ${{ secrets.HASH_SECRET }}
   DOMAIN_URL: 'localhost:3000'
   ENVIRONMENT: 'development'
 

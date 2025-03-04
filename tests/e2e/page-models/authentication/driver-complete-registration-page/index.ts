@@ -13,6 +13,8 @@ import {
   OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON,
 } from '@/test-ids/driver-registration-complete-page';
 
+import { REGISTER_DRIVER } from '@/consts/endpoints';
+
 import { EDriverCompleteRegistrationFormKeys } from '@/enums/driver-complete-registration-form-keys';
 import { ELanguage } from '@/enums/language';
 
@@ -21,8 +23,7 @@ import { TTestObject } from '@/types/test-object';
 export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   readonly inputKeys: string[] = Object.values(EDriverCompleteRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON;
-  readonly registerDriverEndpoint: string = '/api/driver/register';
-  readonly registerDriverEndpointUrl: string = baseURL + this.registerDriverEndpoint;
+  readonly registerDriverEndpointUrl: string = baseURL + REGISTER_DRIVER;
 
   readonly correctRequestBody = {
     [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
@@ -136,7 +137,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   // Requests methods
   async mockSuccessRegistrationCompleteResponse() {
     await this.mockRequestResponse({
-      endpoint: `**${this.registerDriverEndpoint}`,
+      endpoint: `**${REGISTER_DRIVER}`,
       method: 'POST',
       options: {
         status: 200,

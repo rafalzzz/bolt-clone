@@ -54,11 +54,6 @@
             "position": "before"
           },
           {
-            "pattern": "**/consts/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
             "pattern": "**/config/**",
             "group": "internal",
             "position": "before"
@@ -75,6 +70,11 @@
           },
           {
             "pattern": "@/test-ids/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@/consts/**",
             "group": "internal",
             "position": "before"
           },

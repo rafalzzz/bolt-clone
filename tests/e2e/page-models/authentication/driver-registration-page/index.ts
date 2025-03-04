@@ -12,6 +12,8 @@ import {
   REGISTRATION_SUCCESS_MESSAGE,
 } from '@/test-ids/driver-registration-page';
 
+import { SEND_EMAIL_TO_DRIVER } from '@/consts/endpoints';
+
 import { EDriverRegistrationFormKeys } from '@/enums/driver-registration-form-keys';
 import { ELanguage } from '@/enums/language';
 
@@ -20,8 +22,7 @@ import { TTestObject } from '@/types/test-object';
 export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
-  readonly sendEmailEndpoint: string = '/api/driver/register';
-  readonly sendEmailEndpointUrl: string = baseURL + this.sendEmailEndpoint;
+  readonly sendEmailEndpointUrl: string = baseURL + SEND_EMAIL_TO_DRIVER;
 
   readonly correctRequestBody = {
     [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
@@ -47,7 +48,7 @@ export class DriverRegistrationPage extends BaseForm {
   // Requests methods
   async mockFailureRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: `**${this.sendEmailEndpoint}`,
+      endpoint: `**${SEND_EMAIL_TO_DRIVER}`,
       method: 'POST',
       options: {
         status: 500,
@@ -59,7 +60,7 @@ export class DriverRegistrationPage extends BaseForm {
 
   async mockSuccessRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: `**${this.sendEmailEndpoint}`,
+      endpoint: `**${SEND_EMAIL_TO_DRIVER}`,
       method: 'POST',
       options: {
         status: 200,
@@ -70,7 +71,7 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   async waitForRegistrationRequest() {
-    const requestPromise = this.getRequestPromise(this.sendEmailEndpoint);
+    const requestPromise = this.getRequestPromise(this.sendEmailEndpointUrl);
 
     await this.clickFormSubmitButton();
     await this.assertAllFormErrorsAreNotVisible();

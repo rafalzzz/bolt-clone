@@ -12,7 +12,8 @@
       "@/types/*": ["./e2e/types/*"],
       "@/classes/*": ["./utils/classes/*"],
       "@/helpers/*": ["./utils/helpers/*"],
-      "@/test-ids/*": ["./utils/test-ids/*"]
+      "@/test-ids/*": ["./utils/test-ids/*"],
+      "@/consts/*": ["./utils/consts/*"]
     }
   },
   "include": ["e2e/page-models/**/*.ts", "e2e/tests/**/*.ts", "e2e/config/playwright.config.ts"]

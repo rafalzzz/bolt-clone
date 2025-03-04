@@ -11,6 +11,8 @@ import {
   ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
 } from '@/test-ids/add-facial-recognition-modal';
 
+import { REGISTER_DRIVER } from '@/consts/endpoints';
+
 export class AddFacialRecognitionModal extends BaseForm {
   readonly addFacialRecognitionButtonTestId: string = ADD_FACIAL_RECOGNITION_BUTTON;
   readonly modalCancelButtonTestId: string = ADD_FACIAL_RECOGNITION_CANCEL_BUTTON;
@@ -39,7 +41,7 @@ export class AddFacialRecognitionModal extends BaseForm {
   // Requests methods
   async mockFailureRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/api/driver/register/',
+      endpoint: `**${REGISTER_DRIVER}`,
       method: 'POST',
       options: {
         status: 500,
