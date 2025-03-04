@@ -20,7 +20,9 @@ import { TTestObject } from '@/types/test-object';
 export class DriverRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON;
-  readonly sendEmailEndpoint: string = `${baseURL}/api/driver/send-email/`;
+  readonly sendEmailEndpoint: string = '/api/driver/register';
+  readonly sendEmailEndpointUrl: string = baseURL + this.sendEmailEndpoint;
+
   readonly correctRequestBody = {
     [EDriverRegistrationFormKeys.EMAIL]: 'test@test.pl',
     [EDriverRegistrationFormKeys.PHONE_NUMBER]: '999999999',
@@ -45,7 +47,7 @@ export class DriverRegistrationPage extends BaseForm {
   // Requests methods
   async mockFailureRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/api/driver/send-email/',
+      endpoint: `**${this.sendEmailEndpoint}`,
       method: 'POST',
       options: {
         status: 500,
@@ -57,7 +59,7 @@ export class DriverRegistrationPage extends BaseForm {
 
   async mockSuccessRegistrationResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/api/driver/send-email/',
+      endpoint: `**${this.sendEmailEndpoint}`,
       method: 'POST',
       options: {
         status: 200,

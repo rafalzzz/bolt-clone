@@ -59,7 +59,7 @@ const useDriverCompleteRegistrationForm = ({
     }
 
     const response = await handleRequest({
-      endpoint: '/driver/register',
+      endpoint: '/driver/register/',
       method: 'POST',
       data: { data, tokenPayload },
       errorMessage: {

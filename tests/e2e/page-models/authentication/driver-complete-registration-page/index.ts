@@ -21,7 +21,9 @@ import { TTestObject } from '@/types/test-object';
 export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   readonly inputKeys: string[] = Object.values(EDriverCompleteRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON;
-  readonly registerDriverEndpoint: string = `${baseURL}/api/driver/register`;
+  readonly registerDriverEndpoint: string = '/api/driver/register';
+  readonly registerDriverEndpointUrl: string = baseURL + this.registerDriverEndpoint;
+
   readonly correctRequestBody = {
     [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
     [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Test',
@@ -134,7 +136,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   // Requests methods
   async mockSuccessRegistrationCompleteResponse() {
     await this.mockRequestResponse({
-      endpoint: '**/api/driver/register',
+      endpoint: `**${this.registerDriverEndpoint}`,
       method: 'POST',
       options: {
         status: 200,
@@ -147,7 +149,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   }
 
   async waitForRegistrationSuccessRequest() {
-    const requestPromise = this.getRequestPromise(this.registerDriverEndpoint);
+    const requestPromise = this.getRequestPromise(this.registerDriverEndpointUrl);
 
     await this.clickFormSubmitButton();
     await this.assertAllFormErrorsAreNotVisible();
