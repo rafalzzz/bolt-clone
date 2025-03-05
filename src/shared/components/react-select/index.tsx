@@ -45,6 +45,7 @@ const ReactSelect = <FormType extends TBasicFormType>({
   <FormItemContainer inputKey={inputKey} error={error}>
     <CustomInputLabel label={label}>
       <Select
+        defaultInputValue=''
         className='react-select'
         classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
         isSearchable={false}

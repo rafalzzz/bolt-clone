@@ -11,6 +11,8 @@ import {
   ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
 } from '@/test-ids/add-facial-recognition-modal';
 
+import { REGISTER_DRIVER } from '@/consts/endpoints';
+
 export class AddFacialRecognitionModal extends BaseForm {
   readonly addFacialRecognitionButtonTestId: string = ADD_FACIAL_RECOGNITION_BUTTON;
   readonly modalCancelButtonTestId: string = ADD_FACIAL_RECOGNITION_CANCEL_BUTTON;
@@ -34,6 +36,19 @@ export class AddFacialRecognitionModal extends BaseForm {
 
   async mockUserCameraWithoutFace() {
     await this.userCamera.mockUserCameraWithoutFace();
+  }
+
+  // Requests methods
+  async mockFailureRegistrationResponse() {
+    await this.mockRequestResponse({
+      endpoint: `**${REGISTER_DRIVER}`,
+      method: 'POST',
+      options: {
+        status: 500,
+        contentType: 'application/json',
+        body: JSON.stringify({ message: 'An unexpected response was received from the server.' }),
+      },
+    });
   }
 
   // Facial recognition error methods

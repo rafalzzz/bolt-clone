@@ -2,6 +2,7 @@ import { type Locator, expect, type Page } from '@playwright/test';
 
 type TMockResponseParams<Options> = {
   endpoint: string;
+  method: string;
   options: Options;
 };
 
@@ -52,9 +53,16 @@ export class BasePage {
 
   async mockRequestResponse<T extends Record<string, unknown>>({
     endpoint,
+    method,
     options,
   }: TMockResponseParams<T>) {
-    await this.page.route(endpoint, (route) => route.fulfill(options));
+    await this.page.route(endpoint, async (route, request) => {
+      if (request.method() === method) {
+        await route.fulfill(options);
+      } else {
+        await route.continue();
+      }
+    });
   }
 
   async getRequestPromise(endpoint: string) {

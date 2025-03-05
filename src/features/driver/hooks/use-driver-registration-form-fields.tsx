@@ -6,10 +6,10 @@ import useCityOptions from '@/features/driver/hooks/use-city-options';
 
 import type { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
 
-import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
-
 import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 import { EFieldType } from '@/shared/enums/field-type';
+
+import { POLISH_NUMBER_PREFIX } from '@/features/driver/consts/phone-number-prefixes';
 
 import { TCustomFormField } from '@/shared/types/custom-form-field';
 

@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import type { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
 import useColorOptions from '@/features/driver/hooks/use-color-options';
 
@@ -13,11 +13,13 @@ import { TCustomFormField } from '@/shared/types/custom-form-field';
 type TUseDriverCompleteRegistrationFormFields = {
   errors: FieldErrors<TDriverCompleteRegistrationFormSchema>;
   register: UseFormRegister<TDriverCompleteRegistrationFormSchema>;
+  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
 };
 
 const useDriverCompleteRegistrationFormFields = ({
   errors,
   register,
+  setValue,
 }: TUseDriverCompleteRegistrationFormFields) => {
   const t = useTranslations('DriverCompleteRegistrationForm');
 
@@ -30,6 +32,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
         label: t('firstNameLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.FIRST_NAME]?.message,
+        errorValues: { number: 3 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.FIRST_NAME,
@@ -45,6 +48,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.LAST_NAME,
         label: t('lastNameLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.LAST_NAME]?.message,
+        errorValues: { number: 3 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.LAST_NAME,
@@ -104,7 +108,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.CAR_BRAND,
         label: t('carBrandLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_BRAND]?.message,
-        errorValues: { number: 4 },
+        errorValues: { number: 2 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.CAR_BRAND,
@@ -120,7 +124,7 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.CAR_MODEL,
         label: t('carModelLabel'),
         error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_MODEL]?.message,
-        errorValues: { number: 4 },
+        errorValues: { number: 2 },
         register,
         props: {
           name: EDriverCompleteRegistrationFormKeys.CAR_MODEL,
@@ -136,14 +140,10 @@ const useDriverCompleteRegistrationFormFields = ({
         inputKey: EDriverCompleteRegistrationFormKeys.CAR_COLOR,
         label: t('carColorLabel'),
         placeholder: t('carColorPlaceholder'),
-        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_COLOR]?.message,
         options,
+        error: errors?.[EDriverCompleteRegistrationFormKeys.CAR_COLOR]?.message,
         register,
-        props: {
-          name: EDriverCompleteRegistrationFormKeys.CAR_COLOR,
-          type: 'text',
-          maxLength: 10,
-        },
+        setValue,
       },
     },
   ];

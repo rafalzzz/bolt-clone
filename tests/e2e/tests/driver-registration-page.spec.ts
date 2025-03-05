@@ -35,17 +35,21 @@ test.describe(
     });
 
     test('Should display an error message when an error occurs while sending an email', async () => {
-      await driverRegistrationPage.fillForm();
       await driverRegistrationPage.mockFailureRegistrationResponse();
+      await driverRegistrationPage.fillForm();
       await driverRegistrationPage.waitForRegistrationRequest();
       await driverRegistrationPage.assertErrorToastMessage();
     });
 
     test('Should display a success message when the email has been sent', async () => {
-      await driverRegistrationPage.fillForm();
       await driverRegistrationPage.mockSuccessRegistrationResponse();
-      await driverRegistrationPage.waitForRegistrationRequest();
+      await driverRegistrationPage.fillForm();
+
+      const request = await driverRegistrationPage.waitForRegistrationRequest();
+      const requestBody = JSON.parse(request.postData() || '{}');
+
       await driverRegistrationPage.assertSuccessToastMessage();
+      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
     });
   },
 );

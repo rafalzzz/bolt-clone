@@ -64,10 +64,6 @@
     "onlyLettersAndDigits": "To pole akceptuje jedynie litery i cyfry",
     "invalidEmail": "Wprowadź poprawny adres e-mail",
     "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
-    "firstNameMinimumCharacters": "Imię musi zawierać co najmniej 2 znaki",
-    "firstNameCharacters": "Imię może zawierać tylko litery",
-    "lastNameMinimumCharacters": "Nazwisko musi zawierać co najmniej 2 znaki",
-    "lastNameCharacters": "Nazwisko może zawierać tylko litery",
     "passwordMinimumCharacters": "Hasło musi zawierać co najmniej 8 znaków",
     "passwordUpperCase": "Hasło musi zawierać przynajmniej jedną dużą literę",
     "passwordLowerCase": "Hasło musi zawierać przynajmniej jedną małą literę",
@@ -132,7 +128,7 @@
     "failedToVerifyToken": "Nie udało się zweryfikować tokenu"
   },
   "DriverRegistrationCompleteMessages": {
-    "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji.",
-    "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie."
+    "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji",
+    "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie"
   }
 }

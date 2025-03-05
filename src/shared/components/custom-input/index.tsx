@@ -37,7 +37,9 @@ const CustomInput = <FormType extends TBasicFormType>({
         <input
           className={`custom-input__input custom-input__${error ? 'invalid' : 'correct'}-input`}
           {...props}
-          {...register(inputKey)}
+          {...register(inputKey, {
+            setValueAs: (value) => value.trim(),
+          })}
           data-testid={getInputTestId(inputKey)}
         />
         {error && (

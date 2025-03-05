@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import { DriverCompleteRegistrationPage } from '@/page-models/authentication/driver-complete-registration-page';
 
@@ -51,21 +51,17 @@ test.describe(
         );
       });
 
-      test('Should show error about required fields when form inputs are not filled', async () => {
+      test('Check input errors', async () => {
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertRequiredFieldsErrorMessages();
+        await driverCompleteRegistrationPage.assertRemainingFirstNameInputErrors();
+        await driverCompleteRegistrationPage.assertRemainingLastNameInputErrors();
+        await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
+        await driverCompleteRegistrationPage.assertRemainingCarBrandErrors();
+        await driverCompleteRegistrationPage.assertRemainingCarModelErrors();
       });
 
-      test('Should show errors about wrong input value format', async () => {
-        await driverCompleteRegistrationPage.fillInputsWithInvalidValues();
-        await driverCompleteRegistrationPage.clickFormSubmitButton();
-        await driverCompleteRegistrationPage.assertInvalidFormatErrorMessages();
-
-        await driverCompleteRegistrationPage.assertRemainingFirstNameInputError();
-        await driverCompleteRegistrationPage.assertRemainingLastNameInputError();
-        await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
-        await driverCompleteRegistrationPage.assertRemainingVehicleRegistrationNumberInputError();
-
+      test('Check if errors are visible when form is filled correctly', async () => {
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.assertInputErrorsAreNotVisible();
       });
@@ -116,11 +112,12 @@ test.describe(
       });
 
       test('Should register driver successfully', async () => {
+        await driverCompleteRegistrationPage.mockSuccessRegistrationCompleteResponse();
         await driverCompleteRegistrationPage.mockUserCameraWithFace();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
         await driverCompleteRegistrationPage.addFacialRecognition();
-        await driverCompleteRegistrationPage.clickFormSubmitButton();
+        await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();
       });
     });

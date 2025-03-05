@@ -8,13 +8,12 @@ type TEncryptJwtToken = {
   secretKey: Uint8Array;
 };
 
-export const encryptJwtToken = async ({ payload, expire, secretKey }: TEncryptJwtToken) => {
-  return new SignJWT(payload)
+export const encryptJwtToken = async ({ payload, expire, secretKey }: TEncryptJwtToken) =>
+  new SignJWT(payload)
     .setProtectedHeader({ alg: ALGORITHMS })
     .setIssuedAt()
     .setExpirationTime(expire)
     .sign(secretKey);
-};
 
 type TDecryptJwtToken = {
   token: string;
@@ -35,8 +34,6 @@ export const decryptJwtToken = async ({ token, secretKey }: TDecryptJwtToken) =>
     });
     return payload;
   } catch (error) {
-    console.log({ error });
-
     if (error instanceof Error) {
       if (error.message.includes('exp')) {
         return { error: EDecryptJwtTokenErrors.EXPIRED_TOKEN };

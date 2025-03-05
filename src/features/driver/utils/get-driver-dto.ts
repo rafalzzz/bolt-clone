@@ -6,13 +6,11 @@ import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver/enums/dri
 
 import {
   TDriverEntity,
-  TDriverRegistrationTokenPayload,
   TEncryptedCompleteDriverRegistrationFormData,
 } from '@/features/driver/types';
 
 type TGetDriverDtoParams = {
   encryptedDriverData: TEncryptedCompleteDriverRegistrationFormData;
-  tokenPayload: TDriverRegistrationTokenPayload;
   passwordHash: string;
   carRegistrationNumberHash: string;
 };
@@ -24,19 +22,19 @@ const keyToMap = {
   [EDriverCompleteRegistrationFormKeys.LAST_NAME]: EDriverEntityKeys.LAST_NAME,
   [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER]: EDriverEntityKeys.CAR_NUMBER,
   [EDriverCompleteRegistrationFormKeys.CAR_BRAND]: EDriverEntityKeys.CAR_BRAND,
+  [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: EDriverEntityKeys.CAR_MODEL,
   [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: EDriverEntityKeys.CAR_COLOR,
+  [EDriverCompleteRegistrationFormKeys.FILE]: EDriverEntityKeys.FILE_URL,
   carRegistrationNumberHash: EDriverEntityKeys.CAR_NUMBER_HASH,
 };
 
 const getDriverDto = ({
   encryptedDriverData,
-  tokenPayload,
   passwordHash,
   carRegistrationNumberHash,
 }: TGetDriverDtoParams): TDriverEntity => {
   const driverData = {
     ...encryptedDriverData,
-    ...tokenPayload,
     password: passwordHash,
     carRegistrationNumberHash,
   };

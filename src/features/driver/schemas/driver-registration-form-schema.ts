@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-import { PHONE_NUMBER_REGEX } from '@/shared/consts/regex';
-
 import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
 import { EErrorKeys } from '@/shared/enums/error-keys';
+
+import { PHONE_NUMBER_REGEX } from '@/shared/consts/regex';
 
 export const driverRegistrationFormSchema = z.object({
   [EDriverRegistrationFormKeys.EMAIL]: z
