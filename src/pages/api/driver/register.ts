@@ -24,10 +24,7 @@ import {
 import { TApiResponse } from '@/shared/types/api-response';
 
 const keysToEncrypt = [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER];
-const keysToOmit = [
-  EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD,
-  EDriverCompleteRegistrationFormKeys.FILE,
-];
+const keysToOmit = [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
 
 export const config = {
   api: {
@@ -54,7 +51,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse<TAp
 
     await checkUniqueCarNumber(carRegistrationNumberHash, t('takenCarRegistrationNumber'));
 
-    const filePath = addFileToStorage({
+    const filePath = await addFileToStorage({
       file: files.file,
       bucketName: 'driver_files',
       missingFileMessage: t('missingFileMessage'),

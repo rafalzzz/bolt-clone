@@ -85,10 +85,19 @@
   .invalid-react-select__option--is-focused,
   .correct-react-select__option:hover,
   .invalid-react-select__option:hover {
-    @apply bg-secondaryColor dark:hover:text-buttonTextColor;
+    @apply bg-secondaryColor text-buttonTextColor dark:hover:text-buttonTextColor;
   }
 
   .invalid-react-select__control {
     @apply bg-inputBackgroundColor ring-2 ring-errorIconColor;
+  }
+
+  .correct-react-select__option--is-selected {
+    @apply bg-[#a299ff] text-white; /* Zmiana koloru tła i tekstu */
+  }
+
+  /* 🔹 Zapewnienie, że hover nadal działa poprawnie */
+  .correct-react-select__option--is-selected:hover {
+    @apply bg-[#7a66ff] text-white; /* Ciemniejszy fiolet przy hover */
   }
 }
