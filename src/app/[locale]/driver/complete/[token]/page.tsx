@@ -5,6 +5,8 @@ import DefaultLoader from '@/shared/components/default-loader';
 import { decryptJwtToken } from '@/shared/utils/server-side/json-web-token';
 import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
 
+import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
+
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 const DriverCompleteRegistration = dynamic(
@@ -24,7 +26,9 @@ const CompleteDriverRegistrationPage: React.FC<TLayoutParamsPromise> = async ({ 
     secretKey: encodeSecretKey(secretKey ?? ''),
   });
 
-  return <DriverCompleteRegistration tokenPayload={tokenPayload} />;
+  return (
+    <DriverCompleteRegistration tokenPayload={tokenPayload as TDriverRegistrationTokenPayload} />
+  );
 };
 
 export default CompleteDriverRegistrationPage;

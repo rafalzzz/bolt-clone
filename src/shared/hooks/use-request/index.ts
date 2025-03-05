@@ -9,6 +9,7 @@ type TRequestParams = {
   method: RequestInit['method'];
   headers?: RequestInit['headers'];
   data?: unknown;
+  addHeaders?: boolean;
   errorMessage?: THandleRequestErrorParams;
 };
 
@@ -123,6 +124,18 @@ const useRequest = () => {
     }
   };
 
+  const getRequestBody = (data: unknown) => {
+    if (!data) {
+      return null;
+    }
+
+    if (data instanceof FormData) {
+      return data;
+    }
+
+    return JSON.stringify(data);
+  };
+
   const handleRequest = async ({
     endpoint,
     method,
@@ -130,6 +143,7 @@ const useRequest = () => {
       'Content-Type': 'application/json',
     },
     data,
+    addHeaders = true,
     errorMessage = {},
   }: TRequestParams) => {
     startRequest();
@@ -137,8 +151,8 @@ const useRequest = () => {
     try {
       const response = await fetch(`/api${endpoint}`, {
         method,
-        headers,
-        body: data ? JSON.stringify(data) : null,
+        headers: addHeaders ? { ...headers } : undefined,
+        body: getRequestBody(data),
       });
 
       if (!response.ok) {

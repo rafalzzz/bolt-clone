@@ -3,7 +3,6 @@ import type {
   FaceDetection,
   FaceLandmarks68,
 } from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
-import { type JWTPayload } from 'jose';
 import type { Dispatch, SetStateAction } from 'react';
 
 import { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
@@ -25,11 +24,11 @@ export type TDetections =
     >
   | never[];
 
-export type TDriverCompleteRegistration = {
-  tokenPayload: JWTPayload;
-};
-
 export type TDriverRegistrationTokenPayload = Record<EDriverRegistrationTokenPayloadKeys, string>;
+
+export type TDriverCompleteRegistration = {
+  tokenPayload: TDriverRegistrationTokenPayload;
+};
 
 export type TCompleteDriverRegistrationFormData = Required<TDriverCompleteRegistrationFormSchema>;
 

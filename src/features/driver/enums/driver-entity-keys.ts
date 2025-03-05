@@ -11,5 +11,6 @@ export const enum EDriverEntityKeys {
   CAR_BRAND = 'car_brand',
   CAR_MODEL = 'car_model',
   CAR_COLOR = 'car_color',
+  FILE_URL = 'file_url',
   TERMS = 'terms',
 }

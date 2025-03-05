@@ -25,6 +25,7 @@
     "@vladmandic/face-api": "^1.7.14",
     "cookie": "^1.0.2",
     "crypto": "^1.0.1",
+    "formidable": "^3.5.2",
     "jose": "^5.9.6",
     "js-cookie": "^3.0.5",
     "next": "^15.1.2",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.50.0",
+    "@types/formidable": "^3.4.5",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
