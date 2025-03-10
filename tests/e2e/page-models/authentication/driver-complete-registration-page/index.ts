@@ -38,7 +38,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   };
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
-    super(page, `${baseURL}/${language}/driver/complete/`);
+    super(page, `${baseURL}/${language}/driver-registration/complete/`);
   }
 
   // JWT token methods

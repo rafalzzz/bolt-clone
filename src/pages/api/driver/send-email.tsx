@@ -4,19 +4,19 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
-import { generateDriverRegistrationToken } from '@/features/driver/utils/generate-driver-registration-token';
-import handleUniqueColumnsCheck from '@/features/driver/utils/handle-unique-columns-check';
-import sendDriverRegistrationEmail from '@/features/driver/utils/send-driver-registration-email';
+import { generateDriverRegistrationToken } from '@/features/driver-registration/utils/generate-driver-registration-token';
+import handleUniqueColumnsCheck from '@/features/driver-registration/utils/handle-unique-columns-check';
+import sendDriverRegistrationEmail from '@/features/driver-registration/utils/send-driver-registration-email';
 import createHash from '@/shared/utils/server-side/create-hash';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
-import { TDriverRegistrationFormSchema } from '@/features/driver/schemas/driver-registration-form-schema';
+import { TDriverRegistrationFormSchema } from '@/features/driver-registration/schemas/driver-registration-form-schema';
 
-import { EDriverRegistrationFormKeys } from '@/features/driver/enums/driver-registration-form-keys';
+import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
 import { TApiResponse } from '@/shared/types/api-response';

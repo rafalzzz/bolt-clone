@@ -130,5 +130,26 @@
   "DriverRegistrationCompleteMessages": {
     "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji",
     "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie"
+  },
+  "DriverLoginPageHeadSection": {
+    "title": "Zaloguj się i zacznij jeździć z BoltCopy!",
+    "description": "Uzyskaj dostęp do swojego konta i przejmij kontrolę nad swoimi przejazdami. Jeździj na własnych warunkach, zarabiaj wtedy, kiedy chcesz i ciesz się swobodą pracy jako kierowca BoltCopy. Zaloguj się i ruszaj w trasę!",
+    "keywords": "logowanie kierowcy, konto BoltCopy, zarobki z przejazdów, elastyczna praca kierowcy, dostęp do konta kierowcy, zacznij zarabiać, jeździj i zarabiaj, zaloguj się do jazdy"
+  },
+  "DriverLoginPage": {
+    "description": "Zaloguj się, aby zacząć zarabiać z BoltCopy już dziś!",
+    "secondaryDescription": "Uzyskaj dostęp do konta kierowcy, zarządzaj swoimi przejazdami i maksymalizuj swoje zarobki na własnych warunkach."
+  },
+  "DriverLoginForm": {
+    "header": "Zaloguj się jako kierowca",
+    "emailPlaceholder": "Wprowadź adres email",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Hasło",
+    "submitButtonText": "Zaloguj się",
+    "loginError": "Wystąpił błąd podczas logowania"
+  },
+  "RedirectionToRegistrationPage": {
+    "dontHaveAnAccount": "Nie posiadasz jeszcze konta?",
+    "register": "Zarejestruj się"
   }
 }
