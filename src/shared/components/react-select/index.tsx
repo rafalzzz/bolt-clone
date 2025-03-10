@@ -1,10 +1,10 @@
 import type { Path, PathValue, UseFormSetValue } from 'react-hook-form';
 import Select, {
-  ControlProps,
-  GroupHeadingProps,
-  OptionProps,
-  SingleValue,
-  SingleValueProps,
+  type ControlProps,
+  type GroupHeadingProps,
+  type OptionProps,
+  type SingleValue,
+  type SingleValueProps,
 } from 'react-select';
 
 import CustomInputLabel from '@/shared/components/custom-input-label';
@@ -17,7 +17,7 @@ import './react-select.scss';
 
 export type TReactSelectProps<FormType extends TBasicFormType> = {
   label: string;
-  options: TGroupedOption[];
+  options: TGroupedOption[] | TOption[];
   inputKey: Path<FormType>;
   setValue: UseFormSetValue<FormType>;
   placeholder?: string;
@@ -45,8 +45,10 @@ const ReactSelect = <FormType extends TBasicFormType>({
   <FormItemContainer inputKey={inputKey} error={error}>
     <CustomInputLabel label={label}>
       <Select
+        defaultInputValue=''
         className='react-select'
         classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
+        isSearchable={false}
         options={options}
         name={name}
         onChange={(selected: SingleValue<TOption>) => {

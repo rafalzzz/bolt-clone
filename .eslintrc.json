@@ -19,6 +19,11 @@
             "position": "before"
           },
           {
+            "pattern": "**/lib/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "**/actions/**",
             "group": "internal",
             "position": "before"
@@ -49,11 +54,6 @@
             "position": "before"
           },
           {
-            "pattern": "**/consts/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
             "pattern": "**/config/**",
             "group": "internal",
             "position": "before"
@@ -70,6 +70,11 @@
           },
           {
             "pattern": "@/test-ids/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@/consts/**",
             "group": "internal",
             "position": "before"
           },

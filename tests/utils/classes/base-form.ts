@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { TTestObject } from '@/types/test-object';
 
@@ -15,6 +15,7 @@ export class BaseForm extends BasePage {
     super(page, url);
   }
 
+  // Get form element methods
   private getErrorElement(inputKey: string) {
     return this.getElementByTestId(getErrorTestId(inputKey));
   }
@@ -27,12 +28,13 @@ export class BaseForm extends BasePage {
     return this.getElementByTestId(getCheckboxTestId(inputKey));
   }
 
-  private async changeSingleInputValue(inputKey: string, value: string) {
+  // Form element event handlers
+  async changeSingleInputValue(inputKey: string, value: string) {
     const inputElement = this.getInputElement(inputKey);
     await inputElement.fill(value);
   }
 
-  async changeInputsValue(inputsObject: TTestObject) {
+  async changeInputsValues(inputsObject: TTestObject) {
     const inputKeys = Object.keys(inputsObject);
 
     for (const inputKey of inputKeys) {
@@ -43,10 +45,6 @@ export class BaseForm extends BasePage {
   async checkCheckbox(inputKey: string) {
     const checkboxElement = this.getCheckboxElement(inputKey);
     await checkboxElement.click();
-  }
-
-  private async checkElementText(element: Locator, text: string) {
-    await expect(element).toHaveText(text);
   }
 
   // React-select methods
@@ -75,7 +73,7 @@ export class BaseForm extends BasePage {
     await this.checkElementText(errorElement, message);
   }
 
-  async checkErrorMessages(inputsObject: TTestObject) {
+  async checkErrorsMessages(inputsObject: TTestObject) {
     const inputKeys = Object.keys(inputsObject);
 
     for (const inputKey of inputKeys) {
@@ -89,20 +87,5 @@ export class BaseForm extends BasePage {
 
       await expect(errorElement).not.toBeVisible();
     }
-  }
-
-  // Submit button methods
-  private getSubmitButton(testId: string) {
-    return this.page.getByTestId(testId);
-  }
-
-  async assertSubmitButtonEnabled(testId: string) {
-    const button = this.getSubmitButton(testId);
-
-    return await button.isEnabled();
-  }
-
-  async clickSubmitButton(testId: string) {
-    await this.getSubmitButton(testId).click();
   }
 }

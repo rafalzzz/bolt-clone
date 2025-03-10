@@ -11,11 +11,11 @@
   "LocaleLayout": {
     "title": "Polski"
   },
-  "DriverPage": {
+  "DriverRegistrationPage": {
     "description": "Zarabiaj do 1901 zł tygodniowo, jeżdżąc z BoltCopy",
     "secondaryDescription": "Zostań kierowcą BoltCopy, ustalaj swój własny grafik i zarabiaj dodatkowe pieniądze, wożąc pasażerów!"
   },
-  "DriverPageHeadSection": {
+  "DriverRegistrationPageHeadSection": {
     "title": "Dołącz do BoltCopy jako Kierowca – zarabiaj kiedy chcesz",
     "description": "Zostań kierowcą w BoltCopy i zacznij zarabiać! Elastyczne godziny pracy, atrakcyjne zarobki, prosta rejestracja. Aplikuj teraz i prowadź na własnych warunkach!",
     "keywords": "praca kierowca, zarabianie jako kierowca, aplikacja do transportu, dołącz jako kierowca, elastyczna praca, praca na pełny etat kierowca, praca na pół etatu kierowca, rekrutacja kierowców"
@@ -23,61 +23,83 @@
   "Manifest": {
     "name": "Przykład kopii Bolta"
   },
-  "DriverRegisterForm": {
+  "DriverRegistrationForm": {
     "header": "Zostań kierowcą",
     "phoneNumberLabel": "Numer telefonu",
     "emailPlaceholder": "Wprowadź adres email",
     "phoneNumberPlaceholder": "Numer telefonu",
+    "cityLabel": "Miasto",
+    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
     "termsText": "Rejestrując się, zgadzasz się z naszym Regulaminem i Polityką Prywatności, zobowiązujesz się do przestrzegania obowiązków wynikających z przepisów Unii Europejskiej i lokalnych oraz do dostarczania wyłącznie legalnych usług i treści na Platformie BoltCopy.",
     "submitButtonText": "Zarejestruj się jako kierowca",
     "initialRegistrationSuccess": "Rejestracja przebiegła pomyślnie! Sprawdź swój email.",
     "initialRegistratrionError": "Wystąpił błąd podczas rejestracji."
   },
+  "RedirectionToLoginPage": {
+    "haveAnAccount": "Posiadasz już konto?",
+    "login": "Zaloguj się"
+  },
   "CitySelect": {
-    "cityLabel": "Miasto",
-    "cityPlaceholder": "Miasto, w którym będziesz jeździł",
     "poland": "Polska",
     "rzeszow": "Rzeszów",
     "warsaw": "Warszawa"
   },
+  "ColorSelect": {
+    "white": "biały",
+    "black": "czarny",
+    "silver": "srebrny",
+    "gray": "szary",
+    "blue": "niebieski",
+    "red": "czerwony",
+    "brown": "brązowy",
+    "beige": "beżowy",
+    "green": "zielony",
+    "orange": "pomarańczowy",
+    "yellow": "żółty"
+  },
   "FormErrors": {
-    "requiredEmail": "Podanie adresu e-mail jest wymagane",
+    "requiredField": "To pole jest wymagane",
+    "minimumRequiredCharacters": "To pole wymaga minimum {number} znaków",
+    "onlyLetters": "To pole akceptuje jedynie litery",
+    "onlyLettersAndDigits": "To pole akceptuje jedynie litery i cyfry",
     "invalidEmail": "Wprowadź poprawny adres e-mail",
-    "requiredPhoneNumber": "Podanie numeru telefonu jest wymagane",
     "invalidPhoneNumber": "Nieprawidłowy format numeru telefonu",
-    "requiredCity": "Podanie miasta jest wymagane",
-    "requiredRules": "Musisz się zgodzić aby kontynuwać rejestracje",
-    "requiredPassword": "Hasło jest wymagane",
     "passwordMinimumCharacters": "Hasło musi zawierać co najmniej 8 znaków",
     "passwordUpperCase": "Hasło musi zawierać przynajmniej jedną dużą literę",
     "passwordLowerCase": "Hasło musi zawierać przynajmniej jedną małą literę",
     "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
     "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny",
-    "requiredRepeatPassword": "Powtórzenie hasła jest wymagane",
     "passwordMustMatch": "Wpisane hasła różnią się od siebie",
-    "requiredVehicleRegistrationNumber": "Podanie numeu rejestracyjnego pojazdu jest wymagane",
-    "vehicleRegistrationMinimumCharacters": "Numer rejestracyjny pojazdu musi zawierać co najmniej 4 znaki",
-    "vehicleRegistrationMaximumCharacters": "Numer rejestracyjny pojazdu nie może być dłuższy niż 10 znaków",
-    "vehicleRegistrationCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
+    "carRegistrationNumberCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
     "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
   },
-  "DriverCompletePage": {
+  "DriverRegistrationCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
     "secondaryDescription": "Dołącz do grona zadowolonych kierowców BoltCopy! Wybieraj godziny pracy, które Ci odpowiadają i zarabiaj pieniądze, spełniając potrzeby podróżnych!"
   },
-  "DriverCompletePageHeadSection": {
+  "DriverRegistrationCompletePageHeadSection": {
     "title": "Ostatni krok do zarabiania z BoltCopy!",
     "description": "Zakończ swoją rejestrację i zacznij przygodę jako kierowca BoltCopy. Oferujemy elastyczność, świetne zarobki i łatwość w zarządzaniu własnym czasem. Nie zwlekaj, zacznij już dziś!",
     "keywords": "zarobek dla kierowcy, niezależna praca, aplikacja do zarabiania, zostanie kierowcą, praca z elastycznym grafikiem, praca kierowca na własnych zasadach, zakończenie rejestracji, zarabianie na prowadzeniu"
   },
-  "DriverCompleteRegisterForm": {
+  "DriverCompleteRegistrationForm": {
     "header": "Dokończ rejestrację, by zostać kierowcą Bolt",
+    "firstNameLabel": "Imię",
+    "firstNamePlaceholder": "Podaj swoje imię",
+    "lastNameLabel": "Nazwisko",
+    "lastNamePlaceholder": "Podaj swoje nazwisko",
     "passwordLabel": "Hasło",
     "passwordPlaceholder": "Hasło",
     "repeatPasswordLabel": "Powtórz hasło",
     "repeatPasswordPlaceholder": "Powtórz hasło",
-    "vehicleRegistrationNumberLabel": "Numer rejestracyjny pojazdu",
-    "vehicleRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny pojazdu",
+    "carRegistrationNumberLabel": "Numer rejestracyjny samochodu",
+    "carRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny samochodu",
+    "carBrandLabel": "Marka samochodu",
+    "carBrandPlaceholder": "Wprowadź markę samochodu",
+    "carModelLabel": "Model samochodu",
+    "carModelPlaceholder": "Wprowadź model samochodu",
+    "carColorLabel": "Kolor samochodu",
+    "carColorPlaceholder": "Wybierz kolor samochodu",
     "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
     "submitButtonText": "Dokończ rejestracę"
   },
@@ -95,6 +117,18 @@
   "AddFacialRecognitionError": {
     "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
     "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
+    "photoIsNotAdded": "Zdjęcie w celu rozpoznawania twarzy nie zostało dodane",
     "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
+  },
+  "JwtTokenErrors": {
+    "missingTokenOrSecretKey": "Brakuje tokenu lub klucza do rozszyfrowania tokenu",
+    "expiredToken": "Token wygasł",
+    "invalidToken": "Token jest nieprawidłowy",
+    "unknownError": "Wystąpił nieznany błąd podczas rozszyfrowywania tokenu",
+    "failedToVerifyToken": "Nie udało się zweryfikować tokenu"
+  },
+  "DriverRegistrationCompleteMessages": {
+    "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji",
+    "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie"
   }
 }

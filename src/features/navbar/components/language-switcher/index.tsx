@@ -11,10 +11,10 @@ import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
 import { setCookieValue } from '@/shared/utils/client-side/cookies';
 
+import { LANGUAGE_BUTTON, LANGUAGE_BUTTON_ITEM } from '@/test-ids/navbar';
+
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 import { LANGUAGES } from '@/shared/consts/languages';
-
-import { LANGUAGE_BUTTON, LANGUAGE_BUTTON_ITEM } from '@/test-ids/navbar';
 
 const LOCALE_PARAM_INDEX = 1;
 
