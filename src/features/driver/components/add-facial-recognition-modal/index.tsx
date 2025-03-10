@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import type { FC, Dispatch, SetStateAction } from 'react';
-import { UseFormSetValue } from 'react-hook-form';
+import type { UseFormSetValue } from 'react-hook-form';
 
 import CustomModal from '@/shared/components/custom-modal';
 
@@ -8,14 +8,21 @@ import useAddFacialRecognition from '@/features/driver/hooks/use-add-facial-reco
 import useStartVideo from '@/features/driver/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
-import { TDriverCompleteRegisterFormSchema } from '@/features/driver/schemas/driver-complete-register-form-schema';
+import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver/schemas/driver-complete-registration-form-schema';
+
+import {
+  ADD_FACIAL_RECOGNITION_BUTTON,
+  ADD_FACIAL_RECOGNITION_CANCEL_BUTTON,
+  ADD_FACIAL_RECOGNITION_MODAL,
+  ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
+} from '@/test-ids/add-facial-recognition-modal';
 
 import CameraSvg from '@/shared/svg/camera-svg';
 
 type TAddFacialRecognitionModal = {
   isVisible: boolean;
   setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
-  setValue: UseFormSetValue<TDriverCompleteRegisterFormSchema>;
+  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
   onOk: () => void;
   onCancel: () => void;
 };
@@ -49,10 +56,21 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
     setValue,
   });
 
-  const displayLoader = isVideoLoading || isVideoError;
+  const isCameraDisabled = isVideoLoading || isVideoError;
 
   return (
-    <CustomModal title={t('title')} isVisible={isVisible} onOk={onOk} onCancel={onCancel}>
+    <CustomModal
+      title={t('title')}
+      isVisible={isVisible}
+      okButtonTestId={ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON}
+      cancelButtonTestId={ADD_FACIAL_RECOGNITION_CANCEL_BUTTON}
+      modalTestId={ADD_FACIAL_RECOGNITION_MODAL}
+      onCancel={onCancel}
+      okButtonProps={{
+        onClick: onOk,
+        disabled: isCameraDisabled,
+      }}
+    >
       <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>
         <video
           ref={videoRef}
@@ -64,7 +82,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
           muted
         ></video>
         <canvas ref={canvasRef} className='rounded-sm absolute top-0 left-0 z-10' />
-        {displayLoader && (
+        {isCameraDisabled && (
           <div
             className='absolute top-0 left-0 rounded-sm animate-pulse bg-modalVideoLoaderColor'
             style={{ width: videoWidth, height: videoHeight }}
@@ -74,10 +92,11 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
 
       <button
         onClick={() => addFacialRecognition(videoRef, canvasRef)}
-        disabled={displayLoader}
+        disabled={isCameraDisabled}
+        data-testid={ADD_FACIAL_RECOGNITION_BUTTON}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
       >
-        <CameraSvg className='text-white w-8 h-8 absolute inset-0 m-auto' />
+        <CameraSvg className='w-8 h-8 absolute inset-0 m-auto text-buttonTextColor' />
       </button>
     </CustomModal>
   );

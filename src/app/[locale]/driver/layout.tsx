@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: TLayoutParamsPromise) {
   const { locale } = await params;
 
-  const t = await getTranslations({ locale, namespace: 'DriverPageHeadSection' });
+  const t = await getTranslations({ locale, namespace: 'DriverRegistrationPageHeadSection' });
 
   return {
     title: t('title'),
@@ -23,7 +23,10 @@ export async function generateMetadata({ params }: TLayoutParamsPromise) {
   };
 }
 
-const DriverPageLayout: TFCWithChildren<TLayoutParamsPromise> = async ({ children, params }) => {
+const DriverRegistrationPageLayout: TFCWithChildren<TLayoutParamsPromise> = async ({
+  children,
+  params,
+}) => {
   const { locale } = await params;
 
   setRequestLocale(locale);
@@ -31,4 +34,4 @@ const DriverPageLayout: TFCWithChildren<TLayoutParamsPromise> = async ({ childre
   return <ContentWrapper>{children}</ContentWrapper>;
 };
 
-export default DriverPageLayout;
+export default DriverRegistrationPageLayout;

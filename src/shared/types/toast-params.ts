@@ -1,5 +1,7 @@
+import { EToastType } from '@/shared/enums/toast-type';
+
 export type TToastParams = {
   text: string;
-  ariaLabel: string;
+  type?: EToastType;
   testId?: string;
 };

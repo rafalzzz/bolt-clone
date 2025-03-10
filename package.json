@@ -17,12 +17,15 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@react-email/components": "^0.0.31",
+    "@supabase/supabase-js": "^2.49.1",
     "@tensorflow/tfjs": "^4.22.0",
     "@tensorflow/tfjs-backend-wasm": "^4.22.0",
     "@tensorflow/tfjs-backend-webgl": "^4.22.0",
     "@tensorflow/tfjs-core": "^4.22.0",
     "@vladmandic/face-api": "^1.7.14",
     "cookie": "^1.0.2",
+    "crypto": "^1.0.1",
+    "formidable": "^3.5.2",
     "jose": "^5.9.6",
     "js-cookie": "^3.0.5",
     "next": "^15.1.2",
@@ -37,6 +40,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.50.0",
+    "@types/formidable": "^3.4.5",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",

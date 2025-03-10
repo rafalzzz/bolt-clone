@@ -6,7 +6,10 @@ import loadFaceModels from '@/features/driver/utils/load-face-models';
 import { startFacialRecognition } from '@/features/driver/utils/start-facial-recognition';
 import startVideo from '@/features/driver/utils/start-video';
 import stopStreamedVideo from '@/features/driver/utils/stop-streamed-video';
-import displayWarningToast from '@/shared/utils/display-warning-toast';
+import displayToast from '@/shared/utils/client-side/display-toast';
+import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
+
+import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
 
 type TUseHandleVideo = {
   videoWidth: number;
@@ -14,6 +17,7 @@ type TUseHandleVideo = {
 };
 
 const PERMISSION_DENIED_ERROR = 'Permission denied';
+const TF_BACKEND_NAME = isDevelopmentEnvironment() ? 'cpu' : 'webgl';
 
 const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const [isVideoLoading, setIsVideoLoading] = useState<boolean>(true);
@@ -31,7 +35,10 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
       const text = isCameraDisabled ? t('permissionDenied') : error;
 
       setIsVideoError(true);
-      displayWarningToast({ text, ariaLabel: PERMISSION_DENIED_ERROR });
+      displayToast({
+        text,
+        testId: ADD_FACIAL_RECOGNITION_ERROR,
+      });
     },
     [t],
   );
@@ -40,7 +47,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
     setIsVideoLoading(true);
     setIsVideoError(false);
 
-    await setBackend('webgl');
+    await setBackend(TF_BACKEND_NAME);
     await ready();
     await loadFaceModels();
 

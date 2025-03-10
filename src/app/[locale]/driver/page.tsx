@@ -2,13 +2,13 @@ import dynamic from 'next/dynamic';
 
 import DefaultLoader from '@/shared/components/default-loader';
 
-const InitialDriverRegistration = dynamic(
-  () => import('@/features/driver/components/initial-driver-registration'),
+const DriverRegistration = dynamic(
+  () => import('@/features/driver/components/driver-registration'),
   {
     loading: DefaultLoader,
   },
 );
 
-const DriverPage = async () => <InitialDriverRegistration />;
+const DriverRegistrationPage = async () => <DriverRegistration />;
 
-export default DriverPage;
+export default DriverRegistrationPage;
