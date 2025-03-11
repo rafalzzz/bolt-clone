@@ -132,5 +132,26 @@
   "DriverRegistrationCompleteMessages": {
     "registrationSuccess": "You have been registered! You can start using our application",
     "registrationError": "An error occurred during registration, please try again"
+  },
+  "DriverLoginPageHeadSection": {
+    "title": "Log in and start driving with BoltCopy!",
+    "description": "Access your account and take control of your rides. Drive on your schedule, earn on your terms, and enjoy the freedom of being a BoltCopy driver. Log in now and hit the road!",
+    "keywords": "driver login, BoltCopy account, ride earnings, flexible driving work, access driver account, start earning, drive and earn, sign in to drive"
+  },
+  "DriverLoginPage": {
+    "description": "Log in to start earning with BoltCopy today!",
+    "secondaryDescription": "Access your driver account, manage your rides, and maximize your earnings on your own schedule."
+  },
+  "DriverLoginForm": {
+    "header": "Log in as a driver",
+    "emailPlaceholder": "Enter email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Password",
+    "submitButtonText": "Log in",
+    "loginError": "An error occurred during login"
+  },
+  "RedirectionToRegistrationPage": {
+    "dontHaveAnAccount": "Don't have an account yet?",
+    "register": "Sign up"
   }
 }

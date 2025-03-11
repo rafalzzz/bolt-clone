@@ -5,12 +5,12 @@ import DefaultLoader from '@/shared/components/default-loader';
 import { decryptJwtToken } from '@/shared/utils/server-side/json-web-token';
 import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
 
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 const DriverCompleteRegistration = dynamic(
-  () => import('@/features/driver/components/driver-complete-registration'),
+  () => import('@/features/driver-registration/components/driver-complete-registration'),
   {
     loading: DefaultLoader,
   },

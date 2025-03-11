@@ -1,4 +1,4 @@
-export enum EDriverCompleteRegistrationFormKeys {
+export const enum EDriverCompleteRegistrationFormKeys {
   FIRST_NAME = 'firstName',
   LAST_NAME = 'lastName',
   PASSWORD = 'password',

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import DefaultLoader from '@/shared/components/default-loader';
 
 const DriverRegistration = dynamic(
-  () => import('@/features/driver/components/driver-registration'),
+  () => import('@/features/driver-registration/components/driver-registration'),
   {
     loading: DefaultLoader,
   },
