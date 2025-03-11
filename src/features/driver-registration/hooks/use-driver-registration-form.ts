@@ -36,7 +36,7 @@ const useDriverRegistrationForm = () => {
 
   const onSubmit: SubmitHandler<TDriverRegistrationFormSchema> = async (data) => {
     const response = await handleRequest({
-      endpoint: '/driver-registration/send-email/',
+      endpoint: '/driver/send-email/',
       method: 'POST',
       data,
       errorMessage: {

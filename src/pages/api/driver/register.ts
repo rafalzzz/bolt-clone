@@ -2,73 +2,50 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
-import addFileToStorage from '@/features/driver-registration/utils/add-driver-file-to-storage';
-import checkUniqueCarNumber from '@/features/driver-registration/utils/check-unique-car-number';
 import getDriverDto from '@/features/driver-registration/utils/get-driver-dto';
-import hashSensitiveData from '@/features/driver-registration/utils/hash-sensitivie-data';
 import insertDriverData from '@/features/driver-registration/utils/insert-driver-data';
-import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
+import signUpUser from '@/features/driver-registration/utils/sign-up-user';
+import createHash from '@/shared/utils/server-side/create-hash';
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
-import parseForm from '@/shared/utils/server-side/parse-form';
 
-import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys';
+import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
-import {
-  TCompleteDriverRegistrationFormData,
-  TEncryptedCompleteDriverRegistrationFormData,
-} from '@/features/driver-registration/types';
+import { TCompleteDriverRegistrationFormData } from '@/features/driver-registration/types';
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
 import { TApiResponse } from '@/shared/types/api-response';
 
-const keysToEncrypt = [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER];
-const keysToOmit = [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export default async function POST(req: NextApiRequest, res: NextApiResponse<TApiResponse>) {
-  const { method, headers } = req;
-
-  const { cookie } = headers;
-
+export default async function POST(
+  { method, headers: { cookie }, body: data }: NextApiRequest,
+  res: NextApiResponse<TApiResponse>,
+) {
   if (method !== 'POST') {
     throw new CustomResponseError(405, METHOD_NOT_ALLOWED);
   }
 
+  const { password, ...rest } = data as TCompleteDriverRegistrationFormData;
+
   try {
     const t = await getApiTranslations(cookie);
-    const { fields: data, files } = await parseForm(req);
 
-    const driverData = data as unknown as TCompleteDriverRegistrationFormData;
+    const passwordHash = createHash(password);
 
-    const { carRegistrationNumberHash, passwordHash } = hashSensitiveData(driverData);
+    const user = {
+      email: data[EDriverRegistrationFormKeys.EMAIL],
+      password: passwordHash,
+      options: {
+        data: {
+          isDriver: true,
+        },
+      },
+    };
 
-    await checkUniqueCarNumber(carRegistrationNumberHash, t('takenCarRegistrationNumber'));
-
-    const filePath = await addFileToStorage({
-      file: files.file,
-      bucketName: 'driver_files',
-      missingFileMessage: t('missingFileMessage'),
-    });
-
-    const encryptedDriverData = encryptSensitiveData<
-      TCompleteDriverRegistrationFormData,
-      TEncryptedCompleteDriverRegistrationFormData
-    >({
-      data: { ...driverData, [EDriverCompleteRegistrationFormKeys.FILE]: filePath },
-      keysToEncrypt,
-      keysToOmit,
-    });
+    const authUserId = await signUpUser(user, t('missingAuthUserId'));
 
     const driverDto = getDriverDto({
-      encryptedDriverData,
-      passwordHash,
-      carRegistrationNumberHash,
+      data: rest,
+      authUserId,
     });
 
     await insertDriverData(driverDto);

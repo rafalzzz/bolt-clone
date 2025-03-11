@@ -11,7 +11,7 @@ import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver-re
 
 import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
 
-import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys';
+/* import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys'; */
 
 import type { TDetections } from '@/features/driver-registration/types';
 
@@ -60,7 +60,7 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
 
       const file = await getCanvasDrawing({ video, canvas, detections });
 
-      setValue(EDriverCompleteRegistrationFormKeys.FILE, file);
+      /* setValue(EDriverCompleteRegistrationFormKeys.FILE, file); */
       stopStreamedVideo(videoRef);
     } catch (error) {
       handleError(error);

@@ -5,12 +5,7 @@ import passwordValidation from '@/shared/utils/client-side/validations/password-
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys';
 import { EErrorKeys } from '@/shared/enums/error-keys';
 
-import {
-  ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX,
-  ONLY_LETTERS_REGEX,
-  ONLY_LETTERS_AND_DIGITS_REGEX,
-  CAR_REGISTRATION_NUMBER_REGEX,
-} from '@/shared/consts/regex';
+import { ONLY_LETTERS_WITH_POLISH_SIGNS_REGEX } from '@/shared/consts/regex';
 
 export const driverCompleteRegistrationFormSchema = z
   .object({
@@ -28,32 +23,6 @@ export const driverCompleteRegistrationFormSchema = z
     [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: z
       .string()
       .nonempty(EErrorKeys.REQUIRED_FIELD),
-    [EDriverCompleteRegistrationFormKeys.CAR_REGISTRATION_NUMBER]: z
-      .string()
-      .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(4, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
-      .regex(CAR_REGISTRATION_NUMBER_REGEX, EErrorKeys.CAR_REGISTRATION_NUMBER_CHARACTERS),
-    [EDriverCompleteRegistrationFormKeys.CAR_BRAND]: z
-      .string()
-      .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
-      .regex(ONLY_LETTERS_REGEX, EErrorKeys.ONLY_LETTERS),
-    [EDriverCompleteRegistrationFormKeys.CAR_MODEL]: z
-      .string()
-      .nonempty(EErrorKeys.REQUIRED_FIELD)
-      .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
-      .regex(ONLY_LETTERS_AND_DIGITS_REGEX, EErrorKeys.ONLY_LETTERS_AND_DIGITS),
-    [EDriverCompleteRegistrationFormKeys.CAR_COLOR]: z
-      .string()
-      .optional()
-      .refine((val) => val !== undefined && val.trim() !== '', {
-        message: EErrorKeys.REQUIRED_FIELD,
-      }),
-    [EDriverCompleteRegistrationFormKeys.FILE]: z
-      .any()
-      .refine((file) => file instanceof File && file.size, {
-        message: EErrorKeys.REQUIRED_FACIAL_RECOGNITION,
-      }),
   })
   .refine(
     (data) =>

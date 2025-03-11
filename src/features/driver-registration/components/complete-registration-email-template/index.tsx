@@ -19,7 +19,7 @@ type TCompleteRegistrationEmailTemplate = {
 const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
 
 const baseUrl = process.env.DOMAIN_URL
-  ? `${PROTOCOL}://${process.env.DOMAIN_URL}/en/driver-registration/complete/`
+  ? `${PROTOCOL}://${process.env.DOMAIN_URL}/en/driver/complete/`
   : '';
 
 export const CompleteRegistrationEmailTemplate = ({

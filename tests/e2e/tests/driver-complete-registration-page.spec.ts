@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 
 import { DriverCompleteRegistrationPage } from '@/page-models/authentication/driver-complete-registration-page';
 
@@ -57,66 +57,16 @@ test.describe(
         await driverCompleteRegistrationPage.assertRemainingFirstNameInputErrors();
         await driverCompleteRegistrationPage.assertRemainingLastNameInputErrors();
         await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
-        await driverCompleteRegistrationPage.assertRemainingCarBrandErrors();
-        await driverCompleteRegistrationPage.assertRemainingCarModelErrors();
       });
 
       test('Check if errors are visible when form is filled correctly', async () => {
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.assertInputErrorsAreNotVisible();
       });
-    });
-
-    test.describe('Driver registration with adding facial recognition', async () => {
-      test.describe.configure({ mode: 'serial' });
-
-      let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
-
-      test.beforeEach(async ({ page }) => {
-        driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
-
-        await driverCompleteRegistrationPage.visitPageWithValidToken();
-      });
-
-      test('Should display an error message about required camera when camera is disabled', async () => {
-        await driverCompleteRegistrationPage.mockDisabledUserCamera();
-        await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
-        await driverCompleteRegistrationPage.assertAddFacialRecognitionButtonIsDisabled();
-        await driverCompleteRegistrationPage.assertModalSubmitButtonIsDisabled();
-        await driverCompleteRegistrationPage.assertRequiredCameraErrorToastMessage();
-      });
-
-      test('Should display an error message about not detected face', async ({ page }) => {
-        await driverCompleteRegistrationPage.mockUserCameraWithoutFace();
-        await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
-
-        // Necessary to draw marks on detected face
-        await page.waitForTimeout(1000);
-
-        await driverCompleteRegistrationPage.clickAddFacialRecognitionButton();
-        await driverCompleteRegistrationPage.clickModalSubmitButton();
-        await driverCompleteRegistrationPage.assertFaceNotDetectedErrorToastMessage();
-      });
-
-      test('Should display an error message about not added photo for facial recognition', async ({
-        page,
-      }) => {
-        await driverCompleteRegistrationPage.mockUserCameraWithFace();
-        await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
-
-        // Necessary to draw marks on detected face
-        await page.waitForTimeout(1000);
-
-        await driverCompleteRegistrationPage.clickModalSubmitButton();
-        await driverCompleteRegistrationPage.assertPhotoNotAddedErrorToastMessage();
-      });
 
       test('Should register driver successfully', async () => {
         await driverCompleteRegistrationPage.mockSuccessRegistrationCompleteResponse();
-        await driverCompleteRegistrationPage.mockUserCameraWithFace();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
-        await driverCompleteRegistrationPage.openAddFacialRecognitionModal();
-        await driverCompleteRegistrationPage.addFacialRecognition();
         await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();
       });

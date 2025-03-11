@@ -4,8 +4,8 @@ import CustomResponseError from '@/shared/classes/custom-response-error';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
-import { EDriverEntityKeys } from '@/features/driver-registration/enums/driver-entity-keys';
 import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
+import { EDriverEntityKeys } from '@/shared/enums/driver-entity-keys';
 
 type TDriverData = Record<EDriverEntityKeys.PHONE_NUMBER_HASH | EDriverEntityKeys.EMAIL, string>;
 
