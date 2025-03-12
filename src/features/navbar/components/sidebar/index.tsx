@@ -1,12 +1,10 @@
-import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
-import { type Dispatch, type SetStateAction, useCallback, useRef } from 'react';
+import { useTranslations } from 'next-intl';
+import { type Dispatch, type SetStateAction, useRef } from 'react';
 
 import CustomMenuItem from '@/shared/components/custom-menu-item';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
-
-import addParamsToUrl from '@/shared/utils/client-side/add-params-to-url';
+import useRedirect from '@/shared/hooks/use-redirect';
 
 import { SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
 
@@ -18,17 +16,15 @@ type TSidebar = { isSidebarOpen: boolean; setIsSidebarOpen: Dispatch<SetStateAct
 
 const Sidebar: React.FC<TSidebar> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const ref = useRef<HTMLDivElement>(null);
-
-  const locale = useLocale();
-  const router = useRouter();
   const t = useTranslations('SignUpSection');
 
-  const hideSidebar = useCallback(() => setIsSidebarOpen(false), [setIsSidebarOpen]);
+  const redirect = useRedirect();
 
-  const dropdownButtonOnClick = (url: string) => router.push(addParamsToUrl(url, { locale }));
+  const hideSidebar = () => setIsSidebarOpen(false);
 
   const onDropdownMenuItemClick = (href: string) => {
-    dropdownButtonOnClick(href);
+    redirect(href);
+    hideSidebar();
   };
 
   useOnClickOutside(ref, hideSidebar);
