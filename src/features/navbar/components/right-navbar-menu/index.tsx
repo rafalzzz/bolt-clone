@@ -11,7 +11,7 @@ const RightNavbarMenu = () => (
     <li className='mr-2'>
       <ThemeButton />
     </li>
-    <li>
+    <li className='mr-2'>
       <RegisterButton />
     </li>
     <li>

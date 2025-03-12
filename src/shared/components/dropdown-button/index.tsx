@@ -34,6 +34,7 @@ const DropdownButton: TFCWithChildren<TDropdownButton> = ({
         onClick={onClick}
         aria-label={ariaLabel}
         data-testid={testId}
+        aria-expanded={isOpen}
       >
         {text}
         {showArrow && (
