@@ -3,7 +3,7 @@
     "about": "About",
     "contact": "Contact"
   },
-  "RightMenu": {
+  "SignUpSection": {
     "register": "Register",
     "registerAsDriver": "Become a driver",
     "registerAsClient": "Become a client"
@@ -152,6 +152,9 @@
   },
   "RedirectionToRegistrationPage": {
     "dontHaveAnAccount": "Don't have an account yet?",
+    "register": "Sign up"
+  },
+  "Sidebar": {
     "register": "Sign up"
   }
 }

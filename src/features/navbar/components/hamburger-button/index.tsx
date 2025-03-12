@@ -47,7 +47,7 @@ const HamburgerButton = () => {
           </svg>
         )}
       </button>
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
     </>
   );
 };

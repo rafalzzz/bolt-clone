@@ -1,16 +1,22 @@
 import type { FC } from 'react';
 
-type TCustomDropdownMenuItem = {
+type TCustomMenuItem = {
   text: string;
   onClick: () => void;
+  className?: string;
   testId?: string;
 };
 
-const CustomDropdownMenuItem: FC<TCustomDropdownMenuItem> = ({ text, onClick, testId }) => (
+const CustomMenuItem: FC<TCustomMenuItem> = ({
+  text,
+  onClick,
+  className = 'block px-4 py-2 w-full menu-item',
+  testId,
+}) => (
   <button
     type='button'
     role='menu-item'
-    className='block px-4 py-2 w-full menu-item'
+    className={className}
     aria-label={text}
     onClick={onClick}
     data-testid={testId}
@@ -19,4 +25,4 @@ const CustomDropdownMenuItem: FC<TCustomDropdownMenuItem> = ({ text, onClick, te
   </button>
 );
 
-export default CustomDropdownMenuItem;
+export default CustomMenuItem;

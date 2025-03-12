@@ -4,16 +4,16 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
-import CustomDropdownMenuItem from '@/shared/components/custom-dropdown-menu-item';
+import CustomMenuItem from '@/shared/components/custom-menu-item';
 import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
 import addParamsToUrl from '@/shared/utils/client-side/add-params-to-url';
 
-import { REGISTER_BUTTON, REGISTER_BUTTON_ITEM } from '@/test-ids/navbar';
+import { REGISTER_BUTTON, SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
 
-import { REGISTER_BUTTON_MENU } from '@/features/navbar/consts/register-button-menu';
+import { SIGN_UP_SECTION } from '@/features/navbar/consts/sign-up-section';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,7 @@ const RegisterButton = () => {
 
   const locale = useLocale();
   const router = useRouter();
-  const t = useTranslations('RightMenu');
+  const t = useTranslations('SignUpSection');
 
   const handleOnClick = () => setIsOpen((prevState) => !prevState);
 
@@ -48,12 +48,12 @@ const RegisterButton = () => {
       testId={REGISTER_BUTTON}
     >
       <ul role='none'>
-        {REGISTER_BUTTON_MENU.map(({ translation, href }) => (
+        {SIGN_UP_SECTION.map(({ translation, href }) => (
           <li key={translation}>
-            <CustomDropdownMenuItem
+            <CustomMenuItem
               text={t(translation)}
               onClick={() => onDropdownMenuItemClick(href)}
-              testId={REGISTER_BUTTON_ITEM}
+              testId={SIGN_UP_SECTION_ITEM}
             />
           </li>
         ))}

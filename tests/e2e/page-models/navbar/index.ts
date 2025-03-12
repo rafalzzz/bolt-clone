@@ -8,7 +8,7 @@ import {
   LANGUAGE_BUTTON_ITEM,
   THEME_BUTTON,
   REGISTER_BUTTON,
-  REGISTER_BUTTON_ITEM,
+  SIGN_UP_SECTION_ITEM,
 } from '@/test-ids/navbar';
 
 import { ETheme } from '@/enums/theme';
@@ -65,6 +65,6 @@ export class Navbar extends BasePage {
 
   async clickSignButton(buttonText: 'Become a driver' | 'Become a client') {
     await this.clickButton(REGISTER_BUTTON);
-    await this.clickButton(REGISTER_BUTTON_ITEM, buttonText);
+    await this.clickButton(SIGN_UP_SECTION_ITEM, buttonText);
   }
 }

@@ -11,7 +11,7 @@ const RightNavbarMenu = () => (
     <li className='mr-2'>
       <ThemeButton />
     </li>
-    <li className='mr-2'>
+    <li className='mr-2 hidden sm:block'>
       <RegisterButton />
     </li>
     <li>
