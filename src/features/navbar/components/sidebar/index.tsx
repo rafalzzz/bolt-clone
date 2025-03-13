@@ -11,7 +11,11 @@ import { TSidebar } from '@/features/navbar/types';
 
 import './sidebar.scss';
 
-const Sidebar = <T extends HTMLElement>({ isSidebarOpen, ref, setIsSidebarOpen }: TSidebar<T>) => {
+const Sidebar = <T extends HTMLElement>({
+  isSidebarOpen = false,
+  ref,
+  setIsSidebarOpen,
+}: TSidebar<T>) => {
   const t = useTranslations('SignUpSection');
 
   const redirect = useRedirect();

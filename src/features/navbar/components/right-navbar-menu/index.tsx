@@ -13,12 +13,16 @@ import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 const RightNavbarMenu = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const hamburgerButtonRef = useRef<HTMLDivElement>(null);
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const hideSidebar = () => setIsSidebarOpen((prevState) => !prevState);
+  const hideSidebar = () => {
+    if (isSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
+  };
 
-  useOnClickOutside(sidebarRef, hideSidebar);
+  useOnClickOutside([hamburgerButtonRef, sidebarRef], hideSidebar);
 
   return (
     <>

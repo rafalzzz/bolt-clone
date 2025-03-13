@@ -154,5 +154,9 @@
   },
   "Sidebar": {
     "register": "Zarejestruj się"
+  },
+  "HamburgerButton": {
+    "showNavigation": "Pokaż boczną nawigację",
+    "hideNavigation": "Ukryj boczną nawigację"
   }
 }
