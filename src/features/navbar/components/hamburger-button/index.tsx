@@ -1,12 +1,9 @@
-'use client';
+import { TSidebar } from '@/features/navbar/types';
 
-import { useState } from 'react';
-
-import Sidebar from '../sidebar';
-
-const HamburgerButton = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+const HamburgerButton = <T extends HTMLElement>({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}: TSidebar<T>) => {
   return (
     <>
       <button
@@ -47,7 +44,6 @@ const HamburgerButton = () => {
           </svg>
         )}
       </button>
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
     </>
   );
 };

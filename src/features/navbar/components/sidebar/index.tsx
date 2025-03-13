@@ -1,21 +1,17 @@
 import { useTranslations } from 'next-intl';
-import { type Dispatch, type SetStateAction, useRef } from 'react';
 
 import CustomMenuItem from '@/shared/components/custom-menu-item';
 
-import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 import useRedirect from '@/shared/hooks/use-redirect';
 
 import { SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
 
 import { SIGN_UP_SECTION } from '@/features/navbar/consts/sign-up-section';
+import { TSidebar } from '@/features/navbar/types';
 
 import './sidebar.scss';
 
-type TSidebar = { isSidebarOpen: boolean; setIsSidebarOpen: Dispatch<SetStateAction<boolean>> };
-
-const Sidebar: React.FC<TSidebar> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const ref = useRef<HTMLDivElement>(null);
+const Sidebar = <T extends HTMLElement>({ isSidebarOpen, ref, setIsSidebarOpen }: TSidebar<T>) => {
   const t = useTranslations('SignUpSection');
 
   const redirect = useRedirect();
@@ -26,8 +22,6 @@ const Sidebar: React.FC<TSidebar> = ({ isSidebarOpen, setIsSidebarOpen }) => {
     redirect(href);
     hideSidebar();
   };
-
-  useOnClickOutside(ref, hideSidebar);
 
   return (
     <nav

@@ -1,6 +1,6 @@
 import { ABOUT_BUTTON, CONTACT_BUTTON } from '@/test-ids/navbar';
 
-import { TNavButton } from '@/features/navbar/types/nav-button';
+import { TNavButton } from '@/features/navbar/types';
 
 export const NAV_BUTTONS: Readonly<TNavButton[]> = [
   {
