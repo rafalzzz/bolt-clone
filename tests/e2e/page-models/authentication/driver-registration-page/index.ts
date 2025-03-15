@@ -80,11 +80,11 @@ export class DriverRegistrationPage extends BaseForm {
     return requestPromise;
   }
 
-  // Check request result methods
-  asserRequestBodyCorrectness(requestBody: Record<string, unknown>) {
-    expect(requestBody).toEqual(this.correctRequestBody);
+  assertRequestBodyCorrectness(requestBody: Record<string, unknown>) {
+    this.assertRequestBody(requestBody, this.correctRequestBody);
   }
 
+  // Check request result methods
   async assertErrorToastMessage() {
     await this.checkToastMessage(
       REGISTRATION_FAILURE_MESSAGE,

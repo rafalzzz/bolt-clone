@@ -30,7 +30,7 @@ const useDriverLoginForm = () => {
 
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
     const response = await handleRequest({
-      endpoint: '/driver/send-email/',
+      endpoint: '/driver/login/',
       method: 'POST',
       data,
       errorMessage: {

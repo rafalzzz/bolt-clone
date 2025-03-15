@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .menu-item {
+    @apply text-textColor hover:bg-primaryColor hover:text-buttonTextColor dark:hover:bg-secondaryColor font-sans transition;
+  }
+}

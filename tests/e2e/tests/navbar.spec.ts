@@ -48,11 +48,11 @@ test.describe('Navbar tests', { tag: ['@navbar', '@critical'] }, () => {
     const driverPage = new DriverRegistrationPage(page);
     const clientPage = new ClientPage(page);
 
-    await navbar.clickSignButton('Become a driver');
+    await navbar.clickDropdownMenuItem('Become a driver');
     await driverPage.assertUrl();
     await driverPage.assertPageLayoutVisible();
 
-    await navbar.clickSignButton('Become a client');
+    await navbar.clickDropdownMenuItem('Become a client');
     await clientPage.assertUrl();
   });
 });

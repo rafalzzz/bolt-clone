@@ -1,0 +1,42 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.sidebar {
+  transform: translateX(100%);
+  visibility: hidden;
+  position: fixed;
+  transition:
+    transform 0.3s ease-in-out,
+    visibility 0s 0.3s;
+
+  &--open {
+    transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform 0.3s ease-in-out,
+      visibility 0s;
+  }
+
+  &--closed {
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.3s ease-in-out,
+      visibility 0s 0.3s;
+  }
+}

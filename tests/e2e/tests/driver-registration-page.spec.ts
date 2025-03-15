@@ -49,7 +49,7 @@ test.describe(
       const requestBody = JSON.parse(request.postData() || '{}');
 
       await driverRegistrationPage.assertSuccessToastMessage();
-      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
+      driverRegistrationPage.assertRequestBodyCorrectness(requestBody);
     });
   },
 );
