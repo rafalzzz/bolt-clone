@@ -22,7 +22,7 @@ const loginUser = async (user: TDriverLoginFormSchema, incorrentCredentialsMessa
     throw new CustomResponseError(401, incorrentCredentialsMessage);
   }
 
-  throw new Error(errorMessage);
+  throw error;
 };
 
 export default loginUser;

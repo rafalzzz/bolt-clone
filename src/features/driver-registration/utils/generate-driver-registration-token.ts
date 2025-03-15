@@ -1,3 +1,5 @@
+import CustomResponseError from '@/shared/classes/custom-response-error';
+
 import { encryptJwtToken } from '@/shared/utils/server-side/json-web-token';
 import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
 
@@ -8,7 +10,7 @@ const TOKEN_EXPIRATION = '3d';
 
 export async function generateDriverRegistrationToken(payload: TDriverRegistrationTokenPayload) {
   if (!REGISTER_DRIVER_TOKEN_SECRET_KEY) {
-    throw new Error('Missing REGISTER_DRIVER_TOKEN_SECRET_KEY env variable');
+    throw new CustomResponseError(500, 'Missing REGISTER_DRIVER_TOKEN_SECRET_KEY env variable');
   }
 
   return encryptJwtToken({

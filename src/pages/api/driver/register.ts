@@ -1,16 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import CustomResponseError from '@/shared/classes/custom-response-error';
-
+import deleteUser from '@/features/driver-registration/utils/delete-user';
 import getDriverDto from '@/features/driver-registration/utils/get-driver-dto';
 import insertDriverData from '@/features/driver-registration/utils/insert-driver-data';
 import signUpUser from '@/features/driver-registration/utils/sign-up-user';
+import checkMethod from '@/shared/utils/server-side/check-method';
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
-
-import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
 import { TCompleteDriverRegistrationFormData } from '@/features/driver-registration/types/driver-registration';
 import { TApiResponse } from '@/shared/types/api-response';
@@ -19,9 +17,7 @@ export default async function POST(
   { method, headers: { cookie }, body }: NextApiRequest,
   res: NextApiResponse<TApiResponse>,
 ) {
-  if (method !== 'POST') {
-    throw new CustomResponseError(405, METHOD_NOT_ALLOWED);
-  }
+  checkMethod('POST', method);
 
   const { password, ...rest } = body as TCompleteDriverRegistrationFormData;
 
@@ -45,9 +41,13 @@ export default async function POST(
       authUserId,
     });
 
-    await insertDriverData(driverDto);
-
-    res.status(201).end();
+    try {
+      await insertDriverData(driverDto);
+      res.status(201).end();
+    } catch (error) {
+      await deleteUser(authUserId);
+      throw error;
+    }
   } catch (error: unknown) {
     handleRequestError(res, error);
   }

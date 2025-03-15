@@ -58,7 +58,7 @@ const handleUniqueColumnsCheck = async ({
   );
 
   if (findDriverError) {
-    throw new Error(getErrorMessage(findDriverError));
+    throw findDriverError;
   }
 
   const { isEmailTaken, isPhoneNumberTaken } = areDriverUniqueColumnsTaken(driver, {
