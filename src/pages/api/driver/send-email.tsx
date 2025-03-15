@@ -14,9 +14,9 @@ import { TDriverRegistrationFormSchema } from '@/features/driver-registration/sc
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 import { TApiResponse } from '@/shared/types/api-response';
 
 const keysToEncrypt = [EDriverRegistrationFormKeys.PHONE_NUMBER];

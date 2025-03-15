@@ -5,7 +5,8 @@ import SignUpSection from '@/features/navbar/components/sign-up-section';
 import CustomLink from '@/shared/components/custom-link';
 
 import { LOG_IN_SECTION } from '@/features/navbar/consts/sidebar-sections';
-import { TSidebar } from '@/features/navbar/types';
+
+import { TSidebar } from '@/features/navbar/types/sidebar';
 
 import './sidebar.scss';
 

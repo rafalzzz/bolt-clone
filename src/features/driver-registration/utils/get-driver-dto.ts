@@ -3,8 +3,7 @@ import changeObjectKeys from '@/shared/utils/server-side/change-object-keys';
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys';
 import { EDriverEntityKeys } from '@/shared/enums/driver-entity-keys';
 
-import { TInitialDriverEntityData } from '@/features/driver-registration/types';
-
+import { TInitialDriverEntityData } from '@/features/driver-registration/types/driver-registration';
 import { TDriverEntity } from '@/shared/types/driver-entity';
 
 import { EDriverRegistrationTokenPayloadKeys } from '../enums/driver-registration-form-keys';

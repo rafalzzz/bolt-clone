@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { TSidebar } from '@/features/navbar/types';
+import { TSidebar } from '@/features/navbar/types/sidebar';
 
 const HamburgerButton = <T extends HTMLButtonElement>({
   ref,

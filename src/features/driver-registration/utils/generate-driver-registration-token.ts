@@ -1,7 +1,7 @@
 import { encryptJwtToken } from '@/shared/utils/server-side/json-web-token';
 import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 
 const REGISTER_DRIVER_TOKEN_SECRET_KEY = process.env.REGISTER_DRIVER_TOKEN_SECRET_KEY;
 const TOKEN_EXPIRATION = '3d';

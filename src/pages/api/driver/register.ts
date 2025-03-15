@@ -11,9 +11,9 @@ import handleRequestError from '@/shared/utils/server-side/handle-request-error'
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
-import { TCompleteDriverRegistrationFormData } from '@/features/driver-registration/types';
 import { METHOD_NOT_ALLOWED } from '@/shared/consts/response-messages';
 
+import { TCompleteDriverRegistrationFormData } from '@/features/driver-registration/types/driver-registration';
 import { TApiResponse } from '@/shared/types/api-response';
 
 export default async function POST(
