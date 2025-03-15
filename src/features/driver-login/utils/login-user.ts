@@ -18,7 +18,7 @@ const loginUser = async (user: TDriverLoginFormSchema, incorrentCredentialsMessa
 
   const errorMessage = getErrorMessage(error);
 
-  if (errorMessage.toLowerCase().includes('login credentials')) {
+  if (errorMessage.includes('login credentials')) {
     throw new CustomResponseError(401, incorrentCredentialsMessage);
   }
 

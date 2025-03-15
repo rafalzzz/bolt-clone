@@ -6,7 +6,7 @@
   "SignUpSection": {
     "register": "Register",
     "registerAsDriver": "Become a driver",
-    "registerAsClient": "Become a Client"
+    "registerAsClient": "Become a client"
   },
   "LocaleLayout": {
     "title": "English"
@@ -157,7 +157,7 @@
   "Sidebar": {
     "login": "Log in",
     "loginAsDriver": "As a driver",
-    "loginAsClient": "As a Client"
+    "loginAsClient": "As a client"
   },
   "HamburgerButton": {
     "showNavigation": "Show side navigation",

@@ -39,11 +39,9 @@ const useDriverLoginForm = () => {
       },
     });
 
-    console.log({ response });
-
-    /* if (response?.ok) {
+    if (response?.ok) {
       // TODO - add logic connected with redirection
-    } */
+    }
   };
 
   return { state, formFields, onSubmit, handleSubmit };
