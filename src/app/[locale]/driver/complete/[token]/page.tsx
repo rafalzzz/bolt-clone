@@ -5,9 +5,9 @@ import DefaultLoader from '@/shared/components/default-loader';
 import { decryptJwtToken } from '@/shared/utils/server-side/json-web-token';
 import { encodeSecretKey } from '@/shared/utils/server-side/secret-key';
 
-import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
-
 import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
+
+import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
 
 const DriverCompleteRegistration = dynamic(
   () => import('@/features/driver-registration/components/driver-complete-registration'),
