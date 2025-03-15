@@ -1,6 +1,6 @@
 import { drawDetections } from '@/features/driver-registration/utils/start-facial-recognition';
 
-import { TDetections } from '@/features/driver-registration/types';
+import { TDetections } from '@/features/driver-registration/types/detections';
 
 type THandleCanvasDrawing = {
   video: HTMLVideoElement;

@@ -1,7 +1,7 @@
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm-nobundle.js';
 import type { MutableRefObject } from 'react';
 
-import { TDetections } from '@/features/driver-registration/types';
+import { TDetections } from '@/features/driver-registration/types/detections';
 
 type TDisplaySize = {
   width: number;

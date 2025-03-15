@@ -2,8 +2,6 @@ import { supabase } from '@/lib/supabase';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
-import getErrorMessage from '@/shared/utils/common/get-error-message';
-
 import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 import { EDriverEntityKeys } from '@/shared/enums/driver-entity-keys';
 
@@ -58,7 +56,7 @@ const handleUniqueColumnsCheck = async ({
   );
 
   if (findDriverError) {
-    throw new Error(getErrorMessage(findDriverError));
+    throw findDriverError;
   }
 
   const { isEmailTaken, isPhoneNumberTaken } = areDriverUniqueColumnsTaken(driver, {

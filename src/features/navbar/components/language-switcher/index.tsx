@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useRef, useState } from 'react';
 
-import CustomDropdownMenuItem from '@/shared/components/custom-dropdown-menu-item';
+import CustomMenuItem from '@/shared/components/custom-menu-item';
 import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
@@ -61,7 +61,7 @@ const LanguageSwitcher = () => {
       <ul role='none'>
         {LANGUAGES.map((lang) => (
           <li key={lang}>
-            <CustomDropdownMenuItem
+            <CustomMenuItem
               text={lang.toUpperCase()}
               onClick={() => onDropdownMenuItemClick(lang)}
               testId={LANGUAGE_BUTTON_ITEM}

@@ -20,7 +20,7 @@ import {
 
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 
 type TUseDriverCompleteRegistrationForm = {
   tokenPayload: TDriverRegistrationTokenPayload | null;

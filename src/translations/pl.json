@@ -3,7 +3,7 @@
     "about": "O Nas",
     "contact": "Kontakt"
   },
-  "RightMenu": {
+  "SignUpSection": {
     "register": "Zarejestruj się",
     "registerAsDriver": "Zostań kierowcą",
     "registerAsClient": "Zostań klientem"
@@ -151,5 +151,14 @@
   "RedirectionToRegistrationPage": {
     "dontHaveAnAccount": "Nie posiadasz jeszcze konta?",
     "register": "Zarejestruj się"
+  },
+  "Sidebar": {
+    "login": "Zaloguj się",
+    "loginAsDriver": "Jako kierowca",
+    "loginAsClient": "Jako klient"
+  },
+  "HamburgerButton": {
+    "showNavigation": "Pokaż boczną nawigację",
+    "hideNavigation": "Ukryj boczną nawigację"
   }
 }
