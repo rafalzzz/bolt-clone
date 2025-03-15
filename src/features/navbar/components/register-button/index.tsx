@@ -3,15 +3,14 @@
 import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
-import CustomMenuItem from '@/shared/components/custom-menu-item';
+import CustomLink from '@/shared/components/custom-link';
 import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
-import useRedirect from '@/shared/hooks/use-redirect';
 
-import { REGISTER_BUTTON, SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
+import { REGISTER_BUTTON } from '@/test-ids/navbar';
 
-import { SIGN_UP_SECTION } from '@/features/navbar/consts/sign-up-section';
+import { SIGN_UP_SECTION } from '@/features/navbar/consts/sidebar-sections';
 
 const RegisterButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,14 +18,7 @@ const RegisterButton = () => {
   const ref = useRef<HTMLDivElement>(null);
   const t = useTranslations('SignUpSection');
 
-  const redirect = useRedirect();
-
   const hideDropdownMenu = () => setIsOpen(false);
-
-  const onDropdownMenuItemClick = (href: string) => {
-    redirect(href);
-    hideDropdownMenu();
-  };
 
   useOnClickOutside(ref, hideDropdownMenu);
 
@@ -43,11 +35,13 @@ const RegisterButton = () => {
       <ul role='none'>
         {SIGN_UP_SECTION.map(({ translation, href }) => (
           <li key={translation}>
-            <CustomMenuItem
-              text={t(translation)}
-              onClick={() => onDropdownMenuItemClick(href)}
-              testId={SIGN_UP_SECTION_ITEM}
-            />
+            <CustomLink
+              href={href}
+              className='flex w-full items-center py-3 pl-3 pr-4 menu-item'
+              onClick={hideDropdownMenu}
+            >
+              {t(translation)}
+            </CustomLink>
           </li>
         ))}
       </ul>

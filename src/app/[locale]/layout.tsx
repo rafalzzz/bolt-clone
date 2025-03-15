@@ -4,10 +4,10 @@ import { setRequestLocale } from 'next-intl/server';
 
 import BaseLayout from '@/features/landing-page/components/base-layout';
 
-import { routing } from '@/i18n/routing';
-
 import { TFCWithChildren } from '@/shared/types/fc-with-children';
 import { TLayoutParamsPromise } from '@/shared/types/locale-params-promise';
+
+import { routing } from '@/i18n/routing';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

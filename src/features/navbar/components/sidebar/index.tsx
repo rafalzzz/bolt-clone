@@ -1,12 +1,10 @@
 import { useTranslations } from 'next-intl';
 
-import CustomMenuItem from '@/shared/components/custom-menu-item';
+import SidebarSection from '@/features/navbar/components/sidebar-section';
+import SignUpSection from '@/features/navbar/components/sign-up-section';
+import CustomLink from '@/shared/components/custom-link';
 
-import useRedirect from '@/shared/hooks/use-redirect';
-
-import { SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
-
-import { SIGN_UP_SECTION } from '@/features/navbar/consts/sign-up-section';
+import { LOG_IN_SECTION } from '@/features/navbar/consts/sidebar-sections';
 import { TSidebar } from '@/features/navbar/types';
 
 import './sidebar.scss';
@@ -16,16 +14,9 @@ const Sidebar = <T extends HTMLElement>({
   ref,
   setIsSidebarOpen,
 }: TSidebar<T>) => {
-  const t = useTranslations('SignUpSection');
-
-  const redirect = useRedirect();
+  const t = useTranslations('Sidebar');
 
   const hideSidebar = () => setIsSidebarOpen(false);
-
-  const onDropdownMenuItemClick = (href: string) => {
-    redirect(href);
-    hideSidebar();
-  };
 
   return (
     <nav
@@ -33,23 +24,16 @@ const Sidebar = <T extends HTMLElement>({
       id='sidebar'
       className={`fixed right-0 top-[68px] bottom-0 w-full sm:max-w-xs lg:w-80 bg-backgroundColor pt-6 pb-8 shadow-lg md:border-l sm:border-l border-t border-primaryColor transition sidebar--${isSidebarOpen ? 'open' : 'closed'}`}
     >
-      <section className='px-4 pb-6 sm:hidden'>
-        <h3 className='mb-2 text-md font-medium uppercase text-textColor transition'>
-          {t('register')}
-        </h3>
-        <ul className='mb-8 text-sm font-medium'>
-          {SIGN_UP_SECTION.map(({ translation, href }) => (
-            <li key={translation}>
-              <CustomMenuItem
-                text={t(translation)}
-                className='flex w-full items-center rounded py-3 pl-3 pr-4 menu-item'
-                onClick={() => onDropdownMenuItemClick(href)}
-                testId={SIGN_UP_SECTION_ITEM}
-              />
-            </li>
-          ))}
-        </ul>
-      </section>
+      <SignUpSection onClick={hideSidebar} />
+      <SidebarSection header={t('login')}>
+        {LOG_IN_SECTION.map(({ translation, href }) => (
+          <li key={translation}>
+            <CustomLink href={href} onClick={hideSidebar}>
+              {t(translation)}
+            </CustomLink>
+          </li>
+        ))}
+      </SidebarSection>
     </nav>
   );
 };

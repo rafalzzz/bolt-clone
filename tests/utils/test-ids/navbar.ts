@@ -9,3 +9,4 @@ export const LANGUAGE_BUTTON_ITEM = 'languageItem';
 export const THEME_BUTTON = 'themeButton';
 export const REGISTER_BUTTON = 'registerButton';
 export const SIGN_UP_SECTION_ITEM = 'registerButtonItem';
+export const LOG_IN_SECTION_ITEM = 'logInButtonItem';

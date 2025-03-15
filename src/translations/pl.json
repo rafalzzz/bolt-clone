@@ -153,7 +153,9 @@
     "register": "Zarejestruj się"
   },
   "Sidebar": {
-    "register": "Zarejestruj się"
+    "login": "Zaloguj się",
+    "loginAsDriver": "Jako kierowca",
+    "loginAsClient": "Jako klient"
   },
   "HamburgerButton": {
     "showNavigation": "Pokaż boczną nawigację",
