@@ -30,7 +30,7 @@ const useDriverLoginForm = () => {
 
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
     const response = await handleRequest({
-      endpoint: '/driver/send-email/',
+      endpoint: '/driver/login/',
       method: 'POST',
       data,
       errorMessage: {
@@ -39,9 +39,11 @@ const useDriverLoginForm = () => {
       },
     });
 
-    if (response?.ok) {
+    console.log({ response });
+
+    /* if (response?.ok) {
       // TODO - add logic connected with redirection
-    }
+    } */
   };
 
   return { state, formFields, onSubmit, handleSubmit };
