@@ -8,7 +8,7 @@ import DropdownButton from '@/shared/components/dropdown-button';
 
 import useOnClickOutside from '@/shared/hooks/use-on-click-outside';
 
-import { REGISTER_BUTTON } from '@/test-ids/navbar';
+import { REGISTER_BUTTON, SIGN_UP_SECTION_ITEM } from '@/test-ids/navbar';
 
 import { SIGN_UP_SECTION } from '@/features/navbar/consts/sidebar-sections';
 
@@ -38,6 +38,7 @@ const RegisterButton = () => {
             <CustomLink
               href={href}
               className='flex w-full items-center py-3 pl-3 pr-4 menu-item'
+              testId={SIGN_UP_SECTION_ITEM}
               onClick={hideDropdownMenu}
             >
               {t(translation)}

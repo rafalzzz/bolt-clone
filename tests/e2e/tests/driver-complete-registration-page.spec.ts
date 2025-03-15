@@ -68,7 +68,12 @@ test.describe(
         await driverCompleteRegistrationPage.mockSuccessRegistrationCompleteResponse();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
+
+        const request = await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
+        const requestBody = JSON.parse(request.postData() || '{}');
+
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();
+        await driverCompleteRegistrationPage.assertRequestBodyCorrectness(requestBody);
       });
     });
   },

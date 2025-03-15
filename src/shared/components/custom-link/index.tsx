@@ -8,6 +8,7 @@ import { TFCWithChildren } from '@/shared/types/fc-with-children';
 export type TCustomLink = {
   href: string;
   className?: string;
+  testId?: string;
   onClick?: () => void;
 };
 
@@ -15,12 +16,19 @@ const CustomLink: TFCWithChildren<TCustomLink> = ({
   children,
   href,
   className = 'flex w-full items-center rounded py-3 pl-3 pr-4 menu-item',
+  testId,
   onClick,
 }) => {
   const locale = useLocale();
 
   return (
-    <Link prefetch href={addParamsToUrl(href, { locale })} className={className} onClick={onClick}>
+    <Link
+      prefetch
+      href={addParamsToUrl(href, { locale })}
+      className={className}
+      data-testid={testId}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );

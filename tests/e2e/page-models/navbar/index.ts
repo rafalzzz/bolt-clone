@@ -63,7 +63,7 @@ export class Navbar extends BasePage {
     await expect(navbar).toHaveCSS('background-color', expectedColor);
   }
 
-  async clickSignButton(buttonText: 'Become a driver' | 'Become a client') {
+  async clickDropdownMenuItem(buttonText: 'Become a driver' | 'Become a client') {
     await this.clickButton(REGISTER_BUTTON);
     await this.clickButton(SIGN_UP_SECTION_ITEM, buttonText);
   }

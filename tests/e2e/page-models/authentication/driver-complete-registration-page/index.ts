@@ -90,11 +90,6 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     return this.assertPageElementsVisibility(pageElementIds);
   }
 
-  // Check request result methods
-  asserRequestBodyCorrectness(requestBody: Record<string, unknown>) {
-    expect(requestBody).toEqual(this.correctRequestBody);
-  }
-
   async assertRegistrationSuccessMessage() {
     await this.checkToastMessage(
       DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
@@ -141,6 +136,21 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
     await requestPromise;
     return requestPromise;
+  }
+
+  assertRequestBodyCorrectness(requestBody: Record<string, unknown>) {
+    const tokenPayload = {
+      city: 'test@test.com',
+      email: 'test@test.com',
+      phoneNumber: '2f8e7d085d0cc2afaed38806eee92ee0:b1166cedd231ae223c10ff1a10338100',
+      phoneNumberHash: 'aba3704430f239293d276850aa5dd6418b5e5715fa458fabe6426a4355541371',
+    };
+
+    const expectedRequestBody = { ...tokenPayload, ...this.correctRequestBody };
+
+    delete expectedRequestBody[EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
+
+    expect(requestBody).toEqual(expectedRequestBody);
   }
 
   // Form methods

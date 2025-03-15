@@ -69,6 +69,13 @@ export class BasePage {
     return this.page.waitForRequest(endpoint);
   }
 
+  assertRequestBody(
+    expectedRequestBody: Record<string, unknown>,
+    requestBody: Record<string, unknown>,
+  ) {
+    expect(requestBody).toEqual(expectedRequestBody);
+  }
+
   async waitForElementWithTestId(testId: string) {
     return this.page.locator(`data-testid=${testId}`).first();
   }
