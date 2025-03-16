@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/api-client';
 
 import { TDriverEntity } from '@/shared/types/driver-entity';
 

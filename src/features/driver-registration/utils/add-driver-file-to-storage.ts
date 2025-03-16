@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import formidable from 'formidable';
 
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/api-client';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 

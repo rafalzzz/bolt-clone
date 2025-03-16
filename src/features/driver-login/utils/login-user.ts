@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/api-client';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 

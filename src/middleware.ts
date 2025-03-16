@@ -3,7 +3,21 @@ import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
 
-export default createMiddleware(routing);
+import { createAuthMiddleware } from './lib/supabase/middleware';
+
+const handleI18nRouting = createMiddleware(routing);
+
+const updateSession = createAuthMiddleware();
+
+export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
+  const response = handleI18nRouting(request);
+
+  return await updateSession(request, response);
+}
 
 export const config = {
   matcher: [
@@ -19,11 +33,3 @@ export const config = {
     '/((?!_next|_vercel|.*\\..*).*)',
   ],
 };
-
-export function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname.includes('/api/')) {
-    return NextResponse.next();
-  }
-
-  return NextResponse.next();
-}

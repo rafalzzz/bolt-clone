@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import loginUser from '@/features/driver-login/utils/login-user';
 import checkMethod from '@/shared/utils/server-side/check-method';
-import createHash from '@/shared/utils/server-side/create-hash';
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
 
@@ -25,11 +24,9 @@ export default async function POST(
   try {
     const t = await getApiTranslations(cookie);
 
-    const passwordHash = createHash(body[EDriverLoginFormKeys.PASSWORD]);
-
     const user = {
       email: body[EDriverLoginFormKeys.EMAIL],
-      password: passwordHash,
+      password: body[EDriverLoginFormKeys.PASSWORD],
     };
 
     const loggedUser = await loginUser(user, t('incorrentCredentialsMessage'));

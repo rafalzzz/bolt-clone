@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/api-client';
 
 const deleteUser = async (userId: string) => {
   const { error } = await supabase.auth.admin.deleteUser(userId);
