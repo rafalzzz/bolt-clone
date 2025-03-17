@@ -12,7 +12,7 @@ type TNewDriverData = Record<
   string
 >;
 
-type THandleUniqueColumnsCheckParams = Record<
+type THandleUniqueColumnsCheckArgs = Record<
   | EDriverRegistrationTokenPayloadKeys.EMAIL
   | EDriverRegistrationTokenPayloadKeys.PHONE_NUMBER_HASH
   | 'takenEmailMessage'
@@ -52,7 +52,7 @@ const handleUniqueColumnsCheck = async ({
   email,
   takenEmailMessage,
   takenPhoneNumberMessage,
-}: THandleUniqueColumnsCheckParams) => {
+}: THandleUniqueColumnsCheckArgs) => {
   const { data: driver, error: findDriverError } = await checkUniqueDriverColumns(
     email,
     phoneNumberHash,

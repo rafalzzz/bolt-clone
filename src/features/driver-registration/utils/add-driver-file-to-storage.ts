@@ -5,7 +5,7 @@ import formidable from 'formidable';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
-type TAddFileToStorageParams = {
+type TAddFileToStorageArgs = {
   supabase: SupabaseClient;
   file: formidable.File[] | undefined;
   bucketName: string;
@@ -22,7 +22,7 @@ const addFileToStorage = async ({
   file,
   bucketName,
   missingFileMessage,
-}: TAddFileToStorageParams) => {
+}: TAddFileToStorageArgs) => {
   const fileToAdd = file?.[0];
 
   if (!fileToAdd) {

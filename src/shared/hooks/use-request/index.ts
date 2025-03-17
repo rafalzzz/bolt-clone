@@ -2,15 +2,15 @@ import { useReducer } from 'react';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
 
-type THandleRequestErrorParams = Partial<Record<'uniqueMessage' | 'testId', string>>;
+type THandleRequestErrorArgs = Partial<Record<'uniqueMessage' | 'testId', string>>;
 
-type TRequestParams = {
+type TRequestArgs = {
   endpoint: string;
   method: RequestInit['method'];
   headers?: RequestInit['headers'];
   data?: unknown;
   addHeaders?: boolean;
-  errorMessage?: THandleRequestErrorParams;
+  errorMessage?: THandleRequestErrorArgs;
 };
 
 type TState = {
@@ -103,7 +103,7 @@ const useRequest = () => {
   };
 
   const handleRequestError = async (
-    { uniqueMessage = '', testId }: THandleRequestErrorParams,
+    { uniqueMessage = '', testId }: THandleRequestErrorArgs,
     error: unknown,
   ) => {
     let text = uniqueMessage;
@@ -145,7 +145,7 @@ const useRequest = () => {
     data,
     addHeaders = true,
     errorMessage = {},
-  }: TRequestParams) => {
+  }: TRequestArgs) => {
     startRequest();
 
     try {
