@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
@@ -10,10 +10,6 @@ const handleI18nRouting = createMiddleware(routing);
 const updateSession = createAuthMiddleware();
 
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    return NextResponse.next();
-  }
-
   const response = handleI18nRouting(request);
 
   return await updateSession(request, response);

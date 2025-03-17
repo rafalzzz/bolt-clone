@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase/api-client';
+import { createClient } from '@/lib/supabase/server-client';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
@@ -20,14 +20,17 @@ type THandleUniqueColumnsCheckParams = Record<
   string
 >;
 
-const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) =>
-  await supabase
+const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) => {
+  const supabase = await createClient();
+
+  return await supabase
     .from('Drivers')
     .select(`${EDriverEntityKeys.EMAIL}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}`)
     .or(
       `${EDriverEntityKeys.EMAIL}.eq.${email}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash}`,
     )
     .maybeSingle();
+};
 
 const areDriverUniqueColumnsTaken = (driver: TDriverData | null, newDriver: TNewDriverData) => {
   if (!driver) {

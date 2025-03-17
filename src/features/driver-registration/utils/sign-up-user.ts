@@ -1,13 +1,14 @@
-import type { SignUpWithPasswordCredentials } from '@supabase/supabase-js';
-
-import { supabase } from '@/lib/supabase/api-client';
+import type { SignUpWithPasswordCredentials, SupabaseClient } from '@supabase/supabase-js';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
-const signUpUser = async (
-  credentials: SignUpWithPasswordCredentials,
-  missingUserIdMessage: string,
-) => {
+type TSignUpUserArgs = {
+  supabase: SupabaseClient;
+  credentials: SignUpWithPasswordCredentials;
+  missingUserIdMessage: string;
+};
+
+const signUpUser = async ({ supabase, credentials, missingUserIdMessage }: TSignUpUserArgs) => {
   const { data, error: authError } = await supabase.auth.signUp(credentials);
 
   if (authError || !data.user?.id) {

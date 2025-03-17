@@ -1,13 +1,20 @@
-import { supabase } from '@/lib/supabase/api-client';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
-const checkUniqueCarNumber = async (
-  carRegistrationNumberHash: string,
-  takenCarRegistrationNumbeMessage: string,
-) => {
+type TCheckUniqueCarNumberArgs = {
+  supabase: SupabaseClient;
+  carRegistrationNumberHash: string;
+  takenCarRegistrationNumbeMessage: string;
+};
+
+const checkUniqueCarNumber = async ({
+  supabase,
+  carRegistrationNumberHash,
+  takenCarRegistrationNumbeMessage,
+}: TCheckUniqueCarNumberArgs) => {
   const { data: driver, error: searchDriverError } = await supabase
     .from('Drivers')
     .select('car_number_hash')

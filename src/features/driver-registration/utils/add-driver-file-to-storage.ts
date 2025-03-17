@@ -1,12 +1,12 @@
 import fs from 'fs';
 
+import type { SupabaseClient } from '@supabase/supabase-js';
 import formidable from 'formidable';
-
-import { supabase } from '@/lib/supabase/api-client';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 
 type TAddFileToStorageParams = {
+  supabase: SupabaseClient;
   file: formidable.File[] | undefined;
   bucketName: string;
   missingFileMessage: string;
@@ -18,6 +18,7 @@ const generateFileName = (extension = '') =>
   `drivers/${Date.now()}-${Math.random().toString(36).substring(2)}.${extension}`;
 
 const addFileToStorage = async ({
+  supabase,
   file,
   bucketName,
   missingFileMessage,

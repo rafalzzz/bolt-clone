@@ -1,6 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { revalidatePath } from 'next/cache';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+
+import refresh from '@/features/actions/test';
 
 import useRequest from '@/shared/hooks/use-request';
 
@@ -40,7 +43,7 @@ const useDriverLoginForm = () => {
     });
 
     if (response?.ok) {
-      // TODO - add logic connected with redirection
+      refresh();
     }
   };
 
