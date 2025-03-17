@@ -1,36 +1,28 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-
 import { generateDriverRegistrationToken } from '@/features/driver-registration/utils/generate-driver-registration-token';
 import handleUniqueColumnsCheck from '@/features/driver-registration/utils/handle-unique-columns-check';
 import sendDriverRegistrationEmail from '@/features/driver-registration/utils/send-driver-registration-email';
-import checkMethod from '@/shared/utils/server-side/check-method';
 import createHash from '@/shared/utils/server-side/create-hash';
 import encryptSensitiveData from '@/shared/utils/server-side/encrypt-sensitive-data';
 import getApiTranslations from '@/shared/utils/server-side/get-api-translations';
 import handleRequestError from '@/shared/utils/server-side/handle-request-error';
+import sendResponse from '@/shared/utils/server-side/send-response';
 
 import { TDriverRegistrationFormSchema } from '@/features/driver-registration/schemas/driver-registration-form-schema';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
 import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
-import { TApiResponse } from '@/shared/types/api-response';
 
 const keysToEncrypt = [EDriverRegistrationFormKeys.PHONE_NUMBER];
 const keysToOmit = [EDriverRegistrationFormKeys.RULES];
 
-export default async function POST(
-  { method, headers: { cookie }, body: data }: NextApiRequest,
-  res: NextApiResponse<TApiResponse>,
-) {
-  checkMethod('POST', method);
-
-  const { email, phoneNumber } = data;
-
-  const phoneNumberHash = createHash(String(phoneNumber));
-
+export async function POST(request: Request) {
   try {
-    const t = await getApiTranslations(cookie);
+    const t = await getApiTranslations();
+    const data = await request.json();
+
+    const { email, phoneNumber } = data;
+    const phoneNumberHash = createHash(String(phoneNumber));
 
     await handleUniqueColumnsCheck({
       phoneNumberHash,
@@ -48,8 +40,8 @@ export default async function POST(
 
     await sendDriverRegistrationEmail(email, token);
 
-    res.status(200).end();
+    return sendResponse({ status: 200 });
   } catch (error: unknown) {
-    handleRequestError(res, error);
+    return handleRequestError(error);
   }
 }

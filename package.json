@@ -17,6 +17,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@react-email/components": "^0.0.31",
+    "@supabase/ssr": "^0.6.0",
     "@supabase/supabase-js": "^2.49.1",
     "@tensorflow/tfjs": "^4.22.0",
     "@tensorflow/tfjs-backend-wasm": "^4.22.0",

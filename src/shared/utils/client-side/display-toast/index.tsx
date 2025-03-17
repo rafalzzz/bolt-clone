@@ -8,7 +8,11 @@ import { DEFAULT_NOTIFICATION_PROPS } from '@/shared/consts/default-notification
 import SuccessSvg from '@/shared/svg/success-svg';
 import WarningSvg from '@/shared/svg/warning-svg';
 
-import { TToastParams } from '@/shared/types/toast-params';
+type TDisplayToastArgs = {
+  text: string;
+  type?: EToastType;
+  testId?: string;
+};
 
 const getToastIconWithColor = (type: EToastType) => {
   switch (type) {
@@ -27,7 +31,7 @@ const getToastIconWithColor = (type: EToastType) => {
   }
 };
 
-const displayToast = ({ type = EToastType.ERROR, text, testId }: TToastParams) => {
+const displayToast = ({ type = EToastType.ERROR, text, testId }: TDisplayToastArgs) => {
   const { icon, iconColor } = getToastIconWithColor(type);
 
   toast(CustomNotifiacation, {

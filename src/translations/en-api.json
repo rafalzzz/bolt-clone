@@ -4,5 +4,6 @@
   "takenCarRegistrationNumber": "This car registration number is already taken",
   "missingFileMessage": "Something went wrong, the file cannot be found",
   "missingAuthUserId": "Something went wrong, missing auth_user_id",
-  "incorrentCredentialsMessage": "Incorrect email or password"
+  "incorrentCredentialsMessage": "Incorrect email or password",
+  "unknownError": "Unknown error occured"
 }
