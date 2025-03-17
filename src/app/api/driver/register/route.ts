@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       password,
       options: {
         data: {
-          isDriver: true,
+          driver: true,
         },
       },
     };

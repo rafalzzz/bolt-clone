@@ -11,9 +11,6 @@ const sendResponse = ({
   status,
   headers = { 'Content-Type': 'application/json' },
 }: TSendResponseArgs): NextResponse =>
-  new NextResponse(body ? JSON.stringify(body) : null, {
-    status,
-    headers,
-  });
+  body ? NextResponse.json(body, { status, headers }) : new NextResponse(null, { status, headers });
 
 export default sendResponse;

@@ -4,5 +4,6 @@
   "takenCarRegistrationNumber": "Podany numer rejestracyjny pojazdu jest już zajęty",
   "missingFileMessage": "Coś poszło nie tak, nie można znaleźć pliku",
   "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id",
-  "incorrentCredentialsMessage": "Niepoprawny email lub hasło"
+  "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
+  "unknownError": "Wystąpił nieznany błąd"
 }

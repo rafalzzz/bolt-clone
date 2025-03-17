@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { revalidatePath } from 'next/cache';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
@@ -43,7 +42,8 @@ const useDriverLoginForm = () => {
     });
 
     if (response?.ok) {
-      refresh();
+      const { path } = await response.json();
+      refresh(path);
     }
   };
 
