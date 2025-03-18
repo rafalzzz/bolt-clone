@@ -94,15 +94,6 @@
     "passwordPlaceholder": "Password",
     "repeatPasswordLabel": "Repeat password",
     "repeatPasswordPlaceholder": "Repeat password",
-    "carRegistrationNumberLabel": "Car registration number",
-    "carRegistrationNumberPlaceholder": "Enter the car registration number",
-    "carBrandLabel": "Car brand",
-    "carBrandPlaceholder": "Enter the car brand",
-    "carModelLabel": "Car model",
-    "carModelPlaceholder": "Enter the car model",
-    "carColorLabel": "Car color",
-    "carColorPlaceholder": "Select the car color",
-    "addFaceImageButtonText": "Add face image",
     "submitButtonText": "Complete the registration"
   },
   "PasswordInput": {
@@ -162,5 +153,26 @@
   "HamburgerButton": {
     "showNavigation": "Show side navigation",
     "hideNavigation": "Hide side navigation"
+  },
+  "AddCarPageHeadSection": {
+    "title": "Add your car to BoltCopy – Get ready to drive",
+    "description": "Already registered as a driver? Add your vehicle to BoltCopy and start earning! Quick car registration, flexible work, and great earnings. Complete your setup now and hit the road!",
+    "keywords": "add car, driver vehicle registration, drive with BoltCopy, rideshare vehicle, car registration, flexible work, earning as a driver"
+  },
+  "AddCarPage": {
+    "description": "Add your car and start earning with BoltCopy",
+    "secondaryDescription": "You're already a BoltCopy driver! Complete your setup by registering your vehicle and get ready to hit the road."
+  },
+  "AddCarForm": {
+    "header": "Add your car and start earning",
+    "carRegistrationNumberLabel": "Car registration number",
+    "carRegistrationNumberPlaceholder": "Enter the car registration number",
+    "carBrandLabel": "Car brand",
+    "carBrandPlaceholder": "Enter the car brand",
+    "carModelLabel": "Car model",
+    "carModelPlaceholder": "Enter the car model",
+    "carColorLabel": "Car color",
+    "carColorPlaceholder": "Select the car color",
+    "submitButtonText": "Add car"
   }
 }

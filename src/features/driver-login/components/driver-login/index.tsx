@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import DriverLoginForm from '@/features/driver-login/components/driver-login-form';
 import PageDescription from '@/shared/components/page-description';
 
-import { DRIVER_REGISTRATION_PAGE_DESCRIPTION } from '@/test-ids/driver-registration-page';
+import { DRIVER_LOGIN_PAGE_DESCRIPTION } from '@/test-ids/driver-login-page';
 
 const DriverLogin = () => {
   const t = useTranslations('DriverLoginPage');
@@ -16,7 +16,7 @@ const DriverLogin = () => {
       <PageDescription
         description={t('description')}
         secondaryDescription={t('secondaryDescription')}
-        testId={DRIVER_REGISTRATION_PAGE_DESCRIPTION}
+        testId={DRIVER_LOGIN_PAGE_DESCRIPTION}
       />
       <DriverLoginForm />
     </>

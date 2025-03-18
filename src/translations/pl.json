@@ -92,15 +92,6 @@
     "passwordPlaceholder": "Hasło",
     "repeatPasswordLabel": "Powtórz hasło",
     "repeatPasswordPlaceholder": "Powtórz hasło",
-    "carRegistrationNumberLabel": "Numer rejestracyjny samochodu",
-    "carRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny samochodu",
-    "carBrandLabel": "Marka samochodu",
-    "carBrandPlaceholder": "Wprowadź markę samochodu",
-    "carModelLabel": "Model samochodu",
-    "carModelPlaceholder": "Wprowadź model samochodu",
-    "carColorLabel": "Kolor samochodu",
-    "carColorPlaceholder": "Wybierz kolor samochodu",
-    "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
     "submitButtonText": "Dokończ rejestracę"
   },
   "PasswordInput": {
@@ -160,5 +151,27 @@
   "HamburgerButton": {
     "showNavigation": "Pokaż boczną nawigację",
     "hideNavigation": "Ukryj boczną nawigację"
+  },
+  "AddCarPageHeadSection": {
+    "title": "Dodaj swój samochód do BoltCopy – Przygotuj się do jazdy",
+    "description": "Jesteś już zarejestrowanym kierowcą? Dodaj swój pojazd do BoltCopy i zacznij zarabiać! Szybka rejestracja auta, elastyczna praca i atrakcyjne zarobki. Dokończ konfigurację i ruszaj w trasę!",
+    "keywords": "dodaj samochód, rejestracja pojazdu, jazda z BoltCopy, auto do przewozów, elastyczna praca, zarabianie jako kierowca"
+  },
+  "AddCarPage": {
+    "description": "Dodaj swój samochód i zacznij zarabiać z BoltCopy",
+    "secondaryDescription": "Jesteś już kierowcą BoltCopy! Dokończ konfigurację, rejestrując swój pojazd, i przygotuj się do jazdy."
+  },
+  "AddCarForm": {
+    "header": "Dodaj swój samochód i zacznij zarabiać",
+    "carRegistrationNumberLabel": "Numer rejestracyjny samochodu",
+    "carRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny samochodu",
+    "carBrandLabel": "Marka samochodu",
+    "carBrandPlaceholder": "Wprowadź markę samochodu",
+    "carModelLabel": "Model samochodu",
+    "carModelPlaceholder": "Wprowadź model samochodu",
+    "carColorLabel": "Kolor samochodu",
+    "carColorPlaceholder": "Wybierz kolor samochodu",
+    "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
+    "submitButtonText": "Dodaj samochód"
   }
 }
