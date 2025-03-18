@@ -9,7 +9,7 @@ import PageDescription from '@/shared/components/page-description';
 import { DRIVER_REGISTRATION_PAGE_DESCRIPTION } from '@/test-ids/driver-registration-page';
 
 const DriverRegistration = () => {
-  const t = useTranslations('DriverRegistrationPage');
+  const t = useTranslations('AddCarPage');
 
   return (
     <>

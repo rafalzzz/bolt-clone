@@ -25,7 +25,9 @@ export async function POST(request: Request) {
       password,
       options: {
         data: {
-          driver: true,
+          role: 'driver',
+          carAdded: false,
+          faceAuth: false,
         },
       },
     };

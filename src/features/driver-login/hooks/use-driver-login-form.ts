@@ -11,7 +11,7 @@ import {
   driverLoginFormSchema,
 } from '@/features/driver-login/schemas/driver-login-form-schema';
 
-import { LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
+import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
 import useDriverLoginFormFields from './use-driver-login-form-fields';
 
@@ -37,7 +37,7 @@ const useDriverLoginForm = () => {
       data,
       errorMessage: {
         uniqueMessage: t('loginError'),
-        testId: LOGIN_FAILURE_MESSAGE,
+        testId: DRIVER_LOGIN_FAILURE_MESSAGE,
       },
     });
 

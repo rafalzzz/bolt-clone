@@ -25,17 +25,21 @@ export function createAuthMiddleware() {
 
     const {
       data: { user },
+      error,
     } = await supabase.auth.getUser();
 
-    /*  if (
-      !user &&
-      !request.nextUrl.pathname.startsWith('/en/driver/login') &&
-      !request.nextUrl.pathname.startsWith('/auth')
-    ) {
-      const url = request.nextUrl.clone();
-      url.pathname = '/login';
-      return NextResponse.redirect(url);
-    } */
+    if (error) {
+      console.error('Get user error:', error.message);
+    }
+
+    if (!user) {
+      const { data, error: refreshError } = await supabase.auth.refreshSession();
+      if (refreshError) {
+        console.error('Refresh session error:', refreshError.message);
+      } else {
+        console.log('Session has been refreshed:', data);
+      }
+    }
 
     return supabaseResponse;
   };
