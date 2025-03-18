@@ -1,4 +1,3 @@
-import getDriverByAuthUserId from '@/features/driver-login/utils/get-driver-data';
 import loginUser from '@/features/driver-login/utils/login-user';
 import getServerCookie from '@/shared/utils/server-side/cookies';
 import generateRedirectPath from '@/shared/utils/server-side/generate-redirect-path';
@@ -23,30 +22,18 @@ export async function POST(request: Request) {
       password: body[EDriverLoginFormKeys.PASSWORD],
     };
 
-    const { authUserId, isDriver } = await loginUser(user, t('incorrentCredentialsMessage'));
+    const { carAdded, faceAuth } = await loginUser(user, t('incorrentCredentialsMessage'));
 
-    if (!isDriver) {
-      return sendResponse({ status: 200 });
-    }
-
-    const driverData = await getDriverByAuthUserId(authUserId);
-
-    if (!driverData) {
-      throw new Error(t('unknownError'));
-    }
-
-    const { carNumberHash, fileUrl } = driverData;
-
-    if (!carNumberHash) {
+    if (!carAdded) {
       return sendResponse({
-        body: { path: generateRedirectPath(locale, '/driver/add-car') },
+        body: { path: generateRedirectPath(locale, '/driver/auth/add-car') },
         status: 200,
       });
     }
 
-    if (!fileUrl) {
+    if (!faceAuth) {
       return sendResponse({
-        body: { path: generateRedirectPath(locale, '/driver/add-face-auth') },
+        body: { path: generateRedirectPath(locale, '/driver/auth/add-face-auth') },
         status: 200,
       });
     }
