@@ -16,7 +16,7 @@ const checkUniqueCarNumber = async ({
   takenCarRegistrationNumbeMessage,
 }: TCheckUniqueCarNumberArgs) => {
   const { data: driver, error: searchDriverError } = await supabase
-    .from('Drivers')
+    .from('drivers')
     .select('car_number_hash')
     .eq('car_number_hash', carRegistrationNumberHash)
     .maybeSingle();

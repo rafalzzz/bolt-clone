@@ -9,15 +9,18 @@ type TSignUpUserArgs = {
 };
 
 const signUpUser = async ({ supabase, credentials, missingUserIdMessage }: TSignUpUserArgs) => {
-  const { data, error: authError } = await supabase.auth.signUp(credentials);
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.signUp(credentials);
 
-  if (authError || !data.user?.id) {
+  if (authError || !user?.id) {
     const errorMessage = authError ? getErrorMessage(authError) : missingUserIdMessage;
 
     throw new Error(errorMessage);
   }
 
-  return data.user.id;
+  return user.id;
 };
 
 export default signUpUser;
