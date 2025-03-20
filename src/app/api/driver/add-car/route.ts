@@ -21,16 +21,14 @@ export async function POST(request: Request) {
     const data = await request.json();
     const supabase = await createClient();
 
-    const carRegistrationNumberHash = createHash(
-      String(data[EAddCarFormKeys.CAR_REGISTRATION_NUMBER]),
-    );
+    const carRegistrationNumberHash = createHash(data[EAddCarFormKeys.CAR_REGISTRATION_NUMBER]);
 
     const encryptedData = encryptSensitiveData<TAddCarFormSchema>({
       data,
       keysToEncrypt,
     });
 
-    const authUserId = await getUserId(supabase, t('unknownError'));
+    const authUserId = await getUserId(supabase, t('missingAuthUserId'));
 
     const carDto = getCarDto({
       data: encryptedData,

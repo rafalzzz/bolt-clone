@@ -1,6 +1,6 @@
 import type { SignUpWithPasswordCredentials, SupabaseClient } from '@supabase/supabase-js';
 
-import getErrorMessage from '@/shared/utils/common/get-error-message';
+import CustomResponseError from '@/shared/classes/custom-response-error';
 
 type TSignUpUserArgs = {
   supabase: SupabaseClient;
@@ -11,13 +11,15 @@ type TSignUpUserArgs = {
 const signUpUser = async ({ supabase, credentials, missingUserIdMessage }: TSignUpUserArgs) => {
   const {
     data: { user },
-    error: authError,
+    error,
   } = await supabase.auth.signUp(credentials);
 
-  if (authError || !user?.id) {
-    const errorMessage = authError ? getErrorMessage(authError) : missingUserIdMessage;
+  if (error) {
+    throw error;
+  }
 
-    throw new Error(errorMessage);
+  if (!user) {
+    throw new CustomResponseError(500, missingUserIdMessage);
   }
 
   return user.id;
