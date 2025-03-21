@@ -1,3 +1,5 @@
+import type { NextRequest } from 'next/server';
+
 import { createClient } from '@/lib/supabase/server-client';
 
 import getCarDto from '@/features/add-car/utils/get-car-dto';
@@ -15,11 +17,11 @@ import { EAddCarFormKeys } from '@/features/add-car/enums/add-car-form-keys';
 
 const keysToEncrypt = [EAddCarFormKeys.CAR_REGISTRATION_NUMBER];
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const t = await getApiTranslations();
     const data = await request.json();
-    const supabase = await createClient();
+    const { supabase } = await createClient(request);
 
     const carRegistrationNumberHash = createHash(data[EAddCarFormKeys.CAR_REGISTRATION_NUMBER]);
 

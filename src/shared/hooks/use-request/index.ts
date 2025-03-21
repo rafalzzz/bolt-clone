@@ -153,6 +153,7 @@ const useRequest = () => {
         method,
         headers: addHeaders ? { ...headers } : undefined,
         body: getRequestBody(data),
+        credentials: 'include',
       });
 
       if (!response.ok) {

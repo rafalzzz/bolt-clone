@@ -172,6 +172,8 @@
     "carColorLabel": "Kolor samochodu",
     "carColorPlaceholder": "Wybierz kolor samochodu",
     "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
-    "submitButtonText": "Dodaj samochód"
+    "submitButtonText": "Dodaj samochód",
+    "addCarError": "Wystąpił błąd podczas dodawania samochodu.",
+    "addCarSuccess": "Samochód został dodany pomyślnie."
   }
 }

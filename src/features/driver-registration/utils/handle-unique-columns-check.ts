@@ -21,7 +21,7 @@ type THandleUniqueColumnsCheckArgs = Record<
 >;
 
 const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) => {
-  const supabase = await createClient();
+  const { supabase } = await createClient();
 
   return await supabase
     .from('drivers')

@@ -1,46 +1,46 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
 
-export function createAuthMiddleware() {
-  return async function authMiddleware(request: NextRequest, response: NextResponse) {
-    const supabaseResponse = NextResponse.next({ request });
+import { routing } from '@/i18n/routing';
 
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_API_URL!,
-      process.env.NEXT_PUBLIC_API_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return request.cookies.getAll();
-          },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-            cookiesToSet.forEach(({ name, value, options }) =>
-              response.cookies.set(name, value, options),
-            );
-          },
+const intlMiddleware = createMiddleware(routing);
+
+export async function updateSession(request: NextRequest) {
+  let intlResponse = intlMiddleware(request);
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_API_URL!,
+    process.env.NEXT_PUBLIC_API_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
+          intlResponse = NextResponse.next({
+            request,
+          });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            intlResponse.cookies.set(name, value, options),
+          );
         },
       },
-    );
+    },
+  );
 
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    if (error) {
-      console.error('Get user error:', error.message);
-    }
+  console.log({ user });
 
-    if (!user) {
-      const { data, error: refreshError } = await supabase.auth.refreshSession();
-      if (refreshError) {
-        console.error('Refresh session error:', refreshError.message);
-      } else {
-        console.log('Session has been refreshed:', data);
-      }
-    }
+  /* if (!user && request.nextUrl.pathname.includes('/account')) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/sign-in';
+    return NextResponse.redirect(url);
+  } */
 
-    return supabaseResponse;
-  };
+  return intlResponse;
 }

@@ -173,6 +173,8 @@
     "carModelPlaceholder": "Enter the car model",
     "carColorLabel": "Car color",
     "carColorPlaceholder": "Select the car color",
-    "submitButtonText": "Add car"
+    "submitButtonText": "Add car",
+    "addCarError": "An error occurred during adding the car.",
+    "addCarSuccess": "The car has been added successfully."
   }
 }

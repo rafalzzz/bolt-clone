@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   try {
     const t = await getApiTranslations();
     const body = await request.json();
-    const supabase = await createClient();
+    const { supabase } = await createClient();
 
     const { password, ...rest } = body as TCompleteDriverRegistrationFormData;
 

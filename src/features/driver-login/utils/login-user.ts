@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server-client';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
@@ -6,15 +6,22 @@ import getErrorMessage from '@/shared/utils/common/get-error-message';
 
 import { TDriverLoginFormSchema } from '@/features/driver-login/schemas/driver-login-form-schema';
 
+type TLoginUserArgs = {
+  supabase: SupabaseClient;
+  user: TDriverLoginFormSchema;
+  incorrentCredentialsMessage: string;
+};
+
 const getIncorrectCredentialsMessage = (incorrentCredentialsMessage: string) =>
   new CustomResponseError(401, incorrentCredentialsMessage);
 
-const loginUser = async (user: TDriverLoginFormSchema, incorrentCredentialsMessage: string) => {
-  const supabase = await createClient();
+const loginUser = async ({ supabase, user, incorrentCredentialsMessage }: TLoginUserArgs) => {
+  const {
+    data: { user: userData },
+    error,
+  } = await supabase.auth.signInWithPassword(user);
 
-  const { data, error } = await supabase.auth.signInWithPassword(user);
-
-  if (error) {
+  if (error || !userData) {
     const errorMessage = getErrorMessage(error);
 
     if (errorMessage.includes('login credentials')) {
@@ -26,16 +33,15 @@ const loginUser = async (user: TDriverLoginFormSchema, incorrentCredentialsMessa
   }
 
   const {
-    id: authUserId,
     user_metadata: { role, carAdded, faceAuth },
-  } = data.user;
+  } = userData;
 
   if (role !== 'driver') {
     const incorrectCredentialError = getIncorrectCredentialsMessage(incorrentCredentialsMessage);
     throw incorrectCredentialError;
   }
 
-  return { authUserId, carAdded, faceAuth };
+  return { carAdded, faceAuth };
 };
 
 export default loginUser;
