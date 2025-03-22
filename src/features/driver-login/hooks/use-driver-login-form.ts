@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
@@ -15,6 +16,7 @@ import {
 import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
 const useDriverLoginForm = () => {
+  const router = useRouter();
   const { state, handleServerAction } = useServerAction();
 
   const {
@@ -29,8 +31,8 @@ const useDriverLoginForm = () => {
   const t = useTranslations('LoginAction');
   const formFields = useDriverLoginFormFields({ errors, register, setValue });
 
-  const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) =>
-    handleServerAction({
+  const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
+    const redirectPath = await handleServerAction({
       action: loginDriver,
       actionArgs: data,
       errorMessage: {
@@ -38,6 +40,11 @@ const useDriverLoginForm = () => {
         testId: DRIVER_LOGIN_FAILURE_MESSAGE,
       },
     });
+
+    if (redirectPath) {
+      router.push(redirectPath);
+    }
+  };
 
   return { state, formFields, onSubmit, handleSubmit };
 };

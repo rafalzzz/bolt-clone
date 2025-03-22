@@ -2,8 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import addCar from '@/features/add-car/server-actions/add-car';
+
 import useAddCarFields from '@/features/add-car/hooks/use-add-car-form-fields';
-import useRequest from '@/shared/hooks/use-request';
+import useServerAction from '@/shared/hooks/use-server-action';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
 
@@ -17,7 +19,7 @@ import { ADD_CAR_FAILURE_MESSAGE, ADD_CAR_SUCCESS_MESSAGE } from '@/test-ids/add
 import { EToastType } from '@/shared/enums/toast-type';
 
 const useAddCar = () => {
-  const { state, handleRequest } = useRequest();
+  const { state, handleServerAction } = useServerAction();
 
   const {
     register,
@@ -31,24 +33,19 @@ const useAddCar = () => {
   const t = useTranslations('AddCarForm');
   const formFields = useAddCarFields({ errors, register, setValue });
 
-  const onSubmit: SubmitHandler<TAddCarFormSchema> = async (data) => {
-    const response = await handleRequest({
-      endpoint: '/driver/add-car/',
-      method: 'POST',
-      data,
-      errorMessage: {
-        uniqueMessage: t('addCarError'),
-        testId: ADD_CAR_FAILURE_MESSAGE,
-      },
+  const onSuccess = () =>
+    displayToast({
+      type: EToastType.SUCCESS,
+      text: t('addCarSuccess'),
+      testId: ADD_CAR_SUCCESS_MESSAGE,
     });
 
-    if (response?.ok) {
-      displayToast({
-        type: EToastType.SUCCESS,
-        text: t('addCarSuccess'),
-        testId: ADD_CAR_SUCCESS_MESSAGE,
-      });
-    }
+  const onSubmit: SubmitHandler<TAddCarFormSchema> = async (data) => {
+    await handleServerAction({
+      action: addCar,
+      onSuccess,
+      actionArgs: data,
+    });
   };
 
   return { state, formFields, onSubmit, handleSubmit };

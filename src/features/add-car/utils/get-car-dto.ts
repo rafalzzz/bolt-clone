@@ -23,7 +23,11 @@ const keyToMap = {
   authUserId: ECarEntityKeys.AUTH_USER_ID,
 };
 
-const getCarDto = ({ data, authUserId }: TGetDriverDtoArgs): TCarEntity =>
-  changeObjectKeys({ ...data, authUserId }, keyToMap) as TCarEntity;
+const getCarDto = ({
+  data,
+  carRegistrationNumberHash,
+  authUserId,
+}: TGetDriverDtoArgs): TCarEntity =>
+  changeObjectKeys({ ...data, carRegistrationNumberHash, authUserId }, keyToMap) as TCarEntity;
 
 export default getCarDto;

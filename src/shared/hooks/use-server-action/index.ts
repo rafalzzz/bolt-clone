@@ -27,7 +27,6 @@ const useServerAction = () => {
       return response;
     } catch (error) {
       handleRequestError(errorMessage, error);
-      return undefined;
     }
   };
 
