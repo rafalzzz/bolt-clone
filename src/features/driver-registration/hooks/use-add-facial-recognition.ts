@@ -11,9 +11,9 @@ import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver-re
 
 import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
 
-/* import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys'; */
+import { TDetections } from '@/features/driver-registration/types/detections';
 
-import type { TDetections } from '@/features/driver-registration/types';
+/* import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys'; */
 
 type TUseAddFacialRecognition = {
   intervalRef: MutableRefObject<NodeJS.Timeout | null>;

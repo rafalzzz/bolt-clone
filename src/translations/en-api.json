@@ -3,5 +3,5 @@
   "takenPhoneNumber": "This phone number is already taken",
   "takenCarRegistrationNumber": "This car registration number is already taken",
   "missingFileMessage": "Something went wrong, the file cannot be found",
-  "missingAuthUserId": "Something went wrong, missing auth_user_id"
+  "unknownError": "Unknown error occured"
 }

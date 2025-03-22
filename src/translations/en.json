@@ -3,7 +3,7 @@
     "about": "About",
     "contact": "Contact"
   },
-  "RightMenu": {
+  "SignUpSection": {
     "register": "Register",
     "registerAsDriver": "Become a driver",
     "registerAsClient": "Become a client"
@@ -94,15 +94,6 @@
     "passwordPlaceholder": "Password",
     "repeatPasswordLabel": "Repeat password",
     "repeatPasswordPlaceholder": "Repeat password",
-    "carRegistrationNumberLabel": "Car registration number",
-    "carRegistrationNumberPlaceholder": "Enter the car registration number",
-    "carBrandLabel": "Car brand",
-    "carBrandPlaceholder": "Enter the car brand",
-    "carModelLabel": "Car model",
-    "carModelPlaceholder": "Enter the car model",
-    "carColorLabel": "Car color",
-    "carColorPlaceholder": "Select the car color",
-    "addFaceImageButtonText": "Add face image",
     "submitButtonText": "Complete the registration"
   },
   "PasswordInput": {
@@ -153,5 +144,49 @@
   "RedirectionToRegistrationPage": {
     "dontHaveAnAccount": "Don't have an account yet?",
     "register": "Sign up"
+  },
+  "Sidebar": {
+    "login": "Log in",
+    "loginAsDriver": "As a driver",
+    "loginAsClient": "As a client"
+  },
+  "HamburgerButton": {
+    "showNavigation": "Show side navigation",
+    "hideNavigation": "Hide side navigation"
+  },
+  "AddCarPageHeadSection": {
+    "title": "Add your car to BoltCopy – Get ready to drive",
+    "description": "Already registered as a driver? Add your vehicle to BoltCopy and start earning! Quick car registration, flexible work, and great earnings. Complete your setup now and hit the road!",
+    "keywords": "add car, driver vehicle registration, drive with BoltCopy, rideshare vehicle, car registration, flexible work, earning as a driver"
+  },
+  "AddCarPage": {
+    "description": "Add your car and start earning with BoltCopy",
+    "secondaryDescription": "You're already a BoltCopy driver! Complete your setup by registering your vehicle and get ready to hit the road."
+  },
+  "AddCarForm": {
+    "header": "Add your car and start earning",
+    "carRegistrationNumberLabel": "Car registration number",
+    "carRegistrationNumberPlaceholder": "Enter the car registration number",
+    "carBrandLabel": "Car brand",
+    "carBrandPlaceholder": "Enter the car brand",
+    "carModelLabel": "Car model",
+    "carModelPlaceholder": "Enter the car model",
+    "carColorLabel": "Car color",
+    "carColorPlaceholder": "Select the car color",
+    "submitButtonText": "Add car",
+    "addCarError": "An error occurred during adding the car",
+    "addCarSuccess": "The car has been added successfully",
+    "unknownError": "Unknown error occured"
+  },
+  "LoginAction": {
+    "incorrentCredentialsMessage": "Incorrect email or password",
+    "unknownError": "Unknown error occured"
+  },
+  "RegisterAction": {
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
+  },
+  "AddCarAction": {
+    "authError": "Unauthorized to perform this action",
+    "carNumberIsAlreadyTaken": "There is already a car with the provided registration number"
   }
 }

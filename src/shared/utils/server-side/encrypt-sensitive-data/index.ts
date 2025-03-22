@@ -8,12 +8,12 @@ type TEncryptSensitivityData<InitialObject extends Record<keyof InitialObject, u
 
 const encryptSensitiveData = <
   InitialObject extends Record<keyof InitialObject, unknown>,
-  EndodedObject extends Record<keyof EndodedObject, unknown> = InitialObject,
+  EncodedObject extends Record<keyof EncodedObject, unknown> = InitialObject,
 >({
   data,
   keysToEncrypt,
   keysToOmit,
-}: TEncryptSensitivityData<InitialObject>): EndodedObject =>
+}: TEncryptSensitivityData<InitialObject>): EncodedObject =>
   Object.entries(data).reduce((acc, [key, value]) => {
     const keyTyped = key as keyof InitialObject;
 
@@ -30,6 +30,6 @@ const encryptSensitiveData = <
     }
 
     return { ...acc, [key]: value };
-  }, {} as EndodedObject);
+  }, {} as EncodedObject);
 
 export default encryptSensitiveData;

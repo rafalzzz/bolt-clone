@@ -1,8 +1,6 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server-client';
 
 import CustomResponseError from '@/shared/classes/custom-response-error';
-
-import getErrorMessage from '@/shared/utils/common/get-error-message';
 
 import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 import { EDriverEntityKeys } from '@/shared/enums/driver-entity-keys';
@@ -14,7 +12,7 @@ type TNewDriverData = Record<
   string
 >;
 
-type THandleUniqueColumnsCheckParams = Record<
+type THandleUniqueColumnsCheckArgs = Record<
   | EDriverRegistrationTokenPayloadKeys.EMAIL
   | EDriverRegistrationTokenPayloadKeys.PHONE_NUMBER_HASH
   | 'takenEmailMessage'
@@ -22,14 +20,17 @@ type THandleUniqueColumnsCheckParams = Record<
   string
 >;
 
-const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) =>
-  await supabase
-    .from('Drivers')
+const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) => {
+  const supabase = await createClient();
+
+  return await supabase
+    .from('drivers')
     .select(`${EDriverEntityKeys.EMAIL}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}`)
     .or(
       `${EDriverEntityKeys.EMAIL}.eq.${email}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash}`,
     )
     .maybeSingle();
+};
 
 const areDriverUniqueColumnsTaken = (driver: TDriverData | null, newDriver: TNewDriverData) => {
   if (!driver) {
@@ -51,14 +52,14 @@ const handleUniqueColumnsCheck = async ({
   email,
   takenEmailMessage,
   takenPhoneNumberMessage,
-}: THandleUniqueColumnsCheckParams) => {
+}: THandleUniqueColumnsCheckArgs) => {
   const { data: driver, error: findDriverError } = await checkUniqueDriverColumns(
     email,
     phoneNumberHash,
   );
 
   if (findDriverError) {
-    throw new Error(getErrorMessage(findDriverError));
+    throw findDriverError;
   }
 
   const { isEmailTaken, isPhoneNumberTaken } = areDriverUniqueColumnsTaken(driver, {

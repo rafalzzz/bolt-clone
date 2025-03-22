@@ -1,6 +1,6 @@
 import { type Locator, expect, type Page } from '@playwright/test';
 
-type TMockResponseParams<Options> = {
+type TMockResponseArgs<Options> = {
   endpoint: string;
   method: string;
   options: Options;
@@ -55,7 +55,7 @@ export class BasePage {
     endpoint,
     method,
     options,
-  }: TMockResponseParams<T>) {
+  }: TMockResponseArgs<T>) {
     await this.page.route(endpoint, async (route, request) => {
       if (request.method() === method) {
         await route.fulfill(options);
@@ -67,6 +67,13 @@ export class BasePage {
 
   async getRequestPromise(endpoint: string) {
     return this.page.waitForRequest(endpoint);
+  }
+
+  assertRequestBody(
+    expectedRequestBody: Record<string, unknown>,
+    requestBody: Record<string, unknown>,
+  ) {
+    expect(requestBody).toEqual(expectedRequestBody);
   }
 
   async waitForElementWithTestId(testId: string) {

@@ -13,7 +13,7 @@ import {
   JWT_TOKEN_ERROR,
 } from '@/test-ids/driver-registration-complete-page';
 
-import { TDriverCompleteRegistration } from '@/features/driver-registration/types';
+import { TDriverCompleteRegistration } from '@/features/driver-registration/types/driver-registration';
 
 const DriverCompleteRegistration: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
   const t = useTranslations('DriverRegistrationCompletePage');

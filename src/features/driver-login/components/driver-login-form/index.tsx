@@ -11,9 +11,9 @@ import CustomFormWrapper from '@/shared/components/custom-form-wrapper';
 import useDriverLoginForm from '@/features/driver-login/hooks/use-driver-login-form';
 
 import {
-  DRIVER_REGISTRATION_PAGE_FORM,
-  DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON,
-} from '@/test-ids/driver-registration-page';
+  DRIVER_LOGIN_PAGE_FORM,
+  DRIVER_LOGIN_PAGE_FORM_SUBMIT_BUTTON,
+} from '@/test-ids/driver-login-page';
 
 const DriverLoginForm = () => {
   const {
@@ -28,14 +28,14 @@ const DriverLoginForm = () => {
   return (
     <>
       <ToastContainer />
-      <CustomFormWrapper title={t('header')} testId={DRIVER_REGISTRATION_PAGE_FORM}>
+      <CustomFormWrapper title={t('header')} testId={DRIVER_LOGIN_PAGE_FORM}>
         <form className='mt-4 space-y-6' onSubmit={handleSubmit(onSubmit)}>
           <CustomFormFields formFields={formFields} />
           <div>
             <CustomFormButton
               text={t('submitButtonText')}
               isLoading={isLoading}
-              testId={DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON}
+              testId={DRIVER_LOGIN_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
               }}

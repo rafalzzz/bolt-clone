@@ -3,7 +3,7 @@ import { TDriverCompleteRegistrationFormSchema } from '@/features/driver-registr
 import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys';
 import { EDriverRegistrationTokenPayloadKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 
 const getDriverCompleteDto = (
   formValues: TDriverCompleteRegistrationFormSchema,

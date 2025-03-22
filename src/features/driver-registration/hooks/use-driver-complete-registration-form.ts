@@ -2,8 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
+import registerDriver from '@/features/driver-registration/server-actions/register-user';
+
 import useDriverCompleteRegistrationFormFields from '@/features/driver-registration/hooks/use-driver-complete-registration-form-fields';
-import useRequest from '@/shared/hooks/use-request';
+import useServerAction from '@/shared/hooks/use-server-action';
 
 import getDriverCompleteDto from '@/features/driver-registration/utils/get-driver-complete-dto';
 import displayToast from '@/shared/utils/client-side/display-toast';
@@ -20,7 +22,7 @@ import {
 
 import { EToastType } from '@/shared/enums/toast-type';
 
-import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types';
+import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 
 type TUseDriverCompleteRegistrationForm = {
   tokenPayload: TDriverRegistrationTokenPayload | null;
@@ -29,7 +31,7 @@ type TUseDriverCompleteRegistrationForm = {
 const useDriverCompleteRegistrationForm = ({
   tokenPayload,
 }: TUseDriverCompleteRegistrationForm) => {
-  const { state, handleRequest } = useRequest();
+  const { state, handleServerAction } = useServerAction();
 
   const {
     register,
@@ -43,6 +45,13 @@ const useDriverCompleteRegistrationForm = ({
 
   const formFields = useDriverCompleteRegistrationFormFields({ errors, register });
 
+  const onSuccess = () =>
+    displayToast({
+      type: EToastType.SUCCESS,
+      text: registrationMessages('registrationSuccess'),
+      testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+    });
+
   const onSubmit: SubmitHandler<TDriverCompleteRegistrationFormSchema> = async (
     formValues: TDriverCompleteRegistrationFormSchema,
   ) => {
@@ -50,25 +59,19 @@ const useDriverCompleteRegistrationForm = ({
       return;
     }
 
-    const data = getDriverCompleteDto(formValues, tokenPayload);
+    const actionArgs = getDriverCompleteDto(formValues, tokenPayload);
 
-    const response = await handleRequest({
-      endpoint: '/driver/register/',
-      method: 'POST',
-      data,
-      errorMessage: {
-        uniqueMessage: registrationMessages('registrationError'),
-        testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
-      },
+    const errorMessage = {
+      uniqueMessage: registrationMessages('registrationError'),
+      testId: DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
+    };
+
+    handleServerAction({
+      actionArgs,
+      errorMessage,
+      action: registerDriver,
+      onSuccess,
     });
-
-    if (response?.ok) {
-      displayToast({
-        type: EToastType.SUCCESS,
-        text: registrationMessages('registrationSuccess'),
-        testId: DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
-      });
-    }
   };
 
   return {
