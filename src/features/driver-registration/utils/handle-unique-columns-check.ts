@@ -24,7 +24,7 @@ const checkUniqueDriverColumns = async (email: string, phoneNumberHash: string) 
   const supabase = await createClient();
 
   return await supabase
-    .from('Drivers')
+    .from('drivers')
     .select(`${EDriverEntityKeys.EMAIL}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}`)
     .or(
       `${EDriverEntityKeys.EMAIL}.eq.${email}, ${EDriverEntityKeys.PHONE_NUMBER_HASH}.eq.${phoneNumberHash}`,

@@ -1,3 +1,5 @@
+import type { NextRequest } from 'next/server';
+
 import { generateDriverRegistrationToken } from '@/features/driver-registration/utils/generate-driver-registration-token';
 import handleUniqueColumnsCheck from '@/features/driver-registration/utils/handle-unique-columns-check';
 import sendDriverRegistrationEmail from '@/features/driver-registration/utils/send-driver-registration-email';
@@ -16,13 +18,13 @@ import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/
 const keysToEncrypt = [EDriverRegistrationFormKeys.PHONE_NUMBER];
 const keysToOmit = [EDriverRegistrationFormKeys.RULES];
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const t = await getApiTranslations();
+    const t = await getApiTranslations(request);
     const data = await request.json();
 
-    const { email, phoneNumber } = data;
-    const phoneNumberHash = createHash(String(phoneNumber));
+    const { email } = data;
+    const phoneNumberHash = createHash(data[EDriverRegistrationFormKeys.PHONE_NUMBER]);
 
     await handleUniqueColumnsCheck({
       phoneNumberHash,
