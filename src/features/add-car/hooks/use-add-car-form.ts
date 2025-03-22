@@ -34,10 +34,10 @@ const useAddCar = () => {
   const onSubmit: SubmitHandler<TAddCarFormSchema> = async (data) => {
     const response = await handleRequest({
       endpoint: '/driver/add-car/',
-      method: 'PATCH',
+      method: 'POST',
       data,
       errorMessage: {
-        uniqueMessage: t('initialRegistratrionError'),
+        uniqueMessage: t('addCarError'),
         testId: ADD_CAR_FAILURE_MESSAGE,
       },
     });
@@ -45,7 +45,7 @@ const useAddCar = () => {
     if (response?.ok) {
       displayToast({
         type: EToastType.SUCCESS,
-        text: t('initialRegistrationSuccess'),
+        text: t('addCarSuccess'),
         testId: ADD_CAR_SUCCESS_MESSAGE,
       });
     }

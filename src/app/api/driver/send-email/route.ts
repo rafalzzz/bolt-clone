@@ -21,8 +21,8 @@ export async function POST(request: Request) {
     const t = await getApiTranslations();
     const data = await request.json();
 
-    const { email, phoneNumber } = data;
-    const phoneNumberHash = createHash(String(phoneNumber));
+    const { email } = data;
+    const phoneNumberHash = createHash(data[EDriverRegistrationFormKeys.PHONE_NUMBER]);
 
     await handleUniqueColumnsCheck({
       phoneNumberHash,

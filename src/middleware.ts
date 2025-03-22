@@ -1,18 +1,9 @@
 import type { NextRequest } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
 
-import { routing } from '@/i18n/routing';
-
-import { createAuthMiddleware } from './lib/supabase/middleware';
-
-const handleI18nRouting = createMiddleware(routing);
-
-const updateSession = createAuthMiddleware();
+import { updateSession } from '@/lib/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
-  const response = handleI18nRouting(request);
-
-  return await updateSession(request, response);
+  return await updateSession(request);
 }
 
 export const config = {
@@ -26,6 +17,6 @@ export const config = {
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)
-    '/((?!_next|_vercel|.*\\..*).*)',
+    '/((?!api|_next|_vercel|.*\\..*).*)',
   ],
 };

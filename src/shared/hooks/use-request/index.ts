@@ -153,6 +153,7 @@ const useRequest = () => {
         method,
         headers: addHeaders ? { ...headers } : undefined,
         body: getRequestBody(data),
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -169,7 +170,10 @@ const useRequest = () => {
 
   return {
     state,
+    startRequest,
+    handleSuccess,
     handleRequest,
+    handleRequestError,
   };
 };
 

@@ -2,8 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import refresh from '@/features/actions/test';
-
+import useDriverLoginFormFields from '@/features/driver-login/hooks/use-driver-login-form-fields';
 import useRequest from '@/shared/hooks/use-request';
 
 import {
@@ -13,10 +12,10 @@ import {
 
 import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
-import useDriverLoginFormFields from './use-driver-login-form-fields';
+import loginDriverAction from '@/features/driver-login/server-actions/login-driver';
 
 const useDriverLoginForm = () => {
-  const { state, handleRequest } = useRequest();
+  const { state, startRequest, handleSuccess, handleRequestError } = useRequest();
 
   const {
     register,
@@ -27,23 +26,23 @@ const useDriverLoginForm = () => {
     resolver: zodResolver(driverLoginFormSchema),
   });
 
-  const t = useTranslations('DriverLoginForm');
+  const t = useTranslations('LoginAction');
   const formFields = useDriverLoginFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
-    const response = await handleRequest({
-      endpoint: '/driver/login/',
-      method: 'POST',
-      data,
-      errorMessage: {
-        uniqueMessage: t('loginError'),
-        testId: DRIVER_LOGIN_FAILURE_MESSAGE,
-      },
-    });
+    startRequest();
 
-    if (response?.ok) {
-      const { path } = await response.json();
-      refresh(path);
+    try {
+      await loginDriverAction(data);
+
+      handleSuccess();
+    } catch (error) {
+      const uniqueMessage = {
+        uniqueMessage: t('unknownError'),
+        testId: DRIVER_LOGIN_FAILURE_MESSAGE,
+      };
+
+      handleRequestError(uniqueMessage, error);
     }
   };
 
