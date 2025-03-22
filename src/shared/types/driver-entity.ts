@@ -9,10 +9,5 @@ export type TDriverEntity = {
   [EDriverEntityKeys.PHONE_NUMBER_HASH]: string;
   [EDriverEntityKeys.CITY]: string;
   [EDriverEntityKeys.PASSWORD]: string;
-  [EDriverEntityKeys.CAR_NUMBER]?: string;
-  [EDriverEntityKeys.CAR_NUMBER_HASH]?: string;
-  [EDriverEntityKeys.CAR_BRAND]?: string;
-  [EDriverEntityKeys.CAR_MODEL]?: string;
-  [EDriverEntityKeys.CAR_COLOR]?: string;
   [EDriverEntityKeys.FILE_URL]?: string;
 };

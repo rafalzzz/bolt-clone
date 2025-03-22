@@ -1,10 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import refresh from '@/features/actions/test';
+import loginDriver from '@/features/driver-login/server-actions/login-driver';
 
-import useRequest from '@/shared/hooks/use-request';
+import useDriverLoginFormFields from '@/features/driver-login/hooks/use-driver-login-form-fields';
+import useServerAction from '@/shared/hooks/use-server-action';
 
 import {
   type TDriverLoginFormSchema,
@@ -13,10 +15,9 @@ import {
 
 import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
-import useDriverLoginFormFields from './use-driver-login-form-fields';
-
 const useDriverLoginForm = () => {
-  const { state, handleRequest } = useRequest();
+  const router = useRouter();
+  const { state, handleServerAction } = useServerAction();
 
   const {
     register,
@@ -27,23 +28,21 @@ const useDriverLoginForm = () => {
     resolver: zodResolver(driverLoginFormSchema),
   });
 
-  const t = useTranslations('DriverLoginForm');
+  const t = useTranslations('LoginAction');
   const formFields = useDriverLoginFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
-    const response = await handleRequest({
-      endpoint: '/driver/login/',
-      method: 'POST',
-      data,
+    const redirectPath = await handleServerAction({
+      action: loginDriver,
+      actionArgs: data,
       errorMessage: {
-        uniqueMessage: t('loginError'),
+        uniqueMessage: t('unknownError'),
         testId: DRIVER_LOGIN_FAILURE_MESSAGE,
       },
     });
 
-    if (response?.ok) {
-      const { path } = await response.json();
-      refresh(path);
+    if (redirectPath) {
+      router.push(redirectPath);
     }
   };
 
