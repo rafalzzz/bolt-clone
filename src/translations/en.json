@@ -180,5 +180,8 @@
   "LoginAction": {
     "incorrentCredentialsMessage": "Incorrect email or password",
     "unknownError": "Unknown error occured"
+  },
+  "RegisterAction": {
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
   }
 }
