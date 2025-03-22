@@ -174,11 +174,19 @@
     "carColorLabel": "Car color",
     "carColorPlaceholder": "Select the car color",
     "submitButtonText": "Add car",
-    "addCarError": "An error occurred during adding the car.",
-    "addCarSuccess": "The car has been added successfully."
+    "addCarError": "An error occurred during adding the car",
+    "addCarSuccess": "The car has been added successfully",
+    "unknownError": "Unknown error occured"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Incorrect email or password",
     "unknownError": "Unknown error occured"
+  },
+  "RegisterAction": {
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
+  },
+  "AddCarAction": {
+    "authError": "Unauthorized to perform this action",
+    "carNumberIsAlreadyTaken": "There is already a car with the provided registration number"
   }
 }
