@@ -24,7 +24,7 @@
             "position": "before"
           },
           {
-            "pattern": "**/actions/**",
+            "pattern": "**/server-actions/**",
             "group": "internal",
             "position": "before"
           },

@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server-client';
 import getErrorMessage from '@/shared/utils/common/get-error-message';
 import getServerActionTranslations from '@/shared/utils/server-side/get-server-action-translations';
 
-import { TDriverLoginFormSchema } from '../schemas/driver-login-form-schema';
+import { TDriverLoginFormSchema } from '@/features/driver-login/schemas/driver-login-form-schema';
 
 const signInToSupabase = async (user: TDriverLoginFormSchema, locale: string) => {
   const supabase = await createClient();
