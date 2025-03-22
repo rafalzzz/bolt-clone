@@ -173,8 +173,9 @@
     "carColorPlaceholder": "Wybierz kolor samochodu",
     "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
     "submitButtonText": "Dodaj samochód",
-    "addCarError": "Wystąpił błąd podczas dodawania samochodu.",
-    "addCarSuccess": "Samochód został dodany pomyślnie."
+    "addCarError": "Wystąpił błąd podczas dodawania samochodu",
+    "addCarSuccess": "Samochód został dodany pomyślnie",
+    "unknownError": "Wystąpił nieznany błąd"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
@@ -182,5 +183,9 @@
   },
   "RegisterAction": {
     "missingAuthUserId": "Something went wrong, missing auth_user_id"
+  },
+  "AddCarAction": {
+    "authError": "Brak autoryzacji do wykonania akcji",
+    "carNumberIsAlreadyTaken": "Istnieje już samochód z podanym numerem rejestracyjnym"
   }
 }

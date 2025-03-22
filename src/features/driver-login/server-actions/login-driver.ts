@@ -1,7 +1,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 import signInToSupabase from '@/features/driver-login/server-actions/sign-in-to-supabase';
 
@@ -17,7 +16,8 @@ const loginDriver = async (user: TDriverLoginFormSchema) => {
   const redirectPath = getRedirectPath(userMetaData, locale);
 
   revalidatePath('/', 'layout');
-  redirect(redirectPath);
+
+  return redirectPath;
 };
 
 export default loginDriver;

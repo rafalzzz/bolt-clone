@@ -8,12 +8,8 @@ const getUserId = async (supabase: SupabaseClient, unknownErrorMessage: string) 
     error,
   } = await supabase.auth.getUser();
 
-  if (error) {
-    throw error;
-  }
-
-  if (!user?.id) {
-    throw new CustomResponseError(500, unknownErrorMessage);
+  if (error || !user) {
+    throw new CustomResponseError(401, unknownErrorMessage);
   }
 
   return user.id;

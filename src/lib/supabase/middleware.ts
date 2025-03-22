@@ -3,8 +3,28 @@ import { NextResponse, type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
+import { LANGUAGE } from '@/shared/consts/cookie-names';
 
 const intlMiddleware = createMiddleware(routing);
+
+const getCurrentLocale = (request: NextRequest) => {
+  const localeCookie = request.cookies.get(LANGUAGE);
+  return localeCookie?.value || routing.defaultLocale;
+};
+
+const getRedirectUrl = (request: NextRequest) => {
+  const locale = getCurrentLocale(request);
+  const requestUrl = request.nextUrl.pathname;
+  const userType = requestUrl.includes('driver') ? 'driver' : 'client';
+
+  const url = request.nextUrl.clone();
+  url.pathname = `/${locale}/${userType}/login/`;
+  return url;
+};
+
+const isAuthRoute = (request: NextRequest) => {
+  return request.nextUrl.pathname.includes('/auth');
+};
 
 export async function updateSession(request: NextRequest) {
   let intlResponse = intlMiddleware(request);
@@ -36,13 +56,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  console.log({ user });
+  if (!user && isAuthRoute(request)) {
+    const url = getRedirectUrl(request);
 
-  /*  if (!user && request.nextUrl.pathname.includes('/account')) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/sign-in';
     return NextResponse.redirect(url);
-  } */
+  }
 
   return intlResponse;
 }
