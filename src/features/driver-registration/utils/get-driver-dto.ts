@@ -8,7 +8,7 @@ import { TDriverEntity } from '@/shared/types/driver-entity';
 
 import { EDriverRegistrationTokenPayloadKeys } from '../enums/driver-registration-form-keys';
 
-type TGetDriverDtoParams = {
+type TGetDriverDtoArgs = {
   data: TInitialDriverEntityData;
   authUserId: string;
 };
@@ -21,10 +21,7 @@ const keyToMap = {
   authUserId: EDriverEntityKeys.AUTH_USER_ID,
 };
 
-const getDriverDto = ({ data, authUserId }: TGetDriverDtoParams): TDriverEntity => {
-  const driverEntity = changeObjectKeys({ ...data, authUserId }, keyToMap) as TDriverEntity;
-
-  return driverEntity;
-};
+const getDriverDto = ({ data, authUserId }: TGetDriverDtoArgs): TDriverEntity =>
+  changeObjectKeys({ ...data, authUserId }, keyToMap) as TDriverEntity;
 
 export default getDriverDto;

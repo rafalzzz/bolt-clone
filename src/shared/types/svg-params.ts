@@ -1,3 +1,3 @@
-export type TSvgParams = {
+export type TSvg = {
   className: string;
 };
