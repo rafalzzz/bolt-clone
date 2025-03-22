@@ -45,6 +45,10 @@ const useAddCar = () => {
       action: addCar,
       onSuccess,
       actionArgs: data,
+      errorMessage: {
+        uniqueMessage: t('unknownError'),
+        testId: ADD_CAR_FAILURE_MESSAGE,
+      },
     });
   };
 
