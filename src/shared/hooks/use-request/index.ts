@@ -170,7 +170,10 @@ const useRequest = () => {
 
   return {
     state,
+    startRequest,
+    handleSuccess,
     handleRequest,
+    handleRequestError,
   };
 };
 

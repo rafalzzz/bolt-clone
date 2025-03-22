@@ -33,6 +33,12 @@ const loginUser = async ({ supabase, user, incorrentCredentialsMessage }: TLogin
   }
 
   const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  await supabase.auth.setSession(session!);
+
+  const {
     user_metadata: { role, carAdded, faceAuth },
   } = userData;
 
@@ -41,7 +47,7 @@ const loginUser = async ({ supabase, user, incorrentCredentialsMessage }: TLogin
     throw incorrectCredentialError;
   }
 
-  return { carAdded, faceAuth };
+  return { carAdded, faceAuth, session };
 };
 
 export default loginUser;

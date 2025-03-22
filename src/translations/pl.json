@@ -175,5 +175,9 @@
     "submitButtonText": "Dodaj samochód",
     "addCarError": "Wystąpił błąd podczas dodawania samochodu.",
     "addCarSuccess": "Samochód został dodany pomyślnie."
+  },
+  "LoginAction": {
+    "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
+    "unknownError": "Wystąpił nieznany błąd"
   }
 }

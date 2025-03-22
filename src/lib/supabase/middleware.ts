@@ -38,7 +38,7 @@ export async function updateSession(request: NextRequest) {
 
   console.log({ user });
 
-  /* if (!user && request.nextUrl.pathname.includes('/account')) {
+  /*  if (!user && request.nextUrl.pathname.includes('/account')) {
     const url = request.nextUrl.clone();
     url.pathname = '/sign-in';
     return NextResponse.redirect(url);

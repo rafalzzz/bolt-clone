@@ -176,5 +176,9 @@
     "submitButtonText": "Add car",
     "addCarError": "An error occurred during adding the car.",
     "addCarSuccess": "The car has been added successfully."
+  },
+  "LoginAction": {
+    "incorrentCredentialsMessage": "Incorrect email or password",
+    "unknownError": "Unknown error occured"
   }
 }
