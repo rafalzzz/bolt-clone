@@ -17,12 +17,6 @@ const addCarToDatabase = async ({
 }: TAddCarToDatabaseArgs) => {
   const { error } = await supabase.from('cars').insert(carDto);
 
-  await supabase.auth.updateUser({
-    data: {
-      carAdded: true,
-    },
-  });
-
   if (error) {
     const errorMessage = getErrorMessage(error);
 
@@ -31,6 +25,16 @@ const addCarToDatabase = async ({
     }
 
     throw error;
+  }
+
+  const { error: updateMetadataError } = await supabase.auth.updateUser({
+    data: {
+      carAdded: true,
+    },
+  });
+
+  if (updateMetadataError) {
+    throw updateMetadataError;
   }
 };
 
