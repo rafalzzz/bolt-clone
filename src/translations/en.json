@@ -188,5 +188,15 @@
   "AddCarAction": {
     "authError": "Unauthorized to perform this action",
     "carNumberIsAlreadyTaken": "There is already a car with the provided registration number"
+  },
+  "AddFaceAuthPageHeadSection": {
+    "title": "Verify your identity – Upload a face photo to BoltCopy",
+    "description": "For your safety and to start driving with BoltCopy, upload a clear photo of yourself. Quick and secure identity verification to get you on the road in no time!",
+    "keywords": "face verification, identity check, driver photo upload, BoltCopy verification, selfie upload, start driving, secure verification"
+  },
+  "AddFaceAuthPage": {
+    "description": "Add your face verification and start driving with BoltCopy",
+    "secondaryDescription": "You're almost ready to drive! Complete your setup by verifying your face and get on the road with BoltCopy.",
+    "showFaceAuthModal": "Add face image"
   }
 }

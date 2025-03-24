@@ -187,5 +187,15 @@
   "AddCarAction": {
     "authError": "Brak autoryzacji do wykonania akcji",
     "carNumberIsAlreadyTaken": "Istnieje już samochód z podanym numerem rejestracyjnym"
+  },
+  "AddFaceAuthPageHeadSection": {
+    "title": "Zweryfikuj swoją tożsamość – Prześlij zdjęcie twarzy do BoltCopy",
+    "description": "Dla twojego bezpieczeństwa i aby rozpocząć jazdę z BoltCopy, prześlij wyraźne zdjęcie swojej twarzy. Szybka i bezpieczna weryfikacja tożsamości, która pozwoli ci szybko rozpocząć jazdę!",
+    "keywords": "weryfikacja twarzy, sprawdzanie tożsamości, przesyłanie zdjęcia kierowcy, weryfikacja BoltCopy, przesyłanie selfie, rozpoczęcie jazdy, bezpieczna weryfikacja"
+  },
+  "AddFaceAuthPage": {
+    "description": "Dodaj weryfikację twarzy i zacznij jeździć z BoltCopy",
+    "secondaryDescription": "Jesteś prawie gotowy do jazdy! Zakończ konfigurację, weryfikując swoją twarz, i ruszaj w drogę z BoltCopy.",
+    "showFaceAuthModal": "Dodaj zdjęcia twarzy"
   }
 }
