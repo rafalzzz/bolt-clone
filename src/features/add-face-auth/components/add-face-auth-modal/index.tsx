@@ -1,14 +1,11 @@
 import { useTranslations } from 'next-intl';
-import type { FC, Dispatch, SetStateAction } from 'react';
-import type { UseFormSetValue } from 'react-hook-form';
+import { useState, type FC } from 'react';
 
 import CustomModal from '@/shared/components/custom-modal';
 
-import useAddFacialRecognition from '@/features/driver-registration/hooks/use-add-facial-recognition';
-import useStartVideo from '@/features/driver-registration/hooks/use-handle-video';
+import useAddFaceAuth from '@/features/add-face-auth/hooks/use-add-facial-recognition';
+import useStartVideo from '@/features/add-face-auth/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
-
-import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver-registration/schemas/driver-complete-registration-form-schema';
 
 import {
   ADD_FACIAL_RECOGNITION_BUTTON,
@@ -19,11 +16,8 @@ import {
 
 import CameraSvg from '@/shared/svg/camera-svg';
 
-type TAddFacialRecognitionModal = {
+type TAddFaceAuthModal = {
   isVisible: boolean;
-  setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
-  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
-  onOk: () => void;
   onCancel: () => void;
 };
 
@@ -31,14 +25,10 @@ const PADDING = 80;
 const MAX_VIDEO_WIDTH = 696;
 const MAX_WIDTH = MAX_VIDEO_WIDTH + PADDING;
 
-const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
-  isVisible,
-  setIsAddFacialRecognitionModalEnabled,
-  setValue,
-  onOk,
-  onCancel,
-}) => {
-  const t = useTranslations('AddFacialRecognitionModal');
+const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
+  const [file, setFile] = useState<File | null>(null);
+
+  const t = useTranslations('AddFaceAuthModal');
 
   const { width: windowWidth } = useWindowSize({ maxWidth: MAX_WIDTH });
 
@@ -50,10 +40,9 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
     videoHeight,
   });
 
-  const addFacialRecognition = useAddFacialRecognition({
+  const addFaceAuth = useAddFaceAuth({
     intervalRef,
-    setIsAddFacialRecognitionModalEnabled,
-    setValue,
+    setFile,
   });
 
   const isCameraDisabled = isVideoLoading || isVideoError;
@@ -67,7 +56,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
       modalTestId={ADD_FACIAL_RECOGNITION_MODAL}
       onCancel={onCancel}
       okButtonProps={{
-        onClick: onOk,
+        onClick: () => console.log('click', file),
         disabled: isCameraDisabled,
       }}
     >
@@ -91,7 +80,7 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
       </div>
 
       <button
-        onClick={() => addFacialRecognition(videoRef, canvasRef)}
+        onClick={() => addFaceAuth(videoRef, canvasRef)}
         disabled={isCameraDisabled}
         data-testid={ADD_FACIAL_RECOGNITION_BUTTON}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
@@ -102,4 +91,4 @@ const AddFacialRecognitionModal: FC<TAddFacialRecognitionModal> = ({
   );
 };
 
-export default AddFacialRecognitionModal;
+export default AddFaceAuthModal;

@@ -8,26 +8,41 @@ import CustomFormButton from '@/shared/components/custom-form-button';
 
 import { ENABLE_FACE_AUTH_MODAL } from '@/test-ids/add-face-auth-page';
 
+const AddFaceAuthModal = dynamic(
+  () => import('@/features/add-face-auth/components/add-face-auth-modal'),
+  {
+    ssr: false,
+  },
+);
+
 const AddFaceAuthButton = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const t = useTranslations('AddFaceAuthPage');
 
-  console.log({ showModal });
-
   return (
-    <div className='flex justify-center items-center'>
-      <CustomFormButton
-        text={t('showFaceAuthModal')}
-        isLoading={false}
-        testId={ENABLE_FACE_AUTH_MODAL}
-        additionalClassNames='max-w-[300px]'
-        buttonProps={{
-          type: 'button',
-          onClick: () => setShowModal((prevState) => !prevState),
-        }}
-      />
-    </div>
+    <>
+      {isVisible && (
+        <AddFaceAuthModal
+          isVisible={isVisible}
+          onCancel={() => {
+            setIsVisible(false);
+          }}
+        />
+      )}
+      <div className='flex justify-center items-center'>
+        <CustomFormButton
+          text={t('showFaceAuthModal')}
+          isLoading={false}
+          testId={ENABLE_FACE_AUTH_MODAL}
+          additionalClassNames='max-w-[300px]'
+          buttonProps={{
+            type: 'button',
+            onClick: () => setIsVisible((prevState) => !prevState),
+          }}
+        />
+      </div>
+    </>
   );
 };
 

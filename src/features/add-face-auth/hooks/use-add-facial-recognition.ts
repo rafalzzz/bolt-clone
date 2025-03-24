@@ -1,28 +1,22 @@
 import { useTranslations } from 'next-intl';
 import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from 'react';
-import type { UseFormSetValue } from 'react-hook-form';
 
-import getCanvasDrawing from '@/features/driver-registration/utils/get-canvas-drawing';
-import { detectFaces } from '@/features/driver-registration/utils/start-facial-recognition';
-import stopStreamedVideo from '@/features/driver-registration/utils/stop-streamed-video';
+import getCanvasDrawing from '@/features/add-face-auth/utils/get-canvas-drawing';
+import { detectFaces } from '@/features/add-face-auth/utils/start-facial-recognition';
+import stopStreamedVideo from '@/features/add-face-auth/utils/stop-streamed-video';
 import displayToast from '@/shared/utils/client-side/display-toast';
-
-import type { TDriverCompleteRegistrationFormSchema } from '@/features/driver-registration/schemas/driver-complete-registration-form-schema';
 
 import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
 
 import { TDetections } from '@/features/driver-registration/types/detections';
 
-/* import { EDriverCompleteRegistrationFormKeys } from '@/features/driver-registration/enums/driver-complete-registration-form-keys'; */
-
-type TUseAddFacialRecognition = {
+type TUseAddFaceAuth = {
   intervalRef: MutableRefObject<NodeJS.Timeout | null>;
-  setIsAddFacialRecognitionModalEnabled: Dispatch<SetStateAction<boolean>>;
-  setValue: UseFormSetValue<TDriverCompleteRegistrationFormSchema>;
+  setFile: Dispatch<SetStateAction<File | null>>;
 };
 
-const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecognition) => {
-  const t = useTranslations('AddFacialRecognitionError');
+const useAddFaceAuth = ({ intervalRef, setFile }: TUseAddFaceAuth) => {
+  const t = useTranslations('AddFaceAuthError');
 
   const handleError = (error?: unknown) => {
     const text = error instanceof Error ? error.message : t('errorWhileAddingFaceRecognition');
@@ -30,7 +24,7 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
     displayToast({ text });
   };
 
-  const addFacialRecognition = async (
+  const addFaceAuth = async (
     videoRef: RefObject<HTMLVideoElement>,
     canvasRef: RefObject<HTMLCanvasElement>,
   ) => {
@@ -60,14 +54,14 @@ const useAddFacialRecognition = ({ intervalRef, setValue }: TUseAddFacialRecogni
 
       const file = await getCanvasDrawing({ video, canvas, detections });
 
-      /* setValue(EDriverCompleteRegistrationFormKeys.FILE, file); */
+      setFile(file);
       stopStreamedVideo(videoRef);
     } catch (error) {
       handleError(error);
     }
   };
 
-  return addFacialRecognition;
+  return addFaceAuth;
 };
 
-export default useAddFacialRecognition;
+export default useAddFaceAuth;

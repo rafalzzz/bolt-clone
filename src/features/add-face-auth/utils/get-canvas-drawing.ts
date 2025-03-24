@@ -1,4 +1,4 @@
-import { drawDetections } from '@/features/driver-registration/utils/start-facial-recognition';
+import { drawDetections } from '@/features/add-face-auth/utils/start-facial-recognition';
 
 import { TDetections } from '@/features/driver-registration/types/detections';
 

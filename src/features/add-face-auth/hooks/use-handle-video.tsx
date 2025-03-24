@@ -2,10 +2,10 @@ import { setBackend, ready } from '@tensorflow/tfjs';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import loadFaceModels from '@/features/driver-registration/utils/load-face-models';
-import { startFacialRecognition } from '@/features/driver-registration/utils/start-facial-recognition';
-import startVideo from '@/features/driver-registration/utils/start-video';
-import stopStreamedVideo from '@/features/driver-registration/utils/stop-streamed-video';
+import loadFaceModels from '@/features/add-face-auth/utils/load-face-models';
+import { startFacialRecognition } from '@/features/add-face-auth/utils/start-facial-recognition';
+import startVideo from '@/features/add-face-auth/utils/start-video';
+import stopStreamedVideo from '@/features/add-face-auth/utils/stop-streamed-video';
 import displayToast from '@/shared/utils/client-side/display-toast';
 import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
