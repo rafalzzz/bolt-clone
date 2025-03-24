@@ -19,7 +19,7 @@ const useAddFaceAuth = ({ intervalRef, setFile }: TUseAddFaceAuth) => {
   const t = useTranslations('AddFaceAuthError');
 
   const handleError = (error?: unknown) => {
-    const text = error instanceof Error ? error.message : t('errorWhileAddingFaceRecognition');
+    const text = error instanceof Error ? error.message : t('errorWhileAddingFaceAuth');
 
     displayToast({ text });
   };

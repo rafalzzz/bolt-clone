@@ -3,7 +3,7 @@ import { useState, type FC } from 'react';
 
 import CustomModal from '@/shared/components/custom-modal';
 
-import useAddFaceAuth from '@/features/add-face-auth/hooks/use-add-facial-recognition';
+import useAddFaceAuth from '@/features/add-face-auth/hooks/use-add-face-auth';
 import useStartVideo from '@/features/add-face-auth/hooks/use-handle-video';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 

@@ -27,7 +27,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const t = useTranslations('AddFacialRecognitionError');
+  const t = useTranslations('VideoError');
 
   const handleStartVideoError = useCallback(
     (error: string) => {

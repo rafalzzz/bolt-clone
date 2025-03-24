@@ -72,8 +72,7 @@
     "passwordDigit": "Password must contain at least one digit",
     "passwordSpecialCharacter": "Password must contain at least one special character",
     "passwordMustMatch": "The entered passwords do not match",
-    "carRegistrationNumberCharacters": "The car registration number can contain only uppercase letters and digits",
-    "requiredFacialRecognition": "Adding face recognition is required"
+    "carRegistrationNumberCharacters": "The car registration number can contain only uppercase letters and digits"
   },
   "DriverRegistrationCompletePage": {
     "description": "Turn the key to adventure and profits with BoltCopy",
@@ -103,9 +102,6 @@
   "CustomModal": {
     "okButtonText": "Confirm",
     "cancelButtonText": "Cancel"
-  },
-  "AddFacialRecognitionModal": {
-    "title": "Add facial recognition"
   },
   "AddFacialRecognitionError": {
     "permissionDenied": "To add a facial photo, access to the camera is required",
@@ -198,5 +194,16 @@
     "description": "Add your face verification and start driving with BoltCopy",
     "secondaryDescription": "You're almost ready to drive! Complete your setup by verifying your face and get on the road with BoltCopy.",
     "showFaceAuthModal": "Add face image"
+  },
+  "AddFaceAuthModal": {
+    "title": "Add facial authorization"
+  },
+  "VideoError": {
+    "permissionDenied": "To add a facial photo, access to the camera is required"
+  },
+  "AddFaceAuthErrors": {
+    "errorWhileAddingFaceAuth": "An error occurred while adding face authorization",
+    "photoIsNotAdded": "The photo for face authorization has not been added",
+    "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
   }
 }
