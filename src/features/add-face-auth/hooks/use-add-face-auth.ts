@@ -16,7 +16,7 @@ type TUseAddFaceAuth = {
 };
 
 const useAddFaceAuth = ({ intervalRef, setFile }: TUseAddFaceAuth) => {
-  const t = useTranslations('AddFaceAuthError');
+  const t = useTranslations('AddFaceAuthErrors');
 
   const handleError = (error?: unknown) => {
     const text = error instanceof Error ? error.message : t('errorWhileAddingFaceAuth');

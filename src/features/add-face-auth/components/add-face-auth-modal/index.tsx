@@ -5,6 +5,7 @@ import CustomModal from '@/shared/components/custom-modal';
 
 import useAddFaceAuth from '@/features/add-face-auth/hooks/use-add-face-auth';
 import useStartVideo from '@/features/add-face-auth/hooks/use-handle-video';
+import useUploadFaceAuthImage from '@/features/add-face-auth/hooks/use-upload-face-auth-image';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
 import {
@@ -40,6 +41,8 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
     videoHeight,
   });
 
+  const { uploadFaceAuthImage } = useUploadFaceAuthImage();
+
   const addFaceAuth = useAddFaceAuth({
     intervalRef,
     setFile,
@@ -56,7 +59,7 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
       modalTestId={ADD_FACIAL_RECOGNITION_MODAL}
       onCancel={onCancel}
       okButtonProps={{
-        onClick: () => console.log('click', file),
+        onClick: () => uploadFaceAuthImage(file),
         disabled: isCameraDisabled,
       }}
     >

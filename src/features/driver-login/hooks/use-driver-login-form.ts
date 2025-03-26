@@ -17,6 +17,7 @@ import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
 const useDriverLoginForm = () => {
   const router = useRouter();
+  const t = useTranslations('LoginAction');
   const { state, handleServerAction } = useServerAction();
 
   const {
@@ -28,7 +29,6 @@ const useDriverLoginForm = () => {
     resolver: zodResolver(driverLoginFormSchema),
   });
 
-  const t = useTranslations('LoginAction');
   const formFields = useDriverLoginFormFields({ errors, register, setValue });
 
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {

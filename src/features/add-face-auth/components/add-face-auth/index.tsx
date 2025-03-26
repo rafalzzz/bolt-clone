@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
+import { ToastContainer } from 'react-toastify';
 
 import AddFaceAuthButton from '@/features/add-face-auth/components/add-face-auth-button';
 import CenteredPageDescription from '@/shared/components/centered-page-description';
@@ -13,6 +14,7 @@ const AddFaceAuth = () => {
 
   return (
     <div>
+      <ToastContainer />
       <CenteredPageDescription
         description={t('description')}
         secondaryDescription={t('secondaryDescription')}

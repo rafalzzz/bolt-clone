@@ -17,9 +17,8 @@ type TUseAddCarFormFields = {
 };
 
 const useAddCarFormFields = ({ errors, register, setValue }: TUseAddCarFormFields) => {
-  const t = useTranslations('AddCarForm');
-
   const options = useColorOptions();
+  const t = useTranslations('AddCarForm');
 
   const formFields: TCustomFormField<TAddCarFormSchema>[] = [
     {

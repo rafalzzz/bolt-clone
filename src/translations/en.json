@@ -172,11 +172,11 @@
     "submitButtonText": "Add car",
     "addCarError": "An error occurred during adding the car",
     "addCarSuccess": "The car has been added successfully",
-    "unknownError": "Unknown error occured"
+    "unknownError": "Unknown error occured during adding the car"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Incorrect email or password",
-    "unknownError": "Unknown error occured"
+    "unknownError": "Unknown error occured during login action"
   },
   "RegisterAction": {
     "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
@@ -203,7 +203,14 @@
   },
   "AddFaceAuthErrors": {
     "errorWhileAddingFaceAuth": "An error occurred while adding face authorization",
-    "photoIsNotAdded": "The photo for face authorization has not been added",
     "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
+  },
+  "UploadFaceAuth": {
+    "addFaceAuthSuccess": "The face authorization has been added successfully",
+    "photoIsNotAdded": "The photo for face authorization has not been added",
+    "unknownError": "Unknown error occured during adding face authorization"
+  },
+  "UploadFaceAuthImageAction": {
+    "authError": "Unauthorized to perform this action"
   }
 }
