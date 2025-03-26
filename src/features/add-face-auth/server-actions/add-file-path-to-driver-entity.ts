@@ -1,5 +1,3 @@
-'use server';
-
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { EDriverEntityKeys } from '@/shared/enums/driver-entity-keys';
