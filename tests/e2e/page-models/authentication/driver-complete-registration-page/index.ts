@@ -1,4 +1,4 @@
-import { type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { baseURL } from '@/config/playwright.config';
 
