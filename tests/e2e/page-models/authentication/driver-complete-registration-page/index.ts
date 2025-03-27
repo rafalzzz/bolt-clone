@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
 
 import { baseURL } from '@/config/playwright.config';
 
@@ -6,6 +6,7 @@ import { AddFacialRecognitionModal } from '@/page-models/authentication/add-faci
 
 import {
   DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
+  DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE,
   DRIVER_REGISTRATION_COMPLETE_PAGE_DESCRIPTION,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM,
   DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON,
@@ -97,6 +98,10 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     );
   }
 
+  async assertErrorToastMessage() {
+    await this.checkToastMessage(DRIVER_REGISTRATION_COMPLETE_FAILURE_MESSAGE, 'Unknown error');
+  }
+
   // Change form elements methods
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
@@ -156,25 +161,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
-  async checkInputErrors(
-    inputKey: string,
-    inputErrors: {
-      value: string;
-      errorMessage: string;
-    }[],
-  ) {
-    for (const inputError of inputErrors) {
-      const { value, errorMessage } = inputError;
-
-      await this.changeSingleInputValue(inputKey, value);
-
-      await this.checkErrorsMessages({
-        [inputKey]: errorMessage,
-      });
-    }
-  }
-
-  async assertRemainingFirstNameInputErrors() {
+  async assertFirstNameInputErrors() {
     const inputErrors = [
       { value: 'ts', errorMessage: 'This field requires at least 3 characters' },
       { value: 'test1', errorMessage: 'This field accepts only letters' },
@@ -184,7 +171,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.checkInputErrors(EDriverCompleteRegistrationFormKeys.FIRST_NAME, inputErrors);
   }
 
-  async assertRemainingLastNameInputErrors() {
+  async assertLastNameInputErrors() {
     const inputErrors = [
       { value: 'ts', errorMessage: 'This field requires at least 3 characters' },
       { value: 'test1', errorMessage: 'This field accepts only letters' },
@@ -194,7 +181,7 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.checkInputErrors(EDriverCompleteRegistrationFormKeys.LAST_NAME, inputErrors);
   }
 
-  async assertRemainingPasswordInputErrors() {
+  async assertPasswordInputErrors() {
     const inputErrors = [
       { value: 'tst', errorMessage: 'Password must contain at least 8 characters' },
       { value: 'testtest1', errorMessage: 'Password must contain at least one uppercase letter' },

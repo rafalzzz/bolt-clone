@@ -56,14 +56,21 @@ test.describe(
       test('Check input errors', async () => {
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertRequiredFieldsErrorMessages();
-        await driverCompleteRegistrationPage.assertRemainingFirstNameInputErrors();
-        await driverCompleteRegistrationPage.assertRemainingLastNameInputErrors();
-        await driverCompleteRegistrationPage.assertRemainingPasswordInputErrors();
+        await driverCompleteRegistrationPage.assertFirstNameInputErrors();
+        await driverCompleteRegistrationPage.assertLastNameInputErrors();
+        await driverCompleteRegistrationPage.assertPasswordInputErrors();
       });
 
       test('Check if errors are visible when form is filled correctly', async () => {
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.assertInputErrorsAreNotVisible();
+      });
+
+      test('Should display an error message when an error occurs during driver registration', async () => {
+        await driverCompleteRegistrationPage.mockServerAction(EMockedResponseType.ERROR);
+        await driverCompleteRegistrationPage.fillInputsWithValidValues();
+        await driverCompleteRegistrationPage.clickFormSubmitButton();
+        await driverCompleteRegistrationPage.assertErrorToastMessage();
       });
 
       test('Should register driver successfully', async () => {

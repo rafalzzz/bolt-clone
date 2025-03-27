@@ -21,16 +21,16 @@ test.describe(
       await driverRegistrationPage.assertButtonIsEnabled(driverRegistrationPage.submitButtonTestId);
     });
 
-    test('Should show error about required fields when form inputs are not filled', async () => {
+    test('Check input errors', async () => {
       await driverRegistrationPage.clickFormSubmitButton();
       await driverRegistrationPage.assertRequiredFieldsErrorMessages();
+      await driverRegistrationPage.assertEmailInputErrors();
+      await driverRegistrationPage.assertPhoneNumberInputErrors();
     });
 
-    test('Should show errors about wrong input value format', async () => {
-      await driverRegistrationPage.fillInputsWithInvalidValues();
-      await driverRegistrationPage.clickFormSubmitButton();
-      await driverRegistrationPage.assertInvalidFormatErrorMessages();
+    test('Check if errors are visible when form is filled correctly', async () => {
       await driverRegistrationPage.fillInputsWithValidValues();
+      await driverRegistrationPage.clickFormSubmitButton();
       await driverRegistrationPage.assertFormInputErrorsAreNotVisible();
     });
 

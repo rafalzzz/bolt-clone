@@ -81,6 +81,24 @@ export class BaseForm extends BasePage {
     }
   }
 
+  async checkInputErrors(
+    inputKey: string,
+    inputErrors: {
+      value: string;
+      errorMessage: string;
+    }[],
+  ) {
+    for (const inputError of inputErrors) {
+      const { value, errorMessage } = inputError;
+
+      await this.changeSingleInputValue(inputKey, value);
+
+      await this.checkErrorsMessages({
+        [inputKey]: errorMessage,
+      });
+    }
+  }
+
   async assertFormErrorsAreNotVisible(inputKeys: Readonly<string[]>) {
     for (const inputKey of inputKeys) {
       const errorElement = this.getErrorElement(inputKey);

@@ -1,9 +1,9 @@
 import { EMockedResponseType } from '@/shared/enums/mocked-respose-type';
 
 const mockPresets = {
-  [EMockedResponseType.SUCCESS]: () => ({ status: 'ok', mock: true }),
+  [EMockedResponseType.SUCCESS]: () => ({ success: true }),
   [EMockedResponseType.ERROR]: () => {
-    throw new Error('Mock error');
+    throw new Error('Unknown error');
   },
 };
 

@@ -18,7 +18,7 @@ const registerDriver = async (data: TCompleteDriverRegistrationFormData) => {
   const mockAction = await mockServerAction();
 
   if (mockAction) {
-    return mockResponse(mockAction);
+    return mockResponse(mockAction)();
   }
 
   const locale = await getLocaleValue();

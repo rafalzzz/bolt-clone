@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { BaseForm } from '@/classes/base-form';
 
@@ -100,15 +100,6 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   // Change form elements methods
-  async fillInputsWithInvalidValues() {
-    const invalidInputFormat: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
-    };
-
-    await this.changeInputsValues(invalidInputFormat);
-  }
-
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]:
@@ -145,6 +136,24 @@ export class DriverRegistrationPage extends BaseForm {
     }
   }
 
+  async assertEmailInputErrors() {
+    const values = ['!#', 'test@pl'];
+
+    const inputErrors = values.map((value) => ({
+      value,
+      errorMessage: 'Please enter a valid email',
+    }));
+
+    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, inputErrors);
+  }
+
+  async assertPhoneNumberInputErrors() {
+    const values = ['99999999!', '99999999A', '9999999999'];
+    const inputErrors = values.map((value) => ({ value, errorMessage: 'Invalid phone format' }));
+
+    await this.checkInputErrors(EDriverRegistrationFormKeys.PHONE_NUMBER, inputErrors);
+  }
+
   async assertAllFormErrorsAreNotVisible() {
     await this.assertFormErrorsAreNotVisible(this.inputKeys);
   }
@@ -158,15 +167,6 @@ export class DriverRegistrationPage extends BaseForm {
     };
 
     await this.checkErrorsMessages(requiredFieldErrorMessages);
-  }
-
-  async assertInvalidFormatErrorMessages() {
-    const invalidFormatErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'Please enter a valid email',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Invalid phone format',
-    };
-
-    await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
   async assertFormInputErrorsAreNotVisible() {
