@@ -67,17 +67,6 @@ export class BasePage {
     });
   }
 
-  async mockServerAction(responseType?: EMockedResponseType) {
-    await this.page.context().addCookies([
-      {
-        name: 'mock-server-action',
-        value: responseType,
-        domain: 'localhost',
-        path: '/',
-      },
-    ]);
-  }
-
   async getRequestPromise(endpoint: string) {
     return this.page.waitForRequest(endpoint);
   }
