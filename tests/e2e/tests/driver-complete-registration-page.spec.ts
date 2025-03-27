@@ -2,6 +2,8 @@ import { test } from '@playwright/test';
 
 import { DriverCompleteRegistrationPage } from '@/page-models/authentication/driver-complete-registration-page';
 
+import { EMockedResponseType } from '@/enums/mocked-response-type';
+
 test.describe(
   'DriverCompleteRegistrationPage tests',
   { tag: ['@driverCompleteRegistrationPage', '@critical'] },
@@ -65,15 +67,10 @@ test.describe(
       });
 
       test('Should register driver successfully', async () => {
-        await driverCompleteRegistrationPage.mockSuccessRegistrationCompleteResponse();
+        await driverCompleteRegistrationPage.mockServerAction(EMockedResponseType.SUCCESS);
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
-        await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
-
-        const request = await driverCompleteRegistrationPage.waitForRegistrationSuccessRequest();
-        const requestBody = JSON.parse(request.postData() || '{}');
-
+        await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();
-        await driverCompleteRegistrationPage.assertRequestBodyCorrectness(requestBody);
       });
     });
   },

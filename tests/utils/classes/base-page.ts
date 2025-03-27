@@ -1,5 +1,7 @@
 import { type Locator, expect, type Page } from '@playwright/test';
 
+import { EMockedResponseType } from '@/enums/mocked-response-type';
+
 type TMockResponseArgs<Options> = {
   endpoint: string;
   method: string;
@@ -63,6 +65,17 @@ export class BasePage {
         await route.continue();
       }
     });
+  }
+
+  async mockServerAction(responseType?: EMockedResponseType) {
+    await this.page.context().addCookies([
+      {
+        name: 'mock-server-action',
+        value: responseType,
+        domain: 'localhost',
+        path: '/',
+      },
+    ]);
   }
 
   async getRequestPromise(endpoint: string) {

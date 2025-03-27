@@ -113,46 +113,6 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.changeInputsValues(wrongFormatErrorMessages);
   }
 
-  // Requests methods
-  async mockSuccessRegistrationCompleteResponse() {
-    await this.mockRequestResponse({
-      endpoint: `**${REGISTER_DRIVER}`,
-      method: 'POST',
-      options: {
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({
-          message: 'You have been registered! You can start using our application',
-        }),
-      },
-    });
-  }
-
-  async waitForRegistrationSuccessRequest() {
-    const requestPromise = this.getRequestPromise(this.registerDriverEndpointUrl);
-
-    await this.clickFormSubmitButton();
-    await this.assertAllFormErrorsAreNotVisible();
-
-    await requestPromise;
-    return requestPromise;
-  }
-
-  assertRequestBodyCorrectness(requestBody: Record<string, unknown>) {
-    const tokenPayload = {
-      city: 'test@test.com',
-      email: 'test@test.com',
-      phoneNumber: '2f8e7d085d0cc2afaed38806eee92ee0:b1166cedd231ae223c10ff1a10338100',
-      phoneNumberHash: 'aba3704430f239293d276850aa5dd6418b5e5715fa458fabe6426a4355541371',
-    };
-
-    const expectedRequestBody = { ...tokenPayload, ...this.correctRequestBody };
-
-    delete expectedRequestBody[EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD];
-
-    expect(requestBody).toEqual(expectedRequestBody);
-  }
-
   // Form methods
   async assertInputPlaceholders() {
     const inputPlaceholders: TTestObject = {
