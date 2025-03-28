@@ -13,7 +13,7 @@ import {
   JWT_TOKEN_ERROR,
 } from '@/test-ids/driver-registration-complete-page';
 
-import { REGISTER_DRIVER } from '@/consts/endpoints';
+import { PASSWORD_INPUT_ERRORS } from '@/consts/input-errors';
 
 import { EDriverCompleteRegistrationFormKeys } from '@/enums/driver-complete-registration-form-keys';
 import { ELanguage } from '@/enums/language';
@@ -23,14 +23,6 @@ import { TTestObject } from '@/types/test-object';
 export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   readonly inputKeys: string[] = Object.values(EDriverCompleteRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON;
-  readonly registerDriverEndpointUrl: string = baseURL + REGISTER_DRIVER;
-
-  readonly correctRequestBody = {
-    [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
-    [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Test',
-    [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
-    [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
-  };
 
   constructor(page: Page, language: ELanguage = ELanguage.EN) {
     super(page, `${baseURL}/${language}/driver/complete/`);
@@ -105,14 +97,10 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   // Change form elements methods
   async fillInputsWithValidValues() {
     const wrongFormatErrorMessages: TTestObject = {
-      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]:
-        this.correctRequestBody[EDriverCompleteRegistrationFormKeys.FIRST_NAME],
-      [EDriverCompleteRegistrationFormKeys.LAST_NAME]:
-        this.correctRequestBody[EDriverCompleteRegistrationFormKeys.LAST_NAME],
-      [EDriverCompleteRegistrationFormKeys.PASSWORD]:
-        this.correctRequestBody[EDriverCompleteRegistrationFormKeys.PASSWORD],
-      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]:
-        this.correctRequestBody[EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD],
+      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
+      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Test',
+      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
+      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
     };
 
     await this.changeInputsValues(wrongFormatErrorMessages);
@@ -150,17 +138,6 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
     await this.checkErrorsMessages(requiredFieldErrorMessages);
   }
 
-  async assertInvalidFormatErrorMessages() {
-    const invalidFormatErrorMessages: TTestObject = {
-      [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'This field requires at least 3 characters',
-      [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'This field requires at least 3 characters',
-      [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'Password must contain at least 8 characters',
-      [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'The entered passwords do not match',
-    };
-
-    await this.checkErrorsMessages(invalidFormatErrorMessages);
-  }
-
   async assertFirstNameInputErrors() {
     const inputErrors = [
       { value: 'ts', errorMessage: 'This field requires at least 3 characters' },
@@ -182,15 +159,10 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
   }
 
   async assertPasswordInputErrors() {
-    const inputErrors = [
-      { value: 'tst', errorMessage: 'Password must contain at least 8 characters' },
-      { value: 'testtest1', errorMessage: 'Password must contain at least one uppercase letter' },
-      { value: 'TESTTEST1', errorMessage: 'Password must contain at least one lowercase letter' },
-      { value: 'TestTest', errorMessage: 'Password must contain at least one digit' },
-      { value: 'TestTest1', errorMessage: 'Password must contain at least one special character' },
-    ];
-
-    await this.checkInputErrors(EDriverCompleteRegistrationFormKeys.PASSWORD, inputErrors);
+    await this.checkInputErrors(
+      EDriverCompleteRegistrationFormKeys.PASSWORD,
+      PASSWORD_INPUT_ERRORS,
+    );
   }
 
   async assertInputErrorsAreNotVisible() {

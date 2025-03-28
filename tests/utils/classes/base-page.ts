@@ -1,5 +1,7 @@
 import { type Locator, expect, type Page } from '@playwright/test';
 
+import { MOCK_ACTION_COOKIE } from '@/consts/cookies';
+
 import { EMockedResponseType } from '@/enums/mocked-response-type';
 
 type TMockResponseArgs<Options> = {
@@ -28,6 +30,11 @@ export class BasePage {
     if (currentURL !== this.url) {
       throw new Error(`Expected URL to be "${this.url}", but got "${currentURL}"`);
     }
+  }
+
+  async assertUrlCorrectness(url: string) {
+    const currentURL = this.page.url();
+    expect(currentURL).toEqual(url);
   }
 
   getElementByTestId(testId: string, text?: string) {
@@ -65,6 +72,19 @@ export class BasePage {
         await route.continue();
       }
     });
+  }
+
+  async mockServerActionResponse(value: EMockedResponseType) {
+    await this.page.context().addCookies([
+      {
+        name: MOCK_ACTION_COOKIE,
+        value,
+        domain: 'localhost',
+        path: '/',
+        httpOnly: false,
+        secure: false,
+      },
+    ]);
   }
 
   async getRequestPromise(endpoint: string) {

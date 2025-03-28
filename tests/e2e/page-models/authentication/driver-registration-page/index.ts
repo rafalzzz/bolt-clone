@@ -13,6 +13,7 @@ import {
 } from '@/test-ids/driver-registration-page';
 
 import { SEND_EMAIL_TO_DRIVER } from '@/consts/endpoints';
+import { EMAIL_INPUT_ERRORS } from '@/consts/input-errors';
 
 import { EDriverRegistrationFormKeys } from '@/enums/driver-registration-form-keys';
 import { ELanguage } from '@/enums/language';
@@ -137,14 +138,7 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   async assertEmailInputErrors() {
-    const values = ['!#', 'test@pl'];
-
-    const inputErrors = values.map((value) => ({
-      value,
-      errorMessage: 'Please enter a valid email',
-    }));
-
-    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, inputErrors);
+    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, EMAIL_INPUT_ERRORS);
   }
 
   async assertPhoneNumberInputErrors() {

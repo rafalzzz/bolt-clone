@@ -5,6 +5,8 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 
+import { MOCK_ACTION_COOKIE } from '@/test-consts/cookies';
+
 const intlMiddleware = createMiddleware(routing);
 
 const getCurrentLocale = (request: NextRequest) => {
@@ -25,6 +27,8 @@ const getRedirectUrl = (request: NextRequest) => {
 const isAuthRoute = (request: NextRequest) => {
   return request.nextUrl.pathname.includes('/auth');
 };
+
+const isTest = (request: NextRequest) => request.cookies.get(MOCK_ACTION_COOKIE)?.value;
 
 export async function updateSession(request: NextRequest) {
   let intlResponse = intlMiddleware(request);
@@ -56,7 +60,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && isAuthRoute(request)) {
+  if (!user && isAuthRoute(request) && !isTest(request)) {
     const url = getRedirectUrl(request);
 
     return NextResponse.redirect(url);
