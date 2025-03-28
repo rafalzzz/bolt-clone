@@ -6,13 +6,13 @@ import signInToSupabase from '@/features/driver-login/server-actions/sign-in-to-
 
 import getRedirectPath from '@/features/driver-login/utils/get-redirect-path';
 import getLocaleValue from '@/shared/utils/server-side/get-locale-value';
+import getMockActionCookie from '@/shared/utils/server-side/get-mock-action-cookie';
 import mockResponse from '@/shared/utils/server-side/mock-response';
-import mockServerAction from '@/shared/utils/server-side/mock-server-action';
 
 import { TDriverLoginFormSchema } from '@/features/driver-login/schemas/driver-login-form-schema';
 
 const loginDriver = async (user: TDriverLoginFormSchema) => {
-  const mockAction = await mockServerAction();
+  const mockAction = await getMockActionCookie();
 
   if (mockAction) {
     return mockResponse(mockAction)?.('/driver/auth/add-car');

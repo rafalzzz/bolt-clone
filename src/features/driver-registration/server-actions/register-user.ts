@@ -8,14 +8,14 @@ import getDriverDto from '@/features/driver-registration/utils/get-driver-dto';
 import getLocaleValue from '@/shared/utils/server-side/get-locale-value';
 import getServerActionTranslations from '@/shared/utils/server-side/get-server-action-translations';
 import mockResponse from '@/shared/utils/server-side/mock-response';
-import mockServerAction from '@/shared/utils/server-side/mock-server-action';
+import getMockActionCookie from '@/shared/utils/server-side/get-mock-action-cookie';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
 import { TCompleteDriverRegistrationFormData } from '@/features/driver-registration/types/driver-registration';
 
 const registerDriver = async (data: TCompleteDriverRegistrationFormData) => {
-  const mockAction = await mockServerAction();
+  const mockAction = await getMockActionCookie();
 
   if (mockAction) {
     return mockResponse(mockAction)?.();

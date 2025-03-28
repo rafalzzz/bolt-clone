@@ -4,7 +4,7 @@ import { EMockedResponseType } from '@/shared/enums/mocked-respose-type';
 
 import { MOCK_ACTION_COOKIE } from '@/test-consts/cookies';
 
-const mockServerAction = async (): Promise<EMockedResponseType | undefined> => {
+const getMockActionCookie = async (): Promise<EMockedResponseType | undefined> => {
   const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
 
   if (isProduction) {
@@ -15,4 +15,4 @@ const mockServerAction = async (): Promise<EMockedResponseType | undefined> => {
   return cookie?.value as EMockedResponseType;
 };
 
-export default mockServerAction;
+export default getMockActionCookie;

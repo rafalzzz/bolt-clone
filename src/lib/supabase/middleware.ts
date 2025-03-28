@@ -28,7 +28,9 @@ const isAuthRoute = (request: NextRequest) => {
   return request.nextUrl.pathname.includes('/auth');
 };
 
-const isTest = (request: NextRequest) => request.cookies.get(MOCK_ACTION_COOKIE)?.value;
+const isTest = (request: NextRequest) =>
+  request.cookies.get(MOCK_ACTION_COOKIE)?.value &&
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'production';
 
 export async function updateSession(request: NextRequest) {
   let intlResponse = intlMiddleware(request);
