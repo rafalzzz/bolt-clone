@@ -44,7 +44,7 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.assertErrorToastMessage();
   });
 
-  test('Should register driver successfully', async () => {
+  test('Should redirect user to add-car page when login successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-car`;
 
     await driverLoginPage.mockServerActionResponse(EMockedResponseType.SUCCESS);

@@ -41,7 +41,7 @@ const useDriverLoginForm = () => {
       },
     });
 
-    if (redirectPath) {
+    if (typeof redirectPath === 'string') {
       router.push(redirectPath);
     }
   };
