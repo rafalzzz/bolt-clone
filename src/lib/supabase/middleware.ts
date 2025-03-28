@@ -4,7 +4,6 @@ import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
-
 import { MOCK_ACTION_COOKIE } from '@/test-consts/cookies';
 
 const intlMiddleware = createMiddleware(routing);

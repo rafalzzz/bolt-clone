@@ -6,9 +6,9 @@ import signUpUserInSupabase from '@/features/driver-registration/server-actions/
 import getDriverCredentials from '@/features/driver-registration/utils/get-driver-credentials';
 import getDriverDto from '@/features/driver-registration/utils/get-driver-dto';
 import getLocaleValue from '@/shared/utils/server-side/get-locale-value';
+import getMockActionCookie from '@/shared/utils/server-side/get-mock-action-cookie';
 import getServerActionTranslations from '@/shared/utils/server-side/get-server-action-translations';
 import mockResponse from '@/shared/utils/server-side/mock-response';
-import getMockActionCookie from '@/shared/utils/server-side/get-mock-action-cookie';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
 
