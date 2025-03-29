@@ -9,8 +9,6 @@ import getErrorTestId from '@/helpers/get-error-test-id';
 import getInputTestId from '@/helpers/get-input-test-id';
 
 export class BaseForm extends BasePage {
-  readonly reactSelectSelector = 'react-select';
-
   constructor(page: Page, url: string) {
     super(page, url);
   }
