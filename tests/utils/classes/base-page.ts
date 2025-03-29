@@ -79,7 +79,6 @@ export class BasePage {
       {
         name: MOCK_ACTION_COOKIE,
         value,
-        domain: 'localhost',
         path: '/',
         httpOnly: false,
         secure: false,
