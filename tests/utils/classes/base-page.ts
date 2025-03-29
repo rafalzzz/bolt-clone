@@ -23,6 +23,15 @@ export class BasePage {
     await this.page.goto(this.url + additionalParams);
   }
 
+  async mockServerActionBeforeVisit(
+    value: EMockedResponseType = EMockedResponseType.SUCCESS,
+    additionalParams = '',
+  ) {
+    this.mockServerActionResponse(value);
+
+    await this.page.goto(this.url + additionalParams);
+  }
+
   async assertUrl(): Promise<void> {
     await this.page.waitForURL(this.url);
     const currentURL = this.page.url();
@@ -79,6 +88,7 @@ export class BasePage {
       {
         name: MOCK_ACTION_COOKIE,
         value,
+        domain: 'localhost',
         path: '/',
         httpOnly: false,
         secure: false,

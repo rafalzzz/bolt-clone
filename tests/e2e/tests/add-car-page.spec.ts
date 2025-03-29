@@ -12,24 +12,18 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
 
   test.beforeEach('Visit add car page', async ({ page }) => {
     addCarPage = new AddCarPage(page);
+
+    await addCarPage.mockServerActionBeforeVisit();
   });
 
   test('Check the general initial UI of the add car form', async () => {
-    await addCarPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
-    await addCarPage.visit();
-
     await addCarPage.assertPageLayoutVisible();
     await addCarPage.assertInputPlaceholders();
-
     await addCarPage.assertFormErrorsAreNotVisible(addCarPage.inputKeys);
-
     await addCarPage.assertButtonIsEnabled(addCarPage.submitButtonTestId);
   });
 
   test('Check input errors', async () => {
-    await addCarPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
-    await addCarPage.visit();
-
     await addCarPage.clickFormSubmitButton();
     await addCarPage.assertRequiredFieldsErrorMessages();
     await addCarPage.assertCarRegistrationNumberInputErrors();
@@ -38,9 +32,6 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
   });
 
   test('Check if errors are not visible when form is filled correctly', async () => {
-    await addCarPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
-    await addCarPage.visit();
-
     await addCarPage.clickFormSubmitButton();
     await addCarPage.fillForm();
     await addCarPage.assertInputErrorsAreNotVisible();
@@ -48,8 +39,6 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
 
   test('Should display an error message when an error occurs during adding car', async () => {
     await addCarPage.mockServerActionResponse(EMockedResponseType.ERROR);
-    await addCarPage.visit();
-
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
     await addCarPage.assertErrorToastMessage();
@@ -57,8 +46,6 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
 
   test('Should redirect user to add-face-auth page when login successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-face-auth`;
-    await addCarPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
-    await addCarPage.visit();
 
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
