@@ -34,13 +34,13 @@ test.describe(
     test.describe('Form', async () => {
       let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
 
-      test.beforeEach('Visit driver registration page', async ({ page }) => {
+      test.beforeEach('Visit complete driver registration page', async ({ page }) => {
         driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
 
         await driverCompleteRegistrationPage.visitPageWithValidToken();
       });
 
-      test('Check the general initial UI of the register as driver form', async () => {
+      test('Check the general initial UI of the complete registration as driver form', async () => {
         await driverCompleteRegistrationPage.assertPageLayoutVisible();
         await driverCompleteRegistrationPage.assertInputPlaceholders();
 
@@ -61,7 +61,8 @@ test.describe(
         await driverCompleteRegistrationPage.assertPasswordInputErrors();
       });
 
-      test('Check if errors are visible when form is filled correctly', async () => {
+      test('Check if errors are not visible when form is filled correctly', async () => {
+        await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.assertInputErrorsAreNotVisible();
       });

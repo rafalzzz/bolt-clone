@@ -16,7 +16,7 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.visit();
   });
 
-  test('Check the general initial UI of the register as driver form', async () => {
+  test('Check the general initial UI of the login as driver form', async () => {
     await driverLoginPage.assertPageLayoutVisible();
     await driverLoginPage.assertInputPlaceholders();
 
@@ -32,12 +32,13 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.assertPasswordInputErrors();
   });
 
-  test('Check if errors are visible when form is filled correctly', async () => {
+  test('Check if errors are not visible when form is filled correctly', async () => {
+    await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.assertInputErrorsAreNotVisible();
   });
 
-  test('Should display an error message when an error occurs during driver registration', async () => {
+  test('Should display an error message when an error occurs during driver login', async () => {
     await driverLoginPage.mockServerActionResponse(EMockedResponseType.ERROR);
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();

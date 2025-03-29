@@ -40,12 +40,12 @@ export class DriverLoginPage extends AddFacialRecognitionModal {
 
   // Change form elements methods
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverLoginFormKeys.EMAIL]: 'test@test.pl',
       [EDriverLoginFormKeys.PASSWORD]: 'TestTest1!',
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   // Form methods

@@ -14,7 +14,7 @@ test.describe(
       await driverRegistrationPage.visit();
     });
 
-    test('Check the general initial UI of the register as driver form', async () => {
+    test('Check the general initial UI of the registration as driver form', async () => {
       await driverRegistrationPage.assertPageLayoutVisible();
       await driverRegistrationPage.assertInputPlaceholders();
       await driverRegistrationPage.assertAllFormErrorsAreNotVisible();
@@ -28,9 +28,9 @@ test.describe(
       await driverRegistrationPage.assertPhoneNumberInputErrors();
     });
 
-    test('Check if errors are visible when form is filled correctly', async () => {
-      await driverRegistrationPage.fillInputsWithValidValues();
+    test('Check if errors are not visible when form is filled correctly', async () => {
       await driverRegistrationPage.clickFormSubmitButton();
+      await driverRegistrationPage.fillForm();
       await driverRegistrationPage.assertFormInputErrorsAreNotVisible();
     });
 

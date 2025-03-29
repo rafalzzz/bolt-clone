@@ -9,7 +9,7 @@ import getErrorTestId from '@/helpers/get-error-test-id';
 import getInputTestId from '@/helpers/get-input-test-id';
 
 export class BaseForm extends BasePage {
-  readonly reactSelectSelector = '.correct-react-select';
+  readonly reactSelectSelector = 'react-select';
 
   constructor(page: Page, url: string) {
     super(page, url);
@@ -48,17 +48,21 @@ export class BaseForm extends BasePage {
   }
 
   // React-select methods
-  async checkReactSelectPlaceholder(placeholder: string) {
-    const reactSelectPlaceholderElement = this.page.locator(
-      `${this.reactSelectSelector}__placeholder`,
+  async checkReactSelectPlaceholder(inputKey: string, placeholder: string) {
+    const placeholderLocator = this.page.locator(
+      `[data-testid="react-select-${inputKey}"] [class*="__placeholder"]`,
     );
 
-    await this.checkElementText(reactSelectPlaceholderElement, placeholder);
+    await this.checkElementText(placeholderLocator, placeholder);
   }
 
-  async selectReactSelectOption(optionText: string) {
-    await this.page.click(`${this.reactSelectSelector}__control`);
-    await this.page.click(`text=${optionText}`);
+  async selectReactSelectOption(inputKey: string, optionText: string) {
+    const select = this.page.locator(
+      `[data-testid="react-select-${inputKey}"] [class*="__control"]`,
+    );
+    await select.click();
+
+    await this.page.getByText(optionText, { exact: true }).click();
   }
 
   // Placeholder methods

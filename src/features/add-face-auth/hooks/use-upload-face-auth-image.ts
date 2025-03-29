@@ -15,9 +15,8 @@ import { EToastType } from '@/shared/enums/toast-type';
 import uploadFaceImageAction from '../server-actions/upload-face-auth-image';
 
 const useUploadFaceAuthImage = () => {
-  const { handleServerAction } = useServerAction();
-
   const t = useTranslations('UploadFaceAuth');
+  const { handleServerAction } = useServerAction();
 
   const onSuccess = useCallback(
     () =>

@@ -61,7 +61,7 @@
     "requiredField": "This field is required",
     "minimumRequiredCharacters": "This field requires at least {number} characters",
     "onlyLetters": "This field accepts only letters",
-    "onlyLettersAndDigits": "This field accepts only letters and numbers",
+    "onlyLettersAndDigits": "This field accepts only letters and digits",
     "invalidEmail": "Please enter a valid email",
     "requiredPhoneNumber": "Providing the phone number is required",
     "invalidPhoneNumber": "Invalid phone format",
@@ -179,7 +179,7 @@
     "unknownError": "Unknown error occured during login action"
   },
   "RegisterAction": {
-    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
+    "missingAuthUserId": "Something went wrong, missing auth_user_id"
   },
   "AddCarAction": {
     "authError": "Unauthorized to perform this action",
