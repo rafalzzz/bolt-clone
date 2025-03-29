@@ -20,8 +20,6 @@ const useAddCarFormFields = ({ errors, register, setValue }: TUseAddCarFormField
   const options = useColorOptions();
   const t = useTranslations('AddCarForm');
 
-  console.log({ errors });
-
   const formFields: TCustomFormField<TAddCarFormSchema>[] = [
     {
       type: EFieldType.TEXT,
