@@ -44,7 +44,7 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.assertErrorToastMessage();
   });
 
-  test('Should redirect user to add-face-auth page when login successfully', async () => {
+  test('Should redirect user to add-face-auth page when add car successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-face-auth`;
 
     await addCarPage.fillForm();
