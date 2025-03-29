@@ -15,17 +15,12 @@ const FormItemContainer: TFCWithChildren<TFormItemContainer> = ({
   errorValues,
   inputKey,
   children,
-}) => {
-  {
-    console.log({ error });
-  }
-  return (
-    <div className='mb-2'>
-      <>{children}</>
+}) => (
+  <div className='mb-2'>
+    <>{children}</>
 
-      <CustomError inputKey={inputKey} error={error} errorValues={errorValues} />
-    </div>
-  );
-};
+    <CustomError inputKey={inputKey} error={error} errorValues={errorValues} />
+  </div>
+);
 
 export default FormItemContainer;
