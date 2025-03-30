@@ -13,11 +13,7 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
   test.beforeEach('Visit add car page', async ({ page }) => {
     addCarPage = new AddCarPage(page);
 
-    await addCarPage.mockServerActionBeforeVisit();
-  });
-
-  test.afterEach(async ({ context }) => {
-    await context.clearCookies();
+    await addCarPage.visit();
   });
 
   test('Check the general initial UI of the add car form', async () => {
@@ -42,18 +38,21 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
   });
 
   test('Should display an error message when an error occurs during adding car', async () => {
-    await addCarPage.mockServerActionResponse(EMockedResponseType.ERROR);
+    await addCarPage.addServerActionCookie(EMockedResponseType.ERROR);
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
     await addCarPage.assertErrorToastMessage();
+    await addCarPage.clearMockCookie();
   });
 
   test('Should redirect user to add-face-auth page when add car successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-face-auth`;
 
+    await addCarPage.addServerActionCookie(EMockedResponseType.SUCCESS);
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
+    await addCarPage.waitForUrl(addCarUrl);
     await addCarPage.assertAddFaceAuthPageVisible();
-    await addCarPage.assertUrlCorrectness(addCarUrl);
+    await addCarPage.clearMockCookie();
   });
 });

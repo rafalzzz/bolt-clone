@@ -23,16 +23,8 @@ export class BasePage {
     await this.page.goto(this.url + additionalParams);
   }
 
-  async mockServerActionBeforeVisit(
-    value: EMockedResponseType = EMockedResponseType.SUCCESS,
-    additionalParams = '',
-  ) {
-    await this.mockServerActionResponse(value);
-    await this.page.goto(this.url + additionalParams);
-  }
-
   async assertUrl(): Promise<void> {
-    await this.page.waitForURL(this.url);
+    await this.waitForUrl(this.url);
     const currentURL = this.page.url();
 
     if (currentURL !== this.url) {
@@ -40,9 +32,8 @@ export class BasePage {
     }
   }
 
-  async assertUrlCorrectness(url: string) {
-    const currentURL = this.page.url();
-    expect(currentURL).toEqual(url);
+  async waitForUrl(url: string) {
+    await this.page.waitForURL(url);
   }
 
   getElementByTestId(testId: string, text?: string) {
@@ -82,7 +73,7 @@ export class BasePage {
     });
   }
 
-  async mockServerActionResponse(value: EMockedResponseType) {
+  async addServerActionCookie(value: EMockedResponseType) {
     await this.page.context().addCookies([
       {
         name: MOCK_ACTION_COOKIE,
@@ -93,6 +84,10 @@ export class BasePage {
         secure: false,
       },
     ]);
+  }
+
+  async clearMockCookie() {
+    await this.page.context().clearCookies();
   }
 
   async getRequestPromise(endpoint: string) {

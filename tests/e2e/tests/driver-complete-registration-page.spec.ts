@@ -68,14 +68,14 @@ test.describe(
       });
 
       test('Should display an error message when an error occurs during driver registration', async () => {
-        await driverCompleteRegistrationPage.mockServerActionResponse(EMockedResponseType.ERROR);
+        await driverCompleteRegistrationPage.addServerActionCookie(EMockedResponseType.ERROR);
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertErrorToastMessage();
       });
 
       test('Should register driver successfully', async () => {
-        await driverCompleteRegistrationPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
+        await driverCompleteRegistrationPage.addServerActionCookie(EMockedResponseType.SUCCESS);
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();

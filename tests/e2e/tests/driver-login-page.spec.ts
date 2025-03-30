@@ -43,19 +43,21 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
   });
 
   test('Should display an error message when an error occurs during driver login', async () => {
-    await driverLoginPage.mockServerActionResponse(EMockedResponseType.ERROR);
+    await driverLoginPage.addServerActionCookie(EMockedResponseType.ERROR);
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.assertErrorToastMessage();
+    await driverLoginPage.clearMockCookie();
   });
 
   test('Should redirect user to add-car page when login successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-car`;
 
-    await driverLoginPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
+    await driverLoginPage.addServerActionCookie(EMockedResponseType.SUCCESS);
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();
+    await driverLoginPage.waitForUrl(addCarUrl);
     await driverLoginPage.assertAddCarPageVisible();
-    await driverLoginPage.assertUrlCorrectness(addCarUrl);
+    await driverLoginPage.clearMockCookie();
   });
 });
