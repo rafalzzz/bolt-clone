@@ -10,7 +10,7 @@ env:
   ENCRYPT_SECRET: ${{ secrets.ENCRYPT_SECRET }}
   HASH_SECRET: ${{ secrets.HASH_SECRET }}
   DOMAIN_URL: 'localhost:3000'
-  ENVIRONMENT: 'development'
+  ENVIRONMENT: 'testing'
 
 jobs:
   build:

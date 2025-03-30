@@ -27,8 +27,7 @@ export class BasePage {
     value: EMockedResponseType = EMockedResponseType.SUCCESS,
     additionalParams = '',
   ) {
-    this.mockServerActionResponse(value);
-
+    await this.mockServerActionResponse(value);
     await this.page.goto(this.url + additionalParams);
   }
 

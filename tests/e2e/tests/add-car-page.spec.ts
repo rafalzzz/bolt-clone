@@ -16,6 +16,10 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.mockServerActionBeforeVisit();
   });
 
+  test.afterEach(async ({ context }) => {
+    await context.clearCookies();
+  });
+
   test('Check the general initial UI of the add car form', async () => {
     await addCarPage.assertPageLayoutVisible();
     await addCarPage.assertInputPlaceholders();

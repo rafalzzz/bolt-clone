@@ -16,6 +16,10 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.visit();
   });
 
+  test.afterEach(async ({ context }) => {
+    await context.clearCookies();
+  });
+
   test('Check the general initial UI of the login as driver form', async () => {
     await driverLoginPage.assertPageLayoutVisible();
     await driverLoginPage.assertInputPlaceholders();
