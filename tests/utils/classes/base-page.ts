@@ -14,7 +14,7 @@ export class BasePage {
   readonly page: Page;
   readonly url: string;
 
-  constructor(page: Page, url?: string) {
+  constructor(page: Page, url: string) {
     this.page = page;
     this.url = url;
   }
@@ -86,10 +86,6 @@ export class BasePage {
     ]);
   }
 
-  async clearMockCookie() {
-    await this.page.context().clearCookies();
-  }
-
   async getRequestPromise(endpoint: string) {
     return this.page.waitForRequest(endpoint);
   }
@@ -127,6 +123,7 @@ export class BasePage {
 
   async checkToastMessage(toastTestId: string, text: string) {
     const errorMessage = await this.waitForElementWithTestId(toastTestId);
+    console.log({ errorMessage });
     await this.checkElementTextContent(errorMessage, text);
   }
 }

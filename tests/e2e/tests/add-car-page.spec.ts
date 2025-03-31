@@ -16,7 +16,7 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.visit();
   });
 
-  test('Check the general initial UI of the add car form', async () => {
+  test('Check the general initial UI of the add-car page', async () => {
     await addCarPage.assertPageLayoutVisible();
     await addCarPage.assertInputPlaceholders();
     await addCarPage.assertFormErrorsAreNotVisible(addCarPage.inputKeys);
@@ -42,7 +42,6 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
     await addCarPage.assertErrorToastMessage();
-    await addCarPage.clearMockCookie();
   });
 
   test('Should redirect user to add-face-auth page when add car successfully', async () => {
@@ -53,6 +52,5 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.clickFormSubmitButton();
     await addCarPage.waitForUrl(addCarUrl);
     await addCarPage.assertAddFaceAuthPageVisible();
-    await addCarPage.clearMockCookie();
   });
 });

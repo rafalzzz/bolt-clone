@@ -20,7 +20,7 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await context.clearCookies();
   });
 
-  test('Check the general initial UI of the login as driver form', async () => {
+  test('Check the general initial UI of the login as driver page', async () => {
     await driverLoginPage.assertPageLayoutVisible();
     await driverLoginPage.assertInputPlaceholders();
 
@@ -47,7 +47,6 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.assertErrorToastMessage();
-    await driverLoginPage.clearMockCookie();
   });
 
   test('Should redirect user to add-car page when login successfully', async () => {
@@ -58,6 +57,5 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.waitForUrl(addCarUrl);
     await driverLoginPage.assertAddCarPageVisible();
-    await driverLoginPage.clearMockCookie();
   });
 });

@@ -10,7 +10,10 @@ import {
   ADD_CAR_FAILURE_MESSAGE,
   ADD_CAR_PAGE_FORM_SUBMIT_BUTTON,
 } from '@/test-ids/add-car-page';
-import { ADD_FACE_AUTH_DESCRIPTION, ENABLE_FACE_AUTH_MODAL } from '@/test-ids/add-face-auth-page';
+import {
+  ADD_FACE_AUTH_DESCRIPTION,
+  ENABLE_FACE_AUTH_MODAL_BUTTON,
+} from '@/test-ids/add-face-auth-page';
 
 import { EAddCarFormKeys } from '@/enums/add-car-form-keys';
 import { ELanguage } from '@/enums/language';
@@ -169,7 +172,7 @@ export class AddCarPage extends BaseForm {
   }
 
   async assertAddFaceAuthPageVisible() {
-    const pageElementIds: string[] = [ADD_FACE_AUTH_DESCRIPTION, ENABLE_FACE_AUTH_MODAL];
+    const pageElementIds: string[] = [ADD_FACE_AUTH_DESCRIPTION, ENABLE_FACE_AUTH_MODAL_BUTTON];
 
     return this.assertPageElementsVisibility(pageElementIds);
   }

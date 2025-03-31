@@ -40,7 +40,7 @@ test.describe(
         await driverCompleteRegistrationPage.visitPageWithValidToken();
       });
 
-      test('Check the general initial UI of the complete registration as driver form', async () => {
+      test('Check the general initial UI of the complete registration as driver page', async () => {
         await driverCompleteRegistrationPage.assertPageLayoutVisible();
         await driverCompleteRegistrationPage.assertInputPlaceholders();
 
