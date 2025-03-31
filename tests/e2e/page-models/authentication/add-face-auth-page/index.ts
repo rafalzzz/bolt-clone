@@ -76,6 +76,10 @@ export class AddFaceAuthPage extends BaseForm {
     );
   }
 
+  async assertUnknownErrorToastMessage() {
+    await this.checkToastMessage(ADD_FACE_AUTH_ERROR_MESSAGE, 'Unknown error');
+  }
+
   // Modal buttons methods
   async assertAddFaceAuthButtonIsDisabled() {
     return this.assertButtonIsDisabled(this.addFaceAuthButtonTestId);
