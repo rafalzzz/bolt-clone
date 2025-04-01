@@ -9,8 +9,6 @@ import getErrorTestId from '@/helpers/get-error-test-id';
 import getInputTestId from '@/helpers/get-input-test-id';
 
 export class BaseForm extends BasePage {
-  readonly reactSelectSelector = '.correct-react-select';
-
   constructor(page: Page, url: string) {
     super(page, url);
   }
@@ -48,17 +46,21 @@ export class BaseForm extends BasePage {
   }
 
   // React-select methods
-  async checkReactSelectPlaceholder(placeholder: string) {
-    const reactSelectPlaceholderElement = this.page.locator(
-      `${this.reactSelectSelector}__placeholder`,
+  async checkReactSelectPlaceholder(inputKey: string, placeholder: string) {
+    const placeholderLocator = this.page.locator(
+      `[data-testid="react-select-${inputKey}"] [class*="__placeholder"]`,
     );
 
-    await this.checkElementText(reactSelectPlaceholderElement, placeholder);
+    await this.checkElementText(placeholderLocator, placeholder);
   }
 
-  async selectReactSelectOption(optionText: string) {
-    await this.page.click(`${this.reactSelectSelector}__control`);
-    await this.page.click(`text=${optionText}`);
+  async selectReactSelectOption(inputKey: string, optionText: string) {
+    const select = this.page.locator(
+      `[data-testid="react-select-${inputKey}"] [class*="__control"]`,
+    );
+    await select.click();
+
+    await this.page.getByText(optionText, { exact: true }).click();
   }
 
   // Placeholder methods
@@ -78,6 +80,24 @@ export class BaseForm extends BasePage {
 
     for (const inputKey of inputKeys) {
       await this.checkSingleErrorMessage(inputKey, inputsObject[inputKey]);
+    }
+  }
+
+  async checkInputErrors(
+    inputKey: string,
+    inputErrors: {
+      value: string;
+      errorMessage: string;
+    }[],
+  ) {
+    for (const inputError of inputErrors) {
+      const { value, errorMessage } = inputError;
+
+      await this.changeSingleInputValue(inputKey, value);
+
+      await this.checkErrorsMessages({
+        [inputKey]: errorMessage,
+      });
     }
   }
 

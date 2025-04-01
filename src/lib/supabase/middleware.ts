@@ -2,6 +2,8 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
+import isTestingEnvironment from '@/test-helpers/is-testing-environment';
+
 import { routing } from '@/i18n/routing';
 import { LANGUAGE } from '@/shared/consts/cookie-names';
 
@@ -56,7 +58,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && isAuthRoute(request)) {
+  if (!user && isAuthRoute(request) && !isTestingEnvironment()) {
     const url = getRedirectUrl(request);
 
     return NextResponse.redirect(url);

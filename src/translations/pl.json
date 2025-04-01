@@ -173,7 +173,7 @@
     "unknownError": "Wystąpił nieznany błąd podczas logowania"
   },
   "RegisterAction": {
-    "missingAuthUserId": "Something went wrong, missing auth_user_id"
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
   },
   "AddCarAction": {
     "authError": "Brak autoryzacji do wykonania akcji",
