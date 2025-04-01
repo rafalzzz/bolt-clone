@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/test-helpers/*": ["./tests/utils/helpers/*"],
-      "@/test-ids/*": ["./tests/utils/test-ids/*"]
+      "@/test-ids/*": ["./tests/utils/test-ids/*"],
+      "@/test-consts/*": ["./tests/utils/consts/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],

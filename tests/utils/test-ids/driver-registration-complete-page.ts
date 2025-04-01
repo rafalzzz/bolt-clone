@@ -6,7 +6,7 @@ export const DRIVER_REGISTRATION_COMPLETE_PAGE_FORM = 'driverRegistrationComplet
 export const DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON =
   'driverRegistrationCompletePageFormSubmitButton';
 
-export const OPEN_ADD_FACIAL_RECOGNITION_MODAL_BUTTON = 'openAddFacialRecognitionModalButton';
+export const OPEN_ADD_FACE_AUTH_MODAL_BUTTON = 'openAddFacialRecognitionModalButton';
 
 export const DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE =
   'driverRegistrationCompleteSuccessMessage';

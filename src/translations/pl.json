@@ -3,7 +3,7 @@
     "about": "O Nas",
     "contact": "Kontakt"
   },
-  "RightMenu": {
+  "SignUpSection": {
     "register": "Zarejestruj się",
     "registerAsDriver": "Zostań kierowcą",
     "registerAsClient": "Zostań klientem"
@@ -70,8 +70,7 @@
     "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
     "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny",
     "passwordMustMatch": "Wpisane hasła różnią się od siebie",
-    "carRegistrationNumberCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
-    "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
+    "carRegistrationNumberCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry"
   },
   "DriverRegistrationCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
@@ -92,15 +91,6 @@
     "passwordPlaceholder": "Hasło",
     "repeatPasswordLabel": "Powtórz hasło",
     "repeatPasswordPlaceholder": "Powtórz hasło",
-    "carRegistrationNumberLabel": "Numer rejestracyjny samochodu",
-    "carRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny samochodu",
-    "carBrandLabel": "Marka samochodu",
-    "carBrandPlaceholder": "Wprowadź markę samochodu",
-    "carModelLabel": "Model samochodu",
-    "carModelPlaceholder": "Wprowadź model samochodu",
-    "carColorLabel": "Kolor samochodu",
-    "carColorPlaceholder": "Wybierz kolor samochodu",
-    "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
     "submitButtonText": "Dokończ rejestracę"
   },
   "PasswordInput": {
@@ -111,15 +101,7 @@
     "okButtonText": "Zatwierdź",
     "cancelButtonText": "Anuluj"
   },
-  "AddFacialRecognitionModal": {
-    "title": "Dodaj identyfikator twarzy"
-  },
-  "AddFacialRecognitionError": {
-    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
-    "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
-    "photoIsNotAdded": "Zdjęcie w celu rozpoznawania twarzy nie zostało dodane",
-    "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
-  },
+
   "JwtTokenErrors": {
     "missingTokenOrSecretKey": "Brakuje tokenu lub klucza do rozszyfrowania tokenu",
     "expiredToken": "Token wygasł",
@@ -130,5 +112,99 @@
   "DriverRegistrationCompleteMessages": {
     "registrationSuccess": "Zostałeś zarejestrowany! Możesz zacząć korzystać z Naszej aplikacji",
     "registrationError": "Wystąpił błąd podczas rejestracji, spróbuj ponownie"
+  },
+  "DriverLoginPageHeadSection": {
+    "title": "Zaloguj się i zacznij jeździć z BoltCopy!",
+    "description": "Uzyskaj dostęp do swojego konta i przejmij kontrolę nad swoimi przejazdami. Jeździj na własnych warunkach, zarabiaj wtedy, kiedy chcesz i ciesz się swobodą pracy jako kierowca BoltCopy. Zaloguj się i ruszaj w trasę!",
+    "keywords": "logowanie kierowcy, konto BoltCopy, zarobki z przejazdów, elastyczna praca kierowcy, dostęp do konta kierowcy, zacznij zarabiać, jeździj i zarabiaj, zaloguj się do jazdy"
+  },
+  "DriverLoginPage": {
+    "description": "Zaloguj się, aby zacząć zarabiać z BoltCopy już dziś!",
+    "secondaryDescription": "Uzyskaj dostęp do konta kierowcy, zarządzaj swoimi przejazdami i maksymalizuj swoje zarobki na własnych warunkach."
+  },
+  "DriverLoginForm": {
+    "header": "Zaloguj się jako kierowca",
+    "emailPlaceholder": "Wprowadź adres email",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Hasło",
+    "submitButtonText": "Zaloguj się",
+    "loginError": "Wystąpił błąd podczas logowania"
+  },
+  "RedirectionToRegistrationPage": {
+    "dontHaveAnAccount": "Nie posiadasz jeszcze konta?",
+    "register": "Zarejestruj się"
+  },
+  "Sidebar": {
+    "login": "Zaloguj się",
+    "loginAsDriver": "Jako kierowca",
+    "loginAsClient": "Jako klient"
+  },
+  "HamburgerButton": {
+    "showNavigation": "Pokaż boczną nawigację",
+    "hideNavigation": "Ukryj boczną nawigację"
+  },
+  "AddCarPageHeadSection": {
+    "title": "Dodaj swój samochód do BoltCopy – Przygotuj się do jazdy",
+    "description": "Jesteś już zarejestrowanym kierowcą? Dodaj swój pojazd do BoltCopy i zacznij zarabiać! Szybka rejestracja auta, elastyczna praca i atrakcyjne zarobki. Dokończ konfigurację i ruszaj w trasę!",
+    "keywords": "dodaj samochód, rejestracja pojazdu, jazda z BoltCopy, auto do przewozów, elastyczna praca, zarabianie jako kierowca"
+  },
+  "AddCarPage": {
+    "description": "Dodaj swój samochód i zacznij zarabiać z BoltCopy",
+    "secondaryDescription": "Jesteś już kierowcą BoltCopy! Dokończ konfigurację, rejestrując swój pojazd, i przygotuj się do jazdy."
+  },
+  "AddCarForm": {
+    "header": "Dodaj swój samochód i zacznij zarabiać",
+    "carRegistrationNumberLabel": "Numer rejestracyjny samochodu",
+    "carRegistrationNumberPlaceholder": "Wprowadź numer rejestracyjny samochodu",
+    "carBrandLabel": "Marka samochodu",
+    "carBrandPlaceholder": "Wprowadź markę samochodu",
+    "carModelLabel": "Model samochodu",
+    "carModelPlaceholder": "Wprowadź model samochodu",
+    "carColorLabel": "Kolor samochodu",
+    "carColorPlaceholder": "Wybierz kolor samochodu",
+    "addFaceImageButtonText": "Dodaj zdjęcie twarzy",
+    "submitButtonText": "Dodaj samochód",
+    "addCarError": "Wystąpił błąd podczas dodawania samochodu",
+    "addCarSuccess": "Samochód został dodany pomyślnie",
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania samochodu"
+  },
+  "LoginAction": {
+    "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
+    "unknownError": "Wystąpił nieznany błąd podczas logowania"
+  },
+  "RegisterAction": {
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
+  },
+  "AddCarAction": {
+    "authError": "Brak autoryzacji do wykonania akcji",
+    "carNumberIsAlreadyTaken": "Istnieje już samochód z podanym numerem rejestracyjnym"
+  },
+  "AddFaceAuthPageHeadSection": {
+    "title": "Zweryfikuj swoją tożsamość – Prześlij zdjęcie twarzy do BoltCopy",
+    "description": "Dla twojego bezpieczeństwa i aby rozpocząć jazdę z BoltCopy, prześlij wyraźne zdjęcie swojej twarzy. Szybka i bezpieczna weryfikacja tożsamości, która pozwoli ci szybko rozpocząć jazdę!",
+    "keywords": "weryfikacja twarzy, sprawdzanie tożsamości, przesyłanie zdjęcia kierowcy, weryfikacja BoltCopy, przesyłanie selfie, rozpoczęcie jazdy, bezpieczna weryfikacja"
+  },
+  "AddFaceAuthPage": {
+    "description": "Dodaj weryfikację twarzy i zacznij jeździć z BoltCopy",
+    "secondaryDescription": "Jesteś prawie gotowy do jazdy! Zakończ konfigurację, weryfikując swoją twarz, i ruszaj w drogę z BoltCopy.",
+    "showFaceAuthModal": "Dodaj zdjęcia twarzy"
+  },
+  "AddFaceAuthModal": {
+    "title": "Dodaj autoryzację twarzy"
+  },
+  "VideoError": {
+    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki"
+  },
+  "AddFaceAuthErrors": {
+    "errorWhileAddingFaceAuth": "Wystąpił błąd podczas dodawania autoryzacji twarzą",
+    "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
+  },
+  "UploadFaceAuth": {
+    "addFaceAuthSuccess": "Autoryzacja twarzy została dodana pomyślnie",
+    "photoIsNotAdded": "Zdjęcie w celu weryfikacji twarzy nie zostało dodane",
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania autoryzacji twarzy"
+  },
+  "UploadFaceAuthImageAction": {
+    "authError": "Brak autoryzacji do wykonania akcji"
   }
 }
