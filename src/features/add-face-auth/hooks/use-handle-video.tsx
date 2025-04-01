@@ -29,7 +29,6 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const t = useTranslations('VideoError');
-  console.log({ TF_BACKEND_NAME });
 
   const handleStartVideoError = useCallback(
     (error: string) => {

@@ -32,9 +32,12 @@ export class AddFaceAuthPage extends BaseForm {
 
   // Check general layout methods
   async assertPageLayoutVisible() {
-    const pageElementIds: string[] = [ADD_FACE_AUTH_DESCRIPTION, ENABLE_FACE_AUTH_MODAL_BUTTON];
+    const pageElementIds: string[] = [
+      ADD_FACE_AUTH_DESCRIPTION,
+      this.openAddFaceAuthModalButtonTestId,
+    ];
 
-    this.assertPageElementsVisibility(pageElementIds);
+    await this.assertPageElementsVisibility(pageElementIds);
   }
 
   async openAddFacialRecognitionModal() {

@@ -123,7 +123,7 @@ export class BasePage {
 
   async checkToastMessage(toastTestId: string, text: string) {
     const errorMessage = await this.waitForElementWithTestId(toastTestId);
-    console.log({ errorMessage });
+
     await this.checkElementTextContent(errorMessage, text);
   }
 }
