@@ -166,14 +166,14 @@
     "submitButtonText": "Dodaj samochód",
     "addCarError": "Wystąpił błąd podczas dodawania samochodu",
     "addCarSuccess": "Samochód został dodany pomyślnie",
-    "unknownError": "Wystąpił nieznany błąd"
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania samochodu"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
-    "unknownError": "Wystąpił nieznany błąd"
+    "unknownError": "Wystąpił nieznany błąd podczas logowania"
   },
   "RegisterAction": {
-    "missingAuthUserId": "Something went wrong, missing auth_user_id"
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
   },
   "AddCarAction": {
     "authError": "Brak autoryzacji do wykonania akcji",
@@ -195,9 +195,16 @@
   "VideoError": {
     "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki"
   },
-  "AddFacialRecognitionError": {
+  "AddFaceAuthErrors": {
     "errorWhileAddingFaceAuth": "Wystąpił błąd podczas dodawania autoryzacji twarzą",
-    "photoIsNotAdded": "Zdjęcie w celu weryfikacji twarzy nie zostało dodane",
     "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
+  },
+  "UploadFaceAuth": {
+    "addFaceAuthSuccess": "Autoryzacja twarzy została dodana pomyślnie",
+    "photoIsNotAdded": "Zdjęcie w celu weryfikacji twarzy nie zostało dodane",
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania autoryzacji twarzy"
+  },
+  "UploadFaceAuthImageAction": {
+    "authError": "Brak autoryzacji do wykonania akcji"
   }
 }

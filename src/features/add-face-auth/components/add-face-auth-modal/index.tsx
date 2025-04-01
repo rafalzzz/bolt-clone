@@ -5,14 +5,15 @@ import CustomModal from '@/shared/components/custom-modal';
 
 import useAddFaceAuth from '@/features/add-face-auth/hooks/use-add-face-auth';
 import useStartVideo from '@/features/add-face-auth/hooks/use-handle-video';
+import useUploadFaceAuthImage from '@/features/add-face-auth/hooks/use-upload-face-auth-image';
 import useWindowSize from '@/shared/hooks/use-window-resize';
 
 import {
-  ADD_FACIAL_RECOGNITION_BUTTON,
-  ADD_FACIAL_RECOGNITION_CANCEL_BUTTON,
-  ADD_FACIAL_RECOGNITION_MODAL,
-  ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON,
-} from '@/test-ids/add-facial-recognition-modal';
+  ADD_FACE_AUTH_BUTTON,
+  ADD_FACE_AUTH_CANCEL_BUTTON,
+  ADD_FACE_AUTH_MODAL,
+  ADD_FACE_AUTH_SUBMIT_BUTTON,
+} from '@/test-ids/add-face-auth-page';
 
 import CameraSvg from '@/shared/svg/camera-svg';
 
@@ -40,6 +41,8 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
     videoHeight,
   });
 
+  const { uploadFaceAuthImage } = useUploadFaceAuthImage();
+
   const addFaceAuth = useAddFaceAuth({
     intervalRef,
     setFile,
@@ -51,12 +54,12 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
     <CustomModal
       title={t('title')}
       isVisible={isVisible}
-      okButtonTestId={ADD_FACIAL_RECOGNITION_SUBMIT_BUTTON}
-      cancelButtonTestId={ADD_FACIAL_RECOGNITION_CANCEL_BUTTON}
-      modalTestId={ADD_FACIAL_RECOGNITION_MODAL}
+      okButtonTestId={ADD_FACE_AUTH_SUBMIT_BUTTON}
+      cancelButtonTestId={ADD_FACE_AUTH_CANCEL_BUTTON}
+      modalTestId={ADD_FACE_AUTH_MODAL}
       onCancel={onCancel}
       okButtonProps={{
-        onClick: () => console.log('click', file),
+        onClick: () => uploadFaceAuthImage(file),
         disabled: isCameraDisabled,
       }}
     >
@@ -82,7 +85,7 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
       <button
         onClick={() => addFaceAuth(videoRef, canvasRef)}
         disabled={isCameraDisabled}
-        data-testid={ADD_FACIAL_RECOGNITION_BUTTON}
+        data-testid={ADD_FACE_AUTH_BUTTON}
         className='absolute cursor-pointer hover:scale-95 disabled:hover:scale-100 transition-all duration-300 group bottom-6 w-16 h-16 p-7 rounded-full z-20 left-1/2 -translate-x-1/2 primary-button'
       >
         <CameraSvg className='w-8 h-8 absolute inset-0 m-auto text-buttonTextColor' />

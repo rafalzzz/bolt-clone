@@ -2,7 +2,7 @@ import useRequestState, { THandleRequestErrorArgs } from '../use-request-state';
 
 type TRequestAction<TArgs, TResponse> = {
   action: (args: TArgs) => Promise<TResponse>;
-  onSuccess?: () => void;
+  onSuccess?: (response?: TResponse) => void;
   actionArgs: TArgs;
   errorMessage?: THandleRequestErrorArgs;
 };
@@ -22,7 +22,7 @@ const useServerAction = () => {
       const response = await action(actionArgs);
 
       handleSuccess();
-      onSuccess?.();
+      onSuccess?.(response);
 
       return response;
     } catch (error) {

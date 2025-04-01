@@ -6,7 +6,7 @@ import { detectFaces } from '@/features/add-face-auth/utils/start-facial-recogni
 import stopStreamedVideo from '@/features/add-face-auth/utils/stop-streamed-video';
 import displayToast from '@/shared/utils/client-side/display-toast';
 
-import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
+import { ADD_FACE_AUTH_ERROR_MESSAGE } from '@/test-ids/add-face-auth-page';
 
 import { TDetections } from '@/features/driver-registration/types/detections';
 
@@ -16,7 +16,7 @@ type TUseAddFaceAuth = {
 };
 
 const useAddFaceAuth = ({ intervalRef, setFile }: TUseAddFaceAuth) => {
-  const t = useTranslations('AddFaceAuthError');
+  const t = useTranslations('AddFaceAuthErrors');
 
   const handleError = (error?: unknown) => {
     const text = error instanceof Error ? error.message : t('errorWhileAddingFaceAuth');
@@ -48,7 +48,7 @@ const useAddFaceAuth = ({ intervalRef, setFile }: TUseAddFaceAuth) => {
       if (!detections) {
         return displayToast({
           text: t('faceNotFound'),
-          testId: ADD_FACIAL_RECOGNITION_ERROR,
+          testId: ADD_FACE_AUTH_ERROR_MESSAGE,
         });
       }
 

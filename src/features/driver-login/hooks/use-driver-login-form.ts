@@ -17,6 +17,7 @@ import { DRIVER_LOGIN_FAILURE_MESSAGE } from '@/test-ids/driver-login-page';
 
 const useDriverLoginForm = () => {
   const router = useRouter();
+  const t = useTranslations('LoginAction');
   const { state, handleServerAction } = useServerAction();
 
   const {
@@ -28,22 +29,24 @@ const useDriverLoginForm = () => {
     resolver: zodResolver(driverLoginFormSchema),
   });
 
-  const t = useTranslations('LoginAction');
   const formFields = useDriverLoginFormFields({ errors, register, setValue });
 
+  const onSuccess = (redirectPath: unknown) => {
+    if (typeof redirectPath === 'string') {
+      router.push(redirectPath);
+    }
+  };
+
   const onSubmit: SubmitHandler<TDriverLoginFormSchema> = async (data) => {
-    const redirectPath = await handleServerAction({
+    await handleServerAction({
       action: loginDriver,
+      onSuccess,
       actionArgs: data,
       errorMessage: {
         uniqueMessage: t('unknownError'),
         testId: DRIVER_LOGIN_FAILURE_MESSAGE,
       },
     });
-
-    if (redirectPath) {
-      router.push(redirectPath);
-    }
   };
 
   return { state, formFields, onSubmit, handleSubmit };

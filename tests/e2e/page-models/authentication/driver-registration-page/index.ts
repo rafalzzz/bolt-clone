@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 import { BaseForm } from '@/classes/base-form';
 
@@ -13,6 +13,7 @@ import {
 } from '@/test-ids/driver-registration-page';
 
 import { SEND_EMAIL_TO_DRIVER } from '@/consts/endpoints';
+import { EMAIL_INPUT_ERRORS } from '@/consts/input-errors';
 
 import { EDriverRegistrationFormKeys } from '@/enums/driver-registration-form-keys';
 import { ELanguage } from '@/enums/language';
@@ -100,29 +101,20 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   // Change form elements methods
-  async fillInputsWithInvalidValues() {
-    const invalidInputFormat: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'test@pl',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: '99999999',
-    };
-
-    await this.changeInputsValues(invalidInputFormat);
-  }
-
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]:
         this.correctRequestBody[EDriverRegistrationFormKeys.EMAIL],
       [EDriverRegistrationFormKeys.PHONE_NUMBER]:
         this.correctRequestBody[EDriverRegistrationFormKeys.PHONE_NUMBER],
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   async fillForm() {
     await this.fillInputsWithValidValues();
-    await this.selectReactSelectOption('Warsaw');
+    await this.selectReactSelectOption(EDriverRegistrationFormKeys.CITY, 'Warsaw');
     await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
   }
 
@@ -138,11 +130,25 @@ export class DriverRegistrationPage extends BaseForm {
 
     for (const inputKey of inputKeys) {
       if (inputKey === EDriverRegistrationFormKeys.CITY) {
-        return await this.checkReactSelectPlaceholder(inputPlaceholders[inputKey]);
+        return await this.checkReactSelectPlaceholder(
+          EDriverRegistrationFormKeys.CITY,
+          inputPlaceholders[inputKey],
+        );
       }
 
       await this.checkInputPlaceholder(inputKey, inputPlaceholders[inputKey]);
     }
+  }
+
+  async assertEmailInputErrors() {
+    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, EMAIL_INPUT_ERRORS);
+  }
+
+  async assertPhoneNumberInputErrors() {
+    const values = ['99999999!', '99999999A', '9999999999'];
+    const inputErrors = values.map((value) => ({ value, errorMessage: 'Invalid phone format' }));
+
+    await this.checkInputErrors(EDriverRegistrationFormKeys.PHONE_NUMBER, inputErrors);
   }
 
   async assertAllFormErrorsAreNotVisible() {
@@ -158,15 +164,6 @@ export class DriverRegistrationPage extends BaseForm {
     };
 
     await this.checkErrorsMessages(requiredFieldErrorMessages);
-  }
-
-  async assertInvalidFormatErrorMessages() {
-    const invalidFormatErrorMessages: TTestObject = {
-      [EDriverRegistrationFormKeys.EMAIL]: 'Please enter a valid email',
-      [EDriverRegistrationFormKeys.PHONE_NUMBER]: 'Invalid phone format',
-    };
-
-    await this.checkErrorsMessages(invalidFormatErrorMessages);
   }
 
   async assertFormInputErrorsAreNotVisible() {

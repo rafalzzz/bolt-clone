@@ -1,5 +1,9 @@
 import { type Locator, expect, type Page } from '@playwright/test';
 
+import { MOCK_ACTION_COOKIE } from '@/consts/cookies';
+
+import { EMockedResponseType } from '@/enums/mocked-response-type';
+
 type TMockResponseArgs<Options> = {
   endpoint: string;
   method: string;
@@ -10,7 +14,7 @@ export class BasePage {
   readonly page: Page;
   readonly url: string;
 
-  constructor(page: Page, url?: string) {
+  constructor(page: Page, url: string) {
     this.page = page;
     this.url = url;
   }
@@ -20,12 +24,16 @@ export class BasePage {
   }
 
   async assertUrl(): Promise<void> {
-    await this.page.waitForURL(this.url);
+    await this.waitForUrl(this.url);
     const currentURL = this.page.url();
 
     if (currentURL !== this.url) {
       throw new Error(`Expected URL to be "${this.url}", but got "${currentURL}"`);
     }
+  }
+
+  async waitForUrl(url: string) {
+    await this.page.waitForURL(url);
   }
 
   getElementByTestId(testId: string, text?: string) {
@@ -65,6 +73,19 @@ export class BasePage {
     });
   }
 
+  async addServerActionCookie(value: EMockedResponseType) {
+    await this.page.context().addCookies([
+      {
+        name: MOCK_ACTION_COOKIE,
+        value,
+        domain: 'localhost',
+        path: '/',
+        httpOnly: false,
+        secure: false,
+      },
+    ]);
+  }
+
   async getRequestPromise(endpoint: string) {
     return this.page.waitForRequest(endpoint);
   }
@@ -102,6 +123,7 @@ export class BasePage {
 
   async checkToastMessage(toastTestId: string, text: string) {
     const errorMessage = await this.waitForElementWithTestId(toastTestId);
+    console.log({ errorMessage });
     await this.checkElementTextContent(errorMessage, text);
   }
 }
