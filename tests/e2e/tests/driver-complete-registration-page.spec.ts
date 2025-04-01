@@ -34,13 +34,13 @@ test.describe(
     test.describe('Form', async () => {
       let driverCompleteRegistrationPage: DriverCompleteRegistrationPage;
 
-      test.beforeEach('Visit driver registration page', async ({ page }) => {
+      test.beforeEach('Visit complete driver registration page', async ({ page }) => {
         driverCompleteRegistrationPage = new DriverCompleteRegistrationPage(page);
 
         await driverCompleteRegistrationPage.visitPageWithValidToken();
       });
 
-      test('Check the general initial UI of the register as driver form', async () => {
+      test('Check the general initial UI of the complete registration as driver page', async () => {
         await driverCompleteRegistrationPage.assertPageLayoutVisible();
         await driverCompleteRegistrationPage.assertInputPlaceholders();
 
@@ -61,20 +61,21 @@ test.describe(
         await driverCompleteRegistrationPage.assertPasswordInputErrors();
       });
 
-      test('Check if errors are visible when form is filled correctly', async () => {
+      test('Check if errors are not visible when form is filled correctly', async () => {
+        await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.assertInputErrorsAreNotVisible();
       });
 
       test('Should display an error message when an error occurs during driver registration', async () => {
-        await driverCompleteRegistrationPage.mockServerActionResponse(EMockedResponseType.ERROR);
+        await driverCompleteRegistrationPage.addServerActionCookie(EMockedResponseType.ERROR);
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertErrorToastMessage();
       });
 
       test('Should register driver successfully', async () => {
-        await driverCompleteRegistrationPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
+        await driverCompleteRegistrationPage.addServerActionCookie(EMockedResponseType.SUCCESS);
         await driverCompleteRegistrationPage.fillInputsWithValidValues();
         await driverCompleteRegistrationPage.clickFormSubmitButton();
         await driverCompleteRegistrationPage.assertRegistrationSuccessMessage();

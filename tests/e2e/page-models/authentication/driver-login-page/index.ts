@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test';
 
-import { baseURL } from '@/config/playwright.config';
+import { BaseForm } from '@/classes/base-form';
 
-import { AddFacialRecognitionModal } from '@/page-models/authentication/add-facial-recognition-modal';
+import { baseURL } from '@/config/playwright.config';
 
 import { ADD_CAR_PAGE_DESCRIPTION, ADD_CAR_PAGE_FORM } from '@/test-ids/add-car-page';
 import {
@@ -19,7 +19,7 @@ import { ELanguage } from '@/enums/language';
 
 import { TTestObject } from '@/types/test-object';
 
-export class DriverLoginPage extends AddFacialRecognitionModal {
+export class DriverLoginPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverLoginFormKeys);
   readonly submitButtonTestId: string = DRIVER_LOGIN_PAGE_FORM_SUBMIT_BUTTON;
 
@@ -40,12 +40,12 @@ export class DriverLoginPage extends AddFacialRecognitionModal {
 
   // Change form elements methods
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverLoginFormKeys.EMAIL]: 'test@test.pl',
       [EDriverLoginFormKeys.PASSWORD]: 'TestTest1!',
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   // Form methods

@@ -102,19 +102,19 @@ export class DriverRegistrationPage extends BaseForm {
 
   // Change form elements methods
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]:
         this.correctRequestBody[EDriverRegistrationFormKeys.EMAIL],
       [EDriverRegistrationFormKeys.PHONE_NUMBER]:
         this.correctRequestBody[EDriverRegistrationFormKeys.PHONE_NUMBER],
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   async fillForm() {
     await this.fillInputsWithValidValues();
-    await this.selectReactSelectOption('Warsaw');
+    await this.selectReactSelectOption(EDriverRegistrationFormKeys.CITY, 'Warsaw');
     await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
   }
 
@@ -130,7 +130,10 @@ export class DriverRegistrationPage extends BaseForm {
 
     for (const inputKey of inputKeys) {
       if (inputKey === EDriverRegistrationFormKeys.CITY) {
-        return await this.checkReactSelectPlaceholder(inputPlaceholders[inputKey]);
+        return await this.checkReactSelectPlaceholder(
+          EDriverRegistrationFormKeys.CITY,
+          inputPlaceholders[inputKey],
+        );
       }
 
       await this.checkInputPlaceholder(inputKey, inputPlaceholders[inputKey]);

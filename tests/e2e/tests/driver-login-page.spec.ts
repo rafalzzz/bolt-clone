@@ -16,7 +16,11 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.visit();
   });
 
-  test('Check the general initial UI of the register as driver form', async () => {
+  test.afterEach(async ({ context }) => {
+    await context.clearCookies();
+  });
+
+  test('Check the general initial UI of the login as driver page', async () => {
     await driverLoginPage.assertPageLayoutVisible();
     await driverLoginPage.assertInputPlaceholders();
 
@@ -32,13 +36,14 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
     await driverLoginPage.assertPasswordInputErrors();
   });
 
-  test('Check if errors are visible when form is filled correctly', async () => {
+  test('Check if errors are not visible when form is filled correctly', async () => {
+    await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.assertInputErrorsAreNotVisible();
   });
 
-  test('Should display an error message when an error occurs during driver registration', async () => {
-    await driverLoginPage.mockServerActionResponse(EMockedResponseType.ERROR);
+  test('Should display an error message when an error occurs during driver login', async () => {
+    await driverLoginPage.addServerActionCookie(EMockedResponseType.ERROR);
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();
     await driverLoginPage.assertErrorToastMessage();
@@ -47,10 +52,10 @@ test.describe('DriverLoginPage tests', { tag: ['@driverLoginPage', '@critical'] 
   test('Should redirect user to add-car page when login successfully', async () => {
     const addCarUrl = `${baseURL}/${ELanguage.EN}/driver/auth/add-car`;
 
-    await driverLoginPage.mockServerActionResponse(EMockedResponseType.SUCCESS);
+    await driverLoginPage.addServerActionCookie(EMockedResponseType.SUCCESS);
     await driverLoginPage.fillInputsWithValidValues();
     await driverLoginPage.clickFormSubmitButton();
+    await driverLoginPage.waitForUrl(addCarUrl);
     await driverLoginPage.assertAddCarPageVisible();
-    await driverLoginPage.assertUrlCorrectness(addCarUrl);
   });
 });

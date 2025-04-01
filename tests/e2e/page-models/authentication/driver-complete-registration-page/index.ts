@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test';
 
-import { baseURL } from '@/config/playwright.config';
+import { BaseForm } from '@/classes/base-form';
 
-import { AddFacialRecognitionModal } from '@/page-models/authentication/add-facial-recognition-modal';
+import { baseURL } from '@/config/playwright.config';
 
 import {
   DRIVER_EGISTRATION_COMPLETE_SUCCESS_MESSAGE,
@@ -20,7 +20,7 @@ import { ELanguage } from '@/enums/language';
 
 import { TTestObject } from '@/types/test-object';
 
-export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
+export class DriverCompleteRegistrationPage extends BaseForm {
   readonly inputKeys: string[] = Object.values(EDriverCompleteRegistrationFormKeys);
   readonly submitButtonTestId: string = DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON;
 
@@ -96,14 +96,14 @@ export class DriverCompleteRegistrationPage extends AddFacialRecognitionModal {
 
   // Change form elements methods
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverCompleteRegistrationFormKeys.FIRST_NAME]: 'Test',
       [EDriverCompleteRegistrationFormKeys.LAST_NAME]: 'Test',
       [EDriverCompleteRegistrationFormKeys.PASSWORD]: 'TestTest1!',
       [EDriverCompleteRegistrationFormKeys.REPEAT_PASSWORD]: 'TestTest1!',
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   // Form methods
