@@ -9,6 +9,7 @@ import {
   ADD_CAR_PAGE_FORM,
   ADD_CAR_FAILURE_MESSAGE,
   ADD_CAR_PAGE_FORM_SUBMIT_BUTTON,
+  ADD_CAR_SUCCESS_MESSAGE,
 } from '@/test-ids/add-car-page';
 import {
   ADD_FACE_AUTH_DESCRIPTION,
@@ -37,6 +38,10 @@ export class AddCarPage extends BaseForm {
 
   async assertErrorToastMessage() {
     await this.checkToastMessage(ADD_CAR_FAILURE_MESSAGE, 'Unknown error');
+  }
+
+  async assertSuccessToastMessage() {
+    await this.checkToastMessage(ADD_CAR_SUCCESS_MESSAGE, 'The car has been added successfully');
   }
 
   // Change form elements methods

@@ -19,7 +19,7 @@ import { TDriverCompleteRegistration } from '@/features/driver-registration/type
 
 const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ tokenPayload }) => {
   const {
-    state: { isLoading },
+    state: { isLoading, isSuccess },
     formFields,
     onSubmit,
     handleSubmit,
@@ -42,6 +42,7 @@ const DriverCompleteRegistrationForm: FC<TDriverCompleteRegistration> = ({ token
               testId={DRIVER_REGISTRATION_COMPLETE_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
+                disabled: isLoading || isSuccess,
               }}
             />
           </div>

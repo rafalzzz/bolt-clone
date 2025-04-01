@@ -13,6 +13,7 @@ import {
   ADD_FACE_AUTH_CANCEL_BUTTON,
   ADD_FACE_AUTH_SUBMIT_BUTTON,
   ADD_FACE_AUTH_ERROR_MESSAGE,
+  ADD_FACE_AUTH_SUCCESS_MESSAGE,
 } from '@/test-ids/add-face-auth-page';
 
 import { ELanguage } from '@/enums/language';
@@ -39,6 +40,13 @@ export class AddFaceAuthPage extends BaseForm {
 
   async openAddFacialRecognitionModal() {
     await this.clickButton(this.openAddFaceAuthModalButtonTestId);
+  }
+
+  async assertSuccessToastMessage() {
+    await this.checkToastMessage(
+      ADD_FACE_AUTH_SUCCESS_MESSAGE,
+      'The face authorization has been added successfully',
+    );
   }
 
   // Camera methods

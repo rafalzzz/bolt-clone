@@ -13,7 +13,7 @@ import { ADD_CAR_PAGE_FORM, ADD_CAR_PAGE_FORM_SUBMIT_BUTTON } from '@/test-ids/a
 
 const AddCarForm = () => {
   const {
-    state: { isLoading },
+    state: { isLoading, isSuccess },
     formFields,
     onSubmit,
     handleSubmit,
@@ -34,6 +34,7 @@ const AddCarForm = () => {
               testId={ADD_CAR_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
+                disabled: isLoading || isSuccess,
               }}
             />
           </div>

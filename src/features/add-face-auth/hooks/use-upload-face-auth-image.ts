@@ -1,22 +1,29 @@
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import useServerAction from '@/shared/hooks/use-server-action';
+import useToastWithRedirection from '@/shared/hooks/use-toast-with-redirection';
 
 import displayToast from '@/shared/utils/client-side/display-toast';
 
-import { ADD_FACE_AUTH_ERROR_MESSAGE } from '@/test-ids/add-face-auth-page';
+import {
+  ADD_FACE_AUTH_ERROR_MESSAGE,
+  ADD_FACE_AUTH_SUCCESS_MESSAGE,
+} from '@/test-ids/add-face-auth-page';
 
 import uploadFaceImageAction from '../server-actions/upload-face-auth-image';
 
 const useUploadFaceAuthImage = () => {
-  const router = useRouter();
   const t = useTranslations('UploadFaceAuth');
-  const { handleServerAction } = useServerAction();
+  const toastWithRedirection = useToastWithRedirection();
+  const { state, handleServerAction } = useServerAction();
 
   const onSuccess = (redirectPath: unknown) => {
     if (typeof redirectPath === 'string') {
-      router.push(redirectPath);
+      toastWithRedirection({
+        text: t('addFaceAuthSuccess'),
+        redirectPath,
+        testId: ADD_FACE_AUTH_SUCCESS_MESSAGE,
+      });
     }
   };
 
@@ -39,7 +46,7 @@ const useUploadFaceAuthImage = () => {
     });
   };
 
-  return { uploadFaceAuthImage };
+  return { state, uploadFaceAuthImage };
 };
 
 export default useUploadFaceAuthImage;
