@@ -14,7 +14,7 @@ test.describe(
       await driverRegistrationPage.visit();
     });
 
-    test('Check the general initial UI of the registration as driver form', async () => {
+    test('Check the general initial UI of the registration as driver page', async () => {
       await driverRegistrationPage.assertPageLayoutVisible();
       await driverRegistrationPage.assertInputPlaceholders();
       await driverRegistrationPage.assertAllFormErrorsAreNotVisible();
