@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
@@ -7,17 +6,18 @@ import addCar from '@/features/add-car/server-actions/add-car';
 
 import useAddCarFields from '@/features/add-car/hooks/use-add-car-form-fields';
 import useServerAction from '@/shared/hooks/use-server-action';
+import useToastWithRedirection from '@/shared/hooks/use-toast-with-redirection';
 
 import {
   type TAddCarFormSchema,
   addCarFormSchema,
 } from '@/features/add-car/schemas/add-car-form-schema';
 
-import { ADD_CAR_FAILURE_MESSAGE } from '@/test-ids/add-car-page';
+import { ADD_CAR_FAILURE_MESSAGE, ADD_CAR_SUCCESS_MESSAGE } from '@/test-ids/add-car-page';
 
 const useAddCar = () => {
-  const router = useRouter();
   const t = useTranslations('AddCarForm');
+  const toastWithRedirection = useToastWithRedirection();
   const { state, handleServerAction } = useServerAction();
 
   const {
@@ -33,7 +33,11 @@ const useAddCar = () => {
 
   const onSuccess = (redirectPath: unknown) => {
     if (typeof redirectPath === 'string') {
-      router.push(redirectPath);
+      toastWithRedirection({
+        text: t('addCarSuccess'),
+        redirectPath,
+        testId: ADD_CAR_SUCCESS_MESSAGE,
+      });
     }
   };
 

@@ -41,7 +41,10 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
     videoHeight,
   });
 
-  const { uploadFaceAuthImage } = useUploadFaceAuthImage();
+  const {
+    state: { isLoading, isSuccess },
+    uploadFaceAuthImage,
+  } = useUploadFaceAuthImage();
 
   const addFaceAuth = useAddFaceAuth({
     intervalRef,
@@ -60,7 +63,7 @@ const AddFaceAuthModal: FC<TAddFaceAuthModal> = ({ isVisible, onCancel }) => {
       onCancel={onCancel}
       okButtonProps={{
         onClick: () => uploadFaceAuthImage(file),
-        disabled: isCameraDisabled,
+        disabled: isCameraDisabled || isLoading || isSuccess,
       }}
     >
       <div className='relative h-auto' style={{ width: videoWidth, height: videoHeight }}>

@@ -1,83 +1,67 @@
 import { type Page } from '@playwright/test';
 
 export class UserCamera {
-  readonly page: Page;
-
-  constructor(page: Page) {
-    this.page = page;
-  }
+  constructor(private readonly page: Page) {}
 
   async mockDisabledUserCamera() {
-    await this.page.evaluate(() => {
+    await this.page.addInitScript(() => {
       navigator.mediaDevices.getUserMedia = async (constraints: MediaStreamConstraints) => {
         if (constraints.video || constraints.audio) {
-          return Promise.reject(new DOMException('Permission denied', 'NotAllowedError'));
+          throw new DOMException('Permission denied', 'NotAllowedError');
         }
-
         throw new Error('Media type not supported');
       };
     });
+
+    await this.page.reload();
   }
 
-  async mockUserCamera(imgUrl: string) {
-    await this.page.evaluate((imagePath) => {
-      const createMockedStreamFromImage = (imagePath: string): Promise<MediaStream> => {
-        return new Promise((resolve, reject) => {
+  async mockUserCameraFromImage(imgUrl: string) {
+    await this.page.addInitScript((imagePath) => {
+      navigator.mediaDevices.getUserMedia = async (constraints: MediaStreamConstraints) => {
+        if (!constraints.video) {
+          throw new Error('Media type not supported');
+        }
+
+        return await new Promise<MediaStream>((resolve, reject) => {
           const image = new Image();
           image.crossOrigin = 'anonymous';
-
           image.src = imagePath;
 
           image.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = image.width;
             canvas.height = image.height;
-            canvas.style.backgroundColor = 'red';
 
-            const context = canvas.getContext('2d');
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return reject(new Error('Missing canvas context'));
 
-            if (!context) {
-              return reject(new Error('Missing context'));
-            }
+            ctx.drawImage(image, 0, 0);
 
-            context.drawImage(image, 0, 0, image.width, image.height);
+            setInterval(() => ctx.drawImage(image, 0, 0), 100);
 
-            const stream = canvas.captureStream(0);
-
-            // Necessary to detect if image is loaded
-            document.body.appendChild(canvas);
-            canvas.style.display = 'none';
+            const stream = canvas.captureStream(10);
 
             resolve(stream);
           };
 
-          image.onerror = () => {
-            reject(new Error('Failed to load image for mock stream'));
-          };
+          image.onerror = () => reject(new Error('Image failed to load'));
         });
       };
-
-      navigator.mediaDevices.getUserMedia = async (constraints: MediaStreamConstraints) => {
-        if (constraints.video) {
-          return await createMockedStreamFromImage(imagePath);
-        }
-
-        throw new Error('Media type not supported');
-      };
     }, imgUrl);
+
+    await this.page.reload();
   }
 
   async mockUserCameraWithFace() {
-    const imageUrl =
-      'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg';
-
-    await this.mockUserCamera(imageUrl);
+    await this.mockUserCameraFromImage(
+      'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg',
+    );
   }
 
   async mockUserCameraWithoutFace() {
-    const imageUrl =
-      'https://img.freepik.com/free-photo/beautiful-view-sunset-sea_23-2148019892.jpg';
-
-    await this.mockUserCamera(imageUrl);
+    await this.mockUserCameraFromImage(
+      'https://img.freepik.com/free-photo/beautiful-view-sunset-sea_23-2148019892.jpg',
+    );
   }
 }

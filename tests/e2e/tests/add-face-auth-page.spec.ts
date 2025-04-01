@@ -74,5 +74,6 @@ test.describe('AddFaceAuthPage tests', { tag: ['@AddFaceAuthPage', '@critical'] 
 
     await addFaceAuthPage.clickAddFaceAuthButton();
     await addFaceAuthPage.clickModalSubmitButton();
+    await addFaceAuthPage.assertSuccessToastMessage();
   });
 });

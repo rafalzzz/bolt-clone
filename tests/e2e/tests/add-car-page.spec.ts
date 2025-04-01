@@ -50,6 +50,7 @@ test.describe('AddCarPage tests', { tag: ['@AddCarPage', '@critical'] }, () => {
     await addCarPage.addServerActionCookie(EMockedResponseType.SUCCESS);
     await addCarPage.fillForm();
     await addCarPage.clickFormSubmitButton();
+    await addCarPage.assertSuccessToastMessage();
     await addCarPage.waitForUrl(addCarUrl);
     await addCarPage.assertAddFaceAuthPageVisible();
   });

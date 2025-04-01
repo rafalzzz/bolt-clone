@@ -17,7 +17,7 @@ import {
 
 const DriverRegistrationForm = () => {
   const {
-    state: { isLoading },
+    state: { isLoading, isSuccess },
     formFields,
     onSubmit,
     handleSubmit,
@@ -38,6 +38,7 @@ const DriverRegistrationForm = () => {
               testId={DRIVER_REGISTRATION_PAGE_FORM_SUBMIT_BUTTON}
               buttonProps={{
                 type: 'submit',
+                disabled: isLoading || isSuccess,
               }}
             />
           </div>
