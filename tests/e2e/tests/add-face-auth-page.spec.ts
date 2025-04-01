@@ -15,7 +15,7 @@ test.describe('AddFaceAuthPage tests', { tag: ['@AddFaceAuthPage', '@critical'] 
     await addFaceAuthPage.visit();
   });
 
-  test('Check the general initial UI of the add car form', async () => {
+  test('Check the general initial UI of AddFaceAuth page', async () => {
     await addFaceAuthPage.assertPageLayoutVisible();
     await addFaceAuthPage.assertButtonIsEnabled(addFaceAuthPage.openAddFaceAuthModalButtonTestId);
   });
