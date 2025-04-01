@@ -70,8 +70,7 @@
     "passwordDigit": "Hasło musi zawierać przynajmniej jedną cyfrę",
     "passwordSpecialCharacter": "Hasło musi zawierać przynajmniej jeden znak specjalny",
     "passwordMustMatch": "Wpisane hasła różnią się od siebie",
-    "carRegistrationNumberCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry",
-    "requiredFacialRecognition": "Dodanie rozpoznawania twarzy jest wymagane"
+    "carRegistrationNumberCharacters": "Numer rejestracyjny pojazdu może zawierać tylko duże litery i cyfry"
   },
   "DriverRegistrationCompletePage": {
     "description": "Przekręć kluczyk do przygody i zysków z BoltCopy",
@@ -102,15 +101,7 @@
     "okButtonText": "Zatwierdź",
     "cancelButtonText": "Anuluj"
   },
-  "AddFacialRecognitionModal": {
-    "title": "Dodaj identyfikator twarzy"
-  },
-  "AddFacialRecognitionError": {
-    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki",
-    "errorWhileAddingFaceRecognition": "Wystąpił błąd podczas dodawania rozpoznawania twarzy",
-    "photoIsNotAdded": "Zdjęcie w celu rozpoznawania twarzy nie zostało dodane",
-    "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
-  },
+
   "JwtTokenErrors": {
     "missingTokenOrSecretKey": "Brakuje tokenu lub klucza do rozszyfrowania tokenu",
     "expiredToken": "Token wygasł",
@@ -175,17 +166,45 @@
     "submitButtonText": "Dodaj samochód",
     "addCarError": "Wystąpił błąd podczas dodawania samochodu",
     "addCarSuccess": "Samochód został dodany pomyślnie",
-    "unknownError": "Wystąpił nieznany błąd"
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania samochodu"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Niepoprawny email lub hasło",
-    "unknownError": "Wystąpił nieznany błąd"
+    "unknownError": "Wystąpił nieznany błąd podczas logowania"
   },
   "RegisterAction": {
-    "missingAuthUserId": "Something went wrong, missing auth_user_id"
+    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
   },
   "AddCarAction": {
     "authError": "Brak autoryzacji do wykonania akcji",
     "carNumberIsAlreadyTaken": "Istnieje już samochód z podanym numerem rejestracyjnym"
+  },
+  "AddFaceAuthPageHeadSection": {
+    "title": "Zweryfikuj swoją tożsamość – Prześlij zdjęcie twarzy do BoltCopy",
+    "description": "Dla twojego bezpieczeństwa i aby rozpocząć jazdę z BoltCopy, prześlij wyraźne zdjęcie swojej twarzy. Szybka i bezpieczna weryfikacja tożsamości, która pozwoli ci szybko rozpocząć jazdę!",
+    "keywords": "weryfikacja twarzy, sprawdzanie tożsamości, przesyłanie zdjęcia kierowcy, weryfikacja BoltCopy, przesyłanie selfie, rozpoczęcie jazdy, bezpieczna weryfikacja"
+  },
+  "AddFaceAuthPage": {
+    "description": "Dodaj weryfikację twarzy i zacznij jeździć z BoltCopy",
+    "secondaryDescription": "Jesteś prawie gotowy do jazdy! Zakończ konfigurację, weryfikując swoją twarz, i ruszaj w drogę z BoltCopy.",
+    "showFaceAuthModal": "Dodaj zdjęcia twarzy"
+  },
+  "AddFaceAuthModal": {
+    "title": "Dodaj autoryzację twarzy"
+  },
+  "VideoError": {
+    "permissionDenied": "W celu dodania zdjęcia twarzy wymagany jest dostęp do kamerki"
+  },
+  "AddFaceAuthErrors": {
+    "errorWhileAddingFaceAuth": "Wystąpił błąd podczas dodawania autoryzacji twarzą",
+    "faceNotFound": "Nie wykryto twarzy na zdjęciu - w trakcie robienia zdjęcia proszę się nie ruszać"
+  },
+  "UploadFaceAuth": {
+    "addFaceAuthSuccess": "Autoryzacja twarzy została dodana pomyślnie",
+    "photoIsNotAdded": "Zdjęcie w celu weryfikacji twarzy nie zostało dodane",
+    "unknownError": "Wystąpił nieznany błąd podczas dodawania autoryzacji twarzy"
+  },
+  "UploadFaceAuthImageAction": {
+    "authError": "Brak autoryzacji do wykonania akcji"
   }
 }

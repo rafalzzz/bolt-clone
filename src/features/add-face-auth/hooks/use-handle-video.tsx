@@ -2,14 +2,15 @@ import { setBackend, ready } from '@tensorflow/tfjs';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import loadFaceModels from '@/features/driver-registration/utils/load-face-models';
-import { startFacialRecognition } from '@/features/driver-registration/utils/start-facial-recognition';
-import startVideo from '@/features/driver-registration/utils/start-video';
-import stopStreamedVideo from '@/features/driver-registration/utils/stop-streamed-video';
+import loadFaceModels from '@/features/add-face-auth/utils/load-face-models';
+import { startFacialRecognition } from '@/features/add-face-auth/utils/start-facial-recognition';
+import startVideo from '@/features/add-face-auth/utils/start-video';
+import stopStreamedVideo from '@/features/add-face-auth/utils/stop-streamed-video';
 import displayToast from '@/shared/utils/client-side/display-toast';
-import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
-import { ADD_FACIAL_RECOGNITION_ERROR } from '@/test-ids/add-facial-recognition-modal';
+import isTestingEnvironment from '@/test-helpers/is-testing-environment';
+
+import { ADD_FACE_AUTH_ERROR_MESSAGE } from '@/test-ids/add-face-auth-page';
 
 type TUseHandleVideo = {
   videoWidth: number;
@@ -17,7 +18,7 @@ type TUseHandleVideo = {
 };
 
 const PERMISSION_DENIED_ERROR = 'Permission denied';
-const TF_BACKEND_NAME = isDevelopmentEnvironment() ? 'cpu' : 'webgl';
+const TF_BACKEND_NAME = isTestingEnvironment() ? 'cpu' : 'webgl';
 
 const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const [isVideoLoading, setIsVideoLoading] = useState<boolean>(true);
@@ -27,7 +28,8 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const t = useTranslations('AddFacialRecognitionError');
+  const t = useTranslations('VideoError');
+  console.log({ TF_BACKEND_NAME });
 
   const handleStartVideoError = useCallback(
     (error: string) => {
@@ -37,7 +39,7 @@ const useHandleVideo = ({ videoWidth, videoHeight }: TUseHandleVideo) => {
       setIsVideoError(true);
       displayToast({
         text,
-        testId: ADD_FACIAL_RECOGNITION_ERROR,
+        testId: ADD_FACE_AUTH_ERROR_MESSAGE,
       });
     },
     [t],

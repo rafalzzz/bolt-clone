@@ -61,7 +61,7 @@
     "requiredField": "This field is required",
     "minimumRequiredCharacters": "This field requires at least {number} characters",
     "onlyLetters": "This field accepts only letters",
-    "onlyLettersAndDigits": "This field accepts only letters and numbers",
+    "onlyLettersAndDigits": "This field accepts only letters and digits",
     "invalidEmail": "Please enter a valid email",
     "requiredPhoneNumber": "Providing the phone number is required",
     "invalidPhoneNumber": "Invalid phone format",
@@ -72,8 +72,7 @@
     "passwordDigit": "Password must contain at least one digit",
     "passwordSpecialCharacter": "Password must contain at least one special character",
     "passwordMustMatch": "The entered passwords do not match",
-    "carRegistrationNumberCharacters": "The car registration number can contain only uppercase letters and digits",
-    "requiredFacialRecognition": "Adding face recognition is required"
+    "carRegistrationNumberCharacters": "The car registration number can contain only uppercase letters and digits"
   },
   "DriverRegistrationCompletePage": {
     "description": "Turn the key to adventure and profits with BoltCopy",
@@ -104,13 +103,10 @@
     "okButtonText": "Confirm",
     "cancelButtonText": "Cancel"
   },
-  "AddFacialRecognitionModal": {
-    "title": "Add facial recognition"
-  },
   "AddFacialRecognitionError": {
     "permissionDenied": "To add a facial photo, access to the camera is required",
     "errorWhileAddingFaceRecognition": "An error occurred while adding face recognition",
-    "photoIsNotAdded": "The photo for facial recognition has not been added",
+    "photoIsNotAdded": "The photo for face authorization has not been added",
     "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
   },
   "JwtTokenErrors": {
@@ -176,17 +172,45 @@
     "submitButtonText": "Add car",
     "addCarError": "An error occurred during adding the car",
     "addCarSuccess": "The car has been added successfully",
-    "unknownError": "Unknown error occured"
+    "unknownError": "Unknown error occured during adding the car"
   },
   "LoginAction": {
     "incorrentCredentialsMessage": "Incorrect email or password",
-    "unknownError": "Unknown error occured"
+    "unknownError": "Unknown error occured during login action"
   },
   "RegisterAction": {
-    "missingAuthUserId": "Coś poszło nie tak, brakuje auth_user_id"
+    "missingAuthUserId": "Something went wrong, missing auth_user_id"
   },
   "AddCarAction": {
     "authError": "Unauthorized to perform this action",
     "carNumberIsAlreadyTaken": "There is already a car with the provided registration number"
+  },
+  "AddFaceAuthPageHeadSection": {
+    "title": "Verify your identity – Upload a face photo to BoltCopy",
+    "description": "For your safety and to start driving with BoltCopy, upload a clear photo of yourself. Quick and secure identity verification to get you on the road in no time!",
+    "keywords": "face verification, identity check, driver photo upload, BoltCopy verification, selfie upload, start driving, secure verification"
+  },
+  "AddFaceAuthPage": {
+    "description": "Add your face verification and start driving with BoltCopy",
+    "secondaryDescription": "You're almost ready to drive! Complete your setup by verifying your face and get on the road with BoltCopy.",
+    "showFaceAuthModal": "Add face image"
+  },
+  "AddFaceAuthModal": {
+    "title": "Add facial authorization"
+  },
+  "VideoError": {
+    "permissionDenied": "To add a facial photo, access to the camera is required"
+  },
+  "AddFaceAuthErrors": {
+    "errorWhileAddingFaceAuth": "An error occurred while adding face authorization",
+    "faceNotFound": "No face detected in the photo - please do not move while taking the picture"
+  },
+  "UploadFaceAuth": {
+    "addFaceAuthSuccess": "The face authorization has been added successfully",
+    "photoIsNotAdded": "The photo for face authorization has not been added",
+    "unknownError": "Unknown error occured during adding face authorization"
+  },
+  "UploadFaceAuthImageAction": {
+    "authError": "Unauthorized to perform this action"
   }
 }

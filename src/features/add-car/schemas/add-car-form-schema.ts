@@ -25,7 +25,7 @@ export const addCarFormSchema = z.object({
     .nonempty(EErrorKeys.REQUIRED_FIELD)
     .min(2, EErrorKeys.MINIMUM_REQUIRED_CHARACTERS)
     .regex(ONLY_LETTERS_AND_DIGITS_REGEX, EErrorKeys.ONLY_LETTERS_AND_DIGITS),
-  [EAddCarFormKeys.CAR_COLOR]: z.string().refine((val) => val !== undefined && val.trim() !== '', {
+  [EAddCarFormKeys.CAR_COLOR]: z.string({ message: EErrorKeys.REQUIRED_FIELD }).nonempty({
     message: EErrorKeys.REQUIRED_FIELD,
   }),
 });
