@@ -13,6 +13,7 @@ import {
 } from '@/test-ids/driver-registration-page';
 
 import { SEND_EMAIL_TO_DRIVER } from '@/consts/endpoints';
+import { EMAIL_INPUT_ERRORS } from '@/consts/input-errors';
 
 import { EDriverRegistrationFormKeys } from '@/enums/driver-registration-form-keys';
 import { ELanguage } from '@/enums/language';
@@ -101,19 +102,19 @@ export class DriverRegistrationPage extends BaseForm {
 
   // Change form elements methods
   async fillInputsWithValidValues() {
-    const wrongFormatErrorMessages: TTestObject = {
+    const inputValues: TTestObject = {
       [EDriverRegistrationFormKeys.EMAIL]:
         this.correctRequestBody[EDriverRegistrationFormKeys.EMAIL],
       [EDriverRegistrationFormKeys.PHONE_NUMBER]:
         this.correctRequestBody[EDriverRegistrationFormKeys.PHONE_NUMBER],
     };
 
-    await this.changeInputsValues(wrongFormatErrorMessages);
+    await this.changeInputsValues(inputValues);
   }
 
   async fillForm() {
     await this.fillInputsWithValidValues();
-    await this.selectReactSelectOption('Warsaw');
+    await this.selectReactSelectOption(EDriverRegistrationFormKeys.CITY, 'Warsaw');
     await this.checkCheckbox(EDriverRegistrationFormKeys.RULES);
   }
 
@@ -129,7 +130,10 @@ export class DriverRegistrationPage extends BaseForm {
 
     for (const inputKey of inputKeys) {
       if (inputKey === EDriverRegistrationFormKeys.CITY) {
-        return await this.checkReactSelectPlaceholder(inputPlaceholders[inputKey]);
+        return await this.checkReactSelectPlaceholder(
+          EDriverRegistrationFormKeys.CITY,
+          inputPlaceholders[inputKey],
+        );
       }
 
       await this.checkInputPlaceholder(inputKey, inputPlaceholders[inputKey]);
@@ -137,14 +141,7 @@ export class DriverRegistrationPage extends BaseForm {
   }
 
   async assertEmailInputErrors() {
-    const values = ['!#', 'test@pl'];
-
-    const inputErrors = values.map((value) => ({
-      value,
-      errorMessage: 'Please enter a valid email',
-    }));
-
-    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, inputErrors);
+    await this.checkInputErrors(EDriverRegistrationFormKeys.EMAIL, EMAIL_INPUT_ERRORS);
   }
 
   async assertPhoneNumberInputErrors() {

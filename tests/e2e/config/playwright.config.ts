@@ -9,7 +9,7 @@ export default defineConfig({
   workers: !process.env['CI'] ? 6 : undefined,
   webServer: {
     command: 'npm run dev -- -p 4000',
-    url: 'http://localhost:4000',
+    url: baseURL,
     reuseExistingServer: true,
     timeout: 180 * 1000,
   },
