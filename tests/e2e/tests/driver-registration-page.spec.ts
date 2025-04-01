@@ -14,23 +14,23 @@ test.describe(
       await driverRegistrationPage.visit();
     });
 
-    test('Check the general initial UI of the register as driver form', async () => {
+    test('Check the general initial UI of the registration as driver page', async () => {
       await driverRegistrationPage.assertPageLayoutVisible();
       await driverRegistrationPage.assertInputPlaceholders();
       await driverRegistrationPage.assertAllFormErrorsAreNotVisible();
       await driverRegistrationPage.assertButtonIsEnabled(driverRegistrationPage.submitButtonTestId);
     });
 
-    test('Should show error about required fields when form inputs are not filled', async () => {
+    test('Check input errors', async () => {
       await driverRegistrationPage.clickFormSubmitButton();
       await driverRegistrationPage.assertRequiredFieldsErrorMessages();
+      await driverRegistrationPage.assertEmailInputErrors();
+      await driverRegistrationPage.assertPhoneNumberInputErrors();
     });
 
-    test('Should show errors about wrong input value format', async () => {
-      await driverRegistrationPage.fillInputsWithInvalidValues();
+    test('Check if errors are not visible when form is filled correctly', async () => {
       await driverRegistrationPage.clickFormSubmitButton();
-      await driverRegistrationPage.assertInvalidFormatErrorMessages();
-      await driverRegistrationPage.fillInputsWithValidValues();
+      await driverRegistrationPage.fillForm();
       await driverRegistrationPage.assertFormInputErrorsAreNotVisible();
     });
 
@@ -49,7 +49,7 @@ test.describe(
       const requestBody = JSON.parse(request.postData() || '{}');
 
       await driverRegistrationPage.assertSuccessToastMessage();
-      driverRegistrationPage.asserRequestBodyCorrectness(requestBody);
+      driverRegistrationPage.assertRequestBodyCorrectness(requestBody);
     });
   },
 );

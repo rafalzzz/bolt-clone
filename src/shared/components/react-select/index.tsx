@@ -44,28 +44,30 @@ const ReactSelect = <FormType extends TBasicFormType>({
 }: TReactSelectProps<FormType>) => (
   <FormItemContainer inputKey={inputKey} error={error}>
     <CustomInputLabel label={label}>
-      <Select
-        defaultInputValue=''
-        className='react-select'
-        classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
-        isSearchable={false}
-        options={options}
-        name={name}
-        onChange={(selected: SingleValue<TOption>) => {
-          if (selected) {
-            setValue(inputKey, selected.value as PathValue<FormType, Path<FormType>>, {
-              shouldValidate: true,
-            });
-          }
-        }}
-        components={{
-          Control: formatControl,
-          SingleValue: formatSingleValue,
-          GroupHeading: formatGroupLabel,
-          Option: formatOption,
-        }}
-        placeholder={placeholder}
-      />
+      <div data-testid={`react-select-${inputKey}`}>
+        <Select
+          defaultInputValue=''
+          className='react-select'
+          classNamePrefix={`${error ? 'invalid' : 'correct'}-react-select`}
+          isSearchable={false}
+          options={options}
+          name={name}
+          onChange={(selected: SingleValue<TOption>) => {
+            if (selected) {
+              setValue(inputKey, selected.value as PathValue<FormType, Path<FormType>>, {
+                shouldValidate: true,
+              });
+            }
+          }}
+          components={{
+            Control: formatControl,
+            SingleValue: formatSingleValue,
+            GroupHeading: formatGroupLabel,
+            Option: formatOption,
+          }}
+          placeholder={placeholder}
+        />
+      </div>
     </CustomInputLabel>
   </FormItemContainer>
 );

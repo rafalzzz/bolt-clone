@@ -1,18 +1,22 @@
-import type { NextApiResponse } from 'next/types';
-
 import CustomResponseError from '@/shared/classes/custom-response-error';
 
 import getErrorMessage from '@/shared/utils/common/get-error-message';
+import sendResponse from '@/shared/utils/server-side/send-response';
 
-import { TApiResponse } from '@/shared/types/api-response';
-
-const handleRequestError = (res: NextApiResponse<TApiResponse>, error: unknown) => {
+const handleRequestError = (error: unknown) => {
   if (error instanceof CustomResponseError) {
-    const { statusCode, message } = error;
-    res.status(statusCode).json({ message });
+    const { status, message } = error;
+
+    return sendResponse({
+      body: { message },
+      status,
+    });
   }
 
-  res.status(500).json({ message: getErrorMessage(error) });
+  return sendResponse({
+    body: { message: getErrorMessage(error) },
+    status: 500,
+  });
 };
 
 export default handleRequestError;

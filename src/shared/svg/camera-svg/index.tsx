@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 
-import { TSvgParams } from '@/shared/types/svg-params';
+import { TSvg } from '@/shared/types/svg-params';
 
-const CameraSvg: FC<TSvgParams> = ({ className }) => (
+const CameraSvg: FC<TSvg> = ({ className }) => (
   <svg
     fill='none'
     viewBox='0 0 24 24'

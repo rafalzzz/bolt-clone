@@ -1,9 +1,10 @@
-import { NextResponse, type NextRequest } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
+import type { NextRequest } from 'next/server';
 
-import { routing } from '@/i18n/routing';
+import { updateSession } from '@/lib/supabase/middleware';
 
-export default createMiddleware(routing);
+export async function middleware(request: NextRequest) {
+  return await updateSession(request);
+}
 
 export const config = {
   matcher: [
@@ -16,14 +17,6 @@ export const config = {
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)
-    '/((?!_next|_vercel|.*\\..*).*)',
+    '/((?!api|_next|_vercel|.*\\..*).*)',
   ],
 };
-
-export function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname.includes('/api/')) {
-    return NextResponse.next();
-  }
-
-  return NextResponse.next();
-}
