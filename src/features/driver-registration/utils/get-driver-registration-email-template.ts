@@ -2,9 +2,9 @@ import isDevelopmentEnvironment from '@/shared/utils/is-development-environment'
 
 import { EEmailTranslationKeys } from '@/features/driver-registration/enums/email-translation-keys';
 
-const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
+import { TEmailTranslations } from '@/features/driver-registration/types/email-translations';
 
-export type TEmailTranslations = Record<EEmailTranslationKeys, string>;
+const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
 
 type TGetDriverRegistrationEmailTemplateArgs = {
   lang: string;
