@@ -1,7 +1,12 @@
 {
   "takenEmail": "Podany email jest już zajęty",
   "takenPhoneNumber": "Podany numer telefonu jest już zajęty",
-  "takenCarRegistrationNumber": "Podany numer rejestracyjny pojazdu jest już zajęty",
-  "missingFileMessage": "Coś poszło nie tak, nie można znaleźć pliku",
-  "unknownError": "Wystąpił nieznany błąd"
+  "unknownError": "Wystąpił nieznany błąd",
+  "emailTitle": "Witamy w BoltCopy",
+  "emailGreeting": "Cześć",
+  "emailText": "Witamy w BoltCopy! Sam zdecyduj, kiedy i ile chcesz pracować. Aby kontynuować rejestrację, kliknij przycisk poniżej.",
+  "emailButtonText": "Dokończ rejestrację",
+  "emailFooter": "Pozdrawiamy",
+  "emailBoltCopyTeam": "Zespół BoltCopy",
+  "sendEmailError": "Wystąpił błąd podczas wysyłania maila. Upewnij się, że Twój email jest poprawny. Obsługujemy jedynie maile założone na Gmail."
 }

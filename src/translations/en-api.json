@@ -1,7 +1,12 @@
 {
   "takenEmail": "This email is already taken",
   "takenPhoneNumber": "This phone number is already taken",
-  "takenCarRegistrationNumber": "This car registration number is already taken",
-  "missingFileMessage": "Something went wrong, the file cannot be found",
-  "unknownError": "Unknown error occured"
+  "unknownError": "Unknown error occured",
+  "emailTitle": "Welcome to BoltCopy",
+  "emailGreeting": "Hi",
+  "emailText": "Welcome to BoltCopy! Decide for yourself when and how much you want to work. To continue with the registration, click the button below.",
+  "emailButtonText": "Complete the registration",
+  "emailFooter": "Best",
+  "emailBoltCopyTeam": "The BoltCopy team",
+  "sendEmailError": "An error occurred while sending the email. Please make sure your email address is correct. We only support Gmail addresses."
 }

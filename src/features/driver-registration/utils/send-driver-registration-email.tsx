@@ -1,14 +1,28 @@
-import CompleteRegistrationEmailTemplate from '@/features/driver-registration/components/complete-registration-email-template';
-
+import getDriverRegistrationEmailTemplate, {
+  TEmailTranslations,
+} from '@/features/driver-registration/utils/get-driver-registration-email-template';
 import sendEmail from '@/shared/utils/server-side/email';
 
-const EMAIL_TITLE = 'Welcome to BoltCopy!';
+type TSendDriverRegistrationEmailArgs = {
+  lang: string;
+  to: string;
+  token: string;
+  translations: TEmailTranslations;
+};
 
-const sendDriverRegistrationEmail = async (to: string, token: string) => {
+const sendDriverRegistrationEmail = async ({
+  lang,
+  to,
+  token,
+  translations,
+}: TSendDriverRegistrationEmailArgs) => {
+  const html = getDriverRegistrationEmailTemplate({ lang, token, translations });
+
   const { error: sendEmailError } = await sendEmail({
     to,
-    subject: EMAIL_TITLE,
-    emailTemplate: <CompleteRegistrationEmailTemplate token={token} />,
+    subject: translations.header,
+    html,
+    sendEmailError: translations.sendEmailError,
   });
 
   if (sendEmailError) {
