@@ -1,17 +1,10 @@
 import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
 
+import { EEmailTranslationKeys } from '@/features/driver-registration/enums/email-translation-keys';
+
 const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
 
-type TTranslationKeys =
-  | 'header'
-  | 'greeting'
-  | 'text'
-  | 'buttonText'
-  | 'footer'
-  | 'boltCopyTeam'
-  | 'sendEmailError';
-
-export type TEmailTranslations = Record<TTranslationKeys, string>;
+export type TEmailTranslations = Record<EEmailTranslationKeys, string>;
 
 type TGetDriverRegistrationEmailTemplateArgs = {
   lang: string;
@@ -22,7 +15,7 @@ type TGetDriverRegistrationEmailTemplateArgs = {
 const getDriverRegistrationEmailTemplate = ({
   lang,
   token,
-  translations: { header, greeting, text, buttonText, boltCopyTeam, footer },
+  translations,
 }: TGetDriverRegistrationEmailTemplateArgs): string => {
   const baseUrl = process.env.DOMAIN_URL
     ? `${PROTOCOL}://${process.env.DOMAIN_URL}/en/driver/complete/`
@@ -36,7 +29,7 @@ const getDriverRegistrationEmailTemplate = ({
     <head>
       <meta charset="UTF-8" />
       <meta http-equiv="Content-Language" content="${lang}">
-      <title>${header}</title>
+      <title>${translations[EEmailTranslationKeys.HEADER]}</title>
       <style>
         a.button:hover {
           background-color: #6366f1 !important;
@@ -55,9 +48,9 @@ const getDriverRegistrationEmailTemplate = ({
               </tr>
               <tr>
                 <td>
-                  <p style="font-size: 16px; color: #374151;">${greeting}!</p>
+                  <p style="font-size: 16px; color: #374151;">${translations[EEmailTranslationKeys.GREETING]}!</p>
                   <p style="font-size: 16px; color: #374151;">
-                    ${text}
+                    ${translations[EEmailTranslationKeys.TEXT]}
                   </p>
                 </td>
               </tr>
@@ -78,15 +71,15 @@ const getDriverRegistrationEmailTemplate = ({
                     "
                     target="_blank"
                   >
-                    ${buttonText}
+                    ${translations[EEmailTranslationKeys.BUTTON_TEXT]}
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
                   <p style="font-size: 16px; color: #374151;">
-                    ${footer},<br />
-                    ${boltCopyTeam}
+                    ${translations[EEmailTranslationKeys.FOOTER]},<br />
+                    ${translations[EEmailTranslationKeys.BOLT_COPY_TEAM]}
                   </p>
                 </td>
               </tr>

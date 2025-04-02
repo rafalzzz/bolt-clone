@@ -3,6 +3,8 @@ import getDriverRegistrationEmailTemplate, {
 } from '@/features/driver-registration/utils/get-driver-registration-email-template';
 import sendEmail from '@/shared/utils/server-side/email';
 
+import { EEmailTranslationKeys } from '@/features/driver-registration/enums/email-translation-keys';
+
 type TSendDriverRegistrationEmailArgs = {
   lang: string;
   to: string;
@@ -22,7 +24,7 @@ const sendDriverRegistrationEmail = async ({
     to,
     subject: translations.header,
     html,
-    sendEmailError: translations.sendEmailError,
+    sendEmailError: translations[EEmailTranslationKeys.SEND_EMAIL_ERROR],
   });
 
   if (sendEmailError) {

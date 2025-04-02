@@ -13,6 +13,7 @@ import sendResponse from '@/shared/utils/server-side/send-response';
 import { TDriverRegistrationFormSchema } from '@/features/driver-registration/schemas/driver-registration-form-schema';
 
 import { EDriverRegistrationFormKeys } from '@/features/driver-registration/enums/driver-registration-form-keys';
+import { EEmailTranslationKeys } from '@/features/driver-registration/enums/email-translation-keys';
 
 import { TDriverRegistrationTokenPayload } from '@/features/driver-registration/types/driver-registration';
 
@@ -48,13 +49,13 @@ export async function POST(request: NextRequest) {
       to: email,
       token,
       translations: {
-        header: t('emailTitle'),
-        greeting: t('emailGreeting'),
-        text: t('emailText'),
-        buttonText: t('emailButtonText'),
-        footer: t('emailFooter'),
-        boltCopyTeam: t('emailBoltCopyTeam'),
-        sendEmailError: t('sendEmailError'),
+        [EEmailTranslationKeys.HEADER]: t('emailTitle'),
+        [EEmailTranslationKeys.GREETING]: t('emailGreeting'),
+        [EEmailTranslationKeys.TEXT]: t('emailText'),
+        [EEmailTranslationKeys.BUTTON_TEXT]: t('emailButtonText'),
+        [EEmailTranslationKeys.FOOTER]: t('emailFooter'),
+        [EEmailTranslationKeys.BOLT_COPY_TEAM]: t('emailBoltCopyTeam'),
+        [EEmailTranslationKeys.SEND_EMAIL_ERROR]: t('sendEmailError'),
       },
     });
 
