@@ -1,18 +1,12 @@
-import type { ButtonHTMLAttributes, FC } from 'react';
+import type { FC } from 'react';
 
 import getLoaderTestId from '@/test-helpers/get-loader-test-id';
 
 import LoaderSvg from '@/shared/svg/loader-svg';
 
-type TCustomFormButton = {
-  text: string;
-  buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
-  testId?: string;
-  isLoading?: boolean;
-  additionalClassNames?: string;
-};
+import { TCustomButton } from '@/shared/types/custom-button-args';
 
-const CustomFormButton: FC<TCustomFormButton> = ({
+const CustomFormButton: FC<TCustomButton> = ({
   text,
   buttonProps,
   testId = '',

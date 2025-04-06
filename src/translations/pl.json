@@ -206,5 +206,16 @@
   },
   "UploadFaceAuthImageAction": {
     "authError": "Brak autoryzacji do wykonania akcji"
+  },
+  "ClientLoginPageHeadSection": {
+    "title": "Zaloguj się i ruszaj z BoltCopy!",
+    "description": "Uzyskaj dostęp do swojego konta, aby szybko i wygodnie zamawiać przejazdy. Ciesz się komfortowymi podróżami, śledź swoje trasy i odkrywaj miasto z BoltCopy. Zaloguj się i w drogę!",
+    "keywords": "logowanie klienta, konto BoltCopy, zamów przejazd, podróżuj z BoltCopy, komfortowe przejazdy, łatwe zamawianie przejazdów, śledzenie przejazdu, zaloguj się aby jechać"
+  },
+  "ClientLoginPage": {
+    "description": "Zaloguj się, aby zamówić swój kolejny przejazd z BoltCopy!",
+    "secondaryDescription": "Uzyskaj dostęp do konta, zarządzaj rezerwacjami i podróżuj wygodnie — gdzie chcesz i kiedy chcesz.",
+    "loginWithFacebook": "Zaloguj się przez Facebook",
+    "loginWithGmail": "Zaloguj się przez Gmail"
   }
 }

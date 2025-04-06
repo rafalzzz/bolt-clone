@@ -1,10 +1,8 @@
-import isDevelopmentEnvironment from '@/shared/utils/is-development-environment';
-
 import { EEmailTranslationKeys } from '@/features/driver-registration/enums/email-translation-keys';
 
-import { TEmailTranslations } from '@/features/driver-registration/types/email-translations';
+import { host } from '@/config';
 
-const PROTOCOL = isDevelopmentEnvironment() ? 'http' : 'https';
+import { TEmailTranslations } from '@/features/driver-registration/types/email-translations';
 
 type TGetDriverRegistrationEmailTemplateArgs = {
   lang: string;
@@ -17,9 +15,7 @@ const getDriverRegistrationEmailTemplate = ({
   token,
   translations,
 }: TGetDriverRegistrationEmailTemplateArgs): string => {
-  const baseUrl = process.env.DOMAIN_URL
-    ? `${PROTOCOL}://${process.env.DOMAIN_URL}/en/driver/complete/`
-    : '';
+  const baseUrl = `${host}/en/driver/complete/`;
 
   const link = `${baseUrl}${token}`;
 

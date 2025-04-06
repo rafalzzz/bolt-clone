@@ -212,5 +212,16 @@
   },
   "UploadFaceAuthImageAction": {
     "authError": "Unauthorized to perform this action"
+  },
+  "ClientLoginPageHeadSection": {
+    "title": "Log in and ride with BoltCopy!",
+    "description": "Access your account to book rides quickly and easily. Enjoy comfortable trips, track your rides, and explore your city with BoltCopy. Log in now and let's go!",
+    "keywords": "client login, BoltCopy account, book a ride, ride with BoltCopy, comfortable rides, easy ride booking, track your ride, sign in to ride"
+  },
+  "ClientLoginPage": {
+    "description": "Log in to book your next ride with BoltCopy!",
+    "secondaryDescription": "Access your account, manage your bookings, and travel comfortably anytime, anywhere.",
+    "loginWithFacebook": "Log in with Facebook",
+    "loginWithGmail": "Log in with Gmail"
   }
 }
